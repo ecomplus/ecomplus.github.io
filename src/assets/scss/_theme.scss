@@ -5,8 +5,9 @@
 // the following variables.
 
 // Google fonts
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600|Barlow:100,400,500');
-
+// @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600|Barlow:100,400,500');
+// Font files
+@import "fonts";
 
 //----------------------------------------
 // Color system
@@ -63,8 +64,8 @@ $color-subtitle:                  $color-text-light;
 ////----------------------------------------
 // Fonts
 ////----------------------------------------
-$font-family-base:                "Open Sans", sans-serif;
-$font-family-title:               Barlow, sans-serif;
+$font-family-base:                "Fira Sans", sans-serif;
+$font-family-title:               "Fira Sans", sans-serif;
 
 $font-size-base:                  0.9375rem;
 
