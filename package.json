@@ -1,17 +1,19 @@
 {
-  "name": "TheDocs",
-  "version": "2.0.1",
-  "description": "Online documentation template",
+  "name": "ecomplus-developers",
+  "description": "E-Com Plus Developers Hub",
+  "version": "0.0.1",
+  "homepage": "http://developers.e-com.plus",
+  "author": "E-Com Club",
+  "license": "UNLICENSED",
   "private": true,
-  "keywords": [
-    "documentation",
-    "guide",
-    "docs",
-    "manual"
-  ],
-  "author": "TheThemeio",
-  "homepage": "http://thetheme.io/thedocs",
-  "license": "ISC",
+  "standard": {
+    "globals": [
+      "XMLHttpRequest",
+      "XDomainRequest",
+      "$",
+      "app"
+    ]
+  },
   "devDependencies": {
     "ajv": "^6.5.2",
     "ajv-keywords": "^3.2.0",
@@ -48,5 +50,6 @@
   "engines": {
     "node": ">=6.5",
     "npm": ">=3.10"
-  }
+  },
+  "dependencies": {}
 }
