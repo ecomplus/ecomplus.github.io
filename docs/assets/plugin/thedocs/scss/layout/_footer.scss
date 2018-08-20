@@ -1,0 +1,50 @@
+
+.footer {
+  background-color: #fcfdfe;
+  font-size: 0.9375rem;
+  border-top: 1px solid rgba($color-divider-light, 0.5);
+  padding: 1.25rem 0;
+
+  // Sticky sidebar shouldn't overflow on footer
+  position: relative;
+  z-index: $zindex-footer;
+
+  p {
+    font-size: 0.9375rem;
+    margin-bottom: 0;
+  }
+
+  a {
+    color: rgba(0,0,0,0.6);
+
+    &:hover {
+      color: rgba(0,0,0,0.8);
+    }
+  }
+
+  hr {
+    border-top: 1px solid $color-alpha-dark-divider;
+    margin: 1.25rem auto;
+  }
+
+}
+
+
+.footer-inverse {
+  background-color: #191919;
+  color: #fff;
+  border-top: none;
+
+  h2, h3, h4, h5, h6 {
+    color: #fff;
+  }
+
+  a {
+    color: rgba(#fff,0.7);
+
+    &:hover {
+      color: #fff;
+    }
+  }
+
+}

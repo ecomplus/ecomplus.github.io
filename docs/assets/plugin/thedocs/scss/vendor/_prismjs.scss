@@ -1,0 +1,55 @@
+
+// Import the plugin style.
+//
+@import "~prismjs/themes/prism";
+
+@import "~prismjs/plugins/toolbar/prism-toolbar";
+@import "~prismjs/plugins/line-numbers/prism-line-numbers";
+@import "~prismjs/plugins/unescaped-markup/prism-unescaped-markup";
+
+
+div.code-toolbar > .toolbar {
+
+  display: flex;
+  flex-direction: row-reverse;
+
+  .toolbar-item {
+    padding: 0 4px;
+  }
+
+  span {
+    background: transparent;
+    color: $color-text-secondary;
+    box-shadow: none;
+    font-size: 11px;
+    opacity: 0.75;
+    letter-spacing: 1px;
+    border-radius: 0;
+    cursor: default;
+  }
+
+  a {
+    color: #fff;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 2px 5px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background: $color-primary;
+    box-shadow: none;
+    border-radius: 2px;
+    opacity: 0.75;
+
+    &:hover {
+      color: #fff;
+      opacity: 1;
+    }
+  }
+}
+
+
+.no-toolbar + .toolbar,
+.no-language + .toolbar .toolbar-item:first-child,
+.no-copy + .toolbar .toolbar-item:last-child {
+  display: none !important;
+}

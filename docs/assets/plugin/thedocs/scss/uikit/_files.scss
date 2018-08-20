@@ -1,0 +1,183 @@
+
+/*------------------------------------
+- Files
+------------------------------------*/
+
+
+.dir-explain {
+  position: relative;
+  border: 1px solid $color-divider;
+  border-bottom: none;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  padding: 45px 15px 15px;
+  background-color: $color-bg-lighter;
+
+  &::before {
+    content: attr(data-caption);
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: $color-text-secondary;
+  }
+
+  .files {
+    margin-bottom: 0;
+    margin-top: 5px;
+    padding-left: 20px;
+    list-style: none;
+
+    li::before {
+      content: '-';
+      margin-right: 10px;
+    }
+  }
+
+}
+
+// File Tree
+.file-tree {
+
+  padding: 20px;
+  margin: 20px 0;
+  border: 1px solid $color-divider;
+  background-color: $color-bg-lighter;
+
+  h5 {
+    font-weight: 400;
+  }
+
+  p {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 26px;
+    margin-bottom: 12px;
+  }
+
+  > ul {
+    padding-left: 0;
+    margin-bottom: 0;
+  }
+
+  ul ul {
+    display: none;
+  }
+
+  li.is-folder.open > ul {
+    display: block;
+  }
+
+  li {
+    line-height: 30px;
+    position: relative;
+
+    > i {
+      color: $color-text-secondary;
+      font-size: 13px;
+      padding-left: 12px;
+      cursor: default;
+      font-style: normal;
+
+      &::before {
+        content: "-";
+        display: inline-block;
+        margin-right: 4px;
+      }
+    }
+
+    &.is-folder {
+      cursor: pointer;
+    }
+
+    &.is-file {
+      font-size: 14px;
+    }
+
+    &::before {
+      font: normal normal normal 14px/1 FontAwesome;
+      display: inline-block;
+      width: 16px;
+      margin-right: 6px;
+    }
+
+    &.is-file::before {
+      content: "\f15b";
+      color: #cedde0;
+    }
+
+    &.is-folder::before {
+      content: "\f07b";
+      cursor: pointer;
+      color: #f4db0b;
+    }
+
+    &.is-folder.open::before {
+      content: "\f07c";
+      cursor: pointer;
+    }
+  }
+
+}
+
+// Media queries
+@media screen and (max-width: 480px) {
+
+  .file-tree li > i {
+    display: block;
+    margin: -5px 0 6px 12px;
+
+  }
+
+}
+
+
+/*------------------------------------
+- Requirements
+------------------------------------*/
+
+.requirement {
+  background-color: $color-bg-lighter;
+  border: 1px solid $color-divider-light;
+  border-radius: 3px;
+  padding: 15px;
+}
+
+.requirement-item {
+  position: relative;
+  padding-top: 25px;
+  margin-bottom: 0;
+
+  &::before {
+    content: attr(data-title);
+    position: absolute;
+    top: 0;
+    color: $color-text-secondary;
+    font-weight: 500;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  + .requirement-item {
+    margin-top: 20px;
+  }
+
+  code {
+    border: none !important;
+    display: block;
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  @include media-breakpoint-down(xs) {
+    word-break: break-all;
+  }
+}

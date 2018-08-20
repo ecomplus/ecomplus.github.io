@@ -1,0 +1,166 @@
+/*------------------------------------
+- Step
+------------------------------------*/
+
+.step-text {
+  list-style: none;
+  padding-left: 0;
+  counter-reset: toc1;
+
+  > li {
+    position: relative;
+    padding-left: 64px;
+    margin-bottom: 48px;
+    font-weight: 300;
+
+    &::before {
+      content: counter(toc1, decimal-leading-zero);
+      counter-increment: toc1;
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: $color-text-secondary;
+      font-size: 24px;
+      line-height: 44px;
+      text-align: center;
+      width: 46px;
+      height: 46px;
+      background-color: $color-bg-lighter;
+      border-radius: 10rem;
+    }
+  }
+
+  > li ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 30px;
+    counter-reset: toc2;
+  }
+
+  > li li {
+    position: relative;
+    padding-left: 60px;
+    margin-bottom: 48px;
+    font-weight: 300;
+
+
+    &::before {
+      content: counter(toc1) '-' counter(toc2);
+      counter-increment: toc2;
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: $color-text-secondary;
+      font-size: 20px;
+      width: 42px;
+      height: 42px;
+    }
+  }
+
+  h5 {
+    font-size: 18px;
+    padding-top: 5px;
+  }
+
+  ul h5 {
+    font-size: 17px;
+    padding-top: 6px;
+  }
+
+}
+
+
+
+
+.step-image {
+  margin-top: 60px;
+  padding-top: 32px;
+  border-top: 1px solid $color-divider-light;
+  overflow: visible;
+
+  .carousel-item > img {
+    display: block;
+    margin: 0 auto;
+  }
+
+  .carousel-caption {
+    position: static;
+    text-align: left;
+    color: $color-text-light;
+    text-shadow: none;
+  }
+
+  .carousel-indicators {
+    justify-content: flex-start;
+    align-items: center;
+    top: -40px;
+    left: 0;
+    margin-left: 0;
+    height: 30px;
+    counter-reset: toc1;
+
+    &::before {
+      content: attr(data-caption);
+      color: $color-text-secondary;
+      font-weight: 500;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-right: 4px;
+    }
+
+    li {
+      border: 0;
+      text-indent: 0;
+      height: 30px;
+      text-align: center;
+      cursor: pointer;
+
+      &::before {
+        top: -2px;
+        content: counter(toc1);
+        counter-increment: toc1;
+        font-weight: 500;
+        color: $color-text-secondary;
+        transition: .1s ease;
+      }
+    }
+
+    .active,
+    li:hover {
+      &::before {
+        color: $color-text-light;
+      }
+    }
+  }
+
+  .carousel-control {
+    position: absolute;
+    text-shadow: none;
+    color: $color-text-secondary;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    margin-right: -7px;
+
+    &.right,
+    &.left {
+      background-image: none;
+      top: -40px;
+      bottom: auto;
+      left: auto;
+      right: 0;
+    }
+
+    &.left {
+      right: 36px;
+    }
+
+    .fa {
+      position: static;
+      color: $color-text-secondary;
+      font-size: 26px;
+    }
+  }
+}
+

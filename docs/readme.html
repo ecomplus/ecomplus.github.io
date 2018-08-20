@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <title>Readme — TheDocs Expert Starter</title>
+
+    <!-- Styles -->
+    <link href="assets/css/page.min.css" rel="stylesheet">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+    <link rel="icon" href="assets/img/favicon.png">
+  </head>
+
+  <body class="bg-gray">
+
+    <!-- Main Content -->
+    <main class="main-content pt-8">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+
+
+            <div class="card card-body border hover-shadow-7 mb-8">
+              <h5 id="what-is" class="card-title">
+                <a href="#what-is">What is the expert starter?</a>
+              </h5>
+
+              <p>It is a blank directory to make a copy of and start a new project with. It includes the required JS and CSS files from TheDocs as well as icon fonts, PHP files and some images.</p>
+              <p class="mb-0">The <em>expert starter</em> has several features which is not included in the basic starter. Those features give you more freedom in customizing your template and writing extra codes. It includes a gulpfile with necessary tasks to start a web server, watch files for changes and compile SCSS and JS files. Finally, you can run a command to have all the required files for production copied to a directory.</p>
+            </div>
+
+
+
+            <div class="card card-body border hover-shadow-7 mb-8">
+              <h5 id="get-started" class="card-title">
+                <a href="#get-started">How to get started?</a>
+              </h5>
+
+              <p>Follow the below steps to create a project directory with all the required plugins and tools installed.</p>
+
+              <p><strong>Step 1</strong><br>Make a copy of <code>expert/</code> directory to your desire workspace.</p>
+
+
+              <p class="mb-1"><strong>Step 2</strong></p>
+              <ol class="pl-4">
+                <li><a href="https://nodejs.org/en/download">Download and install Node.js</a> if it's not installed on your machine</li>
+                <li>Install the <a href="https://gulpjs.com/">Gulp</a> command line tools, <em>gulp-cli</em>, with <code>npm install gulp-cli -g</code></li>
+                <li>Navigate to the root directory of your project and run <code>npm install</code> to install dependencies</li>
+                <li>Run <code>gulp serve</code>.</li>
+              </ol>
+              <p>With the above command, a static web server starts in your browser which points to <em>/src</em> directory. It watch your files to reload the browser upon change to the HTML files, or JS and CSS files. Also, it watch your SCSS and JS files to compile them to page.min.css and page.min.js upon each change.</p>
+
+
+              <p><strong>Step 3</strong><br>Now it's time to configure your website.</p>
+              <ul>
+                <li><u>Script</u>: Open <code>/assets/js/src/config.js</code> and change the desire values.</li>
+                <li><u>Style</u>: Open <code>/assets/scss/_theme.scss</code> and change the SCSS variables.</li>
+              </ul>
+
+
+              <p><strong>Step 4</strong><br>Time for development. Now you're ready to create your HTML files and writing your custom CSS and JS codes.</p>
+              <p><mark class="small">- HTML</mark><br>Since most of the websites have a global layout for whole of the application, you might want to start modifying index.html file and create a global layout for your website or use one of the existing layouts.</p>
+
+              <p><mark class="small">- SCSS</mark><br>Write your additional styles inside <code>/assets/scss/_style.scss</code>. Feel free to create more scss files and even subdirectories inside /scss folder to split your code to smaller chunks and import them inside <code>/scss/page.scss</code> file. Our Gulp task is watching all of the scss files inside /scss directory and recompile the page.min.css upon each change.</p>
+              <p><mark class="small">- JavaScript</mark><br>Your additional JavaScript codes should be write inside <code>/assets/js/src/script.js</code>. Again, if you need to split your code to several JS files, simply create them inside /js/src directory and require them inside the <code>/js/src/page.js</code>. Our Gulp task is watching all of the JS files inside /js/src directory and recompile page.min.js after each change using Webpack.</p>
+
+
+              <p class="mb-0"><strong>Step 5</strong><br>Done with development? Run <code>gulp dist</code> to deploy your code inside <em>/dist</em> directory. This task simply remove unnecessary files (scss files, scss folder, unminified css and js files, etc.) in the /dist folder. Now you can use the /dist folder in your server side coding or upload to your web server.</p>
+
+            </div>
+
+
+
+            <div class="card card-body border hover-shadow-7 mb-8">
+              <h5 id="gulp-tasks" class="card-title">
+                <a href="#gulp-tasks">What is the available gulp tasks?</a>
+              </h5>
+
+              <p>Our Gulpfile includes the following commands and tasks:</p>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <td class="w-125"><strong>Task</strong></td>
+                    <td><strong>Description</strong></td>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td><code>gulp serve</code></td>
+                    <td>Running a server and start watching for change on <em>html</em>, <em>scss</em> and <em>js</em> files to compile and reload the browser</td>
+                  </tr>
+
+                  <tr>
+                    <td><code>gulp dist</code></td>
+                    <td>Create a <em>/dist</em> folder, compile scss and js files, and copy all the project's files inside the /dist directory except unnecessary ones</td>
+                  </tr>
+
+                  <tr>
+                    <td><code>gulp img</code></td>
+                    <td>Uses the <a href="https://www.npmjs.com/package/gulp-imagemin" target="_blank">imagemin plugin</a> to minify the images inside <em>/assets/img</em> directory</td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+
+
+
+
+            <div class="card card-body border hover-shadow-7 mb-8">
+              <h5 id="update" class="card-title">
+                <a href="#update">How to update to a new version?</a>
+              </h5>
+
+              <p>Usually, you only need to update the following files and directories in <code>assets/</code> folder for minor updates. If any extra changes were required, we'll write it in the changelog. For major releases (i.e. from 2.x to 3.x), you probably need to update your HTML code as well.</p>
+              <ul>
+                <li><code>/fonts</code></li>
+                <li><code>/php</code></li>
+                <li><code>/plugin/thedocs</code></li>
+              </ul>
+              <p>Sometimes, you might need to update some parts of the following files if we state it in the changelog description. We do our best to reduce these changes.</p>
+              <ul>
+                <li><code>/scss/_theme.scss</code></li>
+                <li><code>/scss/_page.scss</code></li>
+                <li><code>/js/src/config.js</code></li>
+                <li><code>/js/src/page.js</code></li>
+              </ul>
+
+              <p class="mb-0">Please note that after updating the above files and directories, you need to run <code>gulp dist</code> to recompile the page.min.css and page.min.js once again and upload them to your server.</p>
+            </div>
+
+
+
+
+            <div class="card card-body border hover-shadow-7 mb-8">
+              <h5 id="add-plugin" class="card-title">
+                <a href="#add-plugin">How to add a 3rd-party plugin?</a>
+              </h5>
+
+              <p>If the plugin has CDN and you're willing to use it, simply include the plugin into your HTML pages by adding css and js files of the plugin from CDN. If you want to host the plugin on your own server, put the plugin inside <code>/assets/plugin</code> and import it into your HTML pages.</p>
+              <p class="mb-0">To configure and initialize the plugin, write the required JS code inside <code>/assets/js/src/script.js</code> file with the help of the plugin's documentation.</p>
+            </div>
+
+
+
+            <div class="card card-body border hover-shadow-7 mb-8">
+              <h5 id="remove-plugin" class="card-title">
+                <a href="#remove-plugin">How to remove some vendors to decrease CSS and JS files size?</a>
+              </h5>
+
+              <p>Please take a look at <code>/assets/js/src/page.js</code> and <code>/assets/scss/page.scss</code> files. Both of them have a <em>Vendors</em> section which is responsible for importing vendors' assets. Simply comment the import line that you'd like to remove the vendor from final CSS or JS file.</p>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row gap-y align-items-center">
+
+          <div class="col-md-6 text-center text-md-left">
+            <small>© TheThemeio 2018, All rights reserved.</small>
+          </div>
+
+          <div class="col-md-6 text-center text-md-right">
+            <div class="social">
+              <a class="social-facebook" href="https://www.facebook.com/thethemeio"><i class="fa fa-facebook"></i></a>
+              <a class="social-twitter" href="https://twitter.com/thethemeio"><i class="fa fa-twitter"></i></a>
+              <a class="social-instagram" href="https://www.instagram.com/thethemeio/"><i class="fa fa-instagram"></i></a>
+              <a class="social-youtube" href="https://dribbble.com/thethemeio"><i class="fa fa-youtube"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </footer><!-- /.footer -->
+
+
+    <!-- Scripts -->
+    <script src="assets/js/page.min.js"></script>
+
+  </body>
+</html>
