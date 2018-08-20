@@ -1,5 +1,67 @@
+// variables
+@import "theme";
 
-// Write your custom style. Feel free to split your code to several files
-body {
-  //color: blue;
+.navbar {
+  overflow: hidden;
+}
+.navbar-left {
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+  position: relative;
+}
+.navbar-left .navbar-brand {
+  color: $purple !important;
+  font-size: 24px;
+  font-weight: 200;
+}
+.navbar-brand > img {
+  width: 132px;
+  height: 28px;
+  margin-right: 4px;
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .navbar > .container {
+    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+  .navbar-left {
+    width: 100%;
+    display: block;
+    text-align: center;
+  }
+}
+
+// lookup search input
+.lookup {
+  position: relative;
+  width: 15rem;
+  max-width: 100%;
+}
+// search icon
+.lookup::before {
+  font-family: 'themify';
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  content: "\e610";
+  position: absolute;
+  top: 30%;
+  z-index: -1;
+  font-size: 1rem;
+  left: .7rem;
+  color: $color-text-placeholder;
+}
+.lookup .form-control {
+  border: none;
+}
+.lookup .form-control:focus {
+  background-color: $color-bg-lighter;
+}
+.lookup .form-control:not(:focus) {
+  background: none;
+  padding-left: 2.1rem;
 }
