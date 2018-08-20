@@ -31,13 +31,11 @@
       <div class="container">
         <div class="navbar-left">
           <button class="navbar-toggler" type="button">☰</button>
-          <a class="navbar-brand" href="#">
+          <a class="navbar-brand" href="#/">
             <img class="logo-dark" src="assets/img/logo-dark.png" alt="logo">
           </a>
-        </div>
 
-        <section class="navbar-mobile">
-          <form id="search" class="mx-3">
+          <form id="search" action="javascript:;" class="ml-3">
             <div class="input-group b-0">
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="ti-search"></i></span>
@@ -45,15 +43,23 @@
               <input class="form-control" placeholder="Search documentation" type="search">
             </div>
           </form>
+        </div>
+
+        <section class="navbar-mobile" id="navbar">
           <nav class="nav nav-navbar ml-auto">
-            <a class="nav-link active" href="#">Home</a>
-            <a class="nav-link" href="#">Features</a>
-            <a class="nav-link" href="#">Pricing</a>
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link active" href="#/">Home</a>
+            <a class="nav-link" href="#/themes">Themes</a>
+            <a class="nav-link" href="#/apps">Apps</a>
+            <a class="nav-link" href="#/modules">Modules</a>
+            <a class="nav-link" href="#/changelog">Changelog</a>
           </nav>
+          <a class="btn btn-sm btn-round btn-success ml-3" href="#/reference">
+            API Reference
+          </a>
         </section>
       </div>
-    </nav><!-- /.navbar -->
+    </nav>
+    <!-- /.navbar -->
 
 
     <!-- Header -->
