@@ -10,8 +10,6 @@
 |
 */
 
-$(function() {
-
-
-
-});
+$(function () {
+  // console.log('E-Com Plus Devs :D')
+})
