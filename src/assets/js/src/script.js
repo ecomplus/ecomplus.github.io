@@ -12,4 +12,26 @@
 
 $(function () {
   // console.log('E-Com Plus Devs :D')
+  window.Apis = {
+    store: {
+      host: 'https://api.e-com.plus/',
+      version: 'v1',
+      label: 'Store REST API'
+    },
+    search: {
+      host: 'https://apx-search.e-com.plus/api/',
+      version: 'v1',
+      label: 'Search'
+    },
+    graphs: {
+      host: 'https://apx-graphs.e-com.plus/api/',
+      version: 'v1',
+      label: 'Recommendations'
+    },
+    main: {
+      host: 'https://e-com.plus/api/',
+      version: 'v1',
+      label: 'Main platform'
+    }
+  }
 })
