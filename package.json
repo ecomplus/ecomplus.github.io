@@ -11,8 +11,9 @@
       "XMLHttpRequest",
       "XDomainRequest",
       "$",
-      "app",
-      "Apis"
+      "Apis",
+      "callApi",
+      "loadContent"
     ]
   },
   "devDependencies": {

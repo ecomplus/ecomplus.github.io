@@ -11,11 +11,17 @@
 */
 
 $(function () {
-  // console.log('E-Com Plus Devs :D')
+  /* set globals */
+
+  // E-Com Plus APIs
   window.Apis = {
     store: {
       host: 'https://api.e-com.plus/',
       version: 'v1',
+      sandbox: {
+        host: 'https://sandbox.e-com.plus/',
+        version: 'v1'
+      },
       label: 'Store REST API'
     },
     search: {
@@ -35,9 +41,32 @@ $(function () {
     }
   }
 
+  // general function to load HTML content
+  window.loadContent = function () {
+  }
+
+  // general function to run an API request
+  window.callApi = function (host, endpoint, method, callback, bodyObject) {
+    var options = {
+      // API endpoint full URL
+      url: host + endpoint,
+      headers: {
+        // authenticate store only
+        // no authorization tokens
+        'X-Store-ID': 100
+      },
+      method: method
+    }
+    console.log(options)
+    // addRequest(options, bodyObject, callback)
+  }
+
+  /* start content rendering */
+
   // fill footer links
   var html = ''
   for (var api in Apis) {
+    // get API resources
     if (Apis.hasOwnProperty(api)) {
       html += '<li><a href="/#/' + api + '">' + Apis[api].label + '</a></li>'
     }
