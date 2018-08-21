@@ -34,4 +34,13 @@ $(function () {
       label: 'Main platform'
     }
   }
+
+  // fill footer links
+  var html = ''
+  for (var api in Apis) {
+    if (Apis.hasOwnProperty(api)) {
+      html += '<li><a href="/#/' + api + '">' + Apis[api].label + '</a></li>'
+    }
+  }
+  $('#footer-apis').html(html).slideDown()
 })
