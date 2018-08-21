@@ -1,9 +1,13 @@
 # Template
 gulpfile.js
-src/readme.html
-src/assets/css/page.css
-src/assets/css/page.css.map
-src/assets/plugin/thedocs
+*/readme.html
+*/assets/js/page.js
+*/assets/js/page.js.map
+*/assets/js/src/page.js
+*/assets/css/page.css
+*/assets/css/page.css.map
+*/assets/scss/page.scss
+*/assets/plugin/thedocs
 
 # Logs
 logs
