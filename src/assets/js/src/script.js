@@ -8,6 +8,16 @@
 $(function () {
   /* set globals */
 
+  // sample store ID
+  window.storeId = 100
+  var Headers = function () {
+    return {
+      // by default, authenticate store only
+      // no authorization tokens
+      'X-Store-ID': storeId
+    }
+  }
+
   // E-Com Plus APIs
   window.Apis = {
     store: {
@@ -15,8 +25,17 @@ $(function () {
       version: 'v1',
       sandbox: {
         host: 'https://sandbox.e-com.plus/',
-        version: 'v1'
+        version: 'v1',
+        auth: true,
+        // default sandbox authorization headers
+        auth_session: {
+          my_id: '5a6757722b66f68dbed44526',
+          access_token: 'eyJhbGciOi.eyJzdWIi.AFONFh7HgQ'
+        }
       },
+      auth: true,
+      // no production authorization by default
+      auth_session: null,
       label: 'Store REST API'
     },
     search: {
@@ -32,6 +51,7 @@ $(function () {
     main: {
       host: 'https://e-com.plus/api/',
       version: 'v1',
+      no_headers: true,
       label: 'Main platform'
     }
   }
@@ -41,15 +61,18 @@ $(function () {
   }
 
   // general function to run an API request
-  window.callApi = function (host, endpoint, method, callback, bodyObject) {
+  window.callApi = function (api, endpoint, method, callback, bodyObject) {
+    // setup request headers
+    var headers = Headers()
+    if (api.auth_session) {
+      // set authorization headers
+      headers['X-My-ID'] = api.auth_session.my_id
+      headers['X-Access-Token'] = api.auth_session.access_token
+    }
     var options = {
       // API endpoint full URL
-      url: host + endpoint,
-      headers: {
-        // authenticate store only
-        // no authorization tokens
-        'X-Store-ID': 100
-      },
+      url: api.host + endpoint,
+      headers: headers,
       method: method
     }
     if (bodyObject) {

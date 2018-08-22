@@ -13,7 +13,8 @@
       "$",
       "Apis",
       "callApi",
-      "loadContent"
+      "loadContent",
+      "storeId"
     ]
   },
   "devDependencies": {
