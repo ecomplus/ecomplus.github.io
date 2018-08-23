@@ -7,9 +7,9 @@ $loader = new Twig_Loader_Filesystem(__DIR__ . '/templates');
 // setup twig object with no compilation cache
 $twig = new Twig_Environment($loader);
 
-// define array with variables for template
-$template_vars = array(
-  'page' => array(
+// list of site pages
+$pages = array(
+  array(
     'url' => '/',
     // title tag
     'title' => 'E-Com Plus for Developers',
@@ -19,8 +19,19 @@ $template_vars = array(
                      'Get started with guides, API reference and playground on our Developers Hub.'
   )
 );
-$template = $twig->load('views/index.html.twig');
-$html = $template->render($template_vars);
 
-// create or overwrite HTML file
-file_put_contents(__DIR__ . '/../index.html', $html);
+// render each page
+for ($i = 0; $i < count($pages); $i++) {
+  $page = $pages[$i];
+  // base file path
+  $file_path = $page['url'] . 'index.html';
+
+  // define array with variables for template
+  $template_vars = array(
+    'page' => $page
+  );
+  $template = $twig->load('views/' . $file_path . '.twig');
+  $html = $template->render($template_vars);
+  // create or overwrite HTML file
+  file_put_contents(__DIR__ . '/../' . $file_path, $html);
+}
