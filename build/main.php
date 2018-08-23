@@ -24,14 +24,33 @@ $pages = array(
 for ($i = 0; $i < count($pages); $i++) {
   $page = $pages[$i];
   // base file path
-  $file_path = $page['url'] . 'index.html';
+  $file_path = $page['url'];
+  if ($file_path === '/') {
+    // homepage
+    $file_path .= 'index.html';
+  }
 
   // define array with variables for template
   $template_vars = array(
     'page' => $page
   );
-  $template = $twig->load('views/' . $file_path . '.twig');
+  $template = $twig->load('views' . $file_path . '.twig');
   $html = $template->render($template_vars);
+
   // create or overwrite HTML file
-  file_put_contents(__DIR__ . '/../' . $file_path, $html);
+  // check directory
+  $paths = explode('/', $file_path);
+  if (count($paths) > 2) {
+    // create directory if not exists
+    $dir = __DIR__ . '/../';
+    // skip the first (empty) and the last (filename) paths
+    for ($ii = 1; $ii < count($paths) - 1; $ii++) {
+      $dir .= $paths[$ii];
+      if (!is_dir($dir)) {
+        // dir doesn't exist, make it
+        mkdir($dir);
+      }
+    }
+  }
+  file_put_contents(__DIR__ . '/..' . $file_path, $html);
 }
