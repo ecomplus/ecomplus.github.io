@@ -9,6 +9,10 @@ gulpfile.js
 */assets/scss/page.scss
 */assets/plugin/thedocs
 
+# Build with PHP
+/build/composer.phar
+/build/vendor/
+
 # Logs
 logs
 *.log
