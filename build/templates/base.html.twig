@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="E-Com Plus is a robust and flexible cloud commerce software, totally based on REST APIs. Get started with guides, API reference and playground on our Developers Hub.">
+    <meta name="description" content="{{ page.description }}">
 
-    <title>E-Com Plus for Developers</title>
+    <title>{{ page.title }}</title>
 
     <!-- Styles -->
     <link href="../src/assets/css/page.min.css" rel="stylesheet">
@@ -16,11 +16,11 @@
 
     <!--  Open Graph Tags -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="E-Com Plus for Developers">
+    <meta property="og:title" content="{{ page.title }}">
     <meta property="og:site_name" content="E-Com Plus Developers">
-    <meta property="og:description" content="E-Com Plus is a robust and flexible cloud commerce software, totally based on REST APIs. Get started with guides, API reference and playground on our Developers Hub.">
+    <meta property="og:description" content="{{ page.description }}">
     <meta property="og:image" content="../src/assets/img/og-img.png">
-    <meta property="og:url" content="https://developers.e-com.plus/">
+    <meta property="og:url" content="https://developers.e-com.plus{{ page.url }}">
     <meta name="twitter:card" content="summary_large_image">
   </head>
 
@@ -67,10 +67,7 @@
 
     <!-- Main Content -->
     <main class="main-content">
-  <h1>Index</h1>
-  <p class="important">
-    Welcome to my awesome homepage.
-  </p>
+{% block content %}{% endblock %}
     </main>
     <!-- /.main -->
 
