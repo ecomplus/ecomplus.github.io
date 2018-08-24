@@ -1,5 +1,8 @@
 <?php
-require_once __DIR__ . '/vendor/autoload.php';
+// composer
+require __DIR__ . '/vendor/autoload.php';
+// include scripts
+require __DIR__ . '/inc/apis.php';
 
 // Twig 2 for template rendering
 // https://twig.symfony.com/doc/2.x/api.html
@@ -34,7 +37,8 @@ for ($i = 0; $i < count($pages); $i++) {
 
   // define array with variables for template
   $template_vars = array(
-    'page' => $page
+    'page' => $page,
+    'apis' => $apis
   );
   $template = $twig->load('views' . $file_path . '.twig');
   $html = $template->render($template_vars);
