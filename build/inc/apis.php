@@ -43,3 +43,40 @@ $apis = array(
     'label' => 'Main platform'
   )
 );
+
+// GET APIs resources
+foreach ($apis as $key => $api) {
+  // set API index URI
+  $uri_path = $api['base_path'] . $api['version'] . '/';
+  $ch = curl_init();
+  curl_setopt($ch, CURLOPT_URL, $api['host'] . $uri_path);
+  // prevent execution timeout
+  curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+    'Content-Type: application/json',
+    'X-Store-ID: 100'
+  ));
+  $output = curl_exec($ch);
+
+  // parse JSON
+  $json = json_decode($output);
+  if (json_last_error() === JSON_ERROR_NONE) {
+    // remove base path and json extension from returned resources URLs
+    for ($i = 0; $i < count($json->resources); $i++) {
+      $resource = $json->resources[$i];
+      if (substr($resource, 0, strlen($uri_path)) === $uri_path) {
+        // remove base path
+        $resource = substr($resource, strlen($uri_path));
+      }
+      if (substr($resource, -5) === '.json') {
+        // remove '.json' extension
+        $resource = substr($resource, 0, strlen($resource) - 5);
+      }
+      // push to original apis object
+      array_push($apis[$key]['resources'], $resource);
+    }
+  }
+}
+
+// var_dump($apis);
