@@ -127,10 +127,11 @@
           <div class="col">
             <h6 class="text-uppercase">Resources</h6>
             <ul class="list-unstyled">
-{% for api in apis %}
-  {% for resource in api.resources %}
-              <li><a href="/reference/{{ key }}/{{ resource }}">{{ resource }}</a></li>
-  {% endfor %}
+{% for resource in apis.store.resources %}
+  {# skip subresources #}
+  {% if resource matches '{^[a-z][^/]+$}' %}
+              <li><a href="/reference/store/{{ resource }}">{{ resource|capitalize }}</a></li>
+  {% endif %}
 {% endfor %}
             </ul>
           </div>
