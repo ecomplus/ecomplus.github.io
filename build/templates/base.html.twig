@@ -118,7 +118,7 @@
           </div>
           <div class="col">
             <h6 class="text-uppercase">Reference</h6>
-            <ul class="list-unstyled hidden">
+            <ul class="list-unstyled">
 {% for key, api in apis %}
               <li><a href="/reference/{{ key }}">{{ api.label }}</a></li>
 {% endfor %}
@@ -126,7 +126,13 @@
           </div>
           <div class="col">
             <h6 class="text-uppercase">Resources</h6>
-            <ul class="list-unstyled hidden" id="footer-resources"></ul>
+            <ul class="list-unstyled">
+{% for api in apis %}
+  {% for resource in api.resources %}
+              <li><a href="/reference/{{ key }}/{{ resource }}">{{ resource }}</a></li>
+  {% endfor %}
+{% endfor %}
+            </ul>
           </div>
         </div>
       </div>
