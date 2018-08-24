@@ -163,7 +163,7 @@ $(function () {
     callApi(Api, endpoint, method, callback)
   }
 
-  // fill footer links
+  /* fill footer links
   var html = ''
   for (var api in Apis) {
     if (Apis.hasOwnProperty(api)) {
@@ -174,4 +174,5 @@ $(function () {
     }
   }
   $('#footer-apis').html(html).slideDown()
+  */
 })

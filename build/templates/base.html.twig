@@ -69,9 +69,7 @@
 
     <!-- Main Content -->
     <main class="main-content">
-
 {% block content %}{% endblock %}
-
     </main>
     <!-- /.main -->
 
@@ -120,7 +118,11 @@
           </div>
           <div class="col">
             <h6 class="text-uppercase">Reference</h6>
-            <ul class="list-unstyled hidden" id="footer-apis"></ul>
+            <ul class="list-unstyled hidden">
+{% for key, api in apis %}
+              <li><a href="/reference/{{ key }}">{{ api.label }}</a></li>
+{% endfor %}
+            </ul>
           </div>
           <div class="col">
             <h6 class="text-uppercase">Resources</h6>
