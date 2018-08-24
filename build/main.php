@@ -13,6 +13,8 @@ $pages = array(
     'url' => '/',
     // title tag
     'title' => 'E-Com Plus for Developers',
+    // h1
+    'subtitle' => null,
     // meta description
     'description' => 'E-Com Plus is a robust and flexible cloud commerce software, ' .
                      'totally based on REST APIs. ' .

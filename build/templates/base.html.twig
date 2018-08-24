@@ -57,13 +57,15 @@
     </nav>
     <!-- /.navbar -->
 
+{% if page.subtitle %}
     <!-- Header -->
     <header class="header py-5">
       <div class="container">
-        <h1 class="m-0">Knowledge Base</h1>
+        <h1 class="m-0">{{ page.subtitle }}</h1>
       </div>
     </header>
     <!-- /.header -->
+{% endif %}
 
     <!-- Main Content -->
     <main class="main-content">

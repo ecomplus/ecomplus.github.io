@@ -1,8 +1,35 @@
 {% extends "base.html.twig" %}
 
 {% block content %}
-  <h1>Index</h1>
-  <p class="important">
-    Welcome to my awesome homepage.
-  </p>
+  <section class="section py-9 gray-gradient">
+    <div class="container">
+      <header class="section-header">
+        <h1><span class="fw-300">Together</span>, we build<br>a better commerce for all</h1>
+        <hr>
+      </header>
+      <div class="row gap-y text-center">
+        <div class="col-md-4">
+          <a class="card px-6 py-8 shadow-11 hover-shadow-9 text-default border" href="help/archive-1.html">
+            <p><i class="ti-book lead-7 text-primary"></i></p>
+            <h5 class="fw-500 my-4">Knowledge Base</h5>
+            <p class="mb-0">Get started using this template by reading the helpful articles.</p>
+          </a>
+        </div>
+        <div class="col-md-4">
+          <a class="card px-6 py-8 shadow-11 hover-shadow-9 text-default border" href="help/faq-1.html">
+            <p><i class="ti-help lead-7 text-primary"></i></p>
+            <h5 class="fw-500 my-4">FAQ</h5>
+            <p class="mb-0">Lots of questions have asked before and have answers here.</p>
+          </a>
+        </div>
+        <div class="col-md-4">
+          <a class="card px-6 py-8 shadow-11 hover-shadow-9 text-default border" href="docs/kb-introduction.html">
+            <p><i class="ti-agenda lead-7 text-primary"></i></p>
+            <h5 class="fw-500 my-4">Documentation</h5>
+            <p class="mb-0">Read our documentation to get start and browse the available UI kit.</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 {% endblock %}
