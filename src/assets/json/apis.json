@@ -137,6 +137,22 @@
         ],
         "label": "Recommendations"
     },
+    "gbigdata": {
+        "host": "https:\/\/apx-bigdata.e-com.plus",
+        "base_path": "\/api\/",
+        "version": "v1",
+        "no_headers": true,
+        "resources": [
+            "_token",
+            "analytics",
+            "events",
+            "logs",
+            "pageviews",
+            "searches",
+            "visits"
+        ],
+        "label": "Big data"
+    },
     "main": {
         "host": "https:\/\/e-com.plus",
         "base_path": "\/api\/",

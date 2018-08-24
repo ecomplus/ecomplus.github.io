@@ -34,6 +34,14 @@ $apis = array(
     'resources' => array(),
     'label' => 'Recommendations'
   ),
+  'gbigdata' => array(
+    'host' => 'https://apx-bigdata.e-com.plus',
+    'base_path' => '/api/',
+    'version' => 'v1',
+    'no_headers' => true,
+    'resources' => array(),
+    'label' => 'Big data'
+  ),
   'main' => array(
     'host' => 'https://e-com.plus',
     'base_path' => '/api/',
