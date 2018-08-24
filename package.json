@@ -11,6 +11,7 @@
       "XMLHttpRequest",
       "XDomainRequest",
       "$",
+      "alert",
       "Apis",
       "callApi",
       "loadContent",
