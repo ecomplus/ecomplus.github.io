@@ -1,25 +1,78 @@
 {% extends "base.html.twig" %}
 
 {% block content %}
-<section class="section gray-gradient">
+<section class="section purple-gradient py-0">
   <div class="container">
-    <header class="section-header mb-0">
-      <h1><span class="fw-300">Together</span>, we build<br>a better commerce for all</h1>
-      <hr>
-      <a class="btn btn-xl btn-round btn-primary mb-4" href="https://e-com.plus/partners">
-        Become a partner
-      </a>
-      <br>
-      Create and publish
-      <a href="../../themes">themes</a>,
-      <a href="../../apps">apps</a> and <a href="../../modules">packages</a> on our
-      <a href="https://market.e-com.plus/" class="text-info" target="_blank">market</a>
-    </header>
+    <div class="row align-items-center min-h-fullscreen">
+      <div class="col">
+        <header class="section-header mb-0 text-white py-8">
+          <h1><span class="fw-300">Together</span>, we build<br>a better commerce for everyone</h1>
+          <hr>
+          <a class="btn btn-xl btn-round btn-primary mb-4" href="https://e-com.plus/partners">
+            Become a partner
+          </a>
+          <br>
+          Create <a href="/themes" class="fw-500">themes</a> and
+          <a href="/apps" class="fw-500">apps</a>
+          for our <a href="https://market.e-com.plus/" class="text-info fw-500" target="_blank">market</a>
+        </header>
+      </div>
+    </div>
   </div>
 </section>
 <section class="section">
   <div class="container">
+    <div class="card p-8 gray-gradient mb-6 text-default border">
+      <h4>Ready for designers <i class="ti-paint-roller ml-3"></i></h4>
+      <span class="lead">
+        Using our libraries
+        you can create custom templates easily and faster.
+        No JS skills needed,
+        you just need to know HTML <i class="ti-html5"></i> and
+        CSS <i class="ti-css3"></i> to create or customize any store theme,
+        <a href="/theme">get started and be creative</a>.
+      </span>
+    </div>
+    <header class="section-header mb-3">
+      <hr>
+      <h4>Flexible for developers</h4>
+      <small>Applications</small>
+    </header>
+    <div class="row gap-y text-center">
+      <div class="col-md-4">
+        <a class="card px-6 py-8 shadow-11 hover-shadow-9 text-default border" href="/apps#storefront">
+          <p><i class="ti-plug lead-7 text-primary"></i></p>
+          <h5 class="fw-500 my-4">JavaScript plugins</h5>
+          <p class="mb-0">Develop custom client JS plugins to improve shopping experience</p>
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a class="card px-6 py-8 shadow-11 hover-shadow-9 text-default border" href="/apps#module_package">
+          <p><i class="ti-package lead-7 text-primary"></i></p>
+          <h5 class="fw-500 my-4">Module packages</h5>
+          <p class="mb-0">PHP apps for store backend services, such as payment and shipping</p>
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a class="card px-6 py-8 shadow-11 hover-shadow-9 text-default border" href="/apps#dashboard">
+          <p><i class="ti-panel lead-7 text-primary"></i></p>
+          <h5 class="fw-500 my-4">Dashboard addons</h5>
+          <p class="mb-0">Client JavaScript addons to customize E-Com Plus Admin Dashboard</p>
+        </a>
+      </div>
+    </div>
+    <div class="text-center mt-6 lead">
+      <a href="#apis">
+        <span class="text-muted">Custom integrations and external apps</span>
+        <br><i class="ti-angle-down lead-5"></i>
+      </a>
+    </div>
+  </div>
+</section>
+<section class="section bg-gray" id="apis">
+  <div class="container">
     <header class="section-header">
+      <small>Reference</small>
       <h2>Be happy with our powerful suite of APIs</h2>
       <hr>
       <p class="lead">RESTful, flexible, well documented and sandbox ready</p>
