@@ -66,20 +66,8 @@ if (!$apis) {
   foreach ($apis as $key => $api) {
     // set API index URI
     $uri_path = $api['base_path'] . $api['version'] . '/';
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $api['host'] . $uri_path);
-    // prevent execution timeout
-    curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-      'Content-Type: application/json',
-      'X-Store-ID: 100'
-    ));
-    $output = curl_exec($ch);
-
-    // parse JSON
-    $json = json_decode($output);
-    if (json_last_error() === JSON_ERROR_NONE) {
+    $json = get_json($api['host'] . $uri_path);
+    if ($json) {
       // remove base path and json extension from returned resources URLs
       for ($i = 0; $i < count($json->resources); $i++) {
         $resource = $json->resources[$i];

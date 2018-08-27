@@ -2,6 +2,7 @@
 // composer
 require __DIR__ . '/vendor/autoload.php';
 // include scripts
+require __DIR__ . '/inc/get-json.php';
 require __DIR__ . '/inc/apis.php';
 
 // Twig 2 for template rendering
@@ -33,6 +34,9 @@ $pages = array(
                      'Get started with guides, API reference and playground on our Developers Hub.'
   )
 );
+
+// handle more pages from GitHub repos
+include __DIR__ . '/inc/load-from-github.php';
 
 // render each page
 for ($i = 0; $i < count($pages); $i++) {
