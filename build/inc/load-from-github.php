@@ -7,6 +7,10 @@ function get_repo_docs ($repo, $repo_path = '') {
   // https://developer.github.com/v3/repos/contents/
   $github_api_path = 'https://api.github.com/repos/ecomclub/';
   $contents = get_json($github_api_path . $repo . '/contents' . $repo_path);
+  // timeout to prevent rate limit
+  // https://developer.github.com/v3/#rate-limiting
+  sleep(60);
+
   if ($contents) {
     for ($i = 0; $i < count($contents); $i++) {
       switch ($contents[$i]->type) {
@@ -22,6 +26,8 @@ function get_repo_docs ($repo, $repo_path = '') {
           // save only Markdown files
           if (substr($contents[$i]->name, -3) === '.md') {
             $content = get_json($contents[$i]->url);
+            // wait to prevent rate limit
+            sleep(60);
             if ($content) {
               // decode file content
               $files[] = array(
@@ -52,7 +58,7 @@ foreach ($repos as $repo => $page) {
   // GET array of Markdown files from current repository
   $json_file = __DIR__ . '/../../src/assets/json/contents/' . $repo . '.json';
   $files = null;
-  if (file_exists($json_file) && @$argv[1] !== 'update-contents') {
+  if (file_exists($json_file) && @$argv[1] !== 'update-' . $repo) {
     // try to set $files object from JSON file content
     // parse JSON to associative array
     $files = json_decode(file_get_contents($json_file), true);
