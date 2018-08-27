@@ -70,7 +70,3 @@ for ($i = 0; $i < count($pages); $i++) {
   }
   file_put_contents(__DIR__ . '/..' . $file_path, $html);
 }
-
-// render JSON with Apis object
-$json = json_encode($apis, JSON_PRETTY_PRINT);
-file_put_contents(__DIR__ . '/../src/assets/json/apis.json', $json);
