@@ -45,8 +45,8 @@
       <nav class="nav nav-navbar ml-auto">
 {% set nav = [
   { 'url': '/', 'title': 'Home' },
-  { 'url': '/themes', 'title': 'Themes' },
-  { 'url': '/apps', 'title': 'Apps' },
+  { 'url': links.themes, 'title': 'Themes' },
+  { 'url': links.apps, 'title': 'Apps' },
   { 'url': '/releases', 'title': 'Releases' }
 ] %}
 {% for navitem in nav %}
@@ -121,8 +121,8 @@
       <div class="col-6 col-sm-4 col-md">
         <h6 class="text-uppercase">Docs</h6>
         <ul class="list-unstyled">
-          <li><a href="/themes">Store templates</a></li>
-          <li><a href="/apps">Applications</a></li>
+          <li><a href="{{ links.themes }}">Store templates</a></li>
+          <li><a href="{{ links.apps }}">Applications</a></li>
         </ul>
       </div>
       <div class="col-6 col-sm-4 col-md">

@@ -37,6 +37,11 @@ for ($i = 0; $i < count($pages); $i++) {
 
   // define array with variables for template
   $template_vars = array(
+    'links' => array(
+      // external links on developers domain
+      'themes' => '/ecomplus-store-template/',
+      'apps' => '#'
+    ),
     'page' => $page,
     'apis' => $apis
   );
