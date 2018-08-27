@@ -43,10 +43,21 @@
         </div>
       </form>
       <nav class="nav nav-navbar ml-auto">
-        <a class="nav-link active" href="/">Home</a>
-        <a class="nav-link" href="/themes">Themes</a>
-        <a class="nav-link" href="/apps">Apps</a>
-        <a class="nav-link" href="/releases">Releases</a>
+{% set nav = [
+  { 'url': '/', 'title': 'Home' },
+  { 'url': '/themes', 'title': 'Themes' },
+  { 'url': '/apps', 'title': 'Apps' },
+  { 'url': '/releases', 'title': 'Releases' }
+] %}
+{% for navitem in nav %}
+{## check and mark current page #}
+{##}{% if (navitem.url == page.url) or ((page.url != '/') and (navitem.url starts with page.url)) %}
+{##}{##}{% set active = ' active' %}
+{##}{% else %}
+{##}{##}{% set active = '' %}
+{##}{% endif %}
+        <a class="nav-link{{ active }}" href="{{ navitem.url }}">{{ navitem.title }}</a>
+{% endfor %}
       </nav>
       <a class="btn btn-sm btn-round btn-success ml-3" href="/reference">
         API Reference
