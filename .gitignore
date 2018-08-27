@@ -12,6 +12,7 @@ gulpfile.js
 # Plugin sources
 */assets/plugin/*/*/**
 !*/assets/plugin/*/dist/**
+!*/assets/plugin/*/src-min-noconflict/**
 
 # Build with PHP
 /build/composer.phar
