@@ -1,17 +1,30 @@
 <?php
+function github_api ($url, $full_url = false) {
+  // timeout to prevent rate limit
+  // https://developer.github.com/v3/#rate-limiting
+  sleep(60);
+  if ($full_url) {
+    return get_json($url);
+  } else {
+    return get_json('https://api.github.com' . $url);
+  }
+}
+
 function get_repo_docs ($repo, $repo_path = '') {
   // returns array of Markdown files
   $files = array();
 
   // GET content from GitHub API:
   // https://developer.github.com/v3/repos/contents/
-  $github_api_path = 'https://api.github.com/repos/ecomclub/';
-  $contents = get_json($github_api_path . $repo . '/contents' . $repo_path);
-  // timeout to prevent rate limit
-  // https://developer.github.com/v3/#rate-limiting
-  sleep(60);
-
+  $github_api_path = '/repos/ecomclub/';
+  $contents = github_api($github_api_path . $repo . '/contents' . $repo_path);
   if ($contents) {
+    if (!is_array($contents)) {
+      // problem with API response
+      var_dump($contents);
+      exit();
+    }
+
     for ($i = 0; $i < count($contents); $i++) {
       switch ($contents[$i]->type) {
         case 'dir':
@@ -25,9 +38,7 @@ function get_repo_docs ($repo, $repo_path = '') {
         case 'file':
           // save only Markdown files
           if (substr($contents[$i]->name, -3) === '.md') {
-            $content = get_json($contents[$i]->url);
-            // wait to prevent rate limit
-            sleep(60);
+            $content = github_api($contents[$i]->url, true);
             if ($content) {
               // decode file content
               $files[] = array(
