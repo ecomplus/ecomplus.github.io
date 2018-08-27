@@ -40,12 +40,27 @@ function get_repo_docs ($repo, $repo_path = '') {
 
 // handle Developers pages from GitHub repos
 $repos = array(
-  'ecomplus-store-template' => $urls['themes']
+  'ecomplus-store-template' => array(
+    'base_url' => $urls['themes'],
+    'title' => '',
+    'subtitle' => '',
+    'description' => ''
+  )
 );
-foreach ($repos as $repo => $base_url) {
+
+foreach ($repos as $repo => $page) {
   // GET array of Markdown files from current repository
   $files = get_repo_docs($repo);
   for ($i = 0; $i < count($files); $i++) {
-    var_dump($files[$i]['path']);
+    // echo $files[$i]['path'] . PHP_EOL;
+    $pages[] = array(
+      'url' => $page['base_url'] . $files[$i]['path'],
+      'markdown_content' => $files[$i]['content'],
+      'title' => $page['title'],
+      'subtitle' => null,
+      'description' => 'E-Com Plus is a robust and flexible cloud commerce software, ' .
+                       'totally based on REST APIs. ' .
+                       'Get started with guides, API reference and playground on our Developers Hub.'
+    );
   }
 }
