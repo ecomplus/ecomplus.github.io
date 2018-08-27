@@ -88,5 +88,5 @@ if (!$apis) {
   // var_dump($apis);
   // render JSON with Apis object
   $json = json_encode($apis, JSON_PRETTY_PRINT);
-  file_put_contents(__DIR__ . '/../../src/assets/json/apis.json', $json);
+  file_put_contents($json_file, $json);
 }

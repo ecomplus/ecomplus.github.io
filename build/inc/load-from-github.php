@@ -26,7 +26,7 @@ function get_repo_docs ($repo, $repo_path = '') {
               // decode file content
               $files[] = array(
                 'path' => $content->path,
-                'content' => base64_decode(str_replace('\n', '', $content->content))
+                'content' => base64_decode($content->content)
               );
             }
           }
@@ -42,25 +42,38 @@ function get_repo_docs ($repo, $repo_path = '') {
 $repos = array(
   'ecomplus-store-template' => array(
     'base_url' => $urls['themes'],
-    'title' => '',
-    'subtitle' => '',
-    'description' => ''
+    'title' => 'Store template · E-Com Plus Developers',
+    'subtitle' => 'Store template',
+    'description' => 'Template specifications for E-Com Plus ecommerce themes'
   )
 );
 
 foreach ($repos as $repo => $page) {
   // GET array of Markdown files from current repository
-  $files = get_repo_docs($repo);
+  $json_file = __DIR__ . '/../../src/assets/json/contents/' . $repo . '.json';
+  $files = null;
+  if (file_exists($json_file) && @$argv[1] !== 'update-contents') {
+    // try to set $files object from JSON file content
+    // parse JSON to associative array
+    $files = json_decode(file_get_contents($json_file), true);
+  }
+  if (!$files) {
+    $files = get_repo_docs($repo);
+    // save to JSON file
+    $json = json_encode($files, JSON_PRETTY_PRINT);
+    file_put_contents($json_file, $json);
+  }
+
   for ($i = 0; $i < count($files); $i++) {
     // echo $files[$i]['path'] . PHP_EOL;
+    /*
     $pages[] = array(
       'url' => $page['base_url'] . $files[$i]['path'],
       'markdown_content' => $files[$i]['content'],
       'title' => $page['title'],
-      'subtitle' => null,
-      'description' => 'E-Com Plus is a robust and flexible cloud commerce software, ' .
-                       'totally based on REST APIs. ' .
-                       'Get started with guides, API reference and playground on our Developers Hub.'
+      'subtitle' => $page['subtitle'],
+      'description' => $page['description']
     );
+    */
   }
 }

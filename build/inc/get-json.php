@@ -8,15 +8,9 @@ function get_json ($url) {
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
   curl_setopt($ch, CURLOPT_HTTPHEADER, array(
     'Content-Type: application/json',
-    'User-Agent: cURL'
+    // for GitHub API
+    'User-Agent: CLI'
   ));
-  if (substr($url, 8, 14) === 'api.github.com') {
-    // https://api.github.com/...
-    // basic authentication for GitHub API
-    // https://developer.github.com/v3/#basic-authentication
-    curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-    curl_setopt($ch, CURLOPT_USERPWD, 'leomp12');
-  }
   $output = curl_exec($ch);
 
   // parse JSON
