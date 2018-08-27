@@ -9,6 +9,10 @@ gulpfile.js
 */assets/scss/page.scss
 */assets/plugin/thedocs
 
+# Plugin sources
+*/assets/plugin/*/*/**
+!*/assets/plugin/*/dist
+
 # Build with PHP
 /build/composer.phar
 /build/vendor/
