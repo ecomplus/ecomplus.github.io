@@ -8,7 +8,16 @@ require __DIR__ . '/inc/apis.php';
 // https://twig.symfony.com/doc/2.x/api.html
 $loader = new Twig_Loader_Filesystem(__DIR__ . '/templates');
 // setup twig object with no compilation cache
-$twig = new Twig_Environment($loader);
+$twig = new Twig_Environment($loader, array('strict_variables' => true));
+
+// internal links (abstractions)
+$urls = array(
+  'themes' => '/themes/',
+  'apps' => '/apps/',
+  'reference' => '/reference/',
+  'releases' => '/releases',
+  'open' => '/open'
+);
 
 // list of site pages
 $pages = array(
@@ -30,20 +39,16 @@ for ($i = 0; $i < count($pages); $i++) {
   $page = $pages[$i];
   // base file path
   $file_path = $page['url'];
-  if ($file_path === '/') {
+  if (substr($file_path, -1) === '/') {
     // homepage
     $file_path .= 'index.html';
   }
 
   // define array with variables for template
   $template_vars = array(
-    'links' => array(
-      // external links on developers domain
-      'themes' => '/ecomplus-store-template/',
-      'apps' => '#'
-    ),
     'page' => $page,
-    'apis' => $apis
+    'apis' => $apis,
+    'urls' => $urls
   );
   $template = $twig->load('views' . $file_path . '.twig');
   $html = $template->render($template_vars);
