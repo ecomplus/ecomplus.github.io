@@ -43,7 +43,7 @@ function get_repo_docs ($repo, $repo_path = '') {
               // decode file content
               $files[] = array(
                 'path' => $content->path,
-                'content' => base64_decode($content->content)
+                'markdown' => base64_decode($content->content)
               );
             }
           }
@@ -64,21 +64,26 @@ $repos = array(
     'description' => 'Template specifications for E-Com Plus ecommerce themes'
   )
 );
+$docs_dir = __DIR__ . '/../../src/assets/json/els-developers/docs/';
 
 foreach ($repos as $repo => $page) {
-  // GET array of Markdown files from current repository
-  $json_file = __DIR__ . '/../../src/assets/json/contents/' . $repo . '.json';
+  // array of Markdown files from current repository
   $files = null;
-  if (file_exists($json_file) && @$argv[1] !== 'update-' . $repo) {
-    // try to set $files object from JSON file content
-    // parse JSON to associative array
-    $files = json_decode(file_get_contents($json_file), true);
+  $repo_dir = $docs_dir . $repo;
+  if (is_dir($repo_dir) && @$argv[1] !== 'update-' . $repo) {
+    // try to set $files object from JSON files content
+    $filenames = scandir($repo_dir);
+    $files = [];
+    for ($i = 0; $i < count($filenames); $i++) {
+      if ($filenames[$i][0] !== '.') {
+        // parse JSON to associative array
+        $files = json_decode(file_get_contents($repo_dir . '/' . $filenames[$i]), true);
+      }
+    }
   }
-  if (!$files) {
+  if (!$files || count($files) === 0) {
+    // request to GitHub API
     $files = get_repo_docs($repo);
-    // save to JSON file
-    $json = json_encode($files, JSON_PRETTY_PRINT);
-    file_put_contents($json_file, $json);
   }
 
   for ($i = 0; $i < count($files); $i++) {
