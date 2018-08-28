@@ -75,7 +75,7 @@ foreach ($repos as $repo => $page) {
     $filenames = scandir($repo_dir);
     $files = [];
     for ($i = 0; $i < count($filenames); $i++) {
-      if ($filenames[$i][0] !== '.') {
+      if (substr($filenames[$i], -5) === '.json') {
         // parse JSON to associative array
         $files = json_decode(file_get_contents($repo_dir . '/' . $filenames[$i]), true);
       }
