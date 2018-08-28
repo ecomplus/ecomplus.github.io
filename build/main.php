@@ -7,7 +7,8 @@ require __DIR__ . '/inc/apis.php';
 
 // Twig 2 for template rendering
 // https://twig.symfony.com/doc/2.x/api.html
-$loader = new Twig_Loader_Filesystem(__DIR__ . '/templates');
+$templates_dir = __DIR__ . '/templates';
+$loader = new Twig_Loader_Filesystem($templates_dir);
 // setup twig object with no compilation cache
 $twig = new Twig_Environment($loader, array('strict_variables' => true));
 
@@ -54,7 +55,13 @@ for ($i = 0; $i < count($pages); $i++) {
     'apis' => $apis,
     'urls' => $urls
   );
-  $template = $twig->load('views' . $file_path . '.twig');
+  $template_file = 'views' . $file_path . '.twig';
+  if (!file_exists($templates_dir . '/' . $template_file)) {
+    // generic template
+    $template = $twig->load('general.html.twig');
+  } else {
+    $template = $twig->load($template_file);
+  }
   $html = $template->render($template_vars);
 
   // create or overwrite HTML file

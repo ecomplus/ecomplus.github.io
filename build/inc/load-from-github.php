@@ -88,14 +88,12 @@ foreach ($repos as $repo => $page) {
 
   for ($i = 0; $i < count($files); $i++) {
     // echo $files[$i]['path'] . PHP_EOL;
-    /*
     $pages[] = array(
       'url' => $page['base_url'] . $files[$i]['path'],
-      'markdown_content' => $files[$i]['content'],
+      'markdown' => $files[$i]['markdown'],
       'title' => $page['title'],
       'subtitle' => $page['subtitle'],
       'description' => $page['description']
     );
-    */
   }
 }
