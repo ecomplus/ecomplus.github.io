@@ -1,0 +1,3 @@
+[submodule "src/assets/json/els-developers"]
+	path = src/assets/json/els-developers
+	url = https://github.com/ecomclub/els-developers
