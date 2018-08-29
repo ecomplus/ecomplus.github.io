@@ -47,6 +47,9 @@ for ($i = 0; $i < count($pages); $i++) {
   if (substr($file_path, -1) === '/') {
     // homepage
     $file_path .= 'index.html';
+  } else {
+    // add HTML extension
+    $file_path .= '.html';
   }
 
   // define array with variables for template
@@ -69,10 +72,10 @@ for ($i = 0; $i < count($pages); $i++) {
   $paths = explode('/', $file_path);
   if (count($paths) > 2) {
     // create directory if not exists
-    $dir = __DIR__ . '/../';
+    $dir = __DIR__ . '/..';
     // skip the first (empty) and the last (filename) paths
     for ($ii = 1; $ii < count($paths) - 1; $ii++) {
-      $dir .= $paths[$ii];
+      $dir .= '/' . $paths[$ii];
       if (!is_dir($dir)) {
         // dir doesn't exist, make it
         mkdir($dir);

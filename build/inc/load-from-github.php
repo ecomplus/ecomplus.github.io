@@ -77,7 +77,7 @@ foreach ($repos as $repo => $page) {
     for ($i = 0; $i < count($filenames); $i++) {
       if (substr($filenames[$i], -5) === '.json') {
         // parse JSON to associative array
-        $files = json_decode(file_get_contents($repo_dir . '/' . $filenames[$i]), true);
+        $files[] = json_decode(file_get_contents($repo_dir . '/' . $filenames[$i]), true);
       }
     }
   }
@@ -88,8 +88,15 @@ foreach ($repos as $repo => $page) {
 
   for ($i = 0; $i < count($files); $i++) {
     // echo $files[$i]['path'] . PHP_EOL;
+    // remove '.md' extension
+    $url = substr($files[$i]['path'], 0, -3);
+    // README file is the dir index
+    if (substr($url, -6) === 'README') {
+      // remove 'README'
+      $url = substr($url, 0, -6);
+    }
     $pages[] = array(
-      'url' => $page['base_url'] . $files[$i]['path'],
+      'url' => $page['base_url'] . $url,
       'markdown' => $files[$i]['markdown'],
       'title' => $page['title'],
       'subtitle' => $page['subtitle'],
