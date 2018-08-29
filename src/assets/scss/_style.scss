@@ -44,7 +44,16 @@
     margin-right: auto !important;
   }
 }
-@media (max-width: 991px) {
+@media (min-width: 576px) and (max-width: 991px) {
+  .navbar-left form {
+    margin-left: auto;
+  }
+}
+@media (max-width: 575px) {
+  .navbar {
+    padding: 3px 3px 0 0;
+    height: 4.2857em;
+  }
   .navbar-left .navbar-brand {
     display: inline-block;
     margin-top: -3px;
@@ -62,8 +71,9 @@
     height: 25px;
     margin-left: 0;
   }
-}
-@media (max-width: 575px) {
+  .navbar-left .lookup {
+    width: auto;
+  }
   .navbar-toggler {
     margin-right: .6rem;
   }
