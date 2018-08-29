@@ -57,15 +57,111 @@
 <!-- /.navbar -->
 
 <!-- Header -->
-<header class="header py-5">
-  <div class="container">
-    <h1 class="m-0">Store template</h1>
-  </div>
-</header>
 <!-- /.header -->
 
 <!-- Main Content -->
 <main class="main-content">
+<div class="container rendered-content">
+
+<h1>Template structure</h1>
+<h2>Pages</h2>
+<ol>
+<li><a href="./../">Storefront theme</a></li>
+<li><a href="./../structure/">Template structure</a></li>
+<li><a href="./../methods/">JavaScript methods API</a></li>
+<li><a href="./../search/">Implement a search engine</a></li>
+</ol>
+<h2>Summary</h2>
+<ol>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#basic-directory-tree">Basic directory tree</a></li>
+<li><a href="#pwa">PWA</a></li>
+<li><a href="#complete-example">Complete example</a></li>
+</ol>
+<h1>Introduction</h1>
+<p>Such as any other static web application, you are free to
+set up your own directory structure to your E-Com Plus store template,
+it should work as storefront.</p>
+<p>This document is only intended to define few files and directories names,
+to make the template fully compatible with
+<a href="https://github.com/ecomclub/dynamic-backend" target="_blank">dynamic backend</a> and
+E-Com Plus dashboard tools.</p>
+<p>Before you start building your template,
+you must also read (at least) the storefront
+<a href="./../">theme specifications</a>.</p>
+<h1>Basic directory tree</h1>
+<pre><code>├── .builder
+│   ├── html
+│   ├── plugins
+│   └── scss
+├── .dist
+├── .rendered
+└── static
+    ├── css
+    ├── fonts
+    ├── img
+    │   └── icons
+    └── js</code></pre>
+<p>Inside the <code>static</code> folder should be all non-HTML files,
+if necessary, you can also create custom folders within it.</p>
+<p>The <code>.rendered</code> and <code>.dist</code> folders
+should be <strong>left empty</strong>.</p>
+<p>In almost all cases, all HTML files should be
+inside the root directory, although you can create custom
+folders if necessary.</p>
+<h1>Predefined files</h1>
+<pre><code>├── index.html
+├── _brands.html
+├── _categories.html
+├── _collections.html
+└── _products.html</code></pre>
+<p>The <strong>above files are required</strong>, with the specified names.
+They have to be in the root directory.</p>
+<p>To complete the storefront app,
+you should also create other HTML files, eg.:</p>
+<pre><code>├── search.html
+├── user.html
+└── cart.html</code></pre>
+<p>It's possible to use as many HTML files as you want,
+and you can choose any filenames.</p>
+<h1>PWA</h1>
+<p>If you want to build a
+<a href="https://developers.google.com/web/progressive-web-apps/" target="_blank">Progressive Web App</a>
+(recommended),
+you should put <code>service-worker.js</code> on root directory (as needed)
+and <code>manifest.json</code> inside <code>static</code> folder:</p>
+<pre><code>├── service-worker.js
+└── static
+    └── manifest.json</code></pre>
+<h1>Complete example</h1>
+<pre><code>├── .builder
+│   ├── html
+│   ├── plugins
+│   └── scss
+├── .dist
+├── .rendered
+├── _brands.html
+├── _categories.html
+├── _collections.html
+├── _products.html
+├── cart.html
+├── index.html
+├── search.html
+├── service-worker.js
+├── static
+│   ├── css
+│   │   └── app.css
+│   ├── fonts
+│   ├── img
+│   │   ├── banner.png
+│   │   └── icons
+│   │       └── favicon.png
+│   ├── js
+│   │   └── app.js
+│   └── manifest.json
+└── user.html</code></pre>
+
+</div>
 </main>
 <!-- /.main -->
 

@@ -1,4 +1,12 @@
 {% extends "base.html.twig" %}
 
 {% block content %}
+{## predefined page content? #}
+{##}{% if page.content %}
+<div class="container rendered-content">
+
+{{ page.content|raw }}
+
+</div>
+{##}{% endif %}
 {% endblock %}

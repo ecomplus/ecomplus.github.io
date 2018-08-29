@@ -65,6 +65,10 @@ $repos = array(
   )
 );
 $docs_dir = __DIR__ . '/../../src/assets/json/els-developers/docs/';
+// parse markdown to HTML
+// https://github.com/erusev/parsedown
+$parsedown = new Parsedown();
+$md_clears = array('{% raw %}', '{% endraw %}');
 
 foreach ($repos as $repo => $page) {
   // array of Markdown files from current repository
@@ -95,11 +99,15 @@ foreach ($repos as $repo => $page) {
       // remove 'README'
       $url = substr($url, 0, -6);
     }
+    // remove some strings from original Markdown content
+    $markdown = str_replace($md_clears, '', $files[$i]['markdown']);
+    // add page
     $pages[] = array(
       'url' => $page['base_url'] . $url,
-      'markdown' => $files[$i]['markdown'],
+      'content' => $parsedown->text($markdown),
       'title' => $page['title'],
-      'subtitle' => $page['subtitle'],
+      // h1 from markdown
+      'subtitle' => null,
       'description' => $page['description']
     );
   }
