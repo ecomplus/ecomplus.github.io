@@ -10,7 +10,7 @@
       <li class="breadcrumb-item"><a href="/">home</a></li>
 {##}{% for bread in breadcrumbs %}
 {##}{##}{% if bread != '' %}
-{##}{##}{##}{% set breadlink = '/' ~ bread %}
+{##}{##}{##}{% set breadlink = breadlink ~ '/' ~ bread %}
       <li class="breadcrumb-item"><a href="{{ breadlink }}">{{ bread }}</a></li>
 {##}{##}{% endif %}
 {##}{% endfor %}
