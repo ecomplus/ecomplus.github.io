@@ -133,6 +133,30 @@ body > header {
 }
 
 // markdown content
+.rendered-content table {
+  margin-bottom: 1rem;
+  border: 1px solid #f1f2f3;
+}
+.rendered-content table th,
+.rendered-content table td {
+  padding: .75rem;
+  vertical-align: top;
+  text-align: left !important;
+}
+.rendered-content table th,
+.rendered-content table td {
+  border: 1px solid #f1f2f3;
+}
+.rendered-content table tbody tr:nth-of-type(2n+1) {
+  background-color: #fcfdfe;
+}
+.rendered-content table thead th {
+  color: #323d47;
+  background-color: #fafbfb;
+  font-weight: 400;
+}
+
+// sidebar
 .rendered-summary {
   padding-top: 0;
   padding-bottom: 0;
@@ -163,6 +187,11 @@ body > header {
 .sidebar-sticky.stick:not(.is-mobile-wide) > ol:last-of-type,
 .sidebar-sticky.stick:not(.is-mobile-wide) > ul:last-of-type {
   padding-bottom: 2rem;
+}
+@media (max-width: 991px) {
+  .sidebar-sticky.stick {
+    position: relative !important;
+  }
 }
 
 // scrollbar styles
