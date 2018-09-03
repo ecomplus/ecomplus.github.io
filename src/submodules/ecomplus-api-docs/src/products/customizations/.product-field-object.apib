@@ -1,0 +1,22 @@
++ Attributes (object)
+    + `tag` (string) - Tag to identify object, use only lowercase letters, digits and underscore - Max length: **20** - RegEx pattern: **`^[a-z0-9_]+$`**
+    + `label` (string, required) - Title for this customization field, can be the grid title - Max length: **70**
+    + `grid_id` (string) - If this field is related to a grid, put the `grid_id` - RegEx pattern: **`^[a-z0-9_]{2,30}$`**
+    + `require`: false (boolean) - If field is required (true), customer must always choose a value
+    + `options` (object) - Pre-defined options for this customization field, `option_id` as property name - Min properties: **1** - Max properties: **200**
+        + `^[a-z0-9_]{2,30}$` (object) - Option object
+            + `text` (string, required) - Option text value displayed for the client - Max length: **70**
+            + `colors` (array) - Option color palette (if the field involves colors), starting by main color - Max elements: **4**
+                + (string) - RGB code with #
+            + `add_to_price` (object) - Specific price alteration if customer choose this option
+                + `type`: percentage (enum) - Type of price addition
+                    + percentage (string)
+                    + fixed (string)
+                + `addition` (number, required) - Additional value, could be negative - Mininum: **-99999999** - Maximum: **99999999** - Max precision: **0.0001**
+    + `custom_value`: true (boolean) - If this field accept custom value defined by customer
+    + `attachment`: false (boolean) - If this field accept customer file attachment
+    + `add_to_price` (object) - Default (to all options) price alteration if customer use this field
+        + `type`: percentage (enum) - Type of price addition
+            + percentage (string)
+            + fixed (string)
+        + `addition` (number, required) - Additional value, could be negative - Mininum: **-99999999** - Maximum: **99999999** - Max precision: **0.0001**

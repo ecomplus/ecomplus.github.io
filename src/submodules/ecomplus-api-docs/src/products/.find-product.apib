@@ -1,0 +1,26 @@
++ Parameters
+    + sku: COD1 (string, optional) - The product SKU
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "meta": {
+                "query": {
+                  "sku": "COD1"
+                }
+              },
+              "result": [
+                {
+                  "_id": "1234567890abcdef01291510",
+                  "sku": "COD1"
+                }
+              ]
+            }

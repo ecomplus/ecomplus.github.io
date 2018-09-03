@@ -1,0 +1,55 @@
++ Parameters
+    + _id: 2ca000000000000000000003 (string, required) - The cart ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "_id": "2ca000000000000000000003",
+              "created_at": "2017-11-19T13:10:00.612Z",
+              "store_id": 100,
+              "available": true,
+              "completed": false,
+              "utm": {
+                "source": "newsletter",
+                "medium": "email",
+                "campaign": "recovery_promo"
+              },
+              "customers": [
+                "3c1000000000000000000001"
+              ],
+              "other_customers": true,
+              "items": [
+                {
+                  "_id": "3130000000000000000000a1",
+                  "product_id": "123a5432109876543210cdef",
+                  "sku": "s-MP_2B4",
+                  "name": "Mens Pique Polo Shirt",
+                  "quantity": 4,
+                  "price": 42.9,
+                  "keep_item_price": false
+                },
+                {
+                  "_id": "3130000000000000000000a1",
+                  "product_id": "1234567890abcdef01291510",
+                  "sku": "COD1",
+                  "name": "Sample Product Name",
+                  "quantity": 1,
+                  "price": 20,
+                  "keep_item_price": false
+                }
+              ],
+              "subtotal": 171.6,
+              "discount": {
+                "apply_at": "subtotal",
+                "type": "fixed",
+                "value": 20
+              }
+            }

@@ -1,0 +1,40 @@
++ Parameters
+    + `slug`: `brand-four` (string, optional) - Object property to query
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "meta": {
+                "limit": 1000,
+                "offset": 0,
+                "sort": [],
+                "fields": [
+                  "_id",
+                  "name",
+                  "slug",
+                  "logo"
+                ],
+                "query": {
+                  "slug": "brand-four"
+                }
+              },
+              "result": [
+                {
+                  "_id": "a10000000000000000001114",
+                  "name": "Brand 4",
+                  "slug": "brand-four",
+                  "logo": {
+                    "url": "https://mycdn.com/brand-4-logo.jpg",
+                    "size": "70x70"
+                  }
+                }
+              ]
+            }

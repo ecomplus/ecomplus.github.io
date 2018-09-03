@@ -1,0 +1,59 @@
++ Parameters
+    + _id: f10000000000000000000001 (string, required) - The category ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
+    + Body
+
+            {
+              "name": "Polo Shirts Sample",
+              "slug": "polo",
+              "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+              "body_html": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>",
+              "body_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+              "parent": {
+                "_id": "b10000000000000000001110",
+                "name": "Category 0",
+                "slug": "category-zero"
+              },
+              "childs": [
+                {
+                  "_id": "b10000000000000000001112",
+                  "name": "Category 2",
+                  "slug": "category-two"
+                }
+              ],
+              "grids": {
+                "size": {
+                  "_id": "b90000000000000000000102",
+                  "title": "Shirt size",
+                  "is_filter": true
+                },
+                "colors": {
+                  "_id": "b90000000000000000000103",
+                  "title": "Colors",
+                  "is_filter": true
+                }
+              },
+              "icon": {
+                "url": "https://mycdn.com/icon/polo-example.png",
+                "size": "30x20"
+              },
+              "pictures": [
+                {
+                  "_id": "b74000000000000000000103",
+                  "tag": "banner",
+                  "url": "https://mycdn.com/polo-example-banner.jpg",
+                  "size": "900x200",
+                  "alt": "Trending Polo Shirts"
+                }
+              ]
+            }
+
++ Response 204

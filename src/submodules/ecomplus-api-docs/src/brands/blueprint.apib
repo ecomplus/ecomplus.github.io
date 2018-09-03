@@ -1,0 +1,604 @@
+## Group Brands
+
+`.brands`
+
+Use the **brands** resource to create, read, update and delete brands (manufacturers) in
+a merchant's store, you can edit all brand properties and also work with all
+brand subresources directly at this resource
+
+### Brand Object [/brands/schema.json]
+
++ Attributes (object)
+    + `name` (string, required) - Brand full name - Max length: **255**
+    + `i18n` (object) - Brand name translations - Max properties: **10**
+        + `^[a-z]{2}(_[a-z]{2})?$` (string) - Translated full brand name - Max length: **255**
+    + `subtitle` (string) - Optional subtitle intended to be used for SEO or layout purposes - Max length: **255**
+    + `slug` (string) - Slug to complete page URL, starting with number or lowercase letter - Max length: **255** - RegEx pattern: **`^[a-z0-9]([a-z0-9-_./]+)?$`**
+    + `permalink` (string) - Permanent URL to brand page - Max length: **255** - Format: **uri**
+    + `mobile_link` (string) - Optional URL specific to mobile devices - Max length: **255** - Format: **uri**
+    + `short_description` (string) - Short brand description in plain text - Max length: **255**
+    + `body_html` (string) - Full brand description, may use HTML tags - Max length: **250000**
+    + `body_text` (string) - Full brand description, plain text only - Max length: **250000**
+    + `meta_title` (string) - Title tag for page SEO - Max length: **255**
+    + `meta_description` (string) - Meta description tag for page SEO - Max length: **1000**
+    + `logo` (object) - Brand logo
+        + `url` (string, required) - Image link - Max length: **255** - Format: **uri**
+        + `size` (string) - Image size (width x height) in px, such as 100x50 (100px width, 50px height) - Max length: **11** - RegEx pattern: **`^[1-9]([0-9]+)?x[1-9]([0-9]+)?$`**
+        + `alt` (string) - Alternative text, HTML alt tag (important for SEO) - Max length: **255**
+    + `pictures` (array) - List of brand images - Max elements: **50**
+        + (object) - Image object
+            + `_id` (string, required) - Unique ID (ObjectID) - RegEx pattern: **`^[a-f0-9]{24}$`**
+            + `tag` (string) - Tag to identify object, use only lowercase letters, digits and underscore - Max length: **20** - RegEx pattern: **`^[a-z0-9_]+$`**
+            + `url` (string, required) - Image link - Max length: **255** - Format: **uri**
+            + `size` (string) - Image size (width x height) in px, such as 100x50 (100px width, 50px height) - Max length: **11** - RegEx pattern: **`^[1-9]([0-9]+)?x[1-9]([0-9]+)?$`**
+            + `alt` (string) - Alternative text, HTML alt tag (important for SEO) - Max length: **255**
+    + `metafields` (array) - List of custom attributes - Max elements: **100**
+        + (object) - Custom attribute object
+            + `_id` (string, required) - Unique ID (ObjectID) - RegEx pattern: **`^[a-f0-9]{24}$`**
+            + `namespace` (string) - String to help distinguish who (or which app) created and can use the metafield - Max length: **30**
+            + `field` (string) - Field name - Max length: **50**
+            + `value` (string, required) - Custom property value - Max length: **255**
+    + `flags` (array) - Flags to associate additional info - Max elements: **10**
+        + (string) - Flag title
+    + `notes` (string) - Optional notes with additional info about this brand - Max length: **255**
+
+#### JSON Schema [GET]
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "$schema": "http://json-schema.org/draft-06/schema#",
+                "title": "Brands",
+                "description": "Brand object model",
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "description": "Brand full name"
+                    },
+                    "i18n": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "maxProperties": 10,
+                        "patternProperties": {
+                            "^[a-z]{2}(_[a-z]{2})?$": {
+                                "type": "string",
+                                "maxLength": 255,
+                                "description": "Translated full brand name"
+                            }
+                        },
+                        "description": "Brand name translations"
+                    },
+                    "subtitle": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "description": "Optional subtitle intended to be used for SEO or layout purposes"
+                    },
+                    "slug": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "pattern": "^[a-z0-9]([a-z0-9-_./]+)?$",
+                        "description": "Slug to complete page URL, starting with number or lowercase letter"
+                    },
+                    "permalink": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "format": "uri",
+                        "description": "Permanent URL to brand page"
+                    },
+                    "mobile_link": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "format": "uri",
+                        "description": "Optional URL specific to mobile devices"
+                    },
+                    "short_description": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "description": "Short brand description in plain text"
+                    },
+                    "body_html": {
+                        "type": "string",
+                        "maxLength": 250000,
+                        "description": "Full brand description, may use HTML tags"
+                    },
+                    "body_text": {
+                        "type": "string",
+                        "maxLength": 250000,
+                        "description": "Full brand description, plain text only"
+                    },
+                    "meta_title": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "description": "Title tag for page SEO"
+                    },
+                    "meta_description": {
+                        "type": "string",
+                        "maxLength": 1000,
+                        "description": "Meta description tag for page SEO"
+                    },
+                    "logo": {
+                        "type": "object",
+                        "required": [
+                            "url"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "url": {
+                                "type": "string",
+                                "maxLength": 255,
+                                "format": "uri",
+                                "description": "Image link"
+                            },
+                            "size": {
+                                "type": "string",
+                                "maxLength": 11,
+                                "pattern": "^[1-9]([0-9]+)?x[1-9]([0-9]+)?$",
+                                "description": "Image size (width x height) in px, such as 100x50 (100px width, 50px height)"
+                            },
+                            "alt": {
+                                "type": "string",
+                                "maxLength": 255,
+                                "description": "Alternative text, HTML alt tag (important for SEO)"
+                            }
+                        },
+                        "description": "Brand logo"
+                    },
+                    "pictures": {
+                        "type": "array",
+                        "maxItems": 50,
+                        "items": {
+                            "type": "object",
+                            "required": [
+                                "_id",
+                                "url"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                                "_id": {
+                                    "type": "string",
+                                    "pattern": "^[a-f0-9]{24}$",
+                                    "description": "Unique ID (ObjectID)"
+                                },
+                                "tag": {
+                                    "type": "string",
+                                    "maxLength": 20,
+                                    "pattern": "^[a-z0-9_]+$",
+                                    "description": "Tag to identify object, use only lowercase letters, digits and underscore"
+                                },
+                                "url": {
+                                    "type": "string",
+                                    "maxLength": 255,
+                                    "format": "uri",
+                                    "description": "Image link"
+                                },
+                                "size": {
+                                    "type": "string",
+                                    "maxLength": 11,
+                                    "pattern": "^[1-9]([0-9]+)?x[1-9]([0-9]+)?$",
+                                    "description": "Image size (width x height) in px, such as 100x50 (100px width, 50px height)"
+                                },
+                                "alt": {
+                                    "type": "string",
+                                    "maxLength": 255,
+                                    "description": "Alternative text, HTML alt tag (important for SEO)"
+                                }
+                            },
+                            "description": "Image object"
+                        },
+                        "description": "List of brand images"
+                    },
+                    "metafields": {
+                        "type": "array",
+                        "maxItems": 100,
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "required": [
+                                "_id",
+                                "value"
+                            ],
+                            "properties": {
+                                "_id": {
+                                    "type": "string",
+                                    "pattern": "^[a-f0-9]{24}$",
+                                    "description": "Unique ID (ObjectID)"
+                                },
+                                "namespace": {
+                                    "type": "string",
+                                    "maxLength": 30,
+                                    "description": "String to help distinguish who (or which app) created and can use the metafield"
+                                },
+                                "field": {
+                                    "type": "string",
+                                    "maxLength": 50,
+                                    "description": "Field name"
+                                },
+                                "value": {
+                                    "type": "string",
+                                    "maxLength": 255,
+                                    "description": "Custom property value"
+                                }
+                            },
+                            "description": "Custom attribute object"
+                        },
+                        "description": "List of custom attributes"
+                    },
+                    "flags": {
+                        "type": "array",
+                        "uniqueItems": true,
+                        "maxItems": 10,
+                        "items": {
+                            "type": "string",
+                            "maxLength": 20,
+                            "description": "Flag title"
+                        },
+                        "description": "Flags to associate additional info"
+                    },
+                    "notes": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "description": "Optional notes with additional info about this brand"
+                    }
+                }
+            }
+
+### All Brands [/brands.json{?limit,offset,sort,fields}]
+
+*/brands.json?limit&offset&sort&fields\&[field]*
+
+> Authentication<br>_GET_: **none**
+
+Use [default URL parameters](#introduction/overview/url-params) (metadata)
+for pagination and ordering, you can use any other parameter to query
+by particular object properties
+
+#### List All Store Brands [GET /brands.json]
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "meta": {
+                "limit": 1000,
+                "offset": 0,
+                "sort": [],
+                "fields": [
+                  "_id",
+                  "name",
+                  "slug",
+                  "logo"
+                ],
+                "query": {}
+              },
+              "result": [
+                {
+                  "_id": "a10000000000000000001110",
+                  "name": "Brand 0",
+                  "slug": "brand-zero",
+                  "logo": {
+                    "url": "https://mycdn.com/brand-0-logo.jpg",
+                    "size": "90x70",
+                    "alt": "Brand Zero"
+                  }
+                },
+                {
+                  "_id": "a10000000000000000001111",
+                  "name": "Brand 1",
+                  "slug": "brand-one",
+                  "logo": {
+                    "url": "https://mycdn.com/brand-1-logo.jpg",
+                    "size": "70x70",
+                    "alt": "Brand One"
+                  }
+                },
+                {
+                  "_id": "a10000000000000000001112",
+                  "name": "Brand 2",
+                  "slug": "brand-two"
+                },
+                {
+                  "_id": "a10000000000000000001113",
+                  "name": "Brand 3",
+                  "slug": "brand-three"
+                },
+                {
+                  "_id": "a10000000000000000001114",
+                  "name": "Brand 4",
+                  "slug": "brand-four",
+                  "logo": {
+                    "url": "https://mycdn.com/brand-4-logo.jpg",
+                    "size": "70x70"
+                  }
+                },
+                {
+                  "_id": "a10000000000000000001115",
+                  "name": "Brand 5",
+                  "slug": "brand-five",
+                  "logo": {
+                    "url": "https://mycdn.com/brand-5-logo.jpg",
+                    "size": "70x70"
+                  }
+                },
+                {
+                  "_id": "a10000000000000000001116",
+                  "name": "Brand 6",
+                  "slug": "brand-six",
+                  "logo": {
+                    "url": "https://mycdn.com/brand-6-logo.jpg",
+                    "size": "70x70",
+                    "alt": "Brand Six"
+                  }
+                },
+                {
+                  "_id": "a10000000000000000000001",
+                  "name": "Shirts Example",
+                  "slug": "shirts-example",
+                  "logo": {
+                    "url": "https://mycdn.com/shirts-example.jpg",
+                    "size": "100x50"
+                  }
+                }
+              ]
+            }
+
+#### Pagination And Ordering [GET]
+
++ Parameters
+    + limit: 2 (number, optional) - Max number of objects to return
+    + offset: 4 (number, optional) - First entry to return
+    + sort: `name` (string, optional) - Rules to order resultant objects
+    + fields: `name,short_description` (string, optional) - Object properties to return
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "meta": {
+                "limit": 2,
+                "offset": 4,
+                "sort": [
+                  {
+                    "field": "name",
+                    "order": 1
+                  }
+                ],
+                "fields": [
+                  "name",
+                  "short_description"
+                ],
+                "query": {}
+              },
+              "result": [
+                {
+                  "_id": "a10000000000000000001114",
+                  "name": "Brand 4",
+                  "short_description": "Brand description text"
+                },
+                {
+                  "_id": "a10000000000000000001115",
+                  "name": "Brand 5",
+                  "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                }
+              ]
+            }
+
+#### Find Brands [GET /brands.json{?slug}]
+
++ Parameters
+    + `slug`: `brand-four` (string, optional) - Object property to query
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "meta": {
+                "limit": 1000,
+                "offset": 0,
+                "sort": [],
+                "fields": [
+                  "_id",
+                  "name",
+                  "slug",
+                  "logo"
+                ],
+                "query": {
+                  "slug": "brand-four"
+                }
+              },
+              "result": [
+                {
+                  "_id": "a10000000000000000001114",
+                  "name": "Brand 4",
+                  "slug": "brand-four",
+                  "logo": {
+                    "url": "https://mycdn.com/brand-4-logo.jpg",
+                    "size": "70x70"
+                  }
+                }
+              ]
+            }
+
+### New Brand [/brands.json]
+
+*/brands.json*
+
+> Authentication<br>_POST_: **required**
+
+Request body must obey the specifications of
+[this model](#reference/brands/brand-object)
+
+#### Create New Brand [POST]
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
+    + Body
+
+            {
+              "name": "Shirts Example",
+              "slug": "shirts-example",
+              "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+              "body_html": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>",
+              "body_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+              "logo": {
+                "url": "https://mycdn.com/shirts-example.jpg",
+                "size": "100x50"
+              }
+            }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+              "_id": "a10000000000000000000001"
+            }
+
+### Specific Brand [/brands/{_id}.json]
+
+*/brands/[_id].json*
+
+> Authentication<br>_GET_: **none**<br>_PATCH_, _PUT_, _DELETE_: **required**
+
+In read requests, response body will follow
+[this model](#reference/brands/brand-object)
+
+For overwriting and editing, request body must obey the same specifications,
+but especially for edit requests there are no required fields
+
+#### Read Brand [GET]
+
++ Parameters
+    + _id: a10000000000000000000001 (string, required) - The brand ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "_id": "a10000000000000000000001",
+              "created_at": "2017-11-19T13:10:00.612Z",
+              "store_id": 100,
+              "name": "Shirts Example",
+              "slug": "shirts-example",
+              "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+              "body_html": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>",
+              "body_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+              "logo": {
+                "url": "https://mycdn.com/shirts-example.jpg",
+                "size": "100x50"
+              }
+            }
+
+#### Edit Brand [PATCH]
+
++ Parameters
+    + _id: a10000000000000000000001 (string, required) - The brand ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
+    + Body
+
+            {
+              "permalink": "https://myshop.sample/brands/shirt-brand"
+            }
+
++ Response 204
+
+#### Overwrite Brand [PUT]
+
++ Parameters
+    + _id: a10000000000000000000001 (string, required) - The brand ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
+    + Body
+
+            {
+              "name": "Shirts Example",
+              "slug": "shirts-example",
+              "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+              "body_html": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>",
+              "body_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+              "meta_title": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+              "meta_description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+              "logo": {
+                "url": "https://mycdn.com/shirts-example.jpg",
+                "size": "100x50"
+              }
+            }
+
++ Response 204
+
+#### Remove Brand [DELETE]
+
++ Parameters
+    + _id: a10000000000000000000001 (string, required) - The brand ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
++ Response 204

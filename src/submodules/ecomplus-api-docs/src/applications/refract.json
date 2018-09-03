@@ -1,0 +1,1871 @@
+{
+  "element": "parseResult",
+  "content": [
+    {
+      "element": "category",
+      "meta": {
+        "classes": [
+          "api"
+        ],
+        "title": ""
+      },
+      "content": [
+        {
+          "element": "category",
+          "meta": {
+            "classes": [
+              "resourceGroup"
+            ],
+            "title": "Applications"
+          },
+          "content": [
+            {
+              "element": "copy",
+              "content": "`.applications`\n\nUse the **applications** resource to create, read, update and delete apps in\na merchant's store, you can edit all application properties and also work with all\napplication subresources directly at this resource"
+            },
+            {
+              "element": "resource",
+              "meta": {
+                "title": "Application Object"
+              },
+              "attributes": {
+                "href": "/applications/schema.json"
+              },
+              "content": [
+                {
+                  "element": "dataStructure",
+                  "content": [
+                    {
+                      "element": "object",
+                      "meta": {
+                        "id": "Application Object"
+                      },
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "ID of application - Mininum: **1000** - Maximum: **16777215**"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "app_id"
+                            },
+                            "value": {
+                              "element": "number"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "The working state of this app in the shop"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "state"
+                            },
+                            "value": {
+                              "element": "enum",
+                              "attributes": {
+                                "samples": [
+                                  [
+                                    {
+                                      "element": "string",
+                                      "content": "test"
+                                    }
+                                  ]
+                                ]
+                              },
+                              "content": [
+                                {
+                                  "element": "string",
+                                  "content": "inactive"
+                                },
+                                {
+                                  "element": "string",
+                                  "content": "active"
+                                },
+                                {
+                                  "element": "string",
+                                  "content": "test"
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "App title - Max length: **70**"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "title"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "App unique slug, only lowercase letters, numbers and hyphen - Min length: **3** - Max length: **50** - RegEx pattern: **`^[0-9a-z-]+$`**"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "slug"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Whether this app is paid"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "paid"
+                            },
+                            "value": {
+                              "element": "boolean",
+                              "content": false
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Version of the application that was installed, eg.: 1.0.0 - Min length: **5** - Max length: **8** - RegEx pattern: **`^(0|([1-9][0-9]?))[.](0|([1-9][0-9]?))[.](0|([1-9][0-9]?))$`**"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "version"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "When app installation was updated, date and time in ISO 8601 standard representation - Format: **date-time**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "version_date"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Type of app"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "type"
+                            },
+                            "value": {
+                              "element": "enum",
+                              "content": [
+                                {
+                                  "element": "string",
+                                  "content": "dashboard"
+                                },
+                                {
+                                  "element": "string",
+                                  "content": "storefront"
+                                },
+                                {
+                                  "element": "string",
+                                  "content": "module_package"
+                                },
+                                {
+                                  "element": "string",
+                                  "content": "external"
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "If this app is a package of a module, specify the module"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "module"
+                            },
+                            "value": {
+                              "element": "enum",
+                              "content": [
+                                {
+                                  "element": "string",
+                                  "content": "al"
+                                },
+                                {
+                                  "element": "string",
+                                  "content": "pd"
+                                },
+                                {
+                                  "element": "string",
+                                  "content": "sc"
+                                },
+                                {
+                                  "element": "string",
+                                  "content": "sh"
+                                },
+                                {
+                                  "element": "string",
+                                  "content": "pa"
+                                },
+                                {
+                                  "element": "string",
+                                  "content": "ck"
+                                },
+                                {
+                                  "element": "string",
+                                  "content": "cf"
+                                },
+                                {
+                                  "element": "string",
+                                  "content": "rg"
+                                },
+                                {
+                                  "element": "string",
+                                  "content": "lg"
+                                },
+                                {
+                                  "element": "string",
+                                  "content": "ct"
+                                },
+                                {
+                                  "element": "string",
+                                  "content": "nw"
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "If this app is a dashboard or storefront JS, specify resources that trigger the script load - Max elements: **100**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "load_events"
+                            },
+                            "value": {
+                              "element": "array",
+                              "content": [
+                                {
+                                  "element": "string",
+                                  "meta": {
+                                    "description": "Resource/Subresources/Third-level/ID"
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Script (JS) link - Max length: **255** - Format: **uri**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "script_uri"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Link to GitHub repository - Max length: **255** - Format: **uri**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "github_repository"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Status defined by seller, such as active or waiting - Max length: **50**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "status"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Whether this app needs to authenticate with API"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "authentication"
+                            },
+                            "value": {
+                              "element": "boolean",
+                              "content": false
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Endpoint that receives POST back with authentication credentials, must be https - Max length: **255** - Format: **uri**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "auth_callback_uri"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "If this app uses authentication, list the needed permissions - Min properties: **1** - Max properties: **20**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "auth_scope"
+                            },
+                            "value": {
+                              "element": "object",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "meta": {
+                                    "description": "Requested resource, cannot be \"applications\", \"authentications\" or \"$update\""
+                                  },
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "^([$]?(?!app|aut|upd)([a-z]{1,60}))$"
+                                    },
+                                    "value": {
+                                      "element": "array",
+                                      "content": [
+                                        {
+                                          "element": "enum",
+                                          "meta": {
+                                            "description": "Methods to be used (HTTP verbs)"
+                                          },
+                                          "content": [
+                                            {
+                                              "element": "string",
+                                              "content": "all"
+                                            },
+                                            {
+                                              "element": "string",
+                                              "content": "GET"
+                                            },
+                                            {
+                                              "element": "string",
+                                              "content": "POST"
+                                            },
+                                            {
+                                              "element": "string",
+                                              "content": "PATCH"
+                                            },
+                                            {
+                                              "element": "string",
+                                              "content": "PUT"
+                                            },
+                                            {
+                                              "element": "string",
+                                              "content": "DELETE"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Flags to associate additional info - Max elements: **10**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "flags"
+                            },
+                            "value": {
+                              "element": "array",
+                              "content": [
+                                {
+                                  "element": "string",
+                                  "meta": {
+                                    "description": "Flag title"
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Optional notes with additional info about this user - Max length: **255**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "notes"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "JSON Schema"
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n    \"$schema\": \"http://json-schema.org/draft-06/schema#\",\n    \"title\": \"Applications\",\n    \"description\": \"App object model\",\n    \"type\": \"object\",\n    \"required\": [\n        \"app_id\",\n        \"title\",\n        \"slug\",\n        \"version\",\n        \"type\"\n    ],\n    \"dependencies\": {\n        \"auth_scope\": [\n            \"auth_callback_uri\"\n        ]\n    },\n    \"additionalProperties\": false,\n    \"properties\": {\n        \"app_id\": {\n            \"type\": \"integer\",\n            \"minimum\": 1000,\n            \"maximum\": 16777215,\n            \"description\": \"ID of application\"\n        },\n        \"state\": {\n            \"type\": \"string\",\n            \"enum\": [\n                \"inactive\",\n                \"active\",\n                \"test\"\n            ],\n            \"default\": \"test\",\n            \"description\": \"The working state of this app in the shop\"\n        },\n        \"title\": {\n            \"type\": \"string\",\n            \"maxLength\": 70,\n            \"description\": \"App title\"\n        },\n        \"slug\": {\n            \"type\": \"string\",\n            \"minLength\": 3,\n            \"maxLength\": 50,\n            \"pattern\": \"^[0-9a-z-]+$\",\n            \"description\": \"App unique slug, only lowercase letters, numbers and hyphen\"\n        },\n        \"paid\": {\n            \"type\": \"boolean\",\n            \"default\": false,\n            \"description\": \"Whether this app is paid\"\n        },\n        \"version\": {\n            \"type\": \"string\",\n            \"minLength\": 5,\n            \"maxLength\": 8,\n            \"pattern\": \"^(0|([1-9][0-9]?))[.](0|([1-9][0-9]?))[.](0|([1-9][0-9]?))$\",\n            \"description\": \"Version of the application that was installed, eg.: 1.0.0\"\n        },\n        \"version_date\": {\n            \"type\": \"string\",\n            \"format\": \"date-time\",\n            \"description\": \"When app installation was updated, date and time in ISO 8601 standard representation\"\n        },\n        \"type\": {\n            \"type\": \"string\",\n            \"enum\": [\n                \"dashboard\",\n                \"storefront\",\n                \"module_package\",\n                \"external\"\n            ],\n            \"description\": \"Type of app\"\n        },\n        \"module\": {\n            \"type\": \"string\",\n            \"enum\": [\n                \"al\",\n                \"pd\",\n                \"sc\",\n                \"sh\",\n                \"pa\",\n                \"ck\",\n                \"cf\",\n                \"rg\",\n                \"lg\",\n                \"ct\",\n                \"nw\"\n            ],\n            \"description\": \"If this app is a package of a module, specify the module\"\n        },\n        \"load_events\": {\n            \"type\": \"array\",\n            \"uniqueItems\": true,\n            \"maxItems\": 100,\n            \"items\": {\n                \"type\": \"string\",\n                \"maxLength\": 60,\n                \"pattern\": \"^(([^/_][a-z0-9/_@:$+]{1,60}[^/])|[*])$\",\n                \"description\": \"Resource/Subresources/Third-level/ID\"\n            },\n            \"description\": \"If this app is a dashboard or storefront JS, specify resources that trigger the script load\"\n        },\n        \"script_uri\": {\n            \"type\": \"string\",\n            \"maxLength\": 255,\n            \"format\": \"uri\",\n            \"description\": \"Script (JS) link\"\n        },\n        \"github_repository\": {\n            \"type\": \"string\",\n            \"maxLength\": 255,\n            \"format\": \"uri\",\n            \"description\": \"Link to GitHub repository\"\n        },\n        \"status\": {\n            \"type\": \"string\",\n            \"maxLength\": 50,\n            \"description\": \"Status defined by seller, such as active or waiting\"\n        },\n        \"authentication\": {\n            \"type\": \"boolean\",\n            \"default\": false,\n            \"description\": \"Whether this app needs to authenticate with API\"\n        },\n        \"auth_callback_uri\": {\n            \"type\": \"string\",\n            \"maxLength\": 255,\n            \"format\": \"uri\",\n            \"pattern\": \"^https:\",\n            \"description\": \"Endpoint that receives POST back with authentication credentials, must be https\"\n        },\n        \"auth_scope\": {\n            \"type\": \"object\",\n            \"additionalProperties\": false,\n            \"minProperties\": 1,\n            \"maxProperties\": 20,\n            \"patternProperties\": {\n                \"^([$]?(?!app|aut|upd)([a-z]{1,60}))$\": {\n                    \"type\": \"array\",\n                    \"uniqueItems\": true,\n                    \"items\": {\n                        \"type\": \"string\",\n                        \"enum\": [\n                            \"all\",\n                            \"GET\",\n                            \"POST\",\n                            \"PATCH\",\n                            \"PUT\",\n                            \"DELETE\"\n                        ],\n                        \"description\": \"Methods to be used (HTTP verbs)\"\n                    },\n                    \"description\": \"Requested resource, cannot be \\\"applications\\\", \\\"authentications\\\" or \\\"$update\\\"\"\n                }\n            },\n            \"description\": \"If this app uses authentication, list the needed permissions\"\n        },\n        \"flags\": {\n            \"type\": \"array\",\n            \"uniqueItems\": true,\n            \"maxItems\": 10,\n            \"items\": {\n                \"type\": \"string\",\n                \"maxLength\": 20,\n                \"description\": \"Flag title\"\n            },\n            \"description\": \"Flags to associate additional info\"\n        },\n        \"notes\": {\n            \"type\": \"string\",\n            \"maxLength\": 255,\n            \"description\": \"Optional notes with additional info about this user\"\n        }\n    }\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "element": "resource",
+              "meta": {
+                "title": "All Applications"
+              },
+              "attributes": {
+                "href": "/applications.json{?limit,offset,sort,fields}"
+              },
+              "content": [
+                {
+                  "element": "copy",
+                  "content": "*/applications.json?limit&offset&sort&fields\\&[field]*\n\n> Authentication<br>_GET_: **required**\n\nUse [default URL parameters](#introduction/overview/url-params) (metadata)\nfor pagination and ordering, you can use any other parameter to query\nby particular object properties"
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "List All Store Applications"
+                  },
+                  "attributes": {
+                    "href": "/applications.json"
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"meta\": {\n    \"limit\": 1000,\n    \"offset\": 0,\n    \"sort\": [],\n    \"fields\": [\n      \"_id\",\n      \"app_id\",\n      \"state\",\n      \"version\",\n      \"version_date\",\n      \"type\"\n    ],\n    \"query\": {}\n  },\n  \"result\": [\n    {\n      \"_id\": \"42aa00000000000000000110\",\n      \"app_id\": 1001,\n      \"state\": \"active\",\n      \"version\": \"1.1.1\",\n      \"version_date\": \"2017-11-15T09:15:10.612Z\",\n      \"type\": \"storefront\"\n    },\n    {\n      \"_id\": \"42aa00000000000000000111\",\n      \"app_id\": 1002,\n      \"state\": \"active\",\n      \"version\": \"3.0.0\",\n      \"type\": \"dashboard\"\n    },\n    {\n      \"_id\": \"42aa00000000000000000112\",\n      \"app_id\": 1003,\n      \"state\": \"test\",\n      \"version\": \"2.14.0\",\n      \"version_date\": \"2017-11-14T12:00:10.612Z\",\n      \"type\": \"storefront\"\n    },\n    {\n      \"_id\": \"42aa00000000000000000113\",\n      \"app_id\": 1004,\n      \"state\": \"inactive\",\n      \"version\": \"2.0.23\",\n      \"version_date\": \"2017-12-15T00:15:10.612Z\",\n      \"type\": \"module_package\"\n    },\n    {\n      \"_id\": \"42aa00000000000000000114\",\n      \"app_id\": 1005,\n      \"state\": \"active\",\n      \"version\": \"3.1.3\",\n      \"version_date\": \"2017-12-20T00:15:10.612Z\",\n      \"type\": \"external\"\n    }\n  ]\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Pagination And Ordering"
+                  },
+                  "attributes": {
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Max number of objects to return",
+                            "title": "number"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "optional"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "limit"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "3"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "First entry to return",
+                            "title": "number"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "optional"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "offset"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "3"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Rules to order resultant objects",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "optional"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "sort"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "-version_date"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Object properties to return",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "optional"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "fields"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "app_id,title"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"meta\": {\n    \"limit\": 3,\n    \"offset\": 3,\n    \"sort\": [\n      {\n        \"field\": \"version_date\",\n        \"order\": -1\n      }\n    ],\n    \"fields\": [\n      \"app_id\",\n      \"title\"\n    ],\n    \"query\": {}\n  },\n  \"result\": [\n    {\n      \"_id\": \"42aa00000000000000000111\",\n      \"app_id\": 1002,\n      \"title\": \"Products panel extension\"\n    }\n  ]\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Find Applications"
+                  },
+                  "attributes": {
+                    "href": "/applications.json{?app_id}",
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Object property to query",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "optional"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "app_id"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "1004"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"meta\": {\n    \"limit\": 1000,\n    \"offset\": 0,\n    \"sort\": [],\n    \"fields\": [\n      \"_id\",\n      \"app_id\",\n      \"state\",\n      \"version\",\n      \"version_date\",\n      \"type\"\n    ],\n    \"query\": {\n      \"app_id\": 1004\n    }\n  },\n  \"result\": [\n    {\n      \"_id\": \"42aa00000000000000000113\",\n      \"app_id\": 1004,\n      \"state\": \"inactive\",\n      \"version\": \"2.0.23\",\n      \"version_date\": \"2017-12-15T00:15:10.612Z\",\n      \"type\": \"module_package\"\n    }\n  ]\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "element": "resource",
+              "meta": {
+                "title": "New Application"
+              },
+              "attributes": {
+                "href": "/applications.json"
+              },
+              "content": [
+                {
+                  "element": "copy",
+                  "content": "*/applications.json*\n\n> Authentication<br>_POST_: **required**\n\nRequest body must obey the specifications of\n[this model](#reference/applications/application-object)"
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Create New Application"
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "POST",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"app_id\": 1002,\n  \"state\": \"active\",\n  \"title\": \"Products panel extension\",\n  \"slug\": \"products-panel-ext\",\n  \"paid\": true,\n  \"version\": \"3.0.0\",\n  \"type\": \"dashboard\",\n  \"load_events\": [\n    \"products\"\n  ],\n  \"script_uri\": \"https://sample.mycdn.com/script.min.js\"\n}\n"
+                            }
+                          ]
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "201",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"_id\": \"42aa00000000000000000111\"\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "element": "resource",
+              "meta": {
+                "title": "Specific Application"
+              },
+              "attributes": {
+                "href": "/applications/{_id}.json"
+              },
+              "content": [
+                {
+                  "element": "copy",
+                  "content": "*/applications/[_id].json*\n\n> Authentication<br>_GET_: **optional**<br>_PATCH_, _PUT_, _DELETE_: **required**\n\nIn read requests, response body will follow\n[this model](#reference/applications/application-object),\nrequests without authentication will receive application data without\n`authentication`, `auth_scope` and `hidden_data` properties\n\nFor overwriting and editing, request body must obey the same specifications,\nbut especially for edit requests there are no required fields"
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Read Application"
+                  },
+                  "attributes": {
+                    "href": "/applications/{application}.json",
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "The application ID",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "application"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "42aa00000000000000000111"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"_id\": \"42aa00000000000000000111\",\n  \"created_at\": \"2017-11-19T13:10:00.612Z\",\n  \"store_id\": 100,\n  \"app_id\": 1002,\n  \"state\": \"active\",\n  \"title\": \"Products panel extension\",\n  \"slug\": \"products-panel-ext\",\n  \"paid\": true,\n  \"payment_status\": \"trial\",\n  \"version\": \"3.0.0\",\n  \"type\": \"dashboard\",\n  \"load_events\": [\n    \"products\"\n  ],\n  \"script_uri\": \"https://sample.mycdn.com/script.min.js\",\n  \"data\": {\n    \"sample\": 123,\n    \"eg\": [ 1, 2, 3 ]\n  }\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "With Authentication"
+                  },
+                  "attributes": {
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "The application ID",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "_id"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "42aa00000000000000000111"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"_id\": \"42aa00000000000000000111\",\n  \"created_at\": \"2017-11-19T13:10:00.612Z\",\n  \"store_id\": 100,\n  \"app_id\": 1002,\n  \"state\": \"active\",\n  \"title\": \"Products panel extension\",\n  \"slug\": \"products-panel-ext\",\n  \"paid\": true,\n  \"payment_status\": \"trial\",\n  \"version\": \"3.0.0\",\n  \"type\": \"dashboard\",\n  \"load_events\": [\n    \"products\"\n  ],\n  \"script_uri\": \"https://sample.mycdn.com/script.min.js\",\n  \"authentication\": false,\n  \"data\": {\n    \"sample\": 123,\n    \"eg\": [ 1, 2, 3 ]\n  },\n  \"hidden_data\": {\n    \"token\": \"sdkcblsdcbslkc\"\n  }\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Edit Application"
+                  },
+                  "attributes": {
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "The application ID",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "_id"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "42aa00000000000000000111"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "PATCH",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"state\": \"inactive\",\n  \"status\": \"paused\"\n}\n"
+                            }
+                          ]
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "204"
+                          },
+                          "content": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Overwrite Application"
+                  },
+                  "attributes": {
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "The application ID",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "_id"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "42aa00000000000000000111"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "PUT",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"app_id\": 1002,\n  \"state\": \"inactive\",\n  \"title\": \"Products panel extension\",\n  \"slug\": \"products-panel-ext\",\n  \"paid\": true,\n  \"version\": \"3.0.0\",\n  \"type\": \"dashboard\",\n  \"load_events\": [\n    \"products\"\n  ],\n  \"script_uri\": \"https://sample.mycdn.com/script.min.js\",\n  \"status\": \"paused\"\n}\n"
+                            }
+                          ]
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "204"
+                          },
+                          "content": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Remove Application"
+                  },
+                  "attributes": {
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "The application ID",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "_id"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "42aa00000000000000000111"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "DELETE",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "204"
+                          },
+                          "content": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

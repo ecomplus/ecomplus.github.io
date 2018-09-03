@@ -1,0 +1,593 @@
+## Group Collections
+
+`.collections`
+
+Use the **collections** resource to create, read, update and delete groups of products in
+a merchant's store, you can edit all collection properties and also work with all
+collection subresources directly at this resource
+
+### Collection Object [/collections/schema.json]
+
++ Attributes (object)
+    + `name` (string, required) - Collection full name - Max length: **255**
+    + `i18n` (object) - Collection name translations - Max properties: **10**
+        + `^[a-z]{2}(_[a-z]{2})?$` (string) - Translated full collection name - Max length: **255**
+    + `subtitle` (string) - Optional subtitle intended to be used for SEO or layout purposes - Max length: **255**
+    + `slug` (string) - Slug to complete page URL, starting with number or lowercase letter - Max length: **255** - RegEx pattern: **`^[a-z0-9]([a-z0-9-_./]+)?$`**
+    + `permalink` (string) - Permanent URL to collection page - Max length: **255** - Format: **uri**
+    + `mobile_link` (string) - Optional URL specific to mobile devices - Max length: **255** - Format: **uri**
+    + `short_description` (string) - Short collection description in plain text - Max length: **255**
+    + `body_html` (string) - Full collection description, may use HTML tags - Max length: **250000**
+    + `body_text` (string) - Full collection description, plain text only - Max length: **250000**
+    + `meta_title` (string) - Title tag for page SEO - Max length: **255**
+    + `meta_description` (string) - Meta description tag for page SEO - Max length: **1000**
+    + `products` (array) - List of collection products - Max elements: **3000**
+        + (string) - Product ID
+    + `icon` (object) - Collection icon image
+        + `url` (string, required) - Image link - Max length: **255** - Format: **uri**
+        + `size` (string) - Image size (width x height) in px, such as 100x50 (100px width, 50px height) - Max length: **11** - RegEx pattern: **`^[1-9]([0-9]+)?x[1-9]([0-9]+)?$`**
+        + `alt` (string) - Alternative text, HTML alt tag (important for SEO) - Max length: **255**
+    + `pictures` (array) - List of collection images - Max elements: **50**
+        + (object) - Image object
+            + `_id` (string, required) - Unique ID (ObjectID) - RegEx pattern: **`^[a-f0-9]{24}$`**
+            + `tag` (string) - Tag to identify object, use only lowercase letters, digits and underscore - Max length: **20** - RegEx pattern: **`^[a-z0-9_]+$`**
+            + `url` (string, required) - Image link - Max length: **255** - Format: **uri**
+            + `size` (string) - Image size (width x height) in px, such as 100x50 (100px width, 50px height) - Max length: **11** - RegEx pattern: **`^[1-9]([0-9]+)?x[1-9]([0-9]+)?$`**
+            + `alt` (string) - Alternative text, HTML alt tag (important for SEO) - Max length: **255**
+    + `metafields` (array) - List of custom attributes - Max elements: **100**
+        + (object) - Custom attribute object
+            + `_id` (string, required) - Unique ID (ObjectID) - RegEx pattern: **`^[a-f0-9]{24}$`**
+            + `namespace` (string) - String to help distinguish who (or which app) created and can use the metafield - Max length: **30**
+            + `field` (string) - Field name - Max length: **50**
+            + `value` (string, required) - Custom property value - Max length: **255**
+    + `flags` (array) - Flags to associate additional info - Max elements: **10**
+        + (string) - Flag title
+    + `notes` (string) - Optional notes with additional info about this collection - Max length: **255**
+
+#### JSON Schema [GET]
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "$schema": "http://json-schema.org/draft-06/schema#",
+                "title": "Collections",
+                "description": "Collection object model",
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "description": "Collection full name"
+                    },
+                    "i18n": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "maxProperties": 10,
+                        "patternProperties": {
+                            "^[a-z]{2}(_[a-z]{2})?$": {
+                                "type": "string",
+                                "maxLength": 255,
+                                "description": "Translated full collection name"
+                            }
+                        },
+                        "description": "Collection name translations"
+                    },
+                    "subtitle": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "description": "Optional subtitle intended to be used for SEO or layout purposes"
+                    },
+                    "slug": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "pattern": "^[a-z0-9]([a-z0-9-_./]+)?$",
+                        "description": "Slug to complete page URL, starting with number or lowercase letter"
+                    },
+                    "permalink": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "format": "uri",
+                        "description": "Permanent URL to collection page"
+                    },
+                    "mobile_link": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "format": "uri",
+                        "description": "Optional URL specific to mobile devices"
+                    },
+                    "short_description": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "description": "Short collection description in plain text"
+                    },
+                    "body_html": {
+                        "type": "string",
+                        "maxLength": 250000,
+                        "description": "Full collection description, may use HTML tags"
+                    },
+                    "body_text": {
+                        "type": "string",
+                        "maxLength": 250000,
+                        "description": "Full collection description, plain text only"
+                    },
+                    "meta_title": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "description": "Title tag for page SEO"
+                    },
+                    "meta_description": {
+                        "type": "string",
+                        "maxLength": 1000,
+                        "description": "Meta description tag for page SEO"
+                    },
+                    "products": {
+                        "type": "array",
+                        "uniqueItems": true,
+                        "maxItems": 3000,
+                        "items": {
+                            "type": "string",
+                            "pattern": "^[a-f0-9]{24}$",
+                            "description": "Product ID"
+                        },
+                        "description": "List of collection products"
+                    },
+                    "icon": {
+                        "type": "object",
+                        "required": [
+                            "url"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "url": {
+                                "type": "string",
+                                "maxLength": 255,
+                                "format": "uri",
+                                "description": "Image link"
+                            },
+                            "size": {
+                                "type": "string",
+                                "maxLength": 11,
+                                "pattern": "^[1-9]([0-9]+)?x[1-9]([0-9]+)?$",
+                                "description": "Image size (width x height) in px, such as 100x50 (100px width, 50px height)"
+                            },
+                            "alt": {
+                                "type": "string",
+                                "maxLength": 255,
+                                "description": "Alternative text, HTML alt tag (important for SEO)"
+                            }
+                        },
+                        "description": "Collection icon image"
+                    },
+                    "pictures": {
+                        "type": "array",
+                        "maxItems": 50,
+                        "items": {
+                            "type": "object",
+                            "required": [
+                                "_id",
+                                "url"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                                "_id": {
+                                    "type": "string",
+                                    "pattern": "^[a-f0-9]{24}$",
+                                    "description": "Unique ID (ObjectID)"
+                                },
+                                "tag": {
+                                    "type": "string",
+                                    "maxLength": 20,
+                                    "pattern": "^[a-z0-9_]+$",
+                                    "description": "Tag to identify object, use only lowercase letters, digits and underscore"
+                                },
+                                "url": {
+                                    "type": "string",
+                                    "maxLength": 255,
+                                    "format": "uri",
+                                    "description": "Image link"
+                                },
+                                "size": {
+                                    "type": "string",
+                                    "maxLength": 11,
+                                    "pattern": "^[1-9]([0-9]+)?x[1-9]([0-9]+)?$",
+                                    "description": "Image size (width x height) in px, such as 100x50 (100px width, 50px height)"
+                                },
+                                "alt": {
+                                    "type": "string",
+                                    "maxLength": 255,
+                                    "description": "Alternative text, HTML alt tag (important for SEO)"
+                                }
+                            },
+                            "description": "Image object"
+                        },
+                        "description": "List of collection images"
+                    },
+                    "metafields": {
+                        "type": "array",
+                        "maxItems": 100,
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "required": [
+                                "_id",
+                                "value"
+                            ],
+                            "properties": {
+                                "_id": {
+                                    "type": "string",
+                                    "pattern": "^[a-f0-9]{24}$",
+                                    "description": "Unique ID (ObjectID)"
+                                },
+                                "namespace": {
+                                    "type": "string",
+                                    "maxLength": 30,
+                                    "description": "String to help distinguish who (or which app) created and can use the metafield"
+                                },
+                                "field": {
+                                    "type": "string",
+                                    "maxLength": 50,
+                                    "description": "Field name"
+                                },
+                                "value": {
+                                    "type": "string",
+                                    "maxLength": 255,
+                                    "description": "Custom property value"
+                                }
+                            },
+                            "description": "Custom attribute object"
+                        },
+                        "description": "List of custom attributes"
+                    },
+                    "flags": {
+                        "type": "array",
+                        "uniqueItems": true,
+                        "maxItems": 10,
+                        "items": {
+                            "type": "string",
+                            "maxLength": 20,
+                            "description": "Flag title"
+                        },
+                        "description": "Flags to associate additional info"
+                    },
+                    "notes": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "description": "Optional notes with additional info about this collection"
+                    }
+                }
+            }
+
+### All Collections [/collections.json{?limit,offset,sort,fields}]
+
+*/collections.json?limit&offset&sort&fields\&[field]*
+
+> Authentication<br>_GET_: **none**
+
+Use [default URL parameters](#introduction/overview/url-params) (metadata)
+for pagination and ordering, you can use any other parameter to query
+by particular object properties
+
+#### List All Store Collections [GET /collections.json]
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "meta": {
+                "limit": 1000,
+                "offset": 0,
+                "sort": [],
+                "fields": [
+                  "_id",
+                  "name",
+                  "slug"
+                ],
+                "query": {}
+              },
+              "result": [
+                {
+                  "_id": "c92000000000000000001110",
+                  "name": "Initial showcase",
+                  "slug": "index-showcase"
+                },
+                {
+                  "_id": "c92000000000000000001111",
+                  "name": "Special collection",
+                  "slug": "special-collection"
+                },
+                {
+                  "_id": "c92000000000000000001112",
+                  "name": "Collection 2",
+                  "slug": "collection-two"
+                },
+                {
+                  "_id": "c92000000000000000001113",
+                  "name": "Collection 3",
+                  "slug": "collection-three"
+                },
+                {
+                  "_id": "c92000000000000000001114",
+                  "name": "Collection 4",
+                  "slug": "collection-four"
+                }
+              ]
+            }
+
+#### Pagination And Ordering [GET]
+
++ Parameters
+    + limit: 2 (number, optional) - Max number of objects to return
+    + offset: 2 (number, optional) - First entry to return
+    + sort: `slug` (string, optional) - Rules to order resultant objects
+    + fields: `name,short_description` (string, optional) - Object properties to return
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "meta": {
+                "limit": 2,
+                "offset": 2,
+                "sort": [
+                  {
+                    "field": "slug",
+                    "order": 1
+                  }
+                ],
+                "fields": [
+                  "name",
+                  "short_description"
+                ],
+                "query": {}
+              },
+              "result": [
+                {
+                  "_id": "c92000000000000000001112",
+                  "name": "Collection 2",
+                  "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                },
+                {
+                  "_id": "c92000000000000000001110",
+                  "name": "Initial showcase",
+                  "short_description": "Short collection description in plain text."
+                }
+              ]
+            }
+
+#### Find Collections [GET /collections.json{?slug}]
+
++ Parameters
+    + `slug`: `special-collection` (string, optional) - Object property to query
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "meta": {
+                "limit": 1000,
+                "offset": 0,
+                "sort": [],
+                "fields": [
+                  "_id",
+                  "name",
+                  "slug"
+                ],
+                "query": {
+                  "slug": "special-collection"
+                }
+              },
+              "result": [
+                {
+                  "_id": "c92000000000000000001111",
+                  "name": "Special collection",
+                  "slug": "special-collection"
+                }
+              ]
+            }
+
+### New Collection [/collections.json]
+
+*/collections.json*
+
+> Authentication<br>_POST_: **required**
+
+Request body must obey the specifications of
+[this model](#reference/collections/collection-object)
+
+#### Create New Collection [POST]
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
+    + Body
+
+            {
+              "name": "Special collection",
+              "slug": "special-collection",
+              "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+              "meta_title": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+              "meta_description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+              "products": [
+                "1234567890abcdef01291510",
+                "1234567890abcdef01291511"
+              ],
+              "pictures": [
+                {
+                  "_id": "b74920000000000000000103",
+                  "tag": "banner",
+                  "url": "https://mycdn.com/special-coll-banner.jpg",
+                  "size": "900x200",
+                  "alt": "Special Collection"
+                }
+              ]
+            }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+              "_id": "c92000000000000000001111"
+            }
+
+### Specific Collection [/collections/{_id}.json]
+
+*/collections/[_id].json*
+
+> Authentication<br>_GET_: **none**<br>_PATCH_, _PUT_, _DELETE_: **required**
+
+In read requests, response body will follow
+[this model](#reference/collections/collection-object)
+
+For overwriting and editing, request body must obey the same specifications,
+but especially for edit requests there are no required fields
+
+#### Read Collection [GET]
+
++ Parameters
+    + _id: c92000000000000000001111 (string, required) - The collection ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "_id": "c92000000000000000001111",
+              "created_at": "2017-11-19T13:10:00.612Z",
+              "store_id": 100,
+              "name": "Special collection",
+              "slug": "special-collection",
+              "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+              "meta_title": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+              "meta_description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+              "products": [
+                "1234567890abcdef01291510",
+                "1234567890abcdef01291511"
+              ],
+              "pictures": [
+                {
+                  "_id": "b74920000000000000000103",
+                  "tag": "banner",
+                  "url": "https://mycdn.com/special-coll-banner.jpg",
+                  "size": "900x200",
+                  "alt": "Special Collection"
+                }
+              ]
+            }
+
+#### Edit Collection [PATCH]
+
++ Parameters
+    + _id: c92000000000000000001111 (string, required) - The collection ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
+    + Body
+
+            {
+              "name": "Special items coll"
+            }
+
++ Response 204
+
+#### Overwrite Collection [PUT]
+
++ Parameters
+    + _id: c92000000000000000001111 (string, required) - The collection ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
+    + Body
+
+            {
+              "name": "Special items collection",
+              "slug": "special-collection",
+              "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+              "meta_title": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+              "meta_description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+              "products": [
+                "1234567890abcdef01291510"
+              ],
+              "pictures": [
+                {
+                  "_id": "b74920000000000000000103",
+                  "tag": "banner",
+                  "url": "https://mycdn.com/special-coll-banner.jpg",
+                  "size": "900x200",
+                  "alt": "Special Collection"
+                }
+              ]
+            }
+
++ Response 204
+
+#### Remove Collection [DELETE]
+
++ Parameters
+    + _id: c92000000000000000001111 (string, required) - The collection ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
++ Response 204

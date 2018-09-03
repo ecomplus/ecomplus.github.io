@@ -1,0 +1,34 @@
++ Parameters
+    + application: 42aa00000000000000000111 (string, required) - The application ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "_id": "42aa00000000000000000111",
+              "created_at": "2017-11-19T13:10:00.612Z",
+              "store_id": 100,
+              "app_id": 1002,
+              "state": "active",
+              "title": "Products panel extension",
+              "slug": "products-panel-ext",
+              "paid": true,
+              "payment_status": "trial",
+              "version": "3.0.0",
+              "type": "dashboard",
+              "load_events": [
+                "products"
+              ],
+              "script_uri": "https://sample.mycdn.com/script.min.js",
+              "data": {
+                "sample": 123,
+                "eg": [ 1, 2, 3 ]
+              }
+            }

@@ -1,0 +1,211 @@
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "$schema": "http://json-schema.org/draft-06/schema#",
+                "title": "Brands",
+                "description": "Brand object model",
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "description": "Brand full name"
+                    },
+                    "i18n": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "maxProperties": 10,
+                        "patternProperties": {
+                            "^[a-z]{2}(_[a-z]{2})?$": {
+                                "type": "string",
+                                "maxLength": 255,
+                                "description": "Translated full brand name"
+                            }
+                        },
+                        "description": "Brand name translations"
+                    },
+                    "subtitle": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "description": "Optional subtitle intended to be used for SEO or layout purposes"
+                    },
+                    "slug": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "pattern": "^[a-z0-9]([a-z0-9-_./]+)?$",
+                        "description": "Slug to complete page URL, starting with number or lowercase letter"
+                    },
+                    "permalink": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "format": "uri",
+                        "description": "Permanent URL to brand page"
+                    },
+                    "mobile_link": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "format": "uri",
+                        "description": "Optional URL specific to mobile devices"
+                    },
+                    "short_description": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "description": "Short brand description in plain text"
+                    },
+                    "body_html": {
+                        "type": "string",
+                        "maxLength": 250000,
+                        "description": "Full brand description, may use HTML tags"
+                    },
+                    "body_text": {
+                        "type": "string",
+                        "maxLength": 250000,
+                        "description": "Full brand description, plain text only"
+                    },
+                    "meta_title": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "description": "Title tag for page SEO"
+                    },
+                    "meta_description": {
+                        "type": "string",
+                        "maxLength": 1000,
+                        "description": "Meta description tag for page SEO"
+                    },
+                    "logo": {
+                        "type": "object",
+                        "required": [
+                            "url"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "url": {
+                                "type": "string",
+                                "maxLength": 255,
+                                "format": "uri",
+                                "description": "Image link"
+                            },
+                            "size": {
+                                "type": "string",
+                                "maxLength": 11,
+                                "pattern": "^[1-9]([0-9]+)?x[1-9]([0-9]+)?$",
+                                "description": "Image size (width x height) in px, such as 100x50 (100px width, 50px height)"
+                            },
+                            "alt": {
+                                "type": "string",
+                                "maxLength": 255,
+                                "description": "Alternative text, HTML alt tag (important for SEO)"
+                            }
+                        },
+                        "description": "Brand logo"
+                    },
+                    "pictures": {
+                        "type": "array",
+                        "maxItems": 50,
+                        "items": {
+                            "type": "object",
+                            "required": [
+                                "_id",
+                                "url"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                                "_id": {
+                                    "type": "string",
+                                    "pattern": "^[a-f0-9]{24}$",
+                                    "description": "Unique ID (ObjectID)"
+                                },
+                                "tag": {
+                                    "type": "string",
+                                    "maxLength": 20,
+                                    "pattern": "^[a-z0-9_]+$",
+                                    "description": "Tag to identify object, use only lowercase letters, digits and underscore"
+                                },
+                                "url": {
+                                    "type": "string",
+                                    "maxLength": 255,
+                                    "format": "uri",
+                                    "description": "Image link"
+                                },
+                                "size": {
+                                    "type": "string",
+                                    "maxLength": 11,
+                                    "pattern": "^[1-9]([0-9]+)?x[1-9]([0-9]+)?$",
+                                    "description": "Image size (width x height) in px, such as 100x50 (100px width, 50px height)"
+                                },
+                                "alt": {
+                                    "type": "string",
+                                    "maxLength": 255,
+                                    "description": "Alternative text, HTML alt tag (important for SEO)"
+                                }
+                            },
+                            "description": "Image object"
+                        },
+                        "description": "List of brand images"
+                    },
+                    "metafields": {
+                        "type": "array",
+                        "maxItems": 100,
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "required": [
+                                "_id",
+                                "value"
+                            ],
+                            "properties": {
+                                "_id": {
+                                    "type": "string",
+                                    "pattern": "^[a-f0-9]{24}$",
+                                    "description": "Unique ID (ObjectID)"
+                                },
+                                "namespace": {
+                                    "type": "string",
+                                    "maxLength": 30,
+                                    "description": "String to help distinguish who (or which app) created and can use the metafield"
+                                },
+                                "field": {
+                                    "type": "string",
+                                    "maxLength": 50,
+                                    "description": "Field name"
+                                },
+                                "value": {
+                                    "type": "string",
+                                    "maxLength": 255,
+                                    "description": "Custom property value"
+                                }
+                            },
+                            "description": "Custom attribute object"
+                        },
+                        "description": "List of custom attributes"
+                    },
+                    "flags": {
+                        "type": "array",
+                        "uniqueItems": true,
+                        "maxItems": 10,
+                        "items": {
+                            "type": "string",
+                            "maxLength": 20,
+                            "description": "Flag title"
+                        },
+                        "description": "Flags to associate additional info"
+                    },
+                    "notes": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "description": "Optional notes with additional info about this brand"
+                    }
+                }
+            }

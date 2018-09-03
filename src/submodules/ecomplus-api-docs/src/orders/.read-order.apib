@@ -1,0 +1,56 @@
++ Parameters
+    + order: fe1000000000000000000005 (string, required) - The order ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "_id": "fe1000000000000000000005",
+              "created_at": "2017-11-19T13:10:00.612Z",
+              "store_id": 100,
+              "checkout_link": "https://www.sampleshop.com.br/checkout?_id=fe1000000000000000000005",
+              "status_link": "https://www.sampleshop.com.br/order/status?_id=fe1000000000000000000005",
+              "utm": {
+                "campaign": "adwords_example"
+              },
+              "source_name": "Web",
+              "channel_id": 10001,
+              "channel_type": "ecommerce",
+              "domain": "www.sampleshop.com.br",
+              "number": 1105,
+              "status": "open",
+              "opened_at": "2017-11-19T13:10:00.612Z",
+              "seller_status": "pending",
+              "financial_status": {
+                "updated_at": "2017-11-19T13:10:00.612Z",
+                "current": "pending"
+              },
+              "currency_id": "BRL",
+              "currency_symbol": "R$",
+              "amount": {
+                "total": 48.05,
+                "subtotal": 42.9,
+                "freight": 5.15,
+                "discount": 0
+              },
+              "payment_method_label": "PayPal",
+              "shipping_method_label": "PAC",
+              "items": [
+                {
+                  "_id": "3120000000000000000000a1",
+                  "product_id": "123a5432109876543210cdef",
+                  "sku": "s-MP_2B4",
+                  "name": "Mens Pique Polo Shirt",
+                  "quantity": 1,
+                  "price": 42.9
+                }
+              ],
+              "notes": "Sample order notes by customer"
+            }

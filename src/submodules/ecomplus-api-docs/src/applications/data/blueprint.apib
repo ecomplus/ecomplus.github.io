@@ -1,0 +1,85 @@
+## Group Application Data
+
+`.applications.data`
+
+Use the **data** subresource to read and update an specific app data in
+a merchant's store
+
+### Application Data Object [/applications/schema/data.json]
+
+This endpoint is **schema free**, it means that you can send any valid JSON object,
+the only limitations are to store up to 3000 properties in the data object and obey
+[MongoDB document limits](https://docs.mongodb.com/manual/reference/limits/#bson-documents)
+
+#### JSON Schema [GET]
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "$schema": "http://json-schema.org/draft-06/schema#",
+                "title": "Application data",
+                "type": "object",
+                "minProperties": 1,
+                "maxProperties": 3000,
+                "description": "Schema free, limitations: https://docs.mongodb.com/manual/reference/limits/#bson-documents"
+            }
+
+### Data of an Application [/applications/{application}/data.json]
+
+*/applications/[_id]/data.json*
+
+> Authentication<br>_GET_, _PATCH_: **required**
+
+#### Read Application Data [GET]
+
++ Parameters
+    + application: 42aa00000000000000000111 (string, required) - The application ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "sample": 123,
+              "eg": [ 1, 2, 3 ]
+            }
+
+#### Edit Application Data [PATCH]
+
++ Parameters
+    + application: 42aa00000000000000000111 (string, required) - The application ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
+    + Body
+
+            {
+              "other_sample_field": 123,
+              "field_x": {
+                "y": "some sample string"
+              }
+            }
+
++ Response 204

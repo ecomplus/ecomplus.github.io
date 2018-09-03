@@ -1,0 +1,63 @@
+### Recommended [/products/{_id}/recommended.json]
+
+Takes the defined `_id_` by reference and returns up to 12
+recommended products, selecting the products that was more
+times bought together with the reference product
+
+You should use it to do something like _"who bought it, bought too"_
+
+#### List Recommended Items [GET]
+
++ Parameters
+    + _id: a00000000000000000000000 (string, required) - The product ID
+
++ Response 200 (application/json)
+
+        {
+          "results": [
+            {
+              "columns": [
+                "products.id"
+              ],
+              "data": [
+                [
+                  "a00000000000000000000001"
+                ],
+                [
+                  "a00000000000000000000002"
+                ],
+                [
+                  "a00000000000000000000003"
+                ],
+                [
+                  "a00000000000000000000004"
+                ],
+                [
+                  "a00000000000000000000005"
+                ],
+                [
+                  "a00000000000000000000006"
+                ],
+                [
+                  "a00000000000000000000007"
+                ],
+                [
+                  "a00000000000000000000008"
+                ],
+                [
+                  "a00000000000000000000009"
+                ],
+                [
+                  "a0000000000000000000000a"
+                ],
+                [
+                  "a0000000000000000000000b"
+                ],
+                [
+                  "a0000000000000000000000c"
+                ]
+              ]
+            }
+          ],
+          "errors": []
+        }

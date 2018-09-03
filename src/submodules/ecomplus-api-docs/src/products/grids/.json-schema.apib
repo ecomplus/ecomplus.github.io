@@ -1,0 +1,25 @@
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "$schema": "http://json-schema.org/draft-06/schema#",
+                "title": "Grids for specifications and variations, grid_id as property name",
+                "type": "object",
+                "additionalProperties": false,
+                "minProperties": 1,
+                "maxProperties": 200,
+                "patternProperties": {
+                    "^[a-z0-9_]{2,30}$": {
+                        "type": "string",
+                        "maxLength": 70,
+                        "description": "Grid title"
+                    }
+                }
+            }

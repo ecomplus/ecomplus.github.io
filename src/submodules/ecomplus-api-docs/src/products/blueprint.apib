@@ -1,0 +1,3506 @@
+## Group Products
+
+`.products`
+
+Use the **products** resource to create, read, update and delete items for sale in
+a merchant's store, you can edit all product properties and also work with all
+product subresources directly at this resource, such as product images, variations, brands and categories
+
+### Product Object [/products/schema.json]
+
++ Attributes (object)
+    + `authorized_stores` (array) - IDs from other stores authorized to sell this product - Max elements: **1000**
+        + (number) - Store ID
+    + `sku` (string, required) - Product unique reference code - Min length: **2** - Max length: **100** - RegEx pattern: **`^[A-Za-z0-9-_.]+$`**
+    + `commodity_type`: physical (enum) - Product type
+        + `physical` (string)
+        + `digital` (string)
+    + `name` (string, required) - Product full name - Max length: **255**
+    + `i18n` (object) - Product name translations - Max properties: **10**
+        + `^[a-z]{2}(_[a-z]{2})?$` (string) - Translated full product name - Max length: **255**
+    + `subtitle` (string) - Optional subtitle intended to be used for SEO or layout purposes - Max length: **255**
+    + `slug` (string) - Slug to complete page URL, starting with number or lowercase letter - Max length: **255** - RegEx pattern: **`^[a-z0-9]([a-z0-9-_./]+)?$`**
+    + `permalink` (string) - Permanent URL to product page - Max length: **255** - Format: **uri**
+    + `mobile_link` (string) - Optional URL specific to mobile devices - Max length: **255** - Format: **uri**
+    + `status` (string) - Status defined by seller, such as draft or live - Max length: **50**
+    + `available`: true (boolean) - True when product is complete registered and ready to sell
+    + `visible`: true (boolean) - Visible on search results, collections and catalogs
+    + `ad_relevance`: 0 (number) - Number to define the importance of the ad, the higher should be displayed first - Mininum: **-128** - Maximum: **127**
+    + `ad_type` (string) - Option ad type defined by seller, such as gold and silver - Max length: **50**
+    + `short_description` (string) - Short product description in plain text - Max length: **255**
+    + `body_html` (string) - Full product description, may use HTML tags - Max length: **500000**
+    + `body_text` (string) - Full product description, plain text only - Max length: **500000**
+    + `meta_title` (string) - Title tag for page SEO - Max length: **255**
+    + `meta_description` (string) - Meta description tag for page SEO - Max length: **1000**
+    + `keywords` (array) - Tags related with product for internal search - Max elements: **200**
+        + (string) - Term (keyword)
+    + `price` (number) - Product sale price, when undefined, product could be bought by any price - Mininum: **0** - Maximum: **999999999** - Max precision: **0.00001**
+    + `price_effective_date` (object) - How long sale price is valid, out of this range (if defined), `base_price` should be applied
+        + `start` (string) - Start date and time in ISO 8601 standard representation - Format: **date-time**
+        + `end` (string) - Promotion end date and time in ISO 8601 standard representation - Format: **date-time**
+    + `base_price` (number) - Product original sale price, without discounts - Mininum: **0** - Maximum: **999999999** - Max precision: **0.00001**
+    + `cost_price` (number) - Product cost price to calculate profit - Mininum: **0** - Maximum: **999999999** - Max precision: **0.00001**
+    + `currency_id`: BRL (string) - Designator of currency according to ISO 4217 (3 uppercase letters) - RegEx pattern: **`^[A-Z]{3}$`**
+    + `currency_symbol`: R$ (string) - Graphic symbol used as a shorthand for currency's name - Max length: **20**
+    + `quantity` (number) - Product quantity available to sell, max to put in cart - Mininum: **0** - Maximum: **9999999** - Max precision: **0.0001**
+    + `min_quantity` (number) - Minimum quantity to put in cart - Mininum: **0** - Maximum: **999999** - Max precision: **0.0001**
+    + `production_time` (object) - Deadline for production or handling of pre-ordered product
+        + `days` (number, required) - Number of days to post the product after purchase, deadline for production or handling - Mininum: **0** - Maximum: **99999**
+        + `working_days`: true (boolean) - If the deadline is calculated in working days
+        + `cumulative`: false (boolean) - If the production time is cumulative per product unit
+        + `max_time` (number) - When cumulative, increase the term proportionally up to this maximum (in days) - Mininum: **0** - Maximum: **99999**
+    + `manage_stock`: true (boolean) - Decrease product available quantity automatically after each order
+    + `inventory_records` (array) - Recent stock history - Max elements: **180**
+        + (object) - Historical record
+            + `_id` (string, required) - Unique ID (ObjectID) - RegEx pattern: **`^[a-f0-9]{24}$`**
+            + `date_of_change` (string, required) - Date and time when stock changed in ISO 8601 standard representation - Format: **date-time**
+            + `origin` (string) - Optional note about origin or reason of stock changing - Max length: **50**
+            + `quantity` (number, required) - Added or decreased (negative) stock quantity - Mininum: **-9999999** - Maximum: **9999999** - Max precision: **0.0001**
+    + `measurement` (object) - Measure and dimension of your product when users might be interested in price per unit
+        + `unit` (enum, required) - Unit of measurement
+            + `oz` (string)
+            + `lb` (string)
+            + `mg` (string)
+            + `g` (string)
+            + `kg` (string)
+            + `floz` (string)
+            + `pt` (string)
+            + `qt` (string)
+            + `gal` (string)
+            + `ml` (string)
+            + `cl` (string)
+            + `l` (string)
+            + `cbm` (string)
+            + `in` (string)
+            + `ft` (string)
+            + `yd` (string)
+            + `cm` (string)
+            + `m` (string)
+            + `sqft` (string)
+            + `sqm` (string)
+            + `ct` (string)
+        + `precision` (number) - Maximum number of decimal places in the product quantity (in unit of measure) - Mininum: **0** - Maximum: **4**
+        + `pricing_base_measure` (number) - Quantity to calculate the price to be shown on ads, such as GMC `unit_pricing_base_measure` - Mininum: **0** - Maximum: **9999999** - Max precision: **0.0001**
+    + `multipack` (number) - Indicate that this item is a group of multiple identical products - Mininum: **0** - Maximum: **999999**
+    + `dimensions` (object) - Product dimensions with packaging for freight calculation
+        + `^width|height|length$` (object) - Package width, height and length
+            + `value` (number, required) - Size in specified unit - Mininum: **0** - Maximum: **999999** - Max precision: **0.001**
+            + `unit`: cm (enum) - Unit of measurement
+                + `mm` (string)
+                + `cm` (string)
+                + `m` (string)
+                + `ft` (string)
+                + `in` (string)
+                + `yd` (string)
+                + `mi` (string)
+    + `weight` (object) - Package weight for freight calculation
+        + `value` (number, required) - Size in specified unit - Mininum: **0** - Maximum: **999999** - Max precision: **0.001**
+        + `unit`: g (enum) - Unit of measurement
+            + `mg` (string)
+            + `g` (string)
+            + `kg` (string)
+            + `lb` (string)
+            + `oz` (string)
+    + `condition`: new (enum) - Item condition
+        + `new` (string)
+        + `refurbished` (string)
+        + `used` (string)
+        + `not_specified` (string)
+    + `adult`: false (boolean) - Product restricted to adults (`18+`)
+    + `warranty` (string) - Warranty time and conditions - Max length: **100**
+    + `brands` (array) - List of product brands - Max elements: **100**
+        + (object) - Product brand (manufacturer)
+            + `_id` (string, required) - Brand ID - RegEx pattern: **`^[a-f0-9]{24}$`**
+            + `name` (string, required) - Brand name - Max length: **255**
+            + `slug` (string) - Brand page slug - Max length: **255** - RegEx pattern: **`^[a-z0-9]([a-z0-9-_./]+)?$`**
+            + `logo` (object) - Brand logo
+                + `url` (string, required) - Image link - Max length: **255** - Format: **uri**
+                + `size` (string) - Image size (width x height) in px, such as 100x50 (100px width, 50px height) - Max length: **11** - RegEx pattern: **`^[1-9]([0-9]+)?x[1-9]([0-9]+)?$`**
+                + `alt` (string) - Alternative text, HTML alt tag (important for SEO) - Max length: **255**
+    + `categories` (array) - List of product categories - Max elements: **100**
+        + (object) - Category object
+            + `_id` (string, required) - Category ID - RegEx pattern: **`^[a-f0-9]{24}$`**
+            + `name` (string, required) - Category name - Max length: **255**
+            + `slug` (string) - Category page slug - Max length: **255** - RegEx pattern: **`^[a-z0-9]([a-z0-9-_./]+)?$`**
+            + `ml_category_id` (string) - ID in Mercado Libre Taxonomy - RegEx pattern: **`^ML[A-Z][0-9]{2,9}$`**
+            + `google_product_category_id` (number) - ID in Google Taxonomy - Mininum: **1** - Maximum: **999999999999**
+    + `ml_category_id` (string) - Preferential category of the product in the Mercado Libre Taxonomy - RegEx pattern: **`^ML[A-Z][0-9]{2,9}$`**
+    + `google_product_category_id` (number) - Preferential category of the product in the Google Products Taxonomy - Mininum: **1** - Maximum: **999999999999**
+    + `grids` (object) - Grids for specifications and variations, `grid_id` as property name, such as gender or colors - Max properties: **200**
+        + `^[a-z0-9_]{2,30}$` (string) - Grid title - Max length: **70**
+    + `specifications` (object) - Product attributes and technical specifications - Max properties: **200**
+        + `energy_efficiency_class` (array) - Attribute to tell users the energy efficiency class of your product - Max elements: **1**
+            + (object) - Specification object
+                + `text` (string, required) - Text displayed for the client describing the specification (custom value) - Max length: **100**
+                + `value` (enum) - Value in the Google Product Specification
+                    + `A+++` (string)
+                    + `A++` (string)
+                    + `A+` (string)
+                    + `A` (string)
+                    + `B` (string)
+                    + `C` (string)
+                    + `D` (string)
+                    + `E` (string)
+                    + `F` (string)
+                    + `G` (string)
+        + `age_group` (array) - Attribute to set the demographic that your product is designed for - Max elements: **1**
+            + (object) - Specification object
+                + `text` (string, required) - Text displayed for the client describing the specification (custom value) - Max length: **100**
+                + `value` (enum) - Value in the Google Product Specification
+                    + `newborn` (string)
+                    + `infant` (string)
+                    + `toddler` (string)
+                    + `kids` (string)
+                    + `adult` (string)
+        + `gender` (array) - Specify for what gender your product is designed - Max elements: **1**
+            + (object) - Specification object
+                + `text` (string, required) - Text displayed for the client describing the specification (custom value) - Max length: **100**
+                + `value` (enum) - Value in the Google Product Specification
+                    + `male` (string)
+                    + `female` (string)
+                    + `unisex` (string)
+        + `material` (array) - Attribute to describe the main fabric or material that your product is made of - Max elements: **1**
+            + (object) - Specification object
+                + `text` (string, required) - Text displayed for the client describing the attribute - Max length: **200**
+                + `value` (string) - Default normalized value to use on GMC and other integrations - Max length: **200**
+        + `pattern` (array) - Attribute to describe the pattern or graphic printed on your product - Max elements: **1**
+            + (object) - Specification object
+                + `text` (string, required) - Text displayed for the client describing the attribute - Max length: **200**
+                + `value` (string) - Default normalized value to use on GMC and other integrations - Max length: **100**
+        + `size` (array) - Attribute to describe the standardized size of your product - Max elements: **1**
+            + (object) - Specification object
+                + `text` (string, required) - Text displayed for the client describing the attribute - Max length: **200**
+                + `value` (string) - Default normalized value to use on GMC and other integrations - Max length: **100**
+        + `size_type` (array) - Attribute to describe the cut of your product - Max elements: **1**
+            + (object) - Specification object
+                + `text` (string, required) - Text displayed for the client describing the attribute - Max length: **100**
+                + `value` (enum) - Value in the Google Product Specification
+                    + `regular` (string)
+                    + `petite` (string)
+                    + `plus` (string)
+                    + `big and tall` (string)
+                    + `maternity` (string)
+        + `size_system` (array) - Which country's sizing system your product uses - Max elements: **1**
+            + (object) - Specification object
+                + `text` (string, required) - Text displayed for the client describing the attribute - Max length: **100**
+                + `value` (enum) - Value in the Google Product Specification
+                    + `AU` (string)
+                    + `BR` (string)
+                    + `CN` (string)
+                    + `DE` (string)
+                    + `EU` (string)
+                    + `FR` (string)
+                    + `IT` (string)
+                    + `JP` (string)
+                    + `MEX` (string)
+                    + `UK` (string)
+                    + `US` (string)
+        + `colors` (array) - Product color palette, list ordered by importance, starting by main color
+            + (object) - Color object
+                + `text` (string, required) - Color name - Max length: **50**
+                + `value` (string) - RGB code with # - RegEx pattern: **`^#[a-f0-9]{6}$`**
+        + `^[a-z0-9_]{2,30}$` (array) - Custom product attributes, `grid_id` as property name - Min elements: **1** - Max elements: **30**
+            + (object) - Attribute object
+                + `text` (string, required) - Text displayed for the client describing the specification - Max length: **255**
+                + `value` (string) - Default normalized value to use in integrations - Max length: **200**
+                + `external_values` (object) - Normalized values to use in specific integrations (ID in property) - Max properties: **5**
+                    + `^[a-z0-9_]{2,30}$` (string) - Attribute text external value - Max length: **200**
+    + `pictures` (array) - List of product images - Max elements: **50**
+        + (object) - Image object
+            + `_id` (string, required) - Unique ID (ObjectID) - RegEx pattern: **`^[a-f0-9]{24}$`**
+            + `tag` (string) - Tag to identify object, use only lowercase letters, digits and underscore - Max length: **20** - RegEx pattern: **`^[a-z0-9_]+$`**
+            + `^small|normal|big|zoom|custom$` (object) - Image size variation
+                + `url` (string, required) - Image link - Max length: **255** - Format: **uri**
+                + `size` (string) - Image size (width x height) in px, such as 100x50 (100px width, 50px height) - Max length: **11** - RegEx pattern: **`^[1-9]([0-9]+)?x[1-9]([0-9]+)?$`**
+                + `alt` (string) - Alternative text, HTML alt tag (important for SEO) - Max length: **255**
+    + `videos` (array) - List of videos related to your product - Max elements: **30**
+        + (object) - Video object
+            + `url` (string, required) - Video link - Max length: **255** - Format: **uri**
+            + `title` (string) - Title describing the video - Max length: **255**
+    + `attachments` (array) - List of product's attachments - Max elements: **30**
+        + (object) - Attachment (file) object
+            + `url` (string, required) - Link to file - Max length: **255** - Format: **uri**
+            + `title` (string) - Title describing the file - Max length: **255**
+    + `customizations` (array) - List of product customization fields - Max elements: **100**
+        + (object) - Customization field
+            + `_id` (string, required) - Unique ID (ObjectID) - RegEx pattern: **`^[a-f0-9]{24}$`**
+            + `tag` (string) - Tag to identify object, use only lowercase letters, digits and underscore - Max length: **20** - RegEx pattern: **`^[a-z0-9_]+$`**
+            + `label` (string, required) - Title for this customization field, can be the grid title - Max length: **70**
+            + `grid_id` (string) - If this field is related to a grid, put the `grid_id` - RegEx pattern: **`^[a-z0-9_]{2,30}$`**
+            + `require`: false (boolean) - If field is required (true), customer must always choose a value
+            + `options` (object) - Pre-defined options for this customization field, `option_id` as property name - Max properties: **200**
+                + `^[a-z0-9_]{2,30}$` (object) - Option object
+                    + `text` (string, required) - Option text value displayed for the client - Max length: **70**
+                    + `colors` (array) - Option color palette (if the field involves colors), starting by main color - Max elements: **6**
+                        + (string) - RGB code with #
+                    + `add_to_price` (object) - Specific price alteration if customer choose this option
+                        + `type`: percentage (enum) - Type of price addition
+                            + `percentage` (string)
+                            + `fixed` (string)
+                        + `addition` (number, required) - Additional value, could be negative - Mininum: **-99999999** - Maximum: **99999999** - Max precision: **0.0001**
+            + `custom_value`: true (boolean) - If this field accept custom value defined by customer
+            + `attachment`: false (boolean) - If this field accept customer file attachment
+            + `add_to_price` (object) - Default (to all options) price alteration if customer use this field
+                + `type`: percentage (enum) - Type of price addition
+                    + `percentage` (string)
+                    + `fixed` (string)
+                + `addition` (number, required) - Additional value, could be negative - Mininum: **-99999999** - Maximum: **99999999** - Max precision: **0.0001**
+    + `variations` (array) - Product variations list - Max elements: **3000**
+        + (object) - Variation object
+            + `_id` (string, required) - Unique ID (ObjectID) - RegEx pattern: **`^[a-f0-9]{24}$`**
+            + `sku` (string) - Item unique reference code - Min length: **2** - Max length: **100** - RegEx pattern: **`^[A-Za-z0-9-_.]+$`**
+            + `name` (string) - Product name for this specific variation - Max length: **100**
+            + `gtin` (string) - Global Trade Item Numbers (barcode number): UPC, EAN, JAN, ISBN, ITF-14 - RegEx pattern: **`^([0-9]{8}|[0-9]{12,14})$`**
+            + `mpn` (string) - Unique code specified by manufacturer to identify the product - Max length: **70**
+            + `price` (number) - Variation sale price, when undefined, product default price should be used - Mininum: **0** - Maximum: **999999999** - Max precision: **0.00001**
+            + `base_price` (number) - Variation original sale price, without discounts - Mininum: **0** - Maximum: **999999999** - Max precision: **0.00001**
+            + `cost_price` (number) - Variation cost price to calculate profit - Mininum: **0** - Maximum: **999999999** - Max precision: **0.00001**
+            + `installments` (object) - Default installments option
+                + `number` (number, required) - Default number of installments for this product variation - Mininum: **2** - Maximum: **999**
+                + `value` (number, required) - Installment value - Mininum: **0** - Maximum: **999999999** - Max precision: **0.00001**
+                + `tax`: false (boolean) - Tax applied
+            + `quantity` (number) - Product quantity available to sell, max to put in cart - Mininum: **0** - Maximum: **9999999** - Max precision: **0.0001**
+            + `min_quantity` (number) - Minimum quantity to put in cart - Mininum: **0** - Maximum: **999999** - Max precision: **0.0001**
+            + `production_time` (object) - Deadline for production or handling of pre-ordered product
+                + `days` (number, required) - Number of days to post after purchase, deadline for production or handling - Mininum: **0** - Maximum: **99999**
+                + `working_days`: true (boolean) - If the deadline is calculated in working days
+                + `cumulative`: false (boolean) - If the production time is cumulative per unit
+                + `max_time` (number) - When cumulative, increase up to this maximum in days - Mininum: **0** - Maximum: **99999**
+            + `dimensions` (object) - Product dimensions with packaging for freight calculation
+                + `^width|height|length$` (object) - Package width, height and length
+                    + `value` (number, required) - Size in specified unit - Mininum: **0** - Maximum: **999999** - Max precision: **0.001**
+                    + `unit`: cm (enum) - Unit of measurement
+                        + `mm` (string)
+                        + `cm` (string)
+                        + `m` (string)
+                        + `ft` (string)
+                        + `in` (string)
+                        + `yd` (string)
+                        + `mi` (string)
+            + `weight` (object) - Package weight for freight calculation
+                + `value` (number, required) - Size in specified unit - Mininum: **0** - Maximum: **999999** - Max precision: **0.001**
+                + `unit`: g (enum) - Unit of measurement
+                    + `mg` (string)
+                    + `g` (string)
+                    + `kg` (string)
+                    + `lb` (string)
+                    + `oz` (string)
+            + `specifications` (object, required) - Variation attributes and technical specifications - Min properties: **1** - Max properties: **20**
+                + `material` (array) - Attribute to describe the main fabric or material that your product is made of - Max elements: **1**
+                    + (object) - Specification object
+                        + `text` (string, required) - Text displayed for the client describing the attribute - Max length: **200**
+                        + `value` (string) - Default normalized value to use on GMC and other integrations - Max length: **200**
+                + `pattern` (array) - Attribute to describe the pattern or graphic printed on your product - Max elements: **1**
+                    + (object) - Specification object
+                        + `text` (string, required) - Text displayed for the client describing the attribute - Max length: **200**
+                        + `value` (string) - Default normalized value to use on GMC and other integrations - Max length: **100**
+                + `size` (array) - Attribute to describe the standardized size of your product - Max elements: **1**
+                    + (object) - Specification object
+                        + `text` (string, required) - Text displayed for the client describing the attribute - Max length: **200**
+                        + `value` (string) - Default normalized value to use on GMC and other integrations - Max length: **100**
+                + `colors` (array) - Variation color palette, list ordered by importance, starting by main color
+                    + (object) - Color object
+                        + `text` (string, required) - Color name - Max length: **50**
+                        + `value` (string) - RGB code with # - RegEx pattern: **`^#[a-f0-9]{6}$`**
+                + `^[a-z0-9_]{2,30}$` (array) - Custom variation attributes, `grid_id` as property name - Min elements: **1** - Max elements: **6**
+                    + (object) - Attribute object
+                        + `text` (string, required) - Text displayed for the client describing the specification - Max length: **255**
+                        + `value` (string) - Default normalized value to use in integrations - Max length: **200**
+                        + `external_values` (object) - Normalized values to use in specific integrations (ID in property) - Max properties: **5**
+                            + `^[a-z0-9_]{2,30}$` (string) - Attribute text external value - Max length: **200**
+            + `picture_id` (string) - ID of one of the product pictures for this variation - RegEx pattern: **`^[a-f0-9]{24}$`**
+            + `flags` (array) - Flags to associate additional info - Max elements: **10**
+                + (string) - Flag title
+    + `other_prices` (array) - Other optional prices used - Max elements: **100**
+        + (object) - Price (object)
+            + `_id` (string, required) - Unique ID (ObjectID) - RegEx pattern: **`^[a-f0-9]{24}$`**
+            + `tag` (string) - Tag to identify object, use only lowercase letters, digits and underscore - Max length: **20** - RegEx pattern: **`^[a-z0-9_]+$`**
+            + `description` (string) - Some optional notes to describe for what this price is intended - Max length: **255**
+            + `currency_id`: BRL (string) - Designator of currency according to ISO 4217 (3 uppercase letters) - RegEx pattern: **`^[A-Z]{3}$`**
+            + `currency_symbol`: R$ (string) - Graphic symbol used as a shorthand for currency's name - Max length: **20**
+            + `price` (number, required) - Product sale price - Mininum: **0** - Maximum: **999999999** - Max precision: **0.00001**
+    + `price_change_records` (array) - Historical of recent practiced sale prices - Max elements: **180**
+        + (object) - Historical record
+            + `_id` (string, required) - Unique ID (ObjectID) - RegEx pattern: **`^[a-f0-9]{24}$`**
+            + `date_of_change` (string, required) - Date and time when price changed in ISO 8601 standard representation - Format: **date-time**
+            + `currency_id`: BRL (string) - Designator of currency according to ISO 4217 (3 uppercase letters) - RegEx pattern: **`^[A-Z]{3}$`**
+            + `currency_symbol`: R$ (string) - Graphic symbol used as a shorthand for currency's name - Max length: **20**
+            + `price` (number, required) - Product sale price - Mininum: **0** - Maximum: **999999999** - Max precision: **0.00001**
+    + `installments` (object) - Default installments option
+        + `payment_method_id` (string) - Specify ID if this installments option is for an specific payment method - RegEx pattern: **`^[a-f0-9]{24}$`**
+        + `number` (number, required) - Default number of installments for this product - Mininum: **2** - Maximum: **999**
+        + `value` (number, required) - Installment value - Mininum: **0** - Maximum: **999999999** - Max precision: **0.00001**
+        + `tax`: false (boolean) - Tax applied
+    + `discount` (object) - Default discount option, commonly by payment method
+        + `label` (string) - Name of payment method or other label describing applicable discount - Max length: **50**
+        + `payment_method_id` (string) - Specify ID if this discount is for an specific payment method - RegEx pattern: **`^[a-f0-9]{24}$`**
+        + `type`: percentage (enum) - Discount type
+            + `percentage` (string)
+            + `fixed` (string)
+        + `value` (number, required) - Discount value, percentage or fixed - Mininum: **-99999999** - Maximum: **99999999** - Max precision: **0.0001**
+    + `progressive_discount` (object) - Progressive discounts options, product quantity as property name - Max properties: **100**
+        + `^([2-9]|([1-9][0-9]{1,8}))$` (number) - Percentage discount - Mininum: **-999** - Maximum: **999** - Max precision: **0.01**
+    + `other_discounts` (array) - Other discounts for custom applications - Max elements: **100**
+        + (object) - Discount object
+            + `_id` (string, required) - Unique ID (ObjectID) - RegEx pattern: **`^[a-f0-9]{24}$`**
+            + `tag` (string) - Tag to identify object, use only lowercase letters, digits and underscore - Max length: **20** - RegEx pattern: **`^[a-z0-9_]+$`**
+            + `description` (string) - Some optional notes to describe for what this discount is intended - Max length: **255**
+            + `type`: percentage (enum) - Discount type
+                + `percentage` (string)
+                + `fixed` (string)
+            + `discount` (number, required) - Discount value, percentage or fixed - Mininum: **-99999999** - Maximum: **99999999** - Max precision: **0.0001**
+    + `buy_together` (array) - Buy together options - Max elements: **20**
+        + (object) - This product and others composing buy together, product ID as property name
+            + `^([a-f0-9]{24}|this)$` (object) - Product in buy together
+                + `quantity` (number, required) - Product quantity - Mininum: **0** - Maximum: **9999999** - Max precision: **0.0001**
+                + `discount` (object) - Discount object
+                    + `type`: percentage (enum) - Discount type
+                        + `percentage` (string)
+                        + `fixed` (string)
+                    + `value` (number, required) - Discount value, percentage or fixed - Mininum: **-99999999** - Maximum: **99999999** - Max precision: **0.0001**
+    + `loyalty_points` (object) - Specify how many and what type of loyalty points a customer receives
+        + `name` (string) - The name of the loyalty points program - Max length: **50**
+        + `program_id` (string, required) - Unique identifier, program name using only lowercase, numbers and underscore - RegEx pattern: **`^[a-z0-9_]{2,30}$`**
+        + `points_value` (number, required) - Number of loyalty points a customer receives when purchasing the product - Mininum: **0** - Maximum: **999999999** - Max precision: **0.00001**
+        + `ratio` (number) - The ratio of a point when converted to currency - Mininum: **0** - Maximum: **9999** - Max precision: **0.001**
+    + `payment_methods` (object) - Payment methods for this product, application ID as property name - Max properties: **30**
+        + `^[a-f0-9]{24}$` (object) - Payment option
+            + `label` (string, required) - Name of payment method shown to customers - Max length: **50**
+            + `icon` (string) - Payment icon image URI - Max length: **255** - Format: **uri**
+            + `discount` (object) - Discount object
+                + `type`: percentage (enum) - Discount type
+                    + `percentage` (string)
+                    + `fixed` (string)
+                + `value` (number, required) - Discount value, percentage or fixed - Mininum: **-99999999** - Maximum: **99999999** - Max precision: **0.0001**
+            + `installments` (object) - Installment options, installments number as property name - Max properties: **100**
+                + `^([2-9]|([1-9][0-9]{1,3}))$` (object) - Installment option object
+                    + `value` (number, required) - Installment value - Mininum: **0** - Maximum: **999999999** - Max precision: **0.00001**
+                    + `tax`: false (boolean) - Tax applied
+    + `shipping_methods` (object) - Shipping methods, application ID as property name - Max properties: **30**
+        + `^[a-f0-9]{24}$` (object) - Shipping method object
+            + `label` (string, required) - Name of shipping method shown to customers - Max length: **50**
+            + `icon` (string) - Shipping method icon image URI - Max length: **255** - Format: **uri**
+            + `free_shipping`: false (boolean) - Free shipping with this method
+    + `gift_wraps` (array) - Default gift wrap options - Max elements: **20**
+        + (object) - Gift wrap object
+            + `tag` (string) - Tag to identify object, use only lowercase letters, digits and underscore - Max length: **20** - RegEx pattern: **`^[a-z0-9_]+$`**
+            + `label` (string, required) - Title describing this gift wrap - Max length: **70**
+            + `add_to_price` (number) - Additional value for this gift wrap - Mininum: **0** - Maximum: **99999999** - Max precision: **0.0001**
+    + `destinations` (object) - List of available shipping destinations
+        + `^included|excluded$` (object) - Available or unavailable destination
+            + `country` (string, required) - An ISO 3166-2 country code - Min length: **2** - Max length: **2** - RegEx pattern: **`^[A-Z]+$`**
+            + `zip_codes_range` (object) - ZIP codes range for shipping rules (include or exclude)
+                + `^start|end$` (string) - ZIP (CEP, postal...) code - Max length: **30**
+    + `location` (object) - Product location(s), shipping origin
+        + `zip_codes` (array) - Collection of ZIP codes of product origin locations - Max elements: **30**
+            + (object) - Shipping origin, ZIP code and identifier
+                + `tag` (string) - Tag to identify object, use only lowercase letters, digits and underscore - Max length: **20** - RegEx pattern: **`^[a-z0-9_]+$`**
+                + `code` (string, required) - ZIP (CEP, postal...) code - Max length: **30**
+        + `country` (string) - An ISO 3166-2 country code - Min length: **2** - Max length: **2** - RegEx pattern: **`^[A-Z]+$`**
+        + `region` (string) - State, territory or prefecture name - Max length: **30**
+        + `address` (string) - Full address of product location - Max length: **255**
+        + `geolocation` (object) - Geolocation of origin
+            + `latitude` (number, required) - Geolocation latitude - Mininum: **-90** - Maximum: **90** - Max precision: **1e-7**
+            + `longitude` (number, required) - Geolocation longitude - Mininum: **-180** - Maximum: **180** - Max precision: **1e-7**
+    + `tax` (array) - List of taxes applied by region - Max elements: **100**
+        + (object) - Tax object
+            + `rate` (number, required) - Tax rate as a percentage of the price - Mininum: **-999** - Maximum: **999** - Max precision: **0.01**
+            + `country` (string, required) - An ISO 3166-2 country code - Min length: **2** - Max length: **2** - RegEx pattern: **`^[A-Z]+$`**
+            + `tax_ship`: false (boolean) - Whether you charge tax on shipping
+            + `zip_codes_range` (object) - ZIP codes range defining region to apply tax
+                + `^start|end$` (string) - ZIP (CEP, postal...) code - Max length: **30**
+    + `kit_composition` (array) - If this product is a kit, set its composition - Max elements: **100**
+        + (object) - One of the kit items
+            + `_id` (string, required) - Product ID - RegEx pattern: **`^[a-f0-9]{24}$`**
+            + `quantity` (number) - Product quantity - Mininum: **0** - Maximum: **9999999** - Max precision: **0.0001**
+            + `label` (string) - Label shown to customer, if you want to use a title other than the product name - Max length: **255**
+            + `has_variations`: false (boolean) - If this product has variations
+            + `variation_id` (string) - ID to specify a variation if `has_variations` is true, it's optional - RegEx pattern: **`^[a-f0-9]{24}$`**
+    + `parent_item_id` (string) - Parent product ID, if this product is contained by another (a kit) - RegEx pattern: **`^[a-f0-9]{24}$`**
+    + `related_products` (array) - Lists of related products - Max elements: **30**
+        + (object) - A list with products related to this
+            + `_id` (string, required) - Unique ID (ObjectID) - RegEx pattern: **`^[a-f0-9]{24}$`**
+            + `tag` (string) - Tag to identify object, use only lowercase letters, digits and underscore - Max length: **20** - RegEx pattern: **`^[a-z0-9_]+$`**
+            + `product_ids` (array, required) - List of products - Max elements: **100**
+                + (string) - Product ID
+    + `auto_fill_related_products`: true (boolean) - True when related products lists should be created and updated automatically (ML)
+    + `gtin` (array) - List of product GTIN codes - Max elements: **10**
+        + (string) - Global Trade Item Numbers (barcode number): UPC, EAN, JAN, ISBN, ITF-14
+    + `mpn` (array) - List of product MPN codes - Max elements: **10**
+        + (string) - Unique code specified by manufacturer to identify the product
+    + `seller` (object) - Whether the product is sold by a third party, usual in marketplaces
+        + `code` (string) - Unique reference code to identify this seller - Max length: **100**
+        + `name` (string) - Seller name - Max length: **200**
+        + `logo` (string) - Image link to shop's logo - Max length: **255** - Format: **uri**
+        + `description` (string) - Short description of shop - Max length: **255**
+        + `doc_type` (enum) - Responsible person or organization document type
+            + `CPF` (string)
+            + `CNPJ` (string)
+        + `doc_number` (string) - Responsible person or organization document number (only numbers) - Max length: **19** - RegEx pattern: **`^[0-9]+$`**
+        + `inscription_type` (enum) - Municipal or state registration if exists
+            + `State` (string)
+            + `Municipal` (string)
+        + `inscription_number` (string) - Municipal or state registration number (with characters) if exists - Max length: **50**
+        + `corporate_name` (string) - Registered company name or responsible fullname - Max length: **255**
+        + `address` (string) - Full registered address of company - Max length: **255**
+        + `phone` (string) - Contact phone - Max length: **19** - RegEx pattern: **`^[0-9]+$`**
+        + `contact_email` (string) - Public email address for news and general contact - Max length: **255** - Format: **email**
+    + `metafields` (array) - List of custom attributes - Max elements: **100**
+        + (object) - Custom attribute object
+            + `_id` (string, required) - Unique ID (ObjectID) - RegEx pattern: **`^[a-f0-9]{24}$`**
+            + `namespace` (string) - String to help distinguish who (or which app) created and can use the metafield - Max length: **30**
+            + `field` (string) - Field name - Max length: **50**
+            + `value` (string, required) - Custom property value - Max length: **255**
+    + `hidden_metafields` (array) - List of custom attributes - Max elements: **100**
+        + (object) - Custom attribute object
+            + `_id` (string, required) - Unique ID (ObjectID) - RegEx pattern: **`^[a-f0-9]{24}$`**
+            + `namespace` (string) - String to help distinguish who (or which app) created and can use the metafield - Max length: **30**
+            + `field` (string) - Field name - Max length: **50**
+            + `value` (string, required) - Custom property value - Max length: **255**
+    + `flags` (array) - Flags to associate additional info - Max elements: **10**
+        + (string) - Flag title
+    + `notes` (string) - Optional notes with additional info about this product - Max length: **255**
+
+#### JSON Schema [GET]
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "$schema": "http://json-schema.org/draft-06/schema#",
+                "title": "Products",
+                "description": "Product object model",
+                "type": "object",
+                "required": [
+                    "sku",
+                    "name"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "authorized_stores": {
+                        "type": "array",
+                        "uniqueItems": true,
+                        "maxItems": 1000,
+                        "items": {
+                            "type": "integer",
+                            "minimum": 1000,
+                            "maximum": 16777215,
+                            "description": "Store ID"
+                        },
+                        "description": "IDs from other stores authorized to sell this product"
+                    },
+                    "sku": {
+                        "type": "string",
+                        "minLength": 2,
+                        "maxLength": 100,
+                        "pattern": "^[A-Za-z0-9-_.]+$",
+                        "description": "Product unique reference code"
+                    },
+                    "commodity_type": {
+                        "type": "string",
+                        "enum": [
+                            "physical",
+                            "digital"
+                        ],
+                        "default": "physical",
+                        "description": "Product type"
+                    },
+                    "name": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "description": "Product full name"
+                    },
+                    "i18n": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "maxProperties": 10,
+                        "patternProperties": {
+                            "^[a-z]{2}(_[a-z]{2})?$": {
+                                "type": "string",
+                                "maxLength": 255,
+                                "description": "Translated full product name"
+                            }
+                        },
+                        "description": "Product name translations"
+                    },
+                    "subtitle": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "description": "Optional subtitle intended to be used for SEO or layout purposes"
+                    },
+                    "slug": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "pattern": "^[a-z0-9]([a-z0-9-_./]+)?$",
+                        "description": "Slug to complete page URL, starting with number or lowercase letter"
+                    },
+                    "permalink": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "format": "uri",
+                        "description": "Permanent URL to product page"
+                    },
+                    "mobile_link": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "format": "uri",
+                        "description": "Optional URL specific to mobile devices"
+                    },
+                    "status": {
+                        "type": "string",
+                        "maxLength": 50,
+                        "description": "Status defined by seller, such as draft or live"
+                    },
+                    "available": {
+                        "type": "boolean",
+                        "default": true,
+                        "description": "True when product is complete registered and ready to sell"
+                    },
+                    "visible": {
+                        "type": "boolean",
+                        "default": true,
+                        "description": "Visible on search results, collections and catalogs"
+                    },
+                    "ad_relevance": {
+                        "type": "integer",
+                        "minimum": -128,
+                        "maximum": 127,
+                        "default": 0,
+                        "description": "Number to define the importance of the ad, the higher should be displayed first"
+                    },
+                    "ad_type": {
+                        "type": "string",
+                        "maxLength": 50,
+                        "description": "Option ad type defined by seller, such as gold and silver"
+                    },
+                    "short_description": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "description": "Short product description in plain text"
+                    },
+                    "body_html": {
+                        "type": "string",
+                        "maxLength": 500000,
+                        "description": "Full product description, may use HTML tags"
+                    },
+                    "body_text": {
+                        "type": "string",
+                        "maxLength": 500000,
+                        "description": "Full product description, plain text only"
+                    },
+                    "meta_title": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "description": "Title tag for page SEO"
+                    },
+                    "meta_description": {
+                        "type": "string",
+                        "maxLength": 1000,
+                        "description": "Meta description tag for page SEO"
+                    },
+                    "keywords": {
+                        "type": "array",
+                        "uniqueItems": true,
+                        "maxItems": 200,
+                        "items": {
+                            "type": "string",
+                            "maxLength": 50,
+                            "description": "Term (keyword)"
+                        },
+                        "description": "Tags related with product for internal search"
+                    },
+                    "price": {
+                        "type": "number",
+                        "multipleOf": 0.00001,
+                        "minimum": 0,
+                        "maximum": 999999999,
+                        "description": "Product sale price, when undefined, product could be bought by any price"
+                    },
+                    "price_effective_date": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "start": {
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "Start date and time in ISO 8601 standard representation"
+                            },
+                            "end": {
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "Promotion end date and time in ISO 8601 standard representation"
+                            }
+                        },
+                        "description": "How long sale price is valid, out of this range (if defined), base_price should be applied"
+                    },
+                    "base_price": {
+                        "type": "number",
+                        "multipleOf": 0.00001,
+                        "minimum": 0,
+                        "maximum": 999999999,
+                        "description": "Product original sale price, without discounts"
+                    },
+                    "cost_price": {
+                        "type": "number",
+                        "multipleOf": 0.00001,
+                        "minimum": 0,
+                        "maximum": 999999999,
+                        "description": "Product cost price to calculate profit"
+                    },
+                    "currency_id": {
+                        "type": "string",
+                        "pattern": "^[A-Z]{3}$",
+                        "default": "BRL",
+                        "description": "Designator of currency according to ISO 4217 (3 uppercase letters)"
+                    },
+                    "currency_symbol": {
+                        "type": "string",
+                        "maxLength": 20,
+                        "default": "R$",
+                        "description": "Graphic symbol used as a shorthand for currency's name"
+                    },
+                    "quantity": {
+                        "type": "number",
+                        "multipleOf": 0.0001,
+                        "minimum": 0,
+                        "maximum": 9999999,
+                        "description": "Product quantity available to sell, max to put in cart"
+                    },
+                    "min_quantity": {
+                        "type": "number",
+                        "multipleOf": 0.0001,
+                        "minimum": 0,
+                        "maximum": 999999,
+                        "description": "Minimum quantity to put in cart"
+                    },
+                    "production_time": {
+                        "type": "object",
+                        "required": [
+                            "days"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "days": {
+                                "type": "integer",
+                                "minimum": 0,
+                                "maximum": 99999,
+                                "description": "Number of days to post the product after purchase, deadline for production or handling"
+                            },
+                            "working_days": {
+                                "type": "boolean",
+                                "default": true,
+                                "description": "If the deadline is calculated in working days"
+                            },
+                            "cumulative": {
+                                "type": "boolean",
+                                "default": false,
+                                "description": "If the production time is cumulative per product unit"
+                            },
+                            "max_time": {
+                                "type": "integer",
+                                "minimum": 0,
+                                "maximum": 99999,
+                                "description": "When cumulative, increase the term proportionally up to this maximum (in days)"
+                            }
+                        },
+                        "description": "Deadline for production or handling of pre-ordered product"
+                    },
+                    "manage_stock": {
+                        "type": "boolean",
+                        "default": true,
+                        "description": "Decrease product available quantity automatically after each order"
+                    },
+                    "inventory_records": {
+                        "type": "array",
+                        "maxItems": 180,
+                        "items": {
+                            "type": "object",
+                            "required": [
+                                "_id",
+                                "date_of_change",
+                                "quantity"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                                "_id": {
+                                    "type": "string",
+                                    "pattern": "^[a-f0-9]{24}$",
+                                    "description": "Unique ID (ObjectID)"
+                                },
+                                "date_of_change": {
+                                    "type": "string",
+                                    "format": "date-time",
+                                    "description": "Date and time when stock changed in ISO 8601 standard representation"
+                                },
+                                "origin": {
+                                    "type": "string",
+                                    "maxLength": 50,
+                                    "description": "Optional note about origin or reason of stock changing"
+                                },
+                                "quantity": {
+                                    "type": "number",
+                                    "multipleOf": 0.0001,
+                                    "minimum": -9999999,
+                                    "maximum": 9999999,
+                                    "description": "Added or decreased (negative) stock quantity"
+                                }
+                            },
+                            "description": "Historical record"
+                        },
+                        "description": "Recent stock history"
+                    },
+                    "measurement": {
+                        "type": "object",
+                        "required": [
+                            "unit"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "unit": {
+                                "type": "string",
+                                "enum": [
+                                    "oz",
+                                    "lb",
+                                    "mg",
+                                    "g",
+                                    "kg",
+                                    "floz",
+                                    "pt",
+                                    "qt",
+                                    "gal",
+                                    "ml",
+                                    "cl",
+                                    "l",
+                                    "cbm",
+                                    "in",
+                                    "ft",
+                                    "yd",
+                                    "cm",
+                                    "m",
+                                    "sqft",
+                                    "sqm",
+                                    "ct"
+                                ],
+                                "description": "Unit of measurement"
+                            },
+                            "precision": {
+                                "type": "integer",
+                                "minimum": 0,
+                                "maximum": 4,
+                                "description": "Maximum number of decimal places in the product quantity (in unit of measure)"
+                            },
+                            "pricing_base_measure": {
+                                "type": "number",
+                                "multipleOf": 0.0001,
+                                "minimum": 0,
+                                "maximum": 9999999,
+                                "description": "Quantity to calculate the price to be shown on ads, such as GMC unit_pricing_base_measure"
+                            }
+                        },
+                        "description": "Measure and dimension of your product when users might be interested in price per unit"
+                    },
+                    "multipack": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 999999,
+                        "description": "Indicate that this item is a group of multiple identical products"
+                    },
+                    "dimensions": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "patternProperties": {
+                            "^width|height|length$": {
+                                "type": "object",
+                                "required": [
+                                    "value"
+                                ],
+                                "additionalProperties": false,
+                                "properties": {
+                                    "value": {
+                                        "type": "number",
+                                        "multipleOf": 0.001,
+                                        "minimum": 0,
+                                        "maximum": 999999,
+                                        "description": "Size in specified unit"
+                                    },
+                                    "unit": {
+                                        "type": "string",
+                                        "enum": [
+                                            "mm",
+                                            "cm",
+                                            "m",
+                                            "ft",
+                                            "in",
+                                            "yd",
+                                            "mi"
+                                        ],
+                                        "default": "cm",
+                                        "description": "Unit of measurement"
+                                    }
+                                },
+                                "description": "Package width, height and length"
+                            }
+                        },
+                        "description": "Product dimensions with packaging for freight calculation"
+                    },
+                    "weight": {
+                        "type": "object",
+                        "required": [
+                            "value"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "value": {
+                                "type": "number",
+                                "multipleOf": 0.001,
+                                "minimum": 0,
+                                "maximum": 999999,
+                                "description": "Size in specified unit"
+                            },
+                            "unit": {
+                                "type": "string",
+                                "enum": [
+                                    "mg",
+                                    "g",
+                                    "kg",
+                                    "lb",
+                                    "oz"
+                                ],
+                                "default": "g",
+                                "description": "Unit of measurement"
+                            }
+                        },
+                        "description": "Package weight for freight calculation"
+                    },
+                    "condition": {
+                        "type": "string",
+                        "enum": [
+                            "new",
+                            "refurbished",
+                            "used",
+                            "not_specified"
+                        ],
+                        "default": "new",
+                        "description": "Item condition"
+                    },
+                    "adult": {
+                        "type": "boolean",
+                        "default": false,
+                        "description": "Product restricted to adults (18+)"
+                    },
+                    "warranty": {
+                        "type": "string",
+                        "maxLength": 100,
+                        "description": "Warranty time and conditions"
+                    },
+                    "brands": {
+                        "type": "array",
+                        "maxItems": 100,
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "required": [
+                                "_id",
+                                "name"
+                            ],
+                            "properties": {
+                                "_id": {
+                                    "type": "string",
+                                    "pattern": "^[a-f0-9]{24}$",
+                                    "description": "Brand ID"
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "maxLength": 255,
+                                    "description": "Brand name"
+                                },
+                                "slug": {
+                                    "type": "string",
+                                    "maxLength": 255,
+                                    "pattern": "^[a-z0-9]([a-z0-9-_./]+)?$",
+                                    "description": "Brand page slug"
+                                },
+                                "logo": {
+                                    "type": "object",
+                                    "required": [
+                                        "url"
+                                    ],
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "url": {
+                                            "type": "string",
+                                            "maxLength": 255,
+                                            "format": "uri",
+                                            "description": "Image link"
+                                        },
+                                        "size": {
+                                            "type": "string",
+                                            "maxLength": 11,
+                                            "pattern": "^[1-9]([0-9]+)?x[1-9]([0-9]+)?$",
+                                            "description": "Image size (width x height) in px, such as 100x50 (100px width, 50px height)"
+                                        },
+                                        "alt": {
+                                            "type": "string",
+                                            "maxLength": 255,
+                                            "description": "Alternative text, HTML alt tag (important for SEO)"
+                                        }
+                                    },
+                                    "description": "Brand logo"
+                                }
+                            },
+                            "description": "Product brand (manufacturer)"
+                        },
+                        "description": "List of product brands"
+                    },
+                    "categories": {
+                        "type": "array",
+                        "maxItems": 100,
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "required": [
+                                "_id",
+                                "name"
+                            ],
+                            "properties": {
+                                "_id": {
+                                    "type": "string",
+                                    "pattern": "^[a-f0-9]{24}$",
+                                    "description": "Category ID"
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "maxLength": 255,
+                                    "description": "Category name"
+                                },
+                                "slug": {
+                                    "type": "string",
+                                    "maxLength": 255,
+                                    "pattern": "^[a-z0-9]([a-z0-9-_./]+)?$",
+                                    "description": "Category page slug"
+                                },
+                                "ml_category_id": {
+                                    "type": "string",
+                                    "pattern": "^ML[A-Z][0-9]{2,9}$",
+                                    "description": "ID in Mercado Libre Taxonomy"
+                                },
+                                "google_product_category_id": {
+                                    "type": "integer",
+                                    "minimum": 1,
+                                    "maximum": 999999999999,
+                                    "description": "ID in Google Taxonomy"
+                                }
+                            },
+                            "description": "Category object"
+                        },
+                        "description": "List of product categories"
+                    },
+                    "ml_category_id": {
+                        "type": "string",
+                        "pattern": "^ML[A-Z][0-9]{2,9}$",
+                        "description": "Preferential category of the product in the Mercado Libre Taxonomy"
+                    },
+                    "google_product_category_id": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 999999999999,
+                        "description": "Preferential category of the product in the Google Products Taxonomy"
+                    },
+                    "grids": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "maxProperties": 200,
+                        "patternProperties": {
+                            "^[a-z0-9_]{2,30}$": {
+                                "type": "string",
+                                "maxLength": 70,
+                                "description": "Grid title"
+                            }
+                        },
+                        "description": "Grids for specifications and variations, grid_id as property name, such as gender or colors"
+                    },
+                    "specifications": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "maxProperties": 200,
+                        "properties": {
+                            "energy_efficiency_class": {
+                                "type": "array",
+                                "maxItems": 1,
+                                "items": {
+                                    "type": "object",
+                                    "required": [
+                                        "text"
+                                    ],
+                                    "properties": {
+                                        "text": {
+                                            "type": "string",
+                                            "maxLength": 100,
+                                            "description": "Text displayed for the client describing the specification (custom value)"
+                                        },
+                                        "value": {
+                                            "type": "string",
+                                            "enum": [
+                                                "A+++",
+                                                "A++",
+                                                "A+",
+                                                "A",
+                                                "B",
+                                                "C",
+                                                "D",
+                                                "E",
+                                                "F",
+                                                "G"
+                                            ],
+                                            "description": "Value in the Google Product Specification"
+                                        }
+                                    },
+                                    "description": "Specification object"
+                                },
+                                "description": "Attribute to tell users the energy efficiency class of your product"
+                            },
+                            "age_group": {
+                                "type": "array",
+                                "maxItems": 1,
+                                "items": {
+                                    "type": "object",
+                                    "required": [
+                                        "text"
+                                    ],
+                                    "properties": {
+                                        "text": {
+                                            "type": "string",
+                                            "maxLength": 100,
+                                            "description": "Text displayed for the client describing the specification (custom value)"
+                                        },
+                                        "value": {
+                                            "type": "string",
+                                            "enum": [
+                                                "newborn",
+                                                "infant",
+                                                "toddler",
+                                                "kids",
+                                                "adult"
+                                            ],
+                                            "description": "Value in the Google Product Specification"
+                                        }
+                                    },
+                                    "description": "Specification object"
+                                },
+                                "description": "Attribute to set the demographic that your product is designed for"
+                            },
+                            "gender": {
+                                "type": "array",
+                                "maxItems": 1,
+                                "items": {
+                                    "type": "object",
+                                    "required": [
+                                        "text"
+                                    ],
+                                    "properties": {
+                                        "text": {
+                                            "type": "string",
+                                            "maxLength": 100,
+                                            "description": "Text displayed for the client describing the specification (custom value)"
+                                        },
+                                        "value": {
+                                            "type": "string",
+                                            "enum": [
+                                                "male",
+                                                "female",
+                                                "unisex"
+                                            ],
+                                            "description": "Value in the Google Product Specification"
+                                        }
+                                    },
+                                    "description": "Specification object"
+                                },
+                                "description": "Specify for what gender your product is designed"
+                            },
+                            "material": {
+                                "type": "array",
+                                "maxItems": 1,
+                                "items": {
+                                    "type": "object",
+                                    "required": [
+                                        "text"
+                                    ],
+                                    "properties": {
+                                        "text": {
+                                            "type": "string",
+                                            "maxLength": 200,
+                                            "description": "Text displayed for the client describing the attribute"
+                                        },
+                                        "value": {
+                                            "type": "string",
+                                            "maxLength": 200,
+                                            "description": "Default normalized value to use on GMC and other integrations"
+                                        }
+                                    },
+                                    "description": "Specification object"
+                                },
+                                "description": "Attribute to describe the main fabric or material that your product is made of"
+                            },
+                            "pattern": {
+                                "type": "array",
+                                "maxItems": 1,
+                                "items": {
+                                    "type": "object",
+                                    "required": [
+                                        "text"
+                                    ],
+                                    "properties": {
+                                        "text": {
+                                            "type": "string",
+                                            "maxLength": 200,
+                                            "description": "Text displayed for the client describing the attribute"
+                                        },
+                                        "value": {
+                                            "type": "string",
+                                            "maxLength": 100,
+                                            "description": "Default normalized value to use on GMC and other integrations"
+                                        }
+                                    },
+                                    "description": "Specification object"
+                                },
+                                "description": "Attribute to describe the pattern or graphic printed on your product"
+                            },
+                            "size": {
+                                "type": "array",
+                                "maxItems": 1,
+                                "items": {
+                                    "type": "object",
+                                    "required": [
+                                        "text"
+                                    ],
+                                    "properties": {
+                                        "text": {
+                                            "type": "string",
+                                            "maxLength": 200,
+                                            "description": "Text displayed for the client describing the attribute"
+                                        },
+                                        "value": {
+                                            "type": "string",
+                                            "maxLength": 100,
+                                            "description": "Default normalized value to use on GMC and other integrations"
+                                        }
+                                    },
+                                    "description": "Specification object"
+                                },
+                                "description": "Attribute to describe the standardized size of your product"
+                            },
+                            "size_type": {
+                                "type": "array",
+                                "maxItems": 1,
+                                "items": {
+                                    "type": "object",
+                                    "required": [
+                                        "text"
+                                    ],
+                                    "properties": {
+                                        "text": {
+                                            "type": "string",
+                                            "maxLength": 100,
+                                            "description": "Text displayed for the client describing the attribute"
+                                        },
+                                        "value": {
+                                            "type": "string",
+                                            "enum": [
+                                                "regular",
+                                                "petite",
+                                                "plus",
+                                                "big and tall",
+                                                "maternity"
+                                            ],
+                                            "description": "Value in the Google Product Specification"
+                                        }
+                                    },
+                                    "description": "Specification object"
+                                },
+                                "description": "Attribute to describe the cut of your product"
+                            },
+                            "size_system": {
+                                "type": "array",
+                                "maxItems": 1,
+                                "items": {
+                                    "type": "object",
+                                    "required": [
+                                        "text"
+                                    ],
+                                    "properties": {
+                                        "text": {
+                                            "type": "string",
+                                            "maxLength": 100,
+                                            "description": "Text displayed for the client describing the attribute"
+                                        },
+                                        "value": {
+                                            "type": "string",
+                                            "enum": [
+                                                "AU",
+                                                "BR",
+                                                "CN",
+                                                "DE",
+                                                "EU",
+                                                "FR",
+                                                "IT",
+                                                "JP",
+                                                "MEX",
+                                                "UK",
+                                                "US"
+                                            ],
+                                            "description": "Value in the Google Product Specification"
+                                        }
+                                    },
+                                    "description": "Specification object"
+                                },
+                                "description": "Which country's sizing system your product uses"
+                            },
+                            "colors": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "required": [
+                                        "text"
+                                    ],
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "text": {
+                                            "type": "string",
+                                            "maxLength": 50,
+                                            "description": "Color name"
+                                        },
+                                        "value": {
+                                            "type": "string",
+                                            "pattern": "^#[a-f0-9]{6}$",
+                                            "description": "RGB code with #"
+                                        }
+                                    },
+                                    "description": "Color object"
+                                },
+                                "description": "Product color palette, list ordered by importance, starting by main color"
+                            }
+                        },
+                        "patternProperties": {
+                            "^[a-z0-9_]{2,30}$": {
+                                "type": "array",
+                                "minItems": 1,
+                                "maxItems": 30,
+                                "items": {
+                                    "type": "object",
+                                    "required": [
+                                        "text"
+                                    ],
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "text": {
+                                            "type": "string",
+                                            "maxLength": 255,
+                                            "description": "Text displayed for the client describing the specification"
+                                        },
+                                        "value": {
+                                            "type": "string",
+                                            "maxLength": 200,
+                                            "description": "Default normalized value to use in integrations"
+                                        },
+                                        "external_values": {
+                                            "type": "object",
+                                            "additionalProperties": false,
+                                            "maxProperties": 5,
+                                            "patternProperties": {
+                                                "^[a-z0-9_]{2,30}$": {
+                                                    "type": "string",
+                                                    "maxLength": 200,
+                                                    "description": "Attribute text external value"
+                                                }
+                                            },
+                                            "description": "Normalized values to use in specific integrations (ID in property)"
+                                        }
+                                    },
+                                    "description": "Attribute object"
+                                },
+                                "description": "Custom product attributes, grid_id as property name"
+                            }
+                        },
+                        "description": "Product attributes and technical specifications"
+                    },
+                    "pictures": {
+                        "type": "array",
+                        "maxItems": 50,
+                        "items": {
+                            "type": "object",
+                            "required": [
+                                "_id",
+                                "normal"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                                "_id": {
+                                    "type": "string",
+                                    "pattern": "^[a-f0-9]{24}$",
+                                    "description": "Unique ID (ObjectID)"
+                                },
+                                "tag": {
+                                    "type": "string",
+                                    "maxLength": 20,
+                                    "pattern": "^[a-z0-9_]+$",
+                                    "description": "Tag to identify object, use only lowercase letters, digits and underscore"
+                                }
+                            },
+                            "patternProperties": {
+                                "^small|normal|big|zoom|custom$": {
+                                    "type": "object",
+                                    "required": [
+                                        "url"
+                                    ],
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "url": {
+                                            "type": "string",
+                                            "maxLength": 255,
+                                            "format": "uri",
+                                            "description": "Image link"
+                                        },
+                                        "size": {
+                                            "type": "string",
+                                            "maxLength": 11,
+                                            "pattern": "^[1-9]([0-9]+)?x[1-9]([0-9]+)?$",
+                                            "description": "Image size (width x height) in px, such as 100x50 (100px width, 50px height)"
+                                        },
+                                        "alt": {
+                                            "type": "string",
+                                            "maxLength": 255,
+                                            "description": "Alternative text, HTML alt tag (important for SEO)"
+                                        }
+                                    },
+                                    "description": "Image size variation"
+                                }
+                            },
+                            "description": "Image object"
+                        },
+                        "description": "List of product images"
+                    },
+                    "videos": {
+                        "type": "array",
+                        "maxItems": 30,
+                        "items": {
+                            "type": "object",
+                            "required": [
+                                "url"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                                "url": {
+                                    "type": "string",
+                                    "maxLength": 255,
+                                    "format": "uri",
+                                    "description": "Video link"
+                                },
+                                "title": {
+                                    "type": "string",
+                                    "maxLength": 255,
+                                    "description": "Title describing the video"
+                                }
+                            },
+                            "description": "Video object"
+                        },
+                        "description": "List of videos related to your product"
+                    },
+                    "attachments": {
+                        "type": "array",
+                        "maxItems": 30,
+                        "items": {
+                            "type": "object",
+                            "required": [
+                                "url"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                                "url": {
+                                    "type": "string",
+                                    "maxLength": 255,
+                                    "format": "uri",
+                                    "description": "Link to file"
+                                },
+                                "title": {
+                                    "type": "string",
+                                    "maxLength": 255,
+                                    "description": "Title describing the file"
+                                }
+                            },
+                            "description": "Attachment (file) object"
+                        },
+                        "description": "List of product's attachments"
+                    },
+                    "customizations": {
+                        "type": "array",
+                        "maxItems": 100,
+                        "items": {
+                            "type": "object",
+                            "required": [
+                                "_id",
+                                "label"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                                "_id": {
+                                    "type": "string",
+                                    "pattern": "^[a-f0-9]{24}$",
+                                    "description": "Unique ID (ObjectID)"
+                                },
+                                "tag": {
+                                    "type": "string",
+                                    "maxLength": 20,
+                                    "pattern": "^[a-z0-9_]+$",
+                                    "description": "Tag to identify object, use only lowercase letters, digits and underscore"
+                                },
+                                "label": {
+                                    "type": "string",
+                                    "maxLength": 70,
+                                    "description": "Title for this customization field, can be the grid title"
+                                },
+                                "grid_id": {
+                                    "type": "string",
+                                    "pattern": "^[a-z0-9_]{2,30}$",
+                                    "description": "If this field is related to a grid, put the grid_id"
+                                },
+                                "require": {
+                                    "type": "boolean",
+                                    "default": false,
+                                    "description": "If field is required (true), customer must always choose a value"
+                                },
+                                "options": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "maxProperties": 200,
+                                    "patternProperties": {
+                                        "^[a-z0-9_]{2,30}$": {
+                                            "type": "object",
+                                            "required": [
+                                                "text"
+                                            ],
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "text": {
+                                                    "type": "string",
+                                                    "maxLength": 70,
+                                                    "description": "Option text value displayed for the client"
+                                                },
+                                                "colors": {
+                                                    "type": "array",
+                                                    "maxItems": 6,
+                                                    "items": {
+                                                        "type": "string",
+                                                        "pattern": "^#[a-f0-9]{6}$",
+                                                        "description": "RGB code with #"
+                                                    },
+                                                    "description": "Option color palette (if the field involves colors), starting by main color"
+                                                },
+                                                "add_to_price": {
+                                                    "type": "object",
+                                                    "required": [
+                                                        "addition"
+                                                    ],
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "type": {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "percentage",
+                                                                "fixed"
+                                                            ],
+                                                            "default": "percentage",
+                                                            "description": "Type of price addition"
+                                                        },
+                                                        "addition": {
+                                                            "type": "number",
+                                                            "multipleOf": 0.0001,
+                                                            "minimum": -99999999,
+                                                            "maximum": 99999999,
+                                                            "description": "Additional value, could be negative"
+                                                        }
+                                                    },
+                                                    "description": "Specific price alteration if customer choose this option"
+                                                }
+                                            },
+                                            "description": "Option object"
+                                        }
+                                    },
+                                    "description": "Pre-defined options for this customization field, option_id as property name"
+                                },
+                                "custom_value": {
+                                    "type": "boolean",
+                                    "default": true,
+                                    "description": "If this field accept custom value defined by customer"
+                                },
+                                "attachment": {
+                                    "type": "boolean",
+                                    "default": false,
+                                    "description": "If this field accept customer file attachment"
+                                },
+                                "add_to_price": {
+                                    "type": "object",
+                                    "required": [
+                                        "addition"
+                                    ],
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "enum": [
+                                                "percentage",
+                                                "fixed"
+                                            ],
+                                            "default": "percentage",
+                                            "description": "Type of price addition"
+                                        },
+                                        "addition": {
+                                            "type": "number",
+                                            "multipleOf": 0.0001,
+                                            "minimum": -99999999,
+                                            "maximum": 99999999,
+                                            "description": "Additional value, could be negative"
+                                        }
+                                    },
+                                    "description": "Default (to all options) price alteration if customer use this field"
+                                }
+                            },
+                            "description": "Customization field"
+                        },
+                        "description": "List of product customization fields"
+                    },
+                    "variations": {
+                        "type": "array",
+                        "maxItems": 3000,
+                        "items": {
+                            "type": "object",
+                            "required": [
+                                "_id",
+                                "specifications"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                                "_id": {
+                                    "type": "string",
+                                    "pattern": "^[a-f0-9]{24}$",
+                                    "description": "Unique ID (ObjectID)"
+                                },
+                                "sku": {
+                                    "type": "string",
+                                    "minLength": 2,
+                                    "maxLength": 100,
+                                    "pattern": "^[A-Za-z0-9-_.]+$",
+                                    "description": "Item unique reference code"
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "maxLength": 100,
+                                    "description": "Product name for this specific variation"
+                                },
+                                "gtin": {
+                                    "type": "string",
+                                    "pattern": "^([0-9]{8}|[0-9]{12,14})$",
+                                    "description": "Global Trade Item Numbers (barcode number): UPC, EAN, JAN, ISBN, ITF-14"
+                                },
+                                "mpn": {
+                                    "type": "string",
+                                    "maxLength": 70,
+                                    "description": "Unique code specified by manufacturer to identify the product"
+                                },
+                                "price": {
+                                    "type": "number",
+                                    "multipleOf": 0.00001,
+                                    "minimum": 0,
+                                    "maximum": 999999999,
+                                    "description": "Variation sale price, when undefined, product default price should be used"
+                                },
+                                "base_price": {
+                                    "type": "number",
+                                    "multipleOf": 0.00001,
+                                    "minimum": 0,
+                                    "maximum": 999999999,
+                                    "description": "Variation original sale price, without discounts"
+                                },
+                                "cost_price": {
+                                    "type": "number",
+                                    "multipleOf": 0.00001,
+                                    "minimum": 0,
+                                    "maximum": 999999999,
+                                    "description": "Variation cost price to calculate profit"
+                                },
+                                "installments": {
+                                    "type": "object",
+                                    "required": [
+                                        "number",
+                                        "value"
+                                    ],
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "number": {
+                                            "type": "integer",
+                                            "minimum": 2,
+                                            "maximum": 999,
+                                            "description": "Default number of installments for this product variation"
+                                        },
+                                        "value": {
+                                            "type": "number",
+                                            "multipleOf": 0.00001,
+                                            "minimum": 0,
+                                            "maximum": 999999999,
+                                            "description": "Installment value"
+                                        },
+                                        "tax": {
+                                            "type": "boolean",
+                                            "default": false,
+                                            "description": "Tax applied"
+                                        }
+                                    },
+                                    "description": "Default installments option"
+                                },
+                                "quantity": {
+                                    "type": "number",
+                                    "multipleOf": 0.0001,
+                                    "minimum": 0,
+                                    "maximum": 9999999,
+                                    "description": "Product quantity available to sell, max to put in cart"
+                                },
+                                "min_quantity": {
+                                    "type": "number",
+                                    "multipleOf": 0.0001,
+                                    "minimum": 0,
+                                    "maximum": 999999,
+                                    "description": "Minimum quantity to put in cart"
+                                },
+                                "production_time": {
+                                    "type": "object",
+                                    "required": [
+                                        "days"
+                                    ],
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "days": {
+                                            "type": "integer",
+                                            "minimum": 0,
+                                            "maximum": 99999,
+                                            "description": "Number of days to post after purchase, deadline for production or handling"
+                                        },
+                                        "working_days": {
+                                            "type": "boolean",
+                                            "default": true,
+                                            "description": "If the deadline is calculated in working days"
+                                        },
+                                        "cumulative": {
+                                            "type": "boolean",
+                                            "default": false,
+                                            "description": "If the production time is cumulative per unit"
+                                        },
+                                        "max_time": {
+                                            "type": "integer",
+                                            "minimum": 0,
+                                            "maximum": 99999,
+                                            "description": "When cumulative, increase up to this maximum in days"
+                                        }
+                                    },
+                                    "description": "Deadline for production or handling of pre-ordered product"
+                                },
+                                "dimensions": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "patternProperties": {
+                                        "^width|height|length$": {
+                                            "type": "object",
+                                            "required": [
+                                                "value"
+                                            ],
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "value": {
+                                                    "type": "number",
+                                                    "multipleOf": 0.001,
+                                                    "minimum": 0,
+                                                    "maximum": 999999,
+                                                    "description": "Size in specified unit"
+                                                },
+                                                "unit": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "mm",
+                                                        "cm",
+                                                        "m",
+                                                        "ft",
+                                                        "in",
+                                                        "yd",
+                                                        "mi"
+                                                    ],
+                                                    "default": "cm",
+                                                    "description": "Unit of measurement"
+                                                }
+                                            },
+                                            "description": "Package width, height and length"
+                                        }
+                                    },
+                                    "description": "Product dimensions with packaging for freight calculation"
+                                },
+                                "weight": {
+                                    "type": "object",
+                                    "required": [
+                                        "value"
+                                    ],
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "value": {
+                                            "type": "number",
+                                            "multipleOf": 0.001,
+                                            "minimum": 0,
+                                            "maximum": 999999,
+                                            "description": "Size in specified unit"
+                                        },
+                                        "unit": {
+                                            "type": "string",
+                                            "enum": [
+                                                "mg",
+                                                "g",
+                                                "kg",
+                                                "lb",
+                                                "oz"
+                                            ],
+                                            "default": "g",
+                                            "description": "Unit of measurement"
+                                        }
+                                    },
+                                    "description": "Package weight for freight calculation"
+                                },
+                                "specifications": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "minProperties": 1,
+                                    "maxProperties": 20,
+                                    "properties": {
+                                        "material": {
+                                            "type": "array",
+                                            "maxItems": 1,
+                                            "items": {
+                                                "type": "object",
+                                                "required": [
+                                                    "text"
+                                                ],
+                                                "properties": {
+                                                    "text": {
+                                                        "type": "string",
+                                                        "maxLength": 200,
+                                                        "description": "Text displayed for the client describing the attribute"
+                                                    },
+                                                    "value": {
+                                                        "type": "string",
+                                                        "maxLength": 200,
+                                                        "description": "Default normalized value to use on GMC and other integrations"
+                                                    }
+                                                },
+                                                "description": "Specification object"
+                                            },
+                                            "description": "Attribute to describe the main fabric or material that your product is made of"
+                                        },
+                                        "pattern": {
+                                            "type": "array",
+                                            "maxItems": 1,
+                                            "items": {
+                                                "type": "object",
+                                                "required": [
+                                                    "text"
+                                                ],
+                                                "properties": {
+                                                    "text": {
+                                                        "type": "string",
+                                                        "maxLength": 200,
+                                                        "description": "Text displayed for the client describing the attribute"
+                                                    },
+                                                    "value": {
+                                                        "type": "string",
+                                                        "maxLength": 100,
+                                                        "description": "Default normalized value to use on GMC and other integrations"
+                                                    }
+                                                },
+                                                "description": "Specification object"
+                                            },
+                                            "description": "Attribute to describe the pattern or graphic printed on your product"
+                                        },
+                                        "size": {
+                                            "type": "array",
+                                            "maxItems": 1,
+                                            "items": {
+                                                "type": "object",
+                                                "required": [
+                                                    "text"
+                                                ],
+                                                "properties": {
+                                                    "text": {
+                                                        "type": "string",
+                                                        "maxLength": 200,
+                                                        "description": "Text displayed for the client describing the attribute"
+                                                    },
+                                                    "value": {
+                                                        "type": "string",
+                                                        "maxLength": 100,
+                                                        "description": "Default normalized value to use on GMC and other integrations"
+                                                    }
+                                                },
+                                                "description": "Specification object"
+                                            },
+                                            "description": "Attribute to describe the standardized size of your product"
+                                        },
+                                        "colors": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "required": [
+                                                    "text"
+                                                ],
+                                                "additionalProperties": false,
+                                                "properties": {
+                                                    "text": {
+                                                        "type": "string",
+                                                        "maxLength": 50,
+                                                        "description": "Color name"
+                                                    },
+                                                    "value": {
+                                                        "type": "string",
+                                                        "pattern": "^#[a-f0-9]{6}$",
+                                                        "description": "RGB code with #"
+                                                    }
+                                                },
+                                                "description": "Color object"
+                                            },
+                                            "description": "Variation color palette, list ordered by importance, starting by main color"
+                                        }
+                                    },
+                                    "patternProperties": {
+                                        "^[a-z0-9_]{2,30}$": {
+                                            "type": "array",
+                                            "minItems": 1,
+                                            "maxItems": 6,
+                                            "items": {
+                                                "type": "object",
+                                                "required": [
+                                                    "text"
+                                                ],
+                                                "additionalProperties": false,
+                                                "properties": {
+                                                    "text": {
+                                                        "type": "string",
+                                                        "maxLength": 255,
+                                                        "description": "Text displayed for the client describing the specification"
+                                                    },
+                                                    "value": {
+                                                        "type": "string",
+                                                        "maxLength": 200,
+                                                        "description": "Default normalized value to use in integrations"
+                                                    },
+                                                    "external_values": {
+                                                        "type": "object",
+                                                        "additionalProperties": false,
+                                                        "maxProperties": 5,
+                                                        "patternProperties": {
+                                                            "^[a-z0-9_]{2,30}$": {
+                                                                "type": "string",
+                                                                "maxLength": 200,
+                                                                "description": "Attribute text external value"
+                                                            }
+                                                        },
+                                                        "description": "Normalized values to use in specific integrations (ID in property)"
+                                                    }
+                                                },
+                                                "description": "Attribute object"
+                                            },
+                                            "description": "Custom variation attributes, grid_id as property name"
+                                        }
+                                    },
+                                    "description": "Variation attributes and technical specifications"
+                                },
+                                "picture_id": {
+                                    "type": "string",
+                                    "pattern": "^[a-f0-9]{24}$",
+                                    "description": "ID of one of the product pictures for this variation"
+                                },
+                                "flags": {
+                                    "type": "array",
+                                    "uniqueItems": true,
+                                    "maxItems": 10,
+                                    "items": {
+                                        "type": "string",
+                                        "maxLength": 20,
+                                        "description": "Flag title"
+                                    },
+                                    "description": "Flags to associate additional info"
+                                }
+                            },
+                            "description": "Variation object"
+                        },
+                        "description": "Product variations list"
+                    },
+                    "other_prices": {
+                        "type": "array",
+                        "maxItems": 100,
+                        "items": {
+                            "type": "object",
+                            "required": [
+                                "_id",
+                                "price"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                                "_id": {
+                                    "type": "string",
+                                    "pattern": "^[a-f0-9]{24}$",
+                                    "description": "Unique ID (ObjectID)"
+                                },
+                                "tag": {
+                                    "type": "string",
+                                    "maxLength": 20,
+                                    "pattern": "^[a-z0-9_]+$",
+                                    "description": "Tag to identify object, use only lowercase letters, digits and underscore"
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "maxLength": 255,
+                                    "description": "Some optional notes to describe for what this price is intended"
+                                },
+                                "currency_id": {
+                                    "type": "string",
+                                    "pattern": "^[A-Z]{3}$",
+                                    "default": "BRL",
+                                    "description": "Designator of currency according to ISO 4217 (3 uppercase letters)"
+                                },
+                                "currency_symbol": {
+                                    "type": "string",
+                                    "maxLength": 20,
+                                    "default": "R$",
+                                    "description": "Graphic symbol used as a shorthand for currency's name"
+                                },
+                                "price": {
+                                    "type": "number",
+                                    "multipleOf": 0.00001,
+                                    "minimum": 0,
+                                    "maximum": 999999999,
+                                    "description": "Product sale price"
+                                }
+                            },
+                            "description": "Price (object)"
+                        },
+                        "description": "Other optional prices used"
+                    },
+                    "price_change_records": {
+                        "type": "array",
+                        "maxItems": 180,
+                        "items": {
+                            "type": "object",
+                            "required": [
+                                "_id",
+                                "date_of_change",
+                                "price"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                                "_id": {
+                                    "type": "string",
+                                    "pattern": "^[a-f0-9]{24}$",
+                                    "description": "Unique ID (ObjectID)"
+                                },
+                                "date_of_change": {
+                                    "type": "string",
+                                    "format": "date-time",
+                                    "description": "Date and time when price changed in ISO 8601 standard representation"
+                                },
+                                "currency_id": {
+                                    "type": "string",
+                                    "pattern": "^[A-Z]{3}$",
+                                    "default": "BRL",
+                                    "description": "Designator of currency according to ISO 4217 (3 uppercase letters)"
+                                },
+                                "currency_symbol": {
+                                    "type": "string",
+                                    "maxLength": 20,
+                                    "default": "R$",
+                                    "description": "Graphic symbol used as a shorthand for currency's name"
+                                },
+                                "price": {
+                                    "type": "number",
+                                    "multipleOf": 0.00001,
+                                    "minimum": 0,
+                                    "maximum": 999999999,
+                                    "description": "Product sale price"
+                                }
+                            },
+                            "description": "Historical record"
+                        },
+                        "description": "Historical of recent practiced sale prices"
+                    },
+                    "installments": {
+                        "type": "object",
+                        "required": [
+                            "number",
+                            "value"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "payment_method_id": {
+                                "type": "string",
+                                "pattern": "^[a-f0-9]{24}$",
+                                "description": "Specify ID if this installments option is for an specific payment method"
+                            },
+                            "number": {
+                                "type": "integer",
+                                "minimum": 2,
+                                "maximum": 999,
+                                "description": "Default number of installments for this product"
+                            },
+                            "value": {
+                                "type": "number",
+                                "multipleOf": 0.00001,
+                                "minimum": 0,
+                                "maximum": 999999999,
+                                "description": "Installment value"
+                            },
+                            "tax": {
+                                "type": "boolean",
+                                "default": false,
+                                "description": "Tax applied"
+                            }
+                        },
+                        "description": "Default installments option"
+                    },
+                    "discount": {
+                        "type": "object",
+                        "required": [
+                            "value"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "label": {
+                                "type": "string",
+                                "maxLength": 50,
+                                "description": "Name of payment method or other label describing applicable discount"
+                            },
+                            "payment_method_id": {
+                                "type": "string",
+                                "pattern": "^[a-f0-9]{24}$",
+                                "description": "Specify ID if this discount is for an specific payment method"
+                            },
+                            "type": {
+                                "type": "string",
+                                "enum": [
+                                    "percentage",
+                                    "fixed"
+                                ],
+                                "default": "percentage",
+                                "description": "Discount type"
+                            },
+                            "value": {
+                                "type": "number",
+                                "multipleOf": 0.0001,
+                                "minimum": -99999999,
+                                "maximum": 99999999,
+                                "description": "Discount value, percentage or fixed"
+                            }
+                        },
+                        "description": "Default discount option, commonly by payment method"
+                    },
+                    "progressive_discount": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "maxProperties": 100,
+                        "patternProperties": {
+                            "^([2-9]|([1-9][0-9]{1,8}))$": {
+                                "type": "number",
+                                "multipleOf": 0.01,
+                                "minimum": -999,
+                                "maximum": 999,
+                                "description": "Percentage discount"
+                            }
+                        },
+                        "description": "Progressive discounts options, product quantity as property name"
+                    },
+                    "other_discounts": {
+                        "type": "array",
+                        "maxItems": 100,
+                        "items": {
+                            "type": "object",
+                            "required": [
+                                "_id",
+                                "discount"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                                "_id": {
+                                    "type": "string",
+                                    "pattern": "^[a-f0-9]{24}$",
+                                    "description": "Unique ID (ObjectID)"
+                                },
+                                "tag": {
+                                    "type": "string",
+                                    "maxLength": 20,
+                                    "pattern": "^[a-z0-9_]+$",
+                                    "description": "Tag to identify object, use only lowercase letters, digits and underscore"
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "maxLength": 255,
+                                    "description": "Some optional notes to describe for what this discount is intended"
+                                },
+                                "type": {
+                                    "type": "string",
+                                    "enum": [
+                                        "percentage",
+                                        "fixed"
+                                    ],
+                                    "default": "percentage",
+                                    "description": "Discount type"
+                                },
+                                "discount": {
+                                    "type": "number",
+                                    "multipleOf": 0.0001,
+                                    "minimum": -99999999,
+                                    "maximum": 99999999,
+                                    "description": "Discount value, percentage or fixed"
+                                }
+                            },
+                            "description": "Discount object"
+                        },
+                        "description": "Other discounts for custom applications"
+                    },
+                    "buy_together": {
+                        "type": "array",
+                        "maxItems": 20,
+                        "items": {
+                            "type": "object",
+                            "required": [
+                                "this"
+                            ],
+                            "additionalProperties": false,
+                            "maxProperties": 50,
+                            "patternProperties": {
+                                "^([a-f0-9]{24}|this)$": {
+                                    "type": "object",
+                                    "required": [
+                                        "quantity"
+                                    ],
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "quantity": {
+                                            "type": "number",
+                                            "multipleOf": 0.0001,
+                                            "minimum": 0,
+                                            "maximum": 9999999,
+                                            "description": "Product quantity"
+                                        },
+                                        "discount": {
+                                            "type": "object",
+                                            "required": [
+                                                "value"
+                                            ],
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "type": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "percentage",
+                                                        "fixed"
+                                                    ],
+                                                    "default": "percentage",
+                                                    "description": "Discount type"
+                                                },
+                                                "value": {
+                                                    "type": "number",
+                                                    "multipleOf": 0.0001,
+                                                    "minimum": -99999999,
+                                                    "maximum": 99999999,
+                                                    "description": "Discount value, percentage or fixed"
+                                                }
+                                            },
+                                            "description": "Discount object"
+                                        }
+                                    },
+                                    "description": "Product in buy together"
+                                }
+                            },
+                            "description": "This product and others composing buy together, product ID as property name"
+                        },
+                        "description": "Buy together options"
+                    },
+                    "loyalty_points": {
+                        "type": "object",
+                        "required": [
+                            "program_id",
+                            "points_value"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "name": {
+                                "type": "string",
+                                "maxLength": 50,
+                                "description": "The name of the loyalty points program"
+                            },
+                            "program_id": {
+                                "type": "string",
+                                "pattern": "^[a-z0-9_]{2,30}$",
+                                "description": "Unique identifier, program name using only lowercase, numbers and underscore"
+                            },
+                            "points_value": {
+                                "type": "number",
+                                "multipleOf": 0.00001,
+                                "minimum": 0,
+                                "maximum": 999999999,
+                                "description": "Number of loyalty points a customer receives when purchasing the product"
+                            },
+                            "ratio": {
+                                "type": "number",
+                                "multipleOf": 0.001,
+                                "minimum": 0,
+                                "maximum": 9999,
+                                "description": "The ratio of a point when converted to currency"
+                            }
+                        },
+                        "description": "Specify how many and what type of loyalty points a customer receives"
+                    },
+                    "payment_methods": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "maxProperties": 30,
+                        "patternProperties": {
+                            "^[a-f0-9]{24}$": {
+                                "type": "object",
+                                "required": [
+                                    "label"
+                                ],
+                                "additionalProperties": false,
+                                "properties": {
+                                    "label": {
+                                        "type": "string",
+                                        "maxLength": 50,
+                                        "description": "Name of payment method shown to customers"
+                                    },
+                                    "icon": {
+                                        "type": "string",
+                                        "maxLength": 255,
+                                        "format": "uri",
+                                        "description": "Payment icon image URI"
+                                    },
+                                    "discount": {
+                                        "type": "object",
+                                        "required": [
+                                            "value"
+                                        ],
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "percentage",
+                                                    "fixed"
+                                                ],
+                                                "default": "percentage",
+                                                "description": "Discount type"
+                                            },
+                                            "value": {
+                                                "type": "number",
+                                                "multipleOf": 0.0001,
+                                                "minimum": -99999999,
+                                                "maximum": 99999999,
+                                                "description": "Discount value, percentage or fixed"
+                                            }
+                                        },
+                                        "description": "Discount object"
+                                    },
+                                    "installments": {
+                                        "type": "object",
+                                        "additionalProperties": false,
+                                        "maxProperties": 100,
+                                        "patternProperties": {
+                                            "^([2-9]|([1-9][0-9]{1,3}))$": {
+                                                "type": "object",
+                                                "required": [
+                                                    "value"
+                                                ],
+                                                "additionalProperties": false,
+                                                "properties": {
+                                                    "value": {
+                                                        "type": "number",
+                                                        "multipleOf": 0.00001,
+                                                        "minimum": 0,
+                                                        "maximum": 999999999,
+                                                        "description": "Installment value"
+                                                    },
+                                                    "tax": {
+                                                        "type": "boolean",
+                                                        "default": false,
+                                                        "description": "Tax applied"
+                                                    }
+                                                },
+                                                "description": "Installment option object"
+                                            }
+                                        },
+                                        "description": "Installment options, installments number as property name"
+                                    }
+                                },
+                                "description": "Payment option"
+                            }
+                        },
+                        "description": "Payment methods for this product, application ID as property name"
+                    },
+                    "shipping_methods": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "maxProperties": 30,
+                        "patternProperties": {
+                            "^[a-f0-9]{24}$": {
+                                "type": "object",
+                                "required": [
+                                    "label"
+                                ],
+                                "additionalProperties": false,
+                                "properties": {
+                                    "label": {
+                                        "type": "string",
+                                        "maxLength": 50,
+                                        "description": "Name of shipping method shown to customers"
+                                    },
+                                    "icon": {
+                                        "type": "string",
+                                        "maxLength": 255,
+                                        "format": "uri",
+                                        "description": "Shipping method icon image URI"
+                                    },
+                                    "free_shipping": {
+                                        "type": "boolean",
+                                        "default": false,
+                                        "description": "Free shipping with this method"
+                                    }
+                                },
+                                "description": "Shipping method object"
+                            }
+                        },
+                        "description": "Shipping methods, application ID as property name"
+                    },
+                    "gift_wraps": {
+                        "type": "array",
+                        "maxItems": 20,
+                        "items": {
+                            "type": "object",
+                            "required": [
+                                "label"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                                "tag": {
+                                    "type": "string",
+                                    "maxLength": 20,
+                                    "pattern": "^[a-z0-9_]+$",
+                                    "description": "Tag to identify object, use only lowercase letters, digits and underscore"
+                                },
+                                "label": {
+                                    "type": "string",
+                                    "maxLength": 70,
+                                    "description": "Title describing this gift wrap"
+                                },
+                                "add_to_price": {
+                                    "type": "number",
+                                    "multipleOf": 0.0001,
+                                    "minimum": 0,
+                                    "maximum": 99999999,
+                                    "description": "Additional value for this gift wrap"
+                                }
+                            },
+                            "description": "Gift wrap object"
+                        },
+                        "description": "Default gift wrap options"
+                    },
+                    "destinations": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "patternProperties": {
+                            "^included|excluded$": {
+                                "type": "object",
+                                "required": [
+                                    "country"
+                                ],
+                                "additionalProperties": false,
+                                "properties": {
+                                    "country": {
+                                        "type": "string",
+                                        "minLength": 2,
+                                        "maxLength": 2,
+                                        "pattern": "^[A-Z]+$",
+                                        "description": "An ISO 3166-2 country code"
+                                    },
+                                    "zip_codes_range": {
+                                        "type": "object",
+                                        "additionalProperties": false,
+                                        "patternProperties": {
+                                            "^start|end$": {
+                                                "type": "string",
+                                                "maxLength": 30,
+                                                "description": "ZIP (CEP, postal...) code"
+                                            }
+                                        },
+                                        "description": "ZIP codes range for shipping rules (include or exclude)"
+                                    }
+                                },
+                                "description": "Available or unavailable destination"
+                            }
+                        },
+                        "description": "List of available shipping destinations"
+                    },
+                    "location": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "zip_codes": {
+                                "type": "array",
+                                "maxItems": 30,
+                                "items": {
+                                    "type": "object",
+                                    "required": [
+                                        "code"
+                                    ],
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "tag": {
+                                            "type": "string",
+                                            "maxLength": 20,
+                                            "pattern": "^[a-z0-9_]+$",
+                                            "description": "Tag to identify object, use only lowercase letters, digits and underscore"
+                                        },
+                                        "code": {
+                                            "type": "string",
+                                            "maxLength": 30,
+                                            "description": "ZIP (CEP, postal...) code"
+                                        }
+                                    },
+                                    "description": "Shipping origin, ZIP code and identifier"
+                                },
+                                "description": "Collection of ZIP codes of product origin locations"
+                            },
+                            "country": {
+                                "type": "string",
+                                "minLength": 2,
+                                "maxLength": 2,
+                                "pattern": "^[A-Z]+$",
+                                "description": "An ISO 3166-2 country code"
+                            },
+                            "region": {
+                                "type": "string",
+                                "maxLength": 30,
+                                "description": "State, territory or prefecture name"
+                            },
+                            "address": {
+                                "type": "string",
+                                "maxLength": 255,
+                                "description": "Full address of product location"
+                            },
+                            "geolocation": {
+                                "type": "object",
+                                "required": [
+                                    "latitude",
+                                    "longitude"
+                                ],
+                                "additionalProperties": false,
+                                "properties": {
+                                    "latitude": {
+                                        "type": "number",
+                                        "multipleOf": 1e-7,
+                                        "minimum": -90,
+                                        "maximum": 90,
+                                        "description": "Geolocation latitude"
+                                    },
+                                    "longitude": {
+                                        "type": "number",
+                                        "multipleOf": 1e-7,
+                                        "minimum": -180,
+                                        "maximum": 180,
+                                        "description": "Geolocation longitude"
+                                    }
+                                },
+                                "description": "Geolocation of origin"
+                            }
+                        },
+                        "description": "Product location(s), shipping origin"
+                    },
+                    "tax": {
+                        "type": "array",
+                        "maxItems": 100,
+                        "items": {
+                            "type": "object",
+                            "required": [
+                                "rate",
+                                "country"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                                "rate": {
+                                    "type": "number",
+                                    "multipleOf": 0.01,
+                                    "minimum": -999,
+                                    "maximum": 999,
+                                    "description": "Tax rate as a percentage of the price"
+                                },
+                                "country": {
+                                    "type": "string",
+                                    "minLength": 2,
+                                    "maxLength": 2,
+                                    "pattern": "^[A-Z]+$",
+                                    "description": "An ISO 3166-2 country code"
+                                },
+                                "tax_ship": {
+                                    "type": "boolean",
+                                    "default": false,
+                                    "description": "Whether you charge tax on shipping"
+                                },
+                                "zip_codes_range": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "patternProperties": {
+                                        "^start|end$": {
+                                            "type": "string",
+                                            "maxLength": 30,
+                                            "description": "ZIP (CEP, postal...) code"
+                                        }
+                                    },
+                                    "description": "ZIP codes range defining region to apply tax"
+                                }
+                            },
+                            "description": "Tax object"
+                        },
+                        "description": "List of taxes applied by region"
+                    },
+                    "kit_composition": {
+                        "type": "array",
+                        "maxItems": 100,
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "required": [
+                                "_id"
+                            ],
+                            "properties": {
+                                "_id": {
+                                    "type": "string",
+                                    "pattern": "^[a-f0-9]{24}$",
+                                    "description": "Product ID"
+                                },
+                                "quantity": {
+                                    "type": "number",
+                                    "multipleOf": 0.0001,
+                                    "minimum": 0,
+                                    "maximum": 9999999,
+                                    "description": "Product quantity"
+                                },
+                                "label": {
+                                    "type": "string",
+                                    "maxLength": 255,
+                                    "description": "Label shown to customer, if you want to use a title other than the product name"
+                                },
+                                "has_variations": {
+                                    "type": "boolean",
+                                    "default": false,
+                                    "description": "If this product has variations"
+                                },
+                                "variation_id": {
+                                    "type": "string",
+                                    "pattern": "^[a-f0-9]{24}$",
+                                    "description": "ID to specify a variation if has_variations is true, it's optional"
+                                }
+                            },
+                            "description": "One of the kit items"
+                        },
+                        "description": "If this product is a kit, set its composition"
+                    },
+                    "parent_item_id": {
+                        "type": "string",
+                        "pattern": "^[a-f0-9]{24}$",
+                        "description": "Parent product ID, if this product is contained by another (a kit)"
+                    },
+                    "related_products": {
+                        "type": "array",
+                        "maxItems": 30,
+                        "items": {
+                            "type": "object",
+                            "required": [
+                                "_id",
+                                "product_ids"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                                "_id": {
+                                    "type": "string",
+                                    "pattern": "^[a-f0-9]{24}$",
+                                    "description": "Unique ID (ObjectID)"
+                                },
+                                "tag": {
+                                    "type": "string",
+                                    "maxLength": 20,
+                                    "pattern": "^[a-z0-9_]+$",
+                                    "description": "Tag to identify object, use only lowercase letters, digits and underscore"
+                                },
+                                "product_ids": {
+                                    "type": "array",
+                                    "uniqueItems": true,
+                                    "maxItems": 100,
+                                    "items": {
+                                        "type": "string",
+                                        "pattern": "^[a-f0-9]{24}$",
+                                        "description": "Product ID"
+                                    },
+                                    "description": "List of products"
+                                }
+                            },
+                            "description": "A list with products related to this"
+                        },
+                        "description": "Lists of related products"
+                    },
+                    "auto_fill_related_products": {
+                        "type": "boolean",
+                        "default": true,
+                        "description": "True when related products lists should be created and updated automatically (ML)"
+                    },
+                    "gtin": {
+                        "type": "array",
+                        "maxItems": 10,
+                        "items": {
+                            "type": "string",
+                            "pattern": "^([0-9]{8}|[0-9]{12,14})$",
+                            "description": "Global Trade Item Numbers (barcode number): UPC, EAN, JAN, ISBN, ITF-14"
+                        },
+                        "description": "List of product GTIN codes"
+                    },
+                    "mpn": {
+                        "type": "array",
+                        "maxItems": 10,
+                        "items": {
+                            "type": "string",
+                            "maxLength": 70,
+                            "description": "Unique code specified by manufacturer to identify the product"
+                        },
+                        "description": "List of product MPN codes"
+                    },
+                    "seller": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "code": {
+                                "type": "string",
+                                "maxLength": 100,
+                                "description": "Unique reference code to identify this seller"
+                            },
+                            "name": {
+                                "type": "string",
+                                "maxLength": 200,
+                                "description": "Seller name"
+                            },
+                            "logo": {
+                                "type": "string",
+                                "maxLength": 255,
+                                "format": "uri",
+                                "description": "Image link to shop's logo"
+                            },
+                            "description": {
+                                "type": "string",
+                                "maxLength": 255,
+                                "description": "Short description of shop"
+                            },
+                            "doc_type": {
+                                "type": "string",
+                                "enum": [
+                                    "CPF",
+                                    "CNPJ"
+                                ],
+                                "description": "Responsible person or organization document type"
+                            },
+                            "doc_number": {
+                                "type": "string",
+                                "maxLength": 19,
+                                "pattern": "^[0-9]+$",
+                                "description": "Responsible person or organization document number (only numbers)"
+                            },
+                            "inscription_type": {
+                                "type": "string",
+                                "enum": [
+                                    "State",
+                                    "Municipal"
+                                ],
+                                "description": "Municipal or state registration if exists"
+                            },
+                            "inscription_number": {
+                                "type": "string",
+                                "maxLength": 50,
+                                "description": "Municipal or state registration number (with characters) if exists"
+                            },
+                            "corporate_name": {
+                                "type": "string",
+                                "maxLength": 255,
+                                "description": "Registered company name or responsible fullname"
+                            },
+                            "address": {
+                                "type": "string",
+                                "maxLength": 255,
+                                "description": "Full registered address of company"
+                            },
+                            "phone": {
+                                "type": "string",
+                                "maxLength": 19,
+                                "pattern": "^[0-9]+$",
+                                "description": "Contact phone"
+                            },
+                            "contact_email": {
+                                "type": "string",
+                                "maxLength": 255,
+                                "format": "email",
+                                "description": "Public email address for news and general contact"
+                            }
+                        },
+                        "description": "Whether the product is sold by a third party, usual in marketplaces"
+                    },
+                    "metafields": {
+                        "type": "array",
+                        "maxItems": 100,
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "required": [
+                                "_id",
+                                "value"
+                            ],
+                            "properties": {
+                                "_id": {
+                                    "type": "string",
+                                    "pattern": "^[a-f0-9]{24}$",
+                                    "description": "Unique ID (ObjectID)"
+                                },
+                                "namespace": {
+                                    "type": "string",
+                                    "maxLength": 30,
+                                    "description": "String to help distinguish who (or which app) created and can use the metafield"
+                                },
+                                "field": {
+                                    "type": "string",
+                                    "maxLength": 50,
+                                    "description": "Field name"
+                                },
+                                "value": {
+                                    "type": "string",
+                                    "maxLength": 255,
+                                    "description": "Custom property value"
+                                }
+                            },
+                            "description": "Custom attribute object"
+                        },
+                        "description": "List of custom attributes"
+                    },
+                    "hidden_metafields": {
+                        "type": "array",
+                        "maxItems": 100,
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "required": [
+                                "_id",
+                                "value"
+                            ],
+                            "properties": {
+                                "_id": {
+                                    "type": "string",
+                                    "pattern": "^[a-f0-9]{24}$",
+                                    "description": "Unique ID (ObjectID)"
+                                },
+                                "namespace": {
+                                    "type": "string",
+                                    "maxLength": 30,
+                                    "description": "String to help distinguish who (or which app) created and can use the metafield"
+                                },
+                                "field": {
+                                    "type": "string",
+                                    "maxLength": 50,
+                                    "description": "Field name"
+                                },
+                                "value": {
+                                    "type": "string",
+                                    "maxLength": 255,
+                                    "description": "Custom property value"
+                                }
+                            },
+                            "description": "Custom attribute object"
+                        },
+                        "description": "List of custom attributes"
+                    },
+                    "flags": {
+                        "type": "array",
+                        "uniqueItems": true,
+                        "maxItems": 10,
+                        "items": {
+                            "type": "string",
+                            "maxLength": 20,
+                            "description": "Flag title"
+                        },
+                        "description": "Flags to associate additional info"
+                    },
+                    "notes": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "description": "Optional notes with additional info about this product"
+                    }
+                }
+            }
+
+### All Products [/products.json{?sku}]
+
+*/products.json?sku*
+
+> Authentication<br>_GET_: **none**
+
+Pagination is not available, the unique possible filter is by `sku`
+
+Returns only `_id` and `sku` of each product
+
+#### List All Store Products [GET /products.json]
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "meta": {
+                "query": {}
+              },
+              "result": [
+                {
+                  "_id": "1234567890abcdef01291510",
+                  "sku": "COD1"
+                },
+                {
+                  "_id": "1234567890abcdef01291511",
+                  "sku": "S_123456789"
+                },
+                {
+                  "_id": "1234567890abcdef01291512",
+                  "sku": "sYY7-100P"
+                }
+              ]
+            }
+
+#### Find Product [GET]
+
++ Parameters
+    + sku: COD1 (string, optional) - The product SKU
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "meta": {
+                "query": {
+                  "sku": "COD1"
+                }
+              },
+              "result": [
+                {
+                  "_id": "1234567890abcdef01291510",
+                  "sku": "COD1"
+                }
+              ]
+            }
+
+### New Product [/products.json]
+
+*/products.json*
+
+> Authentication<br>_POST_: **required**
+
+Request body must obey the specifications of
+[this model](#reference/products/product-object)
+
+#### Create New Product [POST]
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
+    + Body
+
+            {
+              "sku": "s-MP_2B4",
+              "name": "Mens Pique Polo Shirt",
+              "slug": "mens-pique-polo-shirt",
+              "short_description": "Red, 100% cotton, large men’s t-shirt",
+              "body_html": "<p>Red, 100% cotton, large men’s t-shirt.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>",
+              "body_text": "Red, 100% cotton, large men’s t-shirt.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+              "meta_title": "Mens Pique Polo Shirt - My Shirt Shop",
+              "meta_description": "Mens Pique Polo Shirt, Red, 100% cotton, large men’s t-shirt",
+              "keywords": [
+                "tshirt", "t-shirt", "man"
+              ],
+              "price": 42.90,
+              "price_effective_date": {
+                "end": "2018-12-01T10:00:00.612Z"
+              },
+              "base_price": 60.00,
+              "quantity": 100,
+              "dimensions": {
+                "width": {
+                  "value": 10
+                },
+                "height": {
+                  "value": 8
+                },
+                "length": {
+                  "value": 8
+                }
+              },
+              "weight": {
+                "value": 400
+              },
+              "brands": [
+                {
+                  "_id": "a10000000000000000000001",
+                  "name": "Shirts Example",
+                  "slug": "shirts-example",
+                  "logo": {
+                    "url": "https://mycdn.com/shirts-example.jpg",
+                    "size": "100x50"
+                  }
+                }
+              ],
+              "categories": [
+                {
+                  "_id": "f10000000000000000000001",
+                  "name": "Polo Shirts",
+                  "slug": "polo"
+                }
+              ],
+              "specifications": {
+                "age_group": [
+                  {
+                    "text": "Adult",
+                    "value": "adult"
+                  }
+                ],
+                "gender": [
+                  {
+                    "text": "Male",
+                    "value": "male"
+                  }
+                ],
+                "size": [
+                  {
+                    "text": "Large",
+                    "value": "large"
+                  }
+                ],
+                "size_type": [
+                  {
+                    "text": "Regular",
+                    "value": "regular"
+                  }
+                ],
+                "size_system": [
+                  {
+                    "text": "BR",
+                    "value": "BR"
+                  }
+                ],
+                "material": [
+                  {
+                    "text": "Cotton",
+                    "value": "cotton"
+                  }
+                ],
+                "colors": [
+                  {
+                    "text": "Pique",
+                    "value": "#ff5b00"
+                  }
+                ]
+              },
+              "gtin": [
+                "12345678901234"
+              ],
+              "mpn": [
+                "T1230"
+              ]
+            }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+              "_id": "123a5432109876543210cdef"
+            }
+
+### Specific Product [/products/{_id}.json]
+
+*/products/[_id].json*
+
+> Authentication<br>_GET_: **optional**<br>_PATCH_, _PUT_, _DELETE_: **required**
+
+In read requests, response body will follow
+[this model](#reference/products/product-object),
+requests without authentication will receive product data without `hidden_metafields` property
+
+For overwriting and editing, request body must obey the same specifications,
+but especially for edit requests there are no required fields
+
+#### Read Product [GET /products/{product}.json]
+
++ Parameters
+    + product: 123a5432109876543210cdef (string, required) - The product ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "_id": "123a5432109876543210cdef",
+              "created_at": "2017-12-01T01:00:30.612Z",
+              "store_id": 100,
+              "sku": "s-MP_2B4",
+              "commodity_type": "physical",
+              "name": "Mens Pique Polo Shirt",
+              "slug": "mens-pique-polo-shirt",
+              "available": true,
+              "visible": true,
+              "ad_relevance": 0,
+              "short_description": "Red, 100% cotton, large men’s t-shirt",
+              "body_html": "<p>Red, 100% cotton, large men’s t-shirt.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>",
+              "body_text": "Red, 100% cotton, large men’s t-shirt.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+              "meta_title": "Mens Pique Polo Shirt - My Shirt Shop",
+              "meta_description": "Mens Pique Polo Shirt, Red, 100% cotton, large men’s t-shirt",
+              "keywords": [
+                "tshirt", "t-shirt", "man"
+              ],
+              "price": 42.90,
+              "price_effective_date": {
+                "end": "2018-12-01T10:00:00.612Z"
+              },
+              "base_price": 60.00,
+              "currency_id": "BRL",
+              "currency_symbol": "R$",
+              "quantity": 100,
+              "manage_stock": true,
+              "dimensions": {
+                "width": {
+                  "value": 10,
+                  "unit": "cm"
+                },
+                "height": {
+                  "value": 8,
+                  "unit": "cm"
+                },
+                "length": {
+                  "value": 8,
+                  "unit": "cm"
+                }
+              },
+              "weight": {
+                "value": 400,
+                "unit": "g"
+              },
+              "condition": "new",
+              "adult": false,
+              "brands": [
+                {
+                  "_id": "a10000000000000000000001",
+                  "name": "Shirts Example",
+                  "slug": "shirts-example",
+                  "logo": {
+                    "url": "https://mycdn.com/shirts-example.jpg",
+                    "size": "100x50"
+                  }
+                }
+              ],
+              "categories": [
+                {
+                  "_id": "f10000000000000000000001",
+                  "name": "Polo Shirts",
+                  "slug": "polo"
+                }
+              ],
+              "specifications": {
+                "age_group": [
+                  {
+                    "text": "Adult",
+                    "value": "adult"
+                  }
+                ],
+                "gender": [
+                  {
+                    "text": "Male",
+                    "value": "male"
+                  }
+                ],
+                "size": [
+                  {
+                    "text": "Large",
+                    "value": "large"
+                  }
+                ],
+                "size_type": [
+                  {
+                    "text": "Regular",
+                    "value": "regular"
+                  }
+                ],
+                "size_system": [
+                  {
+                    "text": "BR",
+                    "value": "BR"
+                  }
+                ],
+                "material": [
+                  {
+                    "text": "Cotton",
+                    "value": "cotton"
+                  }
+                ],
+                "colors": [
+                  {
+                    "text": "Pique",
+                    "value": "#ff5b00"
+                  }
+                ]
+              },
+              "auto_fill_related_products": true,
+              "gtin": [
+                "12345678901234"
+              ],
+              "mpn": [
+                "T1230"
+              ]
+            }
+
+#### With Authentication [GET]
+
++ Parameters
+    + _id: 123a5432109876543210cdef (string, required) - The product ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "_id": "123a5432109876543210cdef",
+              "created_at": "2017-12-01T01:00:30.612Z",
+              "store_id": 100,
+              "sku": "s-MP_2B4",
+              "commodity_type": "physical",
+              "name": "Mens Pique Polo Shirt",
+              "slug": "mens-pique-polo-shirt",
+              "available": true,
+              "visible": true,
+              "ad_relevance": 0,
+              "short_description": "Red, 100% cotton, large men’s t-shirt",
+              "body_html": "<p>Red, 100% cotton, large men’s t-shirt.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>",
+              "body_text": "Red, 100% cotton, large men’s t-shirt.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+              "meta_title": "Mens Pique Polo Shirt - My Shirt Shop",
+              "meta_description": "Mens Pique Polo Shirt, Red, 100% cotton, large men’s t-shirt",
+              "keywords": [
+                "tshirt", "t-shirt", "man"
+              ],
+              "price": 42.90,
+              "price_effective_date": {
+                "end": "2018-12-01T10:00:00.612Z"
+              },
+              "base_price": 60.00,
+              "currency_id": "BRL",
+              "currency_symbol": "R$",
+              "quantity": 100,
+              "manage_stock": true,
+              "dimensions": {
+                "width": {
+                  "value": 10,
+                  "unit": "cm"
+                },
+                "height": {
+                  "value": 8,
+                  "unit": "cm"
+                },
+                "length": {
+                  "value": 8,
+                  "unit": "cm"
+                }
+              },
+              "weight": {
+                "value": 400,
+                "unit": "g"
+              },
+              "condition": "new",
+              "adult": false,
+              "brands": [
+                {
+                  "_id": "a10000000000000000000001",
+                  "name": "Shirts Example",
+                  "slug": "shirts-example",
+                  "logo": {
+                    "url": "https://mycdn.com/shirts-example.jpg",
+                    "size": "100x50"
+                  }
+                }
+              ],
+              "categories": [
+                {
+                  "_id": "f10000000000000000000001",
+                  "name": "Polo Shirts",
+                  "slug": "polo"
+                }
+              ],
+              "specifications": {
+                "age_group": [
+                  {
+                    "text": "Adult",
+                    "value": "adult"
+                  }
+                ],
+                "gender": [
+                  {
+                    "text": "Male",
+                    "value": "male"
+                  }
+                ],
+                "size": [
+                  {
+                    "text": "Large",
+                    "value": "large"
+                  }
+                ],
+                "size_type": [
+                  {
+                    "text": "Regular",
+                    "value": "regular"
+                  }
+                ],
+                "size_system": [
+                  {
+                    "text": "BR",
+                    "value": "BR"
+                  }
+                ],
+                "material": [
+                  {
+                    "text": "Cotton",
+                    "value": "cotton"
+                  }
+                ],
+                "colors": [
+                  {
+                    "text": "Pique",
+                    "value": "#ff5b00"
+                  }
+                ]
+              },
+              "auto_fill_related_products": true,
+              "gtin": [
+                "12345678901234"
+              ],
+              "mpn": [
+                "T1230"
+              ],
+              "hidden_metafields": [
+                {
+                  "_id": "f8765432109876543000abcd",
+                  "namespace": "my_gateway",
+                  "field": "secret_token",
+                  "value": "jsdcbvsacbhdchkblcahdbchvalhc"
+                }
+              ]
+            }
+
+#### Edit Product [PATCH]
+
++ Parameters
+    + _id: 123a5432109876543210cdef (string, required) - The product ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
+    + Body
+
+            {
+              "price": 40,
+              "price_effective_date": {
+                "end": "2018-06-01T10:00:00.612Z"
+              },
+              "quantity": 200
+            }
+
++ Response 204
+
+#### Overwrite Product [PUT]
+
++ Parameters
+    + _id: 123a5432109876543210cdef (string, required) - The product ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
+    + Body
+
+            {
+              "sku": "NEW-s-MP_2B4",
+              "name": "Men’s Pique Polo Shirt",
+              "slug": "mens-pique-polo",
+              "short_description": "Red, 100% cotton, large men’s t-shirt",
+              "meta_title": "Mens Pique Polo - My Shirt Shop",
+              "meta_description": "Mens Pique Polo Shirt, Red, 100% cotton, large men’s t-shirt",
+              "keywords": [
+                "tshirt", "t-shirt", "man"
+              ],
+              "price": 40,
+              "price_effective_date": {
+                "end": "2018-06-01T10:00:00.612Z"
+              },
+              "base_price": 50.00,
+              "quantity": 50,
+              "dimensions": {
+                "width": {
+                  "value": 10
+                },
+                "height": {
+                  "value": 8
+                },
+                "length": {
+                  "value": 8
+                }
+              },
+              "weight": {
+                "value": 400
+              },
+              "brands": [
+                {
+                  "_id": "a10000000000000000000001",
+                  "name": "Shirts Example",
+                  "slug": "shirts-example",
+                  "logo": {
+                    "url": "https://mycdn.com/shirts-example.jpg",
+                    "size": "100x50"
+                  }
+                }
+              ],
+              "categories": [
+                {
+                  "_id": "f10000000000000000000001",
+                  "name": "Polo Shirts",
+                  "slug": "polo"
+                }
+              ],
+              "specifications": {
+                "age_group": [
+                  {
+                    "text": "Adult",
+                    "value": "adult"
+                  }
+                ],
+                "gender": [
+                  {
+                    "text": "Male",
+                    "value": "male"
+                  }
+                ],
+                "size": [
+                  {
+                    "text": "Large",
+                    "value": "large"
+                  }
+                ],
+                "size_type": [
+                  {
+                    "text": "Regular",
+                    "value": "regular"
+                  }
+                ],
+                "size_system": [
+                  {
+                    "text": "BR",
+                    "value": "BR"
+                  }
+                ],
+                "material": [
+                  {
+                    "text": "Cotton",
+                    "value": "cotton"
+                  }
+                ],
+                "colors": [
+                  {
+                    "text": "Pique",
+                    "value": "#ff5b00"
+                  }
+                ]
+              },
+              "gtin": [
+                "12345678901234"
+              ],
+              "mpn": [
+                "T1230"
+              ]
+            }
+
++ Response 204
+
+#### Remove Product [DELETE]
+
++ Parameters
+    + _id: 123a5432109876543210cdef (string, required) - The product ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
++ Response 204

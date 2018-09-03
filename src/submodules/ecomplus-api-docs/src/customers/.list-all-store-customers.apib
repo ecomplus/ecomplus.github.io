@@ -1,0 +1,84 @@
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "meta": {
+                "limit": 1000,
+                "offset": 0,
+                "sort": [],
+                "fields": [
+                  "_id",
+                  "state",
+                  "enabled",
+                  "login",
+                  "status",
+                  "main_email",
+                  "display_name"
+                ],
+                "query": {}
+              },
+              "result": [
+                {
+                  "_id": "3c1000000000000000000001",
+                  "state": "registered",
+                  "enabled": true,
+                  "login": true,
+                  "status": "active",
+                  "main_email": "123@mail.com",
+                  "display_name": "Fulano"
+                },
+                {
+                  "_id": "3c1000000000000000000002",
+                  "state": "registered",
+                  "enabled": true,
+                  "login": true,
+                  "status": "active",
+                  "main_email": "johndoe@mail.com",
+                  "display_name": "John"
+                },
+                {
+                  "_id": "3c1000000000000000000003",
+                  "state": "registered",
+                  "enabled": true,
+                  "login": true,
+                  "main_email": "mail@sample.ex",
+                  "display_name": "Jane"
+                },
+                {
+                  "_id": "3c1000000000000000000004",
+                  "state": "registered",
+                  "enabled": false,
+                  "login": false,
+                  "status": "untrusted",
+                  "main_email": "456@mail.com",
+                  "display_name": "Richard"
+                },
+                {
+                  "_id": "3c1000000000000000000005",
+                  "state": "registered",
+                  "enabled": true,
+                  "login": true,
+                  "status": "star",
+                  "main_email": "janerue@mail.ex",
+                  "display_name": "Jane Rue"
+                },
+                {
+                  "_id": "3c1000000000000000000006",
+                  "state": "registered",
+                  "enabled": true,
+                  "login": false,
+                  "status": "buy_only",
+                  "main_email": "abc@mail.com",
+                  "display_name": "Name"
+                }
+              ]
+            }

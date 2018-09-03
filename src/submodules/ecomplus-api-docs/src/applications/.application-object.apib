@@ -1,0 +1,47 @@
++ Attributes (object)
+    + `app_id` (number, required) - ID of application - Mininum: **1000** - Maximum: **16777215**
+    + `state`: test (enum) - The working state of this app in the shop
+        + `inactive` (string)
+        + `active` (string)
+        + `test` (string)
+    + `title` (string, required) - App title - Max length: **70**
+    + `slug` (string, required) - App unique slug, only lowercase letters, numbers and hyphen - Min length: **3** - Max length: **50** - RegEx pattern: **`^[0-9a-z-]+$`**
+    + `paid`: false (boolean) - Whether this app is paid
+    + `version` (string, required) - Version of the application that was installed, eg.: 1.0.0 - Min length: **5** - Max length: **8** - RegEx pattern: **`^(0|([1-9][0-9]?))[.](0|([1-9][0-9]?))[.](0|([1-9][0-9]?))$`**
+    + `version_date` (string) - When app installation was updated, date and time in ISO 8601 standard representation - Format: **date-time**
+    + `type` (enum, required) - Type of app
+        + `dashboard` (string)
+        + `storefront` (string)
+        + `module_package` (string)
+        + `external` (string)
+    + `module` (enum) - If this app is a package of a module, specify the module
+        + `al` (string)
+        + `pd` (string)
+        + `sc` (string)
+        + `sh` (string)
+        + `pa` (string)
+        + `ck` (string)
+        + `cf` (string)
+        + `rg` (string)
+        + `lg` (string)
+        + `ct` (string)
+        + `nw` (string)
+    + `load_events` (array) - If this app is a dashboard or storefront JS, specify resources that trigger the script load - Max elements: **100**
+        + (string) - Resource/Subresources/Third-level/ID
+    + `script_uri` (string) - Script (JS) link - Max length: **255** - Format: **uri**
+    + `github_repository` (string) - Link to GitHub repository - Max length: **255** - Format: **uri**
+    + `status` (string) - Status defined by seller, such as active or waiting - Max length: **50**
+    + `authentication`: false (boolean) - Whether this app needs to authenticate with API
+    + `auth_callback_uri` (string) - Endpoint that receives POST back with authentication credentials, must be https - Max length: **255** - Format: **uri**
+    + `auth_scope` (object) - If this app uses authentication, list the needed permissions - Min properties: **1** - Max properties: **20**
+        + `^([$]?(?!app|aut|upd)([a-z]{1,60}))$` (array) - Requested resource, cannot be "applications", "authentications" or "$update"
+            + (enum) - Methods to be used (HTTP verbs)
+                + `all` (string)
+                + `GET` (string)
+                + `POST` (string)
+                + `PATCH` (string)
+                + `PUT` (string)
+                + `DELETE` (string)
+    + `flags` (array) - Flags to associate additional info - Max elements: **10**
+        + (string) - Flag title
+    + `notes` (string) - Optional notes with additional info about this user - Max length: **255**

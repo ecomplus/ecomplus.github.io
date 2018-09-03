@@ -1,0 +1,35 @@
++ Parameters
+    + `grid_id`: `size` (string, optional) - Object property to query
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "meta": {
+                "limit": 1000,
+                "offset": 0,
+                "sort": [],
+                "fields": [
+                  "_id",
+                  "title",
+                  "grid_id"
+                ],
+                "query": {
+                  "grid_id": "size"
+                }
+              },
+              "result": [
+                {
+                  "_id": "9d1500000000000000001114",
+                  "title": "Shirt size",
+                  "grid_id": "size"
+                }
+              ]
+            }

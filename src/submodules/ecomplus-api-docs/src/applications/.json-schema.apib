@@ -1,0 +1,186 @@
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "$schema": "http://json-schema.org/draft-06/schema#",
+                "title": "Applications",
+                "description": "App object model",
+                "type": "object",
+                "required": [
+                    "app_id",
+                    "title",
+                    "slug",
+                    "version",
+                    "type"
+                ],
+                "dependencies": {
+                    "auth_scope": [
+                        "auth_callback_uri"
+                    ]
+                },
+                "additionalProperties": false,
+                "properties": {
+                    "app_id": {
+                        "type": "integer",
+                        "minimum": 1000,
+                        "maximum": 16777215,
+                        "description": "ID of application"
+                    },
+                    "state": {
+                        "type": "string",
+                        "enum": [
+                            "inactive",
+                            "active",
+                            "test"
+                        ],
+                        "default": "test",
+                        "description": "The working state of this app in the shop"
+                    },
+                    "title": {
+                        "type": "string",
+                        "maxLength": 70,
+                        "description": "App title"
+                    },
+                    "slug": {
+                        "type": "string",
+                        "minLength": 3,
+                        "maxLength": 50,
+                        "pattern": "^[0-9a-z-]+$",
+                        "description": "App unique slug, only lowercase letters, numbers and hyphen"
+                    },
+                    "paid": {
+                        "type": "boolean",
+                        "default": false,
+                        "description": "Whether this app is paid"
+                    },
+                    "version": {
+                        "type": "string",
+                        "minLength": 5,
+                        "maxLength": 8,
+                        "pattern": "^(0|([1-9][0-9]?))[.](0|([1-9][0-9]?))[.](0|([1-9][0-9]?))$",
+                        "description": "Version of the application that was installed, eg.: 1.0.0"
+                    },
+                    "version_date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "When app installation was updated, date and time in ISO 8601 standard representation"
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "dashboard",
+                            "storefront",
+                            "module_package",
+                            "external"
+                        ],
+                        "description": "Type of app"
+                    },
+                    "module": {
+                        "type": "string",
+                        "enum": [
+                            "al",
+                            "pd",
+                            "sc",
+                            "sh",
+                            "pa",
+                            "ck",
+                            "cf",
+                            "rg",
+                            "lg",
+                            "ct",
+                            "nw"
+                        ],
+                        "description": "If this app is a package of a module, specify the module"
+                    },
+                    "load_events": {
+                        "type": "array",
+                        "uniqueItems": true,
+                        "maxItems": 100,
+                        "items": {
+                            "type": "string",
+                            "maxLength": 60,
+                            "pattern": "^(([^/_][a-z0-9/_@:$+]{1,60}[^/])|[*])$",
+                            "description": "Resource/Subresources/Third-level/ID"
+                        },
+                        "description": "If this app is a dashboard or storefront JS, specify resources that trigger the script load"
+                    },
+                    "script_uri": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "format": "uri",
+                        "description": "Script (JS) link"
+                    },
+                    "github_repository": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "format": "uri",
+                        "description": "Link to GitHub repository"
+                    },
+                    "status": {
+                        "type": "string",
+                        "maxLength": 50,
+                        "description": "Status defined by seller, such as active or waiting"
+                    },
+                    "authentication": {
+                        "type": "boolean",
+                        "default": false,
+                        "description": "Whether this app needs to authenticate with API"
+                    },
+                    "auth_callback_uri": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "format": "uri",
+                        "pattern": "^https:",
+                        "description": "Endpoint that receives POST back with authentication credentials, must be https"
+                    },
+                    "auth_scope": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "minProperties": 1,
+                        "maxProperties": 20,
+                        "patternProperties": {
+                            "^([$]?(?!app|aut|upd)([a-z]{1,60}))$": {
+                                "type": "array",
+                                "uniqueItems": true,
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "all",
+                                        "GET",
+                                        "POST",
+                                        "PATCH",
+                                        "PUT",
+                                        "DELETE"
+                                    ],
+                                    "description": "Methods to be used (HTTP verbs)"
+                                },
+                                "description": "Requested resource, cannot be \"applications\", \"authentications\" or \"$update\""
+                            }
+                        },
+                        "description": "If this app uses authentication, list the needed permissions"
+                    },
+                    "flags": {
+                        "type": "array",
+                        "uniqueItems": true,
+                        "maxItems": 10,
+                        "items": {
+                            "type": "string",
+                            "maxLength": 20,
+                            "description": "Flag title"
+                        },
+                        "description": "Flags to associate additional info"
+                    },
+                    "notes": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "description": "Optional notes with additional info about this user"
+                    }
+                }
+            }

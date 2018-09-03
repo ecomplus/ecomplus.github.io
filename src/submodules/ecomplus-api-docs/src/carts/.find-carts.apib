@@ -1,0 +1,39 @@
++ Parameters
+    + `customers`: `3c1000000000000000000005` (string, optional) - Object property to query
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "meta": {
+                "limit": 1000,
+                "offset": 0,
+                "sort": [],
+                "fields": [
+                  "_id",
+                  "available",
+                  "completed",
+                  "subtotal"
+                ],
+                "query": {
+                  "customers": "3c1000000000000000000005"
+                }
+              },
+              "result": [
+                {
+                  "_id": "2ca000000000000000000008",
+                  "available": true,
+                  "completed": true,
+                  "subtotal": 60
+                }
+              ]
+            }

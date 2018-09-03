@@ -1,0 +1,45 @@
++ Parameters
+    + limit: 2 (number, optional) - Max number of objects to return
+    + offset: 2 (number, optional) - First entry to return
+    + sort: `slug` (string, optional) - Rules to order resultant objects
+    + fields: `name,short_description` (string, optional) - Object properties to return
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "meta": {
+                "limit": 2,
+                "offset": 2,
+                "sort": [
+                  {
+                    "field": "slug",
+                    "order": 1
+                  }
+                ],
+                "fields": [
+                  "name",
+                  "short_description"
+                ],
+                "query": {}
+              },
+              "result": [
+                {
+                  "_id": "c92000000000000000001112",
+                  "name": "Collection 2",
+                  "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                },
+                {
+                  "_id": "c92000000000000000001110",
+                  "name": "Initial showcase",
+                  "short_description": "Short collection description in plain text."
+                }
+              ]
+            }

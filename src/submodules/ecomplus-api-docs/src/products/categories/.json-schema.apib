@@ -1,0 +1,26 @@
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "$schema": "http://json-schema.org/draft-06/schema#",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "_id"
+                ],
+                "properties": {
+                    "_id": {
+                        "type": "string",
+                        "pattern": "^[a-f0-9]{24}$",
+                        "description": "Category ID"
+                    }
+                },
+                "title": "Add category by ID to product"
+            }

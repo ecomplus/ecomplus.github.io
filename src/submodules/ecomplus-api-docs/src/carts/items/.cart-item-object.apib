@@ -1,0 +1,40 @@
++ Attributes (object)
+    + `product_id` (string, required) - Product ID - RegEx pattern: **`^[a-f0-9]{24}$`**
+    + `variation_id` (string) - ID to specify the variation added to cart, if product has variations - RegEx pattern: **`^[a-f0-9]{24}$`**
+    + `sku` (string) - Product or variation unique reference code - Min length: **2** - Max length: **100** - RegEx pattern: **`^[A-Za-z0-9-_.]+$`**
+    + `name` (string) - Product or variation full name, or other label for this cart item - Max length: **255**
+    + `picture` (object) - Product or variation picture for this cart item
+        + `^small|normal|big|zoom|custom$` (object) - Image size variation
+            + `url` (string, required) - Image link - Max length: **255** - Format: **uri**
+            + `size` (string) - Image size (width x height) in px, such as 100x50 (100px width, 50px height) - Max length: **11** - RegEx pattern: **`^[1-9]([0-9]+)?x[1-9]([0-9]+)?$`**
+            + `alt` (string) - Alternative text, HTML alt tag (important for SEO) - Max length: **255**
+    + `customizations` (array) - Item customization fields - Max elements: **100**
+        + (object) - Customization field
+            + `_id` (string, required) - Customization field ID - RegEx pattern: **`^[a-f0-9]{24}$`**
+            + `label` (string) - Title for this customization field, can be the grid title - Max length: **70**
+            + `option` (object, required) - Option chosen or created by customer
+                + `option_id` (string) - Identify option if it was predefined (not custom value created by customer) - RegEx pattern: **`^[a-z0-9_]{2,30}$`**
+                + `text` (string, required) - Option text value displayed for the client - Max length: **70**
+                + `colors` (array) - Option color palette (if the field involves colors), starting by main color - Max elements: **6**
+                    + (string) - RGB code with #
+            + `attachment` (string) - URL of file attached by customer to this field - Max length: **255** - Format: **uri**
+            + `add_to_price` (object) - Price alteration due to this customization
+                + `type`: percentage (enum) - Type of price addition
+                    + `percentage` (string)
+                    + `fixed` (string)
+                + `addition` (number, required) - Additional value, could be negative - Mininum: **-99999999** - Maximum: **99999999** - Max precision: **0.0001**
+    + `gift_wrap` (object) - Gift wrap chosen by customer
+        + `tag` (string) - Tag to identify object, use only lowercase letters, digits and underscore - Max length: **20** - RegEx pattern: **`^[a-z0-9_]+$`**
+        + `label` (string, required) - Title describing this gift wrap - Max length: **70**
+        + `add_to_price` (number) - Additional value due to this gift wrap - Mininum: **0** - Maximum: **99999999** - Max precision: **0.0001**
+    + `quantity` (number, required) - Item quantity in cart - Mininum: **0** - Maximum: **9999999** - Max precision: **0.0001**
+    + `min_quantity` (number) - Minimum item quantity for this cart - Mininum: **0** - Maximum: **999999** - Max precision: **0.0001**
+    + `max_quantity` (number) - Maximum item quantity for this cart - Mininum: **0** - Maximum: **9999999** - Max precision: **0.0001**
+    + `keep_item_quantity`: false (boolean) - True if product quantity should not be checked, using quantity specified for this item
+    + `currency_id`: BRL (string) - Designator of currency according to ISO 4217 (3 uppercase letters) - RegEx pattern: **`^[A-Z]{3}$`**
+    + `currency_symbol`: R$ (string) - Graphic symbol used as a shorthand for currency's name - Max length: **20**
+    + `price` (number, required) - Product sale price specifically for this cart - Mininum: **0** - Maximum: **999999999** - Max precision: **0.00001**
+    + `final_price` (number) - Final item price including additions due to customizations and gift wrap - Mininum: **0** - Maximum: **999999999** - Max precision: **0.00001**
+    + `keep_item_price`: false (boolean) - True if the product price should not be checked, using price specified for this item
+    + `flags` (array) - Flags to associate additional info - Max elements: **10**
+        + (string) - Flag title

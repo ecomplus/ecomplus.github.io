@@ -1,0 +1,74 @@
++ Parameters
+    + limit: 2 (number, optional) - Max number of objects to return
+    + offset: 4 (number, optional) - First entry to return
+    + sort: `gender` (string, optional) - Rules to order resultant objects
+    + fields: `emails,name,gender` (string, optional) - Object properties to return
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "meta": {
+                "limit": 2,
+                "offset": 4,
+                "sort": [
+                  {
+                    "field": "gender",
+                    "order": 1
+                  }
+                ],
+                "fields": [
+                  "emails",
+                  "name",
+                  "gender"
+                ],
+                "query": {}
+              },
+              "result": [
+                {
+                  "_id": "3c1000000000000000000004",
+                  "emails": [
+                    {
+                      "address": "456@mail.com",
+                      "type": "personal",
+                      "verified": true
+                    },
+                    {
+                      "address": "richarddoe@inc.sample",
+                      "type": "work",
+                      "verified": false
+                    }
+                  ],
+                  "name": {
+                    "family_name": "Doe",
+                    "given_name": "Richard"
+                  },
+                  "gender": "m"
+                },
+                {
+                  "_id": "3c1000000000000000000006",
+                  "emails": [
+                    {
+                      "address": "abc@mail.com",
+                      "type": "personal",
+                      "verified": true
+                    }
+                  ],
+                  "name": {
+                    "family_name": "Last",
+                    "given_name": "Name",
+                    "middle_name": "Middle"
+                  },
+                  "gender": "x"
+                }
+              ]
+            }

@@ -1,0 +1,39 @@
++ Parameters
+    + _id: 9d1500000000000000001111 (string, required) - The grid ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "_id": "9d1500000000000000001111",
+              "created_at": "2017-11-19T13:10:00.612Z",
+              "store_id": 100,
+              "title": "Smartphone model",
+              "grid_id": "smartphone_model",
+              "options": [
+                {
+                  "_id": "9d1500000000000000000032",
+                  "option_id": "iphone_se",
+                  "text": "iPhone SE"
+                },
+                {
+                  "_id": "9d1500000000000000000033",
+                  "option_id": "galaxy_s7",
+                  "text": "Galaxy S7"
+                },
+                {
+                  "_id": "9d1500000000000000000034",
+                  "option_id": "k10_power",
+                  "text": "K10 Power"
+                }
+              ],
+              "custom_value": false,
+              "attachment": false
+            }

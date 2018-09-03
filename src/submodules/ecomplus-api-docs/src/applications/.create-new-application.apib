@@ -1,0 +1,31 @@
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
+    + Body
+
+            {
+              "app_id": 1002,
+              "state": "active",
+              "title": "Products panel extension",
+              "slug": "products-panel-ext",
+              "paid": true,
+              "version": "3.0.0",
+              "type": "dashboard",
+              "load_events": [
+                "products"
+              ],
+              "script_uri": "https://sample.mycdn.com/script.min.js"
+            }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+              "_id": "42aa00000000000000000111"
+            }

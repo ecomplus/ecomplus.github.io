@@ -1,0 +1,42 @@
++ Parameters
+    + _id: 9d1500000000000000001111 (string, required) - The grid ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
+    + Body
+
+            {
+              "title": "Smartphone model",
+              "grid_id": "smartphone_model",
+              "options": [
+                {
+                  "_id": "9d1500000000000000000032",
+                  "option_id": "iphone_se",
+                  "text": "iPhone SE"
+                },
+                {
+                  "_id": "9d1500000000000000000033",
+                  "option_id": "galaxy_s7",
+                  "text": "Galaxy S7"
+                },
+                {
+                  "_id": "9d1500000000000000000034",
+                  "option_id": "k10_power",
+                  "text": "K10 Power"
+                },
+                {
+                  "_id": "9d1500000000000000000035",
+                  "option_id": "galaxy_s8",
+                  "text": "Galaxy S8"
+                }
+              ],
+              "custom_value": true
+            }
+
++ Response 204

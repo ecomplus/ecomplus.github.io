@@ -1,0 +1,208 @@
+## Group Product Brands
+
+`.products.brands`
+
+Use **brands** subresource (of *products* resource) to
+create, read and delete brands of a specific product by ID, to add brands to product from this subresource
+you must specify only the ID of an existent brand, other brand properties will be syncronized from
+*brands* resource
+
+### Product Brand Object [/products/schema/brands.json]
+
++ Attributes (object)
+    + `_id` (string, required) - Brand ID - RegEx pattern: **`^[a-f0-9]{24}$`**
+    + `name` (string, required) - Brand name - Max length: **255**
+    + `slug` (string) - Brand page slug - Max length: **255** - RegEx pattern: **`^[a-z0-9]([a-z0-9-_./]+)?$`**
+    + `logo` (object) - Brand logo
+        + `url` (string, required) - Image link - Max length: **255** - Format: **uri**
+        + `size` (string) - Image size (width x height) in px, such as 100x50 (100px width, 50px height) - Max length: **11** - RegEx pattern: **`^[1-9]([0-9]+)?x[1-9]([0-9]+)?$`**
+        + `alt` (string) - Alternative text, HTML alt tag (important for SEO) - Max length: **255**
+
+#### JSON Schema [GET]
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "$schema": "http://json-schema.org/draft-06/schema#",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "_id"
+                ],
+                "properties": {
+                    "_id": {
+                        "type": "string",
+                        "pattern": "^[a-f0-9]{24}$",
+                        "description": "Brand ID"
+                    }
+                },
+                "title": "Add brand by ID to product"
+            }
+
+### All Brands of a Product [/products/{product}/brands.json{?limit,offset,sort,fields}]
+
+*/products/[_id]/brands.json?limit&offset&sort&fields\&[field]*
+
+> Authentication<br>_GET_: **required**
+
+Use [default URL parameters](#introduction/overview/url-params) (metadata)
+for pagination and ordering, you can use any other parameter to query
+by particular object properties
+
+#### List All Product Brands [GET /products/{product}/brands.json]
+
++ Parameters
+    + product: 1234567890abcdef01291511 (string, required) - Product ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "meta": {
+                "limit": 1000,
+                "offset": 0,
+                "sort": [],
+                "fields": [],
+                "query": {}
+              },
+              "result": [
+                {
+                  "_id": "a10000000000000000001112",
+                  "name": "Brand 2",
+                  "slug": "brand-two"
+                },
+                {
+                  "_id": "a10000000000000000000001",
+                  "name": "Shirts Example",
+                  "slug": "shirts-example",
+                  "logo": {
+                    "url": "https://mycdn.com/shirts-example.jpg",
+                    "size": "100x50"
+                  }
+                }
+              ]
+            }
+
+### New Brand to a Product [/products/{product}/brands.json]
+
+*/products/[_id]/brands.json*
+
+> Authentication<br>_POST_: **required**
+
+Request body must be an object with valid brand `_id` and no more properties
+
+#### Add New Product Brand [POST]
+
++ Parameters
+    + product: 1234567890abcdef01291511 (string, required) - Product ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
+    + Schema
+
+            {
+                "$schema": "http://json-schema.org/draft-06/schema#",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "_id"
+                ],
+                "properties": {
+                    "_id": {
+                        "type": "string",
+                        "pattern": "^[a-f0-9]{24}$",
+                        "description": "Brand ID"
+                    }
+                },
+                "title": "Add brand by ID to product"
+            }
+
+    + Body
+
+            {
+              "_id": "a10000000000000000001112"
+            }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+              "_id": "a10000000000000000001112"
+            }
+
+### Specific Brand of a Product [/products/{product}/brands/{_id}.json]
+
+*/products/[_id]/brands/[_id].json*
+
+> Authentication<br>_GET_, _DELETE_: **required**
+
+In read requests, response body will follow
+[this model](#reference/product-brands/product-brand-object)
+
+#### Read Product Brand [GET]
+
++ Parameters
+    + product: 1234567890abcdef01291511 (string, required) - Product ID
+    + _id: a10000000000000000000001 (string, required) - Brand ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "_id": "a10000000000000000000001",
+              "name": "Shirts Example",
+              "slug": "shirts-example",
+              "logo": {
+                "url": "https://mycdn.com/shirts-example.jpg",
+                "size": "100x50"
+              }
+            }
+
+#### Remove Brand From Product [DELETE]
+
++ Parameters
+    + product: 1234567890abcdef01291511 (string, required) - Product ID
+    + _id: a10000000000000000000001 (string, required) - Brand ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
++ Response 204

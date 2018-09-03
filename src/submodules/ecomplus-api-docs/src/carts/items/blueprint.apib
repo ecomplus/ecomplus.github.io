@@ -1,0 +1,499 @@
+## Group Cart Items
+
+`.carts.items`
+
+Use the **items** subresource to create, read, update and delete
+items from an specific shopping cart in a merchant's store
+
+### Cart Item Object [/carts/schema/items.json]
+
++ Attributes (object)
+    + `product_id` (string, required) - Product ID - RegEx pattern: **`^[a-f0-9]{24}$`**
+    + `variation_id` (string) - ID to specify the variation added to cart, if product has variations - RegEx pattern: **`^[a-f0-9]{24}$`**
+    + `sku` (string) - Product or variation unique reference code - Min length: **2** - Max length: **100** - RegEx pattern: **`^[A-Za-z0-9-_.]+$`**
+    + `name` (string) - Product or variation full name, or other label for this cart item - Max length: **255**
+    + `picture` (object) - Product or variation picture for this cart item
+        + `^small|normal|big|zoom|custom$` (object) - Image size variation
+            + `url` (string, required) - Image link - Max length: **255** - Format: **uri**
+            + `size` (string) - Image size (width x height) in px, such as 100x50 (100px width, 50px height) - Max length: **11** - RegEx pattern: **`^[1-9]([0-9]+)?x[1-9]([0-9]+)?$`**
+            + `alt` (string) - Alternative text, HTML alt tag (important for SEO) - Max length: **255**
+    + `customizations` (array) - Item customization fields - Max elements: **100**
+        + (object) - Customization field
+            + `_id` (string, required) - Customization field ID - RegEx pattern: **`^[a-f0-9]{24}$`**
+            + `label` (string) - Title for this customization field, can be the grid title - Max length: **70**
+            + `option` (object, required) - Option chosen or created by customer
+                + `option_id` (string) - Identify option if it was predefined (not custom value created by customer) - RegEx pattern: **`^[a-z0-9_]{2,30}$`**
+                + `text` (string, required) - Option text value displayed for the client - Max length: **70**
+                + `colors` (array) - Option color palette (if the field involves colors), starting by main color - Max elements: **6**
+                    + (string) - RGB code with #
+            + `attachment` (string) - URL of file attached by customer to this field - Max length: **255** - Format: **uri**
+            + `add_to_price` (object) - Price alteration due to this customization
+                + `type`: percentage (enum) - Type of price addition
+                    + `percentage` (string)
+                    + `fixed` (string)
+                + `addition` (number, required) - Additional value, could be negative - Mininum: **-99999999** - Maximum: **99999999** - Max precision: **0.0001**
+    + `gift_wrap` (object) - Gift wrap chosen by customer
+        + `tag` (string) - Tag to identify object, use only lowercase letters, digits and underscore - Max length: **20** - RegEx pattern: **`^[a-z0-9_]+$`**
+        + `label` (string, required) - Title describing this gift wrap - Max length: **70**
+        + `add_to_price` (number) - Additional value due to this gift wrap - Mininum: **0** - Maximum: **99999999** - Max precision: **0.0001**
+    + `quantity` (number, required) - Item quantity in cart - Mininum: **0** - Maximum: **9999999** - Max precision: **0.0001**
+    + `min_quantity` (number) - Minimum item quantity for this cart - Mininum: **0** - Maximum: **999999** - Max precision: **0.0001**
+    + `max_quantity` (number) - Maximum item quantity for this cart - Mininum: **0** - Maximum: **9999999** - Max precision: **0.0001**
+    + `keep_item_quantity`: false (boolean) - True if product quantity should not be checked, using quantity specified for this item
+    + `currency_id`: BRL (string) - Designator of currency according to ISO 4217 (3 uppercase letters) - RegEx pattern: **`^[A-Z]{3}$`**
+    + `currency_symbol`: R$ (string) - Graphic symbol used as a shorthand for currency's name - Max length: **20**
+    + `price` (number, required) - Product sale price specifically for this cart - Mininum: **0** - Maximum: **999999999** - Max precision: **0.00001**
+    + `final_price` (number) - Final item price including additions due to customizations and gift wrap - Mininum: **0** - Maximum: **999999999** - Max precision: **0.00001**
+    + `keep_item_price`: false (boolean) - True if the product price should not be checked, using price specified for this item
+    + `flags` (array) - Flags to associate additional info - Max elements: **10**
+        + (string) - Flag title
+
+#### JSON Schema [GET]
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "$schema": "http://json-schema.org/draft-06/schema#",
+                "title": "One of the cart items",
+                "type": "object",
+                "required": [
+                    "product_id",
+                    "quantity",
+                    "price"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "product_id": {
+                        "type": "string",
+                        "pattern": "^[a-f0-9]{24}$",
+                        "description": "Product ID"
+                    },
+                    "variation_id": {
+                        "type": "string",
+                        "pattern": "^[a-f0-9]{24}$",
+                        "description": "ID to specify the variation added to cart, if product has variations"
+                    },
+                    "sku": {
+                        "type": "string",
+                        "minLength": 2,
+                        "maxLength": 100,
+                        "pattern": "^[A-Za-z0-9-_.]+$",
+                        "description": "Product or variation unique reference code"
+                    },
+                    "name": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "description": "Product or variation full name, or other label for this cart item"
+                    },
+                    "picture": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "patternProperties": {
+                            "^small|normal|big|zoom|custom$": {
+                                "type": "object",
+                                "required": [
+                                    "url"
+                                ],
+                                "additionalProperties": false,
+                                "properties": {
+                                    "url": {
+                                        "type": "string",
+                                        "maxLength": 255,
+                                        "format": "uri",
+                                        "description": "Image link"
+                                    },
+                                    "size": {
+                                        "type": "string",
+                                        "maxLength": 11,
+                                        "pattern": "^[1-9]([0-9]+)?x[1-9]([0-9]+)?$",
+                                        "description": "Image size (width x height) in px, such as 100x50 (100px width, 50px height)"
+                                    },
+                                    "alt": {
+                                        "type": "string",
+                                        "maxLength": 255,
+                                        "description": "Alternative text, HTML alt tag (important for SEO)"
+                                    }
+                                },
+                                "description": "Image size variation"
+                            }
+                        },
+                        "description": "Product or variation picture for this cart item"
+                    },
+                    "customizations": {
+                        "type": "array",
+                        "maxItems": 100,
+                        "items": {
+                            "type": "object",
+                            "required": [
+                                "_id",
+                                "option"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                                "_id": {
+                                    "type": "string",
+                                    "pattern": "^[a-f0-9]{24}$",
+                                    "description": "Customization field ID"
+                                },
+                                "label": {
+                                    "type": "string",
+                                    "maxLength": 70,
+                                    "description": "Title for this customization field, can be the grid title"
+                                },
+                                "option": {
+                                    "type": "object",
+                                    "required": [
+                                        "text"
+                                    ],
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "option_id": {
+                                            "type": "string",
+                                            "pattern": "^[a-z0-9_]{2,30}$",
+                                            "description": "Identify option if it was predefined (not custom value created by customer)"
+                                        },
+                                        "text": {
+                                            "type": "string",
+                                            "maxLength": 70,
+                                            "description": "Option text value displayed for the client"
+                                        },
+                                        "colors": {
+                                            "type": "array",
+                                            "maxItems": 6,
+                                            "items": {
+                                                "type": "string",
+                                                "pattern": "^#[a-f0-9]{6}$",
+                                                "description": "RGB code with #"
+                                            },
+                                            "description": "Option color palette (if the field involves colors), starting by main color"
+                                        }
+                                    },
+                                    "description": "Option chosen or created by customer"
+                                },
+                                "attachment": {
+                                    "type": "string",
+                                    "maxLength": 255,
+                                    "format": "uri",
+                                    "description": "URL of file attached by customer to this field"
+                                },
+                                "add_to_price": {
+                                    "type": "object",
+                                    "required": [
+                                        "addition"
+                                    ],
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "enum": [
+                                                "percentage",
+                                                "fixed"
+                                            ],
+                                            "default": "percentage",
+                                            "description": "Type of price addition"
+                                        },
+                                        "addition": {
+                                            "type": "number",
+                                            "multipleOf": 0.0001,
+                                            "minimum": -99999999,
+                                            "maximum": 99999999,
+                                            "description": "Additional value, could be negative"
+                                        }
+                                    },
+                                    "description": "Price alteration due to this customization"
+                                }
+                            },
+                            "description": "Customization field"
+                        },
+                        "description": "Item customization fields"
+                    },
+                    "gift_wrap": {
+                        "type": "object",
+                        "required": [
+                            "label"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "tag": {
+                                "type": "string",
+                                "maxLength": 20,
+                                "pattern": "^[a-z0-9_]+$",
+                                "description": "Tag to identify object, use only lowercase letters, digits and underscore"
+                            },
+                            "label": {
+                                "type": "string",
+                                "maxLength": 70,
+                                "description": "Title describing this gift wrap"
+                            },
+                            "add_to_price": {
+                                "type": "number",
+                                "multipleOf": 0.0001,
+                                "minimum": 0,
+                                "maximum": 99999999,
+                                "description": "Additional value due to this gift wrap"
+                            }
+                        },
+                        "description": "Gift wrap chosen by customer"
+                    },
+                    "quantity": {
+                        "type": "number",
+                        "multipleOf": 0.0001,
+                        "minimum": 0,
+                        "maximum": 9999999,
+                        "description": "Item quantity in cart"
+                    },
+                    "min_quantity": {
+                        "type": "number",
+                        "multipleOf": 0.0001,
+                        "minimum": 0,
+                        "maximum": 999999,
+                        "description": "Minimum item quantity for this cart"
+                    },
+                    "max_quantity": {
+                        "type": "number",
+                        "multipleOf": 0.0001,
+                        "minimum": 0,
+                        "maximum": 9999999,
+                        "description": "Maximum item quantity for this cart"
+                    },
+                    "keep_item_quantity": {
+                        "type": "boolean",
+                        "default": false,
+                        "description": "True if product quantity should not be checked, using quantity specified for this item"
+                    },
+                    "currency_id": {
+                        "type": "string",
+                        "pattern": "^[A-Z]{3}$",
+                        "default": "BRL",
+                        "description": "Designator of currency according to ISO 4217 (3 uppercase letters)"
+                    },
+                    "currency_symbol": {
+                        "type": "string",
+                        "maxLength": 20,
+                        "default": "R$",
+                        "description": "Graphic symbol used as a shorthand for currency's name"
+                    },
+                    "price": {
+                        "type": "number",
+                        "multipleOf": 0.00001,
+                        "minimum": 0,
+                        "maximum": 999999999,
+                        "description": "Product sale price specifically for this cart"
+                    },
+                    "final_price": {
+                        "type": "number",
+                        "multipleOf": 0.00001,
+                        "minimum": 0,
+                        "maximum": 999999999,
+                        "description": "Final item price including additions due to customizations and gift wrap"
+                    },
+                    "keep_item_price": {
+                        "type": "boolean",
+                        "default": false,
+                        "description": "True if the product price should not be checked, using price specified for this item"
+                    },
+                    "flags": {
+                        "type": "array",
+                        "uniqueItems": true,
+                        "maxItems": 10,
+                        "items": {
+                            "type": "string",
+                            "maxLength": 20,
+                            "description": "Flag title"
+                        },
+                        "description": "Flags to associate additional info"
+                    }
+                }
+            }
+
+### All Items of a Cart [/carts/{cart}/items.json{?limit,offset,sort,fields}]
+
+*/carts/[_id]/items.json?limit&offset&sort&fields\&[field]*
+
+> Authentication<br>_GET_: **required**
+
+Use [default URL parameters](#introduction/overview/url-params) (metadata)
+for pagination and ordering, you can use any other parameter to query
+by particular object properties
+
+#### List All Cart Items [GET /carts/{cart}/items.json]
+
++ Parameters
+    + cart: 2ca000000000000000000003 (string, required) - The cart ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "meta": {
+                "limit": 1000,
+                "offset": 0,
+                "sort": [],
+                "fields": [
+                  "_id",
+                  "product_id",
+                  "variation_id",
+                  "sku",
+                  "quantity",
+                  "price",
+                  "final_price"
+                ],
+                "query": {}
+              },
+              "result": [
+                {
+                  "_id": "2ca00000000000000000e001",
+                  "product_id": "123a5432109876543210cdef",
+                  "quantity": 2,
+                  "price": 42.9
+                },
+                {
+                  "_id": "2ca00000000000000000e002",
+                  "product_id": "1234567890abcdef01291511",
+                  "variation_id": "a234567890abcdef01291511",
+                  "sku": "S_123456789",
+                  "quantity": 1,
+                  "price": 70
+                },
+                {
+                  "_id": "2ca00000000000000000e002",
+                  "product_id": "1234567890abcdef01291511",
+                  "variation_id": "a334567890abcdef01291512",
+                  "sku": "S_123456789",
+                  "quantity": 1,
+                  "price": 65
+                }
+              ]
+            }
+
+### New Item to a Cart [/carts/{cart}/items.json]
+
+*/carts/[_id]/items.json*
+
+> Authentication<br>_GET_, _POST_: **required**
+
+Request body must obey the specifications of
+[this model](#reference/cart-items/cart-items-object)
+
+#### Add New Cart Item [POST]
+
++ Parameters
+    + cart: 2ca000000000000000000003 (string, required) - The cart ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
+    + Body
+
+            {
+              "product_id": "123a5432109876543210cdef",
+              "quantity": 2,
+              "price": 42.9
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "_id": "2ca00000000000000000e001"
+            }
+
+### Specific Item of a Cart [/carts/{cart}/items/{_id}.json]
+
+*/carts/[_id]/items/[_id].json*
+
+> Authentication<br>_GET_, _PATCH_, _DELETE_: **required**
+
+In read requests, response body will follow
+[this model](#reference/cart-items/cart-items-object)
+
+For editing, request body must obey the same specifications,
+without required fields
+
+#### Read Cart Item [GET]
+
++ Parameters
+    + cart: 2ca000000000000000000003 (string, required) - The cart ID
+    + _id: 2ca00000000000000000e002 (string, required) - The cart item ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "_id": "2ca00000000000000000e002",
+              "product_id": "1234567890abcdef01291511",
+              "variation_id": "a234567890abcdef01291511",
+              "sku": "S_123456789",
+              "quantity": 1,
+              "price": 70
+            }
+
+#### Edit Cart Item [PATCH]
+
++ Parameters
+    + cart: 2ca000000000000000000003 (string, required) - The cart ID
+    + _id: 2ca00000000000000000e002 (string, required) - The cart item ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
+    + Body
+
+            {
+              "quantity": 2
+            }
+
++ Response 204
+
+#### Remove Cart Item [DELETE]
+
++ Parameters
+    + cart: 2ca000000000000000000003 (string, required) - The cart ID
+    + _id: 2ca00000000000000000e002 (string, required) - The cart item ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
++ Response 204

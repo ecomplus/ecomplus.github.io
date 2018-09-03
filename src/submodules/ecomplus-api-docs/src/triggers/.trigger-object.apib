@@ -1,0 +1,31 @@
++ Attributes (object)
+    + `datetime` (string, required) - When event occurred, date and time in ISO 8601 standard representation - Format: **date-time**
+    + `authentication_id` (string) - ID of used authentication, should be a valid hexadecimal - RegEx pattern: **`^[a-f0-9]{24}$`**
+    + `method` (enum, required) - Method (HTTP verb) of the event
+        + `POST` (string)
+        + `PATCH` (string)
+        + `PUT` (string)
+        + `DELETE` (string)
+    + `action` (enum, required) - Type of action taken
+        + `create` (string)
+        + `change` (string)
+        + `delete` (string)
+    + `resource` (enum, required) - API resource
+        + `authentications` (string)
+        + `products` (string)
+        + `categories` (string)
+        + `brands` (string)
+        + `collections` (string)
+        + `grids` (string)
+        + `customers` (string)
+        + `carts` (string)
+        + `orders` (string)
+        + `applications` (string)
+    + `resource_id` (string) - Resource ID, if specified - RegEx pattern: **`^[a-f0-9]{24}$`**
+    + `subresource` (string) - Subresource slug (which appears in the URL), if specified - Max length: **30** - RegEx pattern: **`^[a-z_]+$`**
+    + `subresource_id` (string) - Subresource ID, if specified - RegEx pattern: **`^[a-f0-9]{24}$`**
+    + `fields` (array) - Document fields involved (created or updated) with the event - Max elements: **100**
+        + (string) - Object property name
+    + `inserted_id` (string) - Unique ID of created object, only for POST method - RegEx pattern: **`^[a-f0-9]{24}$`**
+    + `body` (object) - Request body, limitations: https://docs.mongodb.com/manual/reference/limits/#bson-documents
+    + `response` (object) - Response received, limits: https://docs.mongodb.com/manual/reference/limits/#bson-documents

@@ -1,0 +1,32 @@
++ Parameters
+    + _id: 98d010000000000000000111 (string, required) - The trigger ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "_id": "98d010000000000000000111",
+              "store_id": 100,
+              "fake": true,
+              "datetime": "2018-01-02T13:00:00.612Z",
+              "authentication_id": "5a6757722b66f68dbed44526",
+              "method": "PATCH",
+              "action": "change",
+              "resource": "products",
+              "resource_id": "100a54321098765432112222",
+              "fields": [
+                "quantity"
+              ],
+              "body": {
+                "quantity": 100
+              }
+            }

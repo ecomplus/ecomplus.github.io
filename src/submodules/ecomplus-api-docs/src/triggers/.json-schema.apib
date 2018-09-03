@@ -1,0 +1,114 @@
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "$schema": "http://json-schema.org/draft-06/schema#",
+                "title": "Triggers",
+                "description": "Trigger object model",
+                "type": "object",
+                "required": [
+                    "datetime",
+                    "method",
+                    "action",
+                    "resource"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "datetime": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "When event occurred, date and time in ISO 8601 standard representation"
+                    },
+                    "authentication_id": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "pattern": "^[a-f0-9]{24}$",
+                        "description": "ID of used authentication, should be a valid hexadecimal"
+                    },
+                    "method": {
+                        "type": "string",
+                        "enum": [
+                            "POST",
+                            "PATCH",
+                            "PUT",
+                            "DELETE"
+                        ],
+                        "description": "Method (HTTP verb) of the event"
+                    },
+                    "action": {
+                        "type": "string",
+                        "enum": [
+                            "create",
+                            "change",
+                            "delete"
+                        ],
+                        "description": "Type of action taken"
+                    },
+                    "resource": {
+                        "type": "string",
+                        "enum": [
+                            "authentications",
+                            "products",
+                            "categories",
+                            "brands",
+                            "collections",
+                            "grids",
+                            "customers",
+                            "carts",
+                            "orders",
+                            "applications"
+                        ],
+                        "description": "API resource"
+                    },
+                    "resource_id": {
+                        "type": "string",
+                        "pattern": "^[a-f0-9]{24}$",
+                        "description": "Resource ID, if specified"
+                    },
+                    "subresource": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "pattern": "^[a-z_]+$",
+                        "description": "Subresource slug (which appears in the URL), if specified"
+                    },
+                    "subresource_id": {
+                        "type": "string",
+                        "pattern": "^[a-f0-9]{24}$",
+                        "description": "Subresource ID, if specified"
+                    },
+                    "fields": {
+                        "type": "array",
+                        "uniqueItems": true,
+                        "maxItems": 100,
+                        "items": {
+                            "type": "string",
+                            "maxLength": 50,
+                            "pattern": "^[a-z0-9_]+$",
+                            "description": "Object property name"
+                        },
+                        "description": "Document fields involved (created or updated) with the event"
+                    },
+                    "inserted_id": {
+                        "type": "string",
+                        "pattern": "^[a-f0-9]{24}$",
+                        "description": "Unique ID of created object, only for POST method"
+                    },
+                    "body": {
+                        "type": "object",
+                        "description": "Request body, limitations: https://docs.mongodb.com/manual/reference/limits/#bson-documents"
+                    },
+                    "response": {
+                        "type": "object",
+                        "description": "Response received, limits: https://docs.mongodb.com/manual/reference/limits/#bson-documents"
+                    }
+                }
+            }

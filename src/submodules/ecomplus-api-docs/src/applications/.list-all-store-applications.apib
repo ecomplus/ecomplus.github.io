@@ -1,0 +1,69 @@
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "meta": {
+                "limit": 1000,
+                "offset": 0,
+                "sort": [],
+                "fields": [
+                  "_id",
+                  "app_id",
+                  "state",
+                  "version",
+                  "version_date",
+                  "type"
+                ],
+                "query": {}
+              },
+              "result": [
+                {
+                  "_id": "42aa00000000000000000110",
+                  "app_id": 1001,
+                  "state": "active",
+                  "version": "1.1.1",
+                  "version_date": "2017-11-15T09:15:10.612Z",
+                  "type": "storefront"
+                },
+                {
+                  "_id": "42aa00000000000000000111",
+                  "app_id": 1002,
+                  "state": "active",
+                  "version": "3.0.0",
+                  "type": "dashboard"
+                },
+                {
+                  "_id": "42aa00000000000000000112",
+                  "app_id": 1003,
+                  "state": "test",
+                  "version": "2.14.0",
+                  "version_date": "2017-11-14T12:00:10.612Z",
+                  "type": "storefront"
+                },
+                {
+                  "_id": "42aa00000000000000000113",
+                  "app_id": 1004,
+                  "state": "inactive",
+                  "version": "2.0.23",
+                  "version_date": "2017-12-15T00:15:10.612Z",
+                  "type": "module_package"
+                },
+                {
+                  "_id": "42aa00000000000000000114",
+                  "app_id": 1005,
+                  "state": "active",
+                  "version": "3.1.3",
+                  "version_date": "2017-12-20T00:15:10.612Z",
+                  "type": "external"
+                }
+              ]
+            }

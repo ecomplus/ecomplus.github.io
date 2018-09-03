@@ -1,0 +1,36 @@
++ Parameters
+    + product: 1234567890abcdef01291511 (string, required) - Product ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
+    + Schema
+
+            {
+                "$schema": "http://json-schema.org/draft-06/schema#",
+                "title": "Grids for specifications and variations, grid_id as property name",
+                "type": "object",
+                "additionalProperties": false,
+                "minProperties": 1,
+                "maxProperties": 200,
+                "patternProperties": {
+                    "^[a-z0-9_]{2,30}$": {
+                        "type": "string",
+                        "maxLength": 70,
+                        "description": "Grid title"
+                    }
+                }
+            }
+
+    + Body
+
+            {
+              "size_type": "Size guide"
+            }
+
++ Response 204

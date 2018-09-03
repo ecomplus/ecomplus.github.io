@@ -1,0 +1,36 @@
++ Attributes (object)
+    + `title` (string, required) - Grid title - Max length: **70**
+    + `i18n` (object) - Grid title translations - Max properties: **10**
+        + `^[a-z]{2}(_[a-z]{2})?$` (string) - Translated full grid title - Max length: **255**
+    + `grid_id` (string, required) - Unique identifier, grid name using only lowercase, numbers and underscore - RegEx pattern: **`^[a-z0-9_]{2,30}$`**
+    + `options` (array) - Pre-defined options for this grid, used in specifications, customization and variations - Max elements: **3000**
+        + (object) - Option object
+            + `_id` (string, required) - Unique ID (ObjectID) - RegEx pattern: **`^[a-f0-9]{24}$`**
+            + `option_id` (string, required) - Unique identifier, option name using only lowercase, numbers and underscore - RegEx pattern: **`^[a-z0-9_]{2,30}$`**
+            + `text` (string, required) - Option text value displayed for the client - Max length: **255**
+            + `value` (string) - Default normalized value to use in integrations - Max length: **200**
+            + `external_values` (object) - Normalized values to use in specific integrations (ID in property) - Max properties: **5**
+                + `^[a-z0-9_]{2,30}$` (string) - Attribute text value - Max length: **200**
+            + `colors` (array) - Option color palette (if the grid involves colors), starting by main color - Max elements: **6**
+                + (string) - RGB code with #
+            + `add_to_price` (object) - Default price alteration for product with this option for customization or variations
+                + `type`: percentage (enum) - Type of price addition
+                    + `percentage` (string)
+                    + `fixed` (string)
+                + `addition` (number, required) - Additional value, could be negative - Mininum: **-99999999** - Maximum: **99999999** - Max precision: **0.0001**
+    + `custom_value`: false (boolean) - If this grid accept custom value defined by customer (product customization)
+    + `attachment`: false (boolean) - If this grid accept customer file attachment
+    + `add_to_price` (object) - Default price alteration for product with this grid for customization or variations
+        + `type`: percentage (enum) - Type of price addition
+            + `percentage` (string)
+            + `fixed` (string)
+        + `addition` (number, required) - Additional value, could be negative - Mininum: **-99999999** - Maximum: **99999999** - Max precision: **0.0001**
+    + `metafields` (array) - List of custom attributes - Max elements: **100**
+        + (object) - Custom attribute object
+            + `_id` (string, required) - Unique ID (ObjectID) - RegEx pattern: **`^[a-f0-9]{24}$`**
+            + `namespace` (string) - String to help distinguish who (or which app) created and can use the metafield - Max length: **30**
+            + `field` (string) - Field name - Max length: **50**
+            + `value` (string, required) - Custom property value - Max length: **255**
+    + `flags` (array) - Flags to associate additional info - Max elements: **10**
+        + (string) - Flag title
+    + `notes` (string) - Optional notes with additional info about this grid - Max length: **255**

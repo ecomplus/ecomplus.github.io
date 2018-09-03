@@ -1,0 +1,55 @@
++ Parameters
+    + limit: 4 (number, optional) - Max number of objects to return
+    + offset: 2 (number, optional) - First entry to return
+    + sort: `-name` (string, optional) - Rules to order resultant objects
+    + fields: `name,short_description` (string, optional) - Object properties to return
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "meta": {
+                "limit": 4,
+                "offset": 2,
+                "sort": [
+                  {
+                    "field": "name",
+                    "order": -1
+                  }
+                ],
+                "fields": [
+                  "name",
+                  "short_description"
+                ],
+                "query": {}
+              },
+              "result": [
+                {
+                  "_id": "b10000000000000000001115",
+                  "name": "Category 5",
+                  "short_description": "Category 5 short description text"
+                },
+                {
+                  "_id": "b10000000000000000001114",
+                  "name": "Category 4",
+                  "short_description": "Category 4 short description text"
+                },
+                {
+                  "_id": "b10000000000000000001113",
+                  "name": "Category 3",
+                  "short_description": "Category 3 short description text"
+                },
+                {
+                  "_id": "b10000000000000000001112",
+                  "name": "Category 2",
+                  "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                }
+              ]
+            }

@@ -1,0 +1,240 @@
+{
+  "element": "parseResult",
+  "content": [
+    {
+      "element": "category",
+      "meta": {
+        "classes": [
+          "api"
+        ],
+        "title": "E-Com Plus Graphs API"
+      },
+      "content": [
+        {
+          "element": "copy",
+          "content": "[E-Com Plus](https://www.e-com.plus)\nis a robust and flexible cloud commerce software,\ntotally based on REST APIs, providing a large library of methods and specifications\nto deploy any digital commerce operation easly\n\n**Graphs API** is our public REST interface to\n[Neo4j](https://neo4j.com/) (graph database),\nour real-time recommendation engine, used to better implementations of\nproducts recommendations systems\n\n## Overview\n\nAll requests are proxy passed to Neo4j\n[Transactional Cypher HTTP endpoint](https://neo4j.com/docs/developer-manual/3.3/http-api/#http-api-transactional)\nwith predefined cyphers, varying only by the resource ID\n\nThis API pass only\n[MATCH](https://neo4j.com/docs/developer-manual/current/cypher/clauses/match/)\ncyphers and the responses are the same as returned from _Neo4j HTTP API_,\nso you can read their documentation to get more info and examples\n\n### Host\n\nShould be accessed from `https://apx-graphs.e-com.plus/api/{version}/`\n\nCurrent version: **v1**\n\nhttps://apx-graphs.e-com.plus/api/v1/\n\nNote that every request must be with `https` (SSL)\n\nAll endpoints will end with `.json`:\n\nhttps://apx-graphs.e-com.plus/api/v1/example.json\n\n### Verbs\n\n| Verb    | CRUD           | Description             |\n|:--------|----------------|-------------------------|\n| GET     | Read           | View object             |\n\n### Status Codes\n\nBased on HTTP/1.1 Status Code Definitions:\n\n- *2xx* - Successful\n\n- *4xx* - Client error, must check the request\n\n- *5xx* - Server error, report us and try again later\n\n### Format\n\nResponse body is formatted as JSON, always an object like the one below:\n\n```json\n{\n  \"results\": [\n    {\n      \"columns\": [\n        \"products.id\"\n      ],\n      \"data\": [\n        [ \"{_id}\" ],\n        [ \"{_id}\" ]\n      ]\n    }\n  ],\n  \"errors\": [\n  ]\n}\n```\n\n## Error Handling\n\n#### 404\n\n```json\n{\n  \"status\": 404,\n  \"error_code\": -44,\n  \"message\": \"Page not found\"\n}\n```\n\nIncorrect URL paths (check [API Host](#introduction/overview/host))\nor invalid resource ID, it must match the\n[RegEx](https://regexr.com/) pattern _[a-f0-9]{24}_,\nbeing a valid 24 chars hexadecimal string\n\n#### 503\n\n```json\n{\n  \"status\": 503,\n  \"error_code\": -53,\n  \"message\": \"Service unavailable (DDoS?), wait few seconds\"\n}\n```\n\nNGINX is blocking your requests for security reasons, please wait few seconds and try again\n\n## Server Limits\n\nResponses are limited to 2 requests per IP per second,\nand 5 simultaneous connections per IP\n\nIn almost all cases you will not receive an error if you go beyond the limits,\nthe response will only be delayed, but even so,\nwe recommend that you create treatments in case you receive a *503* status code\n\n## See Also\n\n- [Developers site](https://developers.e-com.plus)\n\n- [GitHub organization](https://github.com/ecomclub)\n\n- [Community](https://community.e-com.plus)\n\n#### Other REST APIs\n\n- [Store](https://ecomstore.docs.apiary.io):\nE-Com Plus Store API, with all store resources\n\n- [Main](https://ecomplus.docs.apiary.io):\nE-Com Plus Main API, with some public data about stores and channels\n\n- [Search](https://ecomsearch.docs.apiary.io):\nPowerful text search API using Elasticsearch to find and suggest items (products) and terms\n\n## Getting Help\n\nFeel free to get help or suggest alterations on\n[GitHub repo](https://github.com/ecomclub/ecomplus-api-docs) or by e-mail\n[ti@e-com.club](mailto:ti@e-com.club)"
+        },
+        {
+          "element": "category",
+          "meta": {
+            "classes": [
+              "resourceGroup"
+            ],
+            "title": "Products"
+          },
+          "content": [
+            {
+              "element": "copy",
+              "content": "[Products](https://ecomstore.docs.apiary.io/#reference/products)\nconnected data based on\n[orders](https://ecomstore.docs.apiary.io/#reference/orders) and\n[categories](https://ecomstore.docs.apiary.io/#reference/categories)\nauto-synchronized from a merchant's store"
+            },
+            {
+              "element": "resource",
+              "meta": {
+                "title": "Recommended"
+              },
+              "attributes": {
+                "href": "/products/{_id}/recommended.json"
+              },
+              "content": [
+                {
+                  "element": "copy",
+                  "content": "Takes the defined `_id_` by reference and returns up to 12\nrecommended products, selecting the products that was more\ntimes bought together with the reference product\n\nYou should use it to do something like _\"who bought it, bought too\"_"
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "List Recommended Items"
+                  },
+                  "attributes": {
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "The product ID",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "_id"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "a00000000000000000000000"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET"
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"results\": [\n    {\n      \"columns\": [\n        \"products.id\"\n      ],\n      \"data\": [\n        [\n          \"a00000000000000000000001\"\n        ],\n        [\n          \"a00000000000000000000002\"\n        ],\n        [\n          \"a00000000000000000000003\"\n        ],\n        [\n          \"a00000000000000000000004\"\n        ],\n        [\n          \"a00000000000000000000005\"\n        ],\n        [\n          \"a00000000000000000000006\"\n        ],\n        [\n          \"a00000000000000000000007\"\n        ],\n        [\n          \"a00000000000000000000008\"\n        ],\n        [\n          \"a00000000000000000000009\"\n        ],\n        [\n          \"a0000000000000000000000a\"\n        ],\n        [\n          \"a0000000000000000000000b\"\n        ],\n        [\n          \"a0000000000000000000000c\"\n        ]\n      ]\n    }\n  ],\n  \"errors\": []\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "element": "resource",
+              "meta": {
+                "title": "Related"
+              },
+              "attributes": {
+                "href": "/products/{_id}/related.json"
+              },
+              "content": [
+                {
+                  "element": "copy",
+                  "content": "Takes the defined `_id` by reference and returns up to 12\nrelated products, selecting the products that have more\ncategories in common with the reference product\n\nYou should use it to do something like _\"you can also be interested by\"_"
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "List Related Items"
+                  },
+                  "attributes": {
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "The product ID",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "_id"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "a00000000000000000000000"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET"
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"results\": [\n    {\n      \"columns\": [\n        \"products.id\"\n      ],\n      \"data\": [\n        [\n          \"a00000000000000000000011\"\n        ],\n        [\n          \"a00000000000000000000012\"\n        ],\n        [\n          \"a00000000000000000000013\"\n        ],\n        [\n          \"a00000000000000000000014\"\n        ],\n        [\n          \"a00000000000000000000015\"\n        ],\n        [\n          \"a00000000000000000000016\"\n        ],\n        [\n          \"a00000000000000000000017\"\n        ],\n        [\n          \"a00000000000000000000018\"\n        ],\n        [\n          \"a00000000000000000000019\"\n        ],\n        [\n          \"a0000000000000000000001a\"\n        ],\n        [\n          \"a0000000000000000000001b\"\n        ],\n        [\n          \"a0000000000000000000001c\"\n        ]\n      ]\n    }\n  ],\n  \"errors\": []\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

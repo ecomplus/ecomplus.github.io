@@ -1,0 +1,22 @@
++ Parameters
+    + _id: 123a5432109876543210cdef (string, required) - The product ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
+    + Body
+
+            {
+              "price": 40,
+              "price_effective_date": {
+                "end": "2018-06-01T10:00:00.612Z"
+              },
+              "quantity": 200
+            }
+
++ Response 204

@@ -1,0 +1,636 @@
+## Group Grids
+
+`.grids`
+
+Use the **grids** resource to create, read, update and delete product grids in
+a merchant's store, you can edit all grid properties and also work with all
+grid subresources directly at this resource
+
+### Grid Object [/grids/schema.json]
+
++ Attributes (object)
+    + `title` (string, required) - Grid title - Max length: **70**
+    + `i18n` (object) - Grid title translations - Max properties: **10**
+        + `^[a-z]{2}(_[a-z]{2})?$` (string) - Translated full grid title - Max length: **255**
+    + `grid_id` (string, required) - Unique identifier, grid name using only lowercase, numbers and underscore - RegEx pattern: **`^[a-z0-9_]{2,30}$`**
+    + `options` (array) - Pre-defined options for this grid, used in specifications, customization and variations - Max elements: **3000**
+        + (object) - Option object
+            + `_id` (string, required) - Unique ID (ObjectID) - RegEx pattern: **`^[a-f0-9]{24}$`**
+            + `option_id` (string, required) - Unique identifier, option name using only lowercase, numbers and underscore - RegEx pattern: **`^[a-z0-9_]{2,30}$`**
+            + `text` (string, required) - Option text value displayed for the client - Max length: **255**
+            + `value` (string) - Default normalized value to use in integrations - Max length: **200**
+            + `external_values` (object) - Normalized values to use in specific integrations (ID in property) - Max properties: **5**
+                + `^[a-z0-9_]{2,30}$` (string) - Attribute text value - Max length: **200**
+            + `colors` (array) - Option color palette (if the grid involves colors), starting by main color - Max elements: **6**
+                + (string) - RGB code with #
+            + `add_to_price` (object) - Default price alteration for product with this option for customization or variations
+                + `type`: percentage (enum) - Type of price addition
+                    + `percentage` (string)
+                    + `fixed` (string)
+                + `addition` (number, required) - Additional value, could be negative - Mininum: **-99999999** - Maximum: **99999999** - Max precision: **0.0001**
+    + `custom_value`: false (boolean) - If this grid accept custom value defined by customer (product customization)
+    + `attachment`: false (boolean) - If this grid accept customer file attachment
+    + `add_to_price` (object) - Default price alteration for product with this grid for customization or variations
+        + `type`: percentage (enum) - Type of price addition
+            + `percentage` (string)
+            + `fixed` (string)
+        + `addition` (number, required) - Additional value, could be negative - Mininum: **-99999999** - Maximum: **99999999** - Max precision: **0.0001**
+    + `metafields` (array) - List of custom attributes - Max elements: **100**
+        + (object) - Custom attribute object
+            + `_id` (string, required) - Unique ID (ObjectID) - RegEx pattern: **`^[a-f0-9]{24}$`**
+            + `namespace` (string) - String to help distinguish who (or which app) created and can use the metafield - Max length: **30**
+            + `field` (string) - Field name - Max length: **50**
+            + `value` (string, required) - Custom property value - Max length: **255**
+    + `flags` (array) - Flags to associate additional info - Max elements: **10**
+        + (string) - Flag title
+    + `notes` (string) - Optional notes with additional info about this grid - Max length: **255**
+
+#### JSON Schema [GET]
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "$schema": "http://json-schema.org/draft-06/schema#",
+                "title": "Grids",
+                "description": "Grid object model",
+                "type": "object",
+                "required": [
+                    "title",
+                    "grid_id"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "maxLength": 70,
+                        "description": "Grid title"
+                    },
+                    "i18n": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "maxProperties": 10,
+                        "patternProperties": {
+                            "^[a-z]{2}(_[a-z]{2})?$": {
+                                "type": "string",
+                                "maxLength": 255,
+                                "description": "Translated full grid title"
+                            }
+                        },
+                        "description": "Grid title translations"
+                    },
+                    "grid_id": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9_]{2,30}$",
+                        "description": "Unique identifier, grid name using only lowercase, numbers and underscore"
+                    },
+                    "options": {
+                        "type": "array",
+                        "maxItems": 3000,
+                        "items": {
+                            "type": "object",
+                            "required": [
+                                "_id",
+                                "option_id",
+                                "text"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                                "_id": {
+                                    "type": "string",
+                                    "pattern": "^[a-f0-9]{24}$",
+                                    "description": "Unique ID (ObjectID)"
+                                },
+                                "option_id": {
+                                    "type": "string",
+                                    "pattern": "^[a-z0-9_]{2,30}$",
+                                    "description": "Unique identifier, option name using only lowercase, numbers and underscore"
+                                },
+                                "text": {
+                                    "type": "string",
+                                    "maxLength": 255,
+                                    "description": "Option text value displayed for the client"
+                                },
+                                "value": {
+                                    "type": "string",
+                                    "maxLength": 200,
+                                    "description": "Default normalized value to use in integrations"
+                                },
+                                "external_values": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "maxProperties": 5,
+                                    "patternProperties": {
+                                        "^[a-z0-9_]{2,30}$": {
+                                            "type": "string",
+                                            "maxLength": 200,
+                                            "description": "Attribute text value"
+                                        }
+                                    },
+                                    "description": "Normalized values to use in specific integrations (ID in property)"
+                                },
+                                "colors": {
+                                    "type": "array",
+                                    "maxItems": 6,
+                                    "items": {
+                                        "type": "string",
+                                        "pattern": "^#[a-f0-9]{6}$",
+                                        "description": "RGB code with #"
+                                    },
+                                    "description": "Option color palette (if the grid involves colors), starting by main color"
+                                },
+                                "add_to_price": {
+                                    "type": "object",
+                                    "required": [
+                                        "addition"
+                                    ],
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "enum": [
+                                                "percentage",
+                                                "fixed"
+                                            ],
+                                            "default": "percentage",
+                                            "description": "Type of price addition"
+                                        },
+                                        "addition": {
+                                            "type": "number",
+                                            "multipleOf": 0.0001,
+                                            "minimum": -99999999,
+                                            "maximum": 99999999,
+                                            "description": "Additional value, could be negative"
+                                        }
+                                    },
+                                    "description": "Default price alteration for product with this option for customization or variations"
+                                }
+                            },
+                            "description": "Option object"
+                        },
+                        "description": "Pre-defined options for this grid, used in specifications, customization and variations"
+                    },
+                    "custom_value": {
+                        "type": "boolean",
+                        "default": false,
+                        "description": "If this grid accept custom value defined by customer (product customization)"
+                    },
+                    "attachment": {
+                        "type": "boolean",
+                        "default": false,
+                        "description": "If this grid accept customer file attachment"
+                    },
+                    "add_to_price": {
+                        "type": "object",
+                        "required": [
+                            "addition"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": [
+                                    "percentage",
+                                    "fixed"
+                                ],
+                                "default": "percentage",
+                                "description": "Type of price addition"
+                            },
+                            "addition": {
+                                "type": "number",
+                                "multipleOf": 0.0001,
+                                "minimum": -99999999,
+                                "maximum": 99999999,
+                                "description": "Additional value, could be negative"
+                            }
+                        },
+                        "description": "Default price alteration for product with this grid for customization or variations"
+                    },
+                    "metafields": {
+                        "type": "array",
+                        "maxItems": 100,
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "required": [
+                                "_id",
+                                "value"
+                            ],
+                            "properties": {
+                                "_id": {
+                                    "type": "string",
+                                    "pattern": "^[a-f0-9]{24}$",
+                                    "description": "Unique ID (ObjectID)"
+                                },
+                                "namespace": {
+                                    "type": "string",
+                                    "maxLength": 30,
+                                    "description": "String to help distinguish who (or which app) created and can use the metafield"
+                                },
+                                "field": {
+                                    "type": "string",
+                                    "maxLength": 50,
+                                    "description": "Field name"
+                                },
+                                "value": {
+                                    "type": "string",
+                                    "maxLength": 255,
+                                    "description": "Custom property value"
+                                }
+                            },
+                            "description": "Custom attribute object"
+                        },
+                        "description": "List of custom attributes"
+                    },
+                    "flags": {
+                        "type": "array",
+                        "uniqueItems": true,
+                        "maxItems": 10,
+                        "items": {
+                            "type": "string",
+                            "maxLength": 20,
+                            "description": "Flag title"
+                        },
+                        "description": "Flags to associate additional info"
+                    },
+                    "notes": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "description": "Optional notes with additional info about this grid"
+                    }
+                }
+            }
+
+### All Grids [/grids.json{?limit,offset,sort,fields}]
+
+*/grids.json?limit&offset&sort&fields\&[field]*
+
+> Authentication<br>_GET_: **none**
+
+Use [default URL parameters](#introduction/overview/url-params) (metadata)
+for pagination and ordering, you can use any other parameter to query
+by particular object properties
+
+#### List All Store Grids [GET /grids.json]
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "meta": {
+                "limit": 1000,
+                "offset": 0,
+                "sort": [],
+                "fields": [
+                  "_id",
+                  "title",
+                  "grid_id"
+                ],
+                "query": {}
+              },
+              "result": [
+                {
+                  "_id": "9d1500000000000000001110",
+                  "title": "Custom grid",
+                  "grid_id": "custom_grid"
+                },
+                {
+                  "_id": "9d1500000000000000001111",
+                  "title": "Smartphone model",
+                  "grid_id": "smartphone_model"
+                },
+                {
+                  "_id": "9d1500000000000000001112",
+                  "title": "Include glass film",
+                  "grid_id": "glass_film"
+                },
+                {
+                  "_id": "9d1500000000000000001113",
+                  "title": "Gender",
+                  "grid_id": "gender"
+                },
+                {
+                  "_id": "9d1500000000000000001114",
+                  "title": "Shirt size",
+                  "grid_id": "size"
+                },
+                {
+                  "_id": "9d1500000000000000001115",
+                  "title": "Colors",
+                  "grid_id": "colors"
+                }
+              ]
+            }
+
+#### Pagination And Ordering [GET]
+
++ Parameters
+    + limit: 2 (number, optional) - Max number of objects to return
+    + offset: 4 (number, optional) - First entry to return
+    + sort: `grid_id` (string, optional) - Rules to order resultant objects
+    + fields: `grid_id,options` (string, optional) - Object properties to return
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "meta": {
+                "limit": 2,
+                "offset": 4,
+                "sort": [
+                  {
+                    "field": "grid_id",
+                    "order": 1
+                  }
+                ],
+                "fields": [
+                  "grid_id",
+                  "options"
+                ],
+                "query": {}
+              },
+              "result": [
+                {
+                  "_id": "9d1500000000000000001112",
+                  "grid_id": "glass_film",
+                  "options": [
+                    {
+                      "_id": "9d1500000000000000000031",
+                      "option_id": "add_glass_film",
+                      "text": "Add glass film",
+                      "add_to_price": {
+                        "type": "fixed",
+                        "addition": 10.00
+                      }
+                    }
+                  ]
+                },
+                {
+                  "_id": "9d1500000000000000001111",
+                  "grid_id": "smartphone_model",
+                  "options": [
+                    {
+                      "_id": "9d1500000000000000000032",
+                      "option_id": "iphone_se",
+                      "text": "iPhone SE"
+                    },
+                    {
+                      "_id": "9d1500000000000000000033",
+                      "option_id": "galaxy_s7",
+                      "text": "Galaxy S7"
+                    },
+                    {
+                      "_id": "9d1500000000000000000034",
+                      "option_id": "k10_power",
+                      "text": "K10 Power"
+                    }
+                  ]
+                }
+              ]
+            }
+
+#### Find Grids [GET /grids.json{?grid_id}]
+
++ Parameters
+    + `grid_id`: `size` (string, optional) - Object property to query
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "meta": {
+                "limit": 1000,
+                "offset": 0,
+                "sort": [],
+                "fields": [
+                  "_id",
+                  "title",
+                  "grid_id"
+                ],
+                "query": {
+                  "grid_id": "size"
+                }
+              },
+              "result": [
+                {
+                  "_id": "9d1500000000000000001114",
+                  "title": "Shirt size",
+                  "grid_id": "size"
+                }
+              ]
+            }
+
+### New Grid [/grids.json]
+
+*/grids.json*
+
+> Authentication<br>_POST_: **required**
+
+Request body must obey the specifications of
+[this model](#reference/grids/grid-object)
+
+#### Create New Grid [POST]
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
+    + Body
+
+            {
+              "title": "Smartphone model",
+              "grid_id": "smartphone_model",
+              "options": [
+                {
+                  "_id": "9d1500000000000000000032",
+                  "option_id": "iphone_se",
+                  "text": "iPhone SE"
+                },
+                {
+                  "_id": "9d1500000000000000000033",
+                  "option_id": "galaxy_s7",
+                  "text": "Galaxy S7"
+                },
+                {
+                  "_id": "9d1500000000000000000034",
+                  "option_id": "k10_power",
+                  "text": "K10 Power"
+                }
+              ],
+              "custom_value": false
+            }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+              "_id": "9d1500000000000000001111"
+            }
+
+### Specific Grid [/grids/{_id}.json]
+
+*/grids/[_id].json*
+
+> Authentication<br>_GET_: **none**<br>_PATCH_, _PUT_, _DELETE_: **required**
+
+In read requests, response body will follow
+[this model](#reference/grids/grid-object)
+
+For overwriting and editing, request body must obey the same specifications,
+but especially for edit requests there are no required fields
+
+#### Read Grid [GET]
+
++ Parameters
+    + _id: 9d1500000000000000001111 (string, required) - The grid ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "_id": "9d1500000000000000001111",
+              "created_at": "2017-11-19T13:10:00.612Z",
+              "store_id": 100,
+              "title": "Smartphone model",
+              "grid_id": "smartphone_model",
+              "options": [
+                {
+                  "_id": "9d1500000000000000000032",
+                  "option_id": "iphone_se",
+                  "text": "iPhone SE"
+                },
+                {
+                  "_id": "9d1500000000000000000033",
+                  "option_id": "galaxy_s7",
+                  "text": "Galaxy S7"
+                },
+                {
+                  "_id": "9d1500000000000000000034",
+                  "option_id": "k10_power",
+                  "text": "K10 Power"
+                }
+              ],
+              "custom_value": false,
+              "attachment": false
+            }
+
+#### Edit Grid [PATCH]
+
++ Parameters
+    + _id: 9d1500000000000000001111 (string, required) - The grid ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
+    + Body
+
+            {
+              "custom_value": true
+            }
+
++ Response 204
+
+#### Overwrite Grid [PUT]
+
++ Parameters
+    + _id: 9d1500000000000000001111 (string, required) - The grid ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
+    + Body
+
+            {
+              "title": "Smartphone model",
+              "grid_id": "smartphone_model",
+              "options": [
+                {
+                  "_id": "9d1500000000000000000032",
+                  "option_id": "iphone_se",
+                  "text": "iPhone SE"
+                },
+                {
+                  "_id": "9d1500000000000000000033",
+                  "option_id": "galaxy_s7",
+                  "text": "Galaxy S7"
+                },
+                {
+                  "_id": "9d1500000000000000000034",
+                  "option_id": "k10_power",
+                  "text": "K10 Power"
+                },
+                {
+                  "_id": "9d1500000000000000000035",
+                  "option_id": "galaxy_s8",
+                  "text": "Galaxy S8"
+                }
+              ],
+              "custom_value": true
+            }
+
++ Response 204
+
+#### Remove Grid [DELETE]
+
++ Parameters
+    + _id: 9d1500000000000000001111 (string, required) - The grid ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
++ Response 204

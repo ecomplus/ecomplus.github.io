@@ -1,0 +1,77 @@
++ Parameters
+    + product: 1234567890abcdef01291511 (string, required) - Product ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "meta": {
+                "limit": 1000,
+                "offset": 0,
+                "sort": [],
+                "fields": [
+                  "_id",
+                  "tag",
+                  "label",
+                  "grid_id",
+                  "require",
+                  "custom_value",
+                  "attachment",
+                  "add_to_price"
+                ],
+                "query": {}
+              },
+              "result": [
+                {
+                  "_id": "a12000000000000000001110",
+                  "label": "Smartphone model",
+                  "grid_id": "smartphone_model",
+                  "required": true,
+                  "custom_value": false,
+                  "attachment": false
+                },
+                {
+                  "_id": "a12000000000000000001111",
+                  "label": "Include glass film",
+                  "grid_id": "glass_film",
+                  "required": false,
+                  "custom_value": false,
+                  "attachment": false,
+                  "add_to_price": {
+                    "type": "fixed",
+                    "addition": 10.00
+                  }
+                },
+                {
+                  "_id": "a12000000000000000001112",
+                  "label": "Write your name on the cover",
+                  "required": false,
+                  "custom_value": true,
+                  "attachment": false,
+                  "add_to_price": {
+                    "type": "fixed",
+                    "addition": 5.99
+                  }
+                },
+                {
+                  "_id": "a12000000000000000001113",
+                  "label": "Picture on the cover",
+                  "required": false,
+                  "custom_value": true,
+                  "attachment": true,
+                  "add_to_price": {
+                    "type": "fixed",
+                    "addition": 9.99
+                  }
+                }
+              ]
+            }

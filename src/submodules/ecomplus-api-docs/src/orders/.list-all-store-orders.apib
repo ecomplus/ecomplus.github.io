@@ -1,0 +1,154 @@
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "meta": {
+                "limit": 1000,
+                "offset": 0,
+                "sort": [],
+                "fields": [
+                  "_id",
+                  "number",
+                  "code",
+                  "status",
+                  "financial_status",
+                  "fulfillment_status",
+                  "amount"
+                ],
+                "query": {}
+              },
+              "result": [
+                {
+                  "_id": "fe1000000000000000000000",
+                  "number": 1100,
+                  "code": "N1100",
+                  "status": "closed",
+                  "financial_status": {
+                    "updated_at": "2017-11-15T14:30:00.612Z",
+                    "current": "paid"
+                  },
+                  "fulfillment_status": {
+                    "updated_at": "2017-12-01T18:00:00.612Z",
+                    "current": "delivered"
+                  },
+                  "amount": {
+                    "total": 250.75,
+                    "subtotal": 220,
+                    "freight": 30.75,
+                    "discount": 0
+                  }
+                },
+                {
+                  "_id": "fe1000000000000000000001",
+                  "number": 1101,
+                  "code": "P100",
+                  "status": "closed",
+                  "financial_status": {
+                    "updated_at": "2017-11-15T14:30:00.612Z",
+                    "current": "paid"
+                  },
+                  "fulfillment_status": {
+                    "updated_at": "2017-12-02T15:40:45.612Z",
+                    "current": "delivered"
+                  },
+                  "amount": {
+                    "total": 50,
+                    "subtotal": 60,
+                    "freight": 0,
+                    "discount": 10
+                  }
+                },
+                {
+                  "_id": "fe1000000000000000000002",
+                  "number": 1102,
+                  "code": "P200",
+                  "status": "cancelled",
+                  "financial_status": {
+                    "updated_at": "2017-11-16T03:30:00.612Z",
+                    "current": "voided"
+                  },
+                  "amount": {
+                    "total": 90.6,
+                    "subtotal": 70,
+                    "freight": 10.60,
+                    "discount": 0,
+                    "tax": 0,
+                    "extra": 10
+                  }
+                },
+                {
+                  "_id": "fe1000000000000000000003",
+                  "number": 1103,
+                  "code": "P300",
+                  "status": "open",
+                  "financial_status": {
+                    "updated_at": "2017-11-17T09:10:00.612Z",
+                    "current": "paid"
+                  },
+                  "fulfillment_status": {
+                    "updated_at": "2017-11-20T12:00:45.612Z",
+                    "current": "shipped"
+                  },
+                  "amount": {
+                    "total": 110,
+                    "subtotal": 90,
+                    "freight": 30,
+                    "discount": 10
+                  }
+                },
+                {
+                  "_id": "fe1000000000000000000004",
+                  "number": 1104,
+                  "status": "open",
+                  "financial_status": {
+                    "updated_at": "2017-11-18T10:10:00.612Z",
+                    "current": "paid"
+                  },
+                  "fulfillment_status": {
+                    "updated_at": "2017-11-19T11:00:00.612Z",
+                    "current": "invoice_issued"
+                  },
+                  "amount": {
+                    "total": 90.5,
+                    "subtotal": 90,
+                    "freight": 10.5,
+                    "discount": 10
+                  }
+                },
+                {
+                  "_id": "fe1000000000000000000005",
+                  "number": 1105,
+                  "status": "open",
+                  "financial_status": {
+                    "updated_at": "2017-11-19T13:10:00.612Z",
+                    "current": "pending"
+                  },
+                  "amount": {
+                    "total": 48.05,
+                    "subtotal": 42.9,
+                    "freight": 5.15,
+                    "discount": 0
+                  }
+                },
+                {
+                  "_id": "fe1000000000000000000006",
+                  "number": 1106,
+                  "status": "open",
+                  "amount": {
+                    "total": 45.50,
+                    "subtotal": 35.50,
+                    "freight": 10,
+                    "discount": 0
+                  }
+                }
+              ]
+            }

@@ -1,0 +1,18 @@
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "$schema": "http://json-schema.org/draft-06/schema#",
+                "title": "Application data",
+                "type": "object",
+                "minProperties": 1,
+                "maxProperties": 3000,
+                "description": "Schema free, limitations: https://docs.mongodb.com/manual/reference/limits/#bson-documents"
+            }

@@ -1,0 +1,294 @@
+{
+  "element": "parseResult",
+  "content": [
+    {
+      "element": "category",
+      "meta": {
+        "classes": [
+          "api"
+        ],
+        "title": ""
+      },
+      "content": [
+        {
+          "element": "category",
+          "meta": {
+            "classes": [
+              "resourceGroup"
+            ],
+            "title": "Items"
+          },
+          "content": [
+            {
+              "element": "copy",
+              "content": "### Items Object Map\n\nThe `items` type has the\n[mapping](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html) above:\n\n```javascript\n'items': {\n  'properties': {\n    'created_at': {\n      'type': 'date'\n    },\n    'sku': {\n      'type': 'keyword'\n    },\n    'name': {\n      'type': 'text'\n    },\n    'slug': {\n      'type': 'keyword'\n    },\n    'permalink': {\n      'type': 'keyword',\n      'index': false\n    },\n    'mobile_link': {\n      'type': 'keyword',\n      'index': false\n    },\n    'status': {\n      'type': 'keyword'\n    },\n    'available': {\n      'type': 'boolean'\n    },\n    'visible': {\n      'type': 'boolean'\n    },\n    'ad_relevance': {\n      'type': 'byte'\n    },\n    'ad_type': {\n      'type': 'keyword'\n    },\n    'short_description': {\n      'type': 'text',\n      'index': false\n    },\n    'price': {\n      'type': 'float'\n    },\n    'price_effective_date': {\n      'properties': {\n        'start': {\n          'type': 'date'\n        },\n        'end': {\n          'type': 'date'\n        }\n      }\n    },\n    'base_price': {\n      'type': 'float'\n    },\n    'currency_id': {\n      'type': 'keyword',\n      'index': false\n    },\n    'currency_symbol': {\n      'type': 'keyword',\n      'index': false\n    },\n    'quantity': {\n      'type': 'float'\n    },\n    'measurement': {\n      'enabled': false\n    },\n    'condition': {\n      'type': 'keyword'\n    },\n    'warranty': {\n      'type': 'keyword'\n    },\n    'specs': {\n      'type': 'nested',\n      'properties': {\n        'grid': {\n          'type': 'keyword'\n        },\n        'text': {\n          'type': 'keyword'\n        }\n      }\n    },\n    'pictures': {\n      'enabled': false\n    },\n    'installments': {\n      'enabled': false\n    },\n    'discount': {\n      'enabled': false\n    },\n    'views': {\n      'type': 'integer'\n    },\n    'sales': {\n      'type': 'integer'\n    },\n    'brands': {\n      'properties': {\n        '_id': {\n          'type': 'keyword'\n        },\n        'name': {\n          'type': 'keyword'\n        },\n        'slug': {\n          'type': 'keyword'\n        }\n      }\n    },\n    'categories': {\n      'properties': {\n        '_id': {\n          'type': 'keyword'\n        },\n        'name': {\n          'type': 'keyword'\n        },\n        'slug': {\n          'type': 'keyword'\n        }\n      }\n    },\n    'keywords': {\n      'type': 'text'\n    },\n    // map variations as product nested object\n    'variations': {\n      'type': 'nested',\n      'properties': {\n        'sku': {\n          'type': 'keyword'\n        },\n        'name': {\n          'type': 'keyword'\n        },\n        'price': {\n          'type': 'float'\n        },\n        'price_effective_date': {\n          'properties': {\n            'start': {\n              'type': 'date'\n            },\n            'end': {\n              'type': 'date'\n            }\n          }\n        },\n        'base_price': {\n          'type': 'float'\n        },\n        'installments': {\n          'enabled': false\n        },\n        'discount': {\n          'enabled': false\n        },\n        'quantity': {\n          'type': 'float'\n        },\n        'picture_id': {\n          'type': 'keyword',\n          'index': false\n        }\n      }\n    }\n  }\n}\n```\n\nNote that the item object is similar to the\n[Product Object](https://ecomstore.docs.apiary.io/#reference/products/product-object),\nbut with less properties and converting `specifications` object to `specs` array of nested objects"
+            },
+            {
+              "element": "resource",
+              "meta": {
+                "title": "Items Search"
+              },
+              "attributes": {
+                "href": "/items.json"
+              },
+              "content": [
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Simple Search"
+                  },
+                  "attributes": {
+                    "href": "/items.json?q={field}:{value}",
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Valid item object property",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "field"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "keywords"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Value to be searched",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "value"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "tshirt"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "copy",
+                      "content": "ELS [URI Search](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-uri-request.html)"
+                    },
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"took\": 1,\n  \"timed_out\": false,\n  \"_shards\": {\n    \"total\": 6,\n    \"successful\": 6,\n    \"skipped\": 0,\n    \"failed\": 0\n  },\n  \"hits\": {\n    \"total\": 1,\n    \"max_score\": 1.3862944,\n    \"hits\": [\n      {\n        \"_index\": \"100\",\n        \"_type\": \"items\",\n        \"_id\": \"123a5432109876543210cdef\",\n        \"_score\": 1.3862944,\n        \"_source\": {\n          \"created_at\": \"2017-12-01T01:00:30.500Z\",\n          \"sku\": \"s-MP_2B4\",\n          \"name\": \"Mens Pique Polo Shirt\",\n          \"slug\": \"mens-pique-polo-shirt\",\n          \"available\": true,\n          \"visible\": true,\n          \"ad_relevance\": 0,\n          \"views\": 1131,\n          \"sales\": 25,\n          \"price\": 42.9,\n          \"price_effective_date\": {\n            \"end\": \"2018-12-01T10:00:00.000Z\"\n          },\n          \"base_price\": 60,\n          \"quantity\": 100,\n          \"condition\": \"new\",\n          \"specs\": [\n            {\n              \"key\": \"age_group\",\n              \"value\": \"Adult\"\n            },\n            {\n              \"key\": \"gender\",\n              \"value\": \"Male\"\n            },\n            {\n              \"key\": \"size\"\n              \"value\": \"Large\"\n            },\n            {\n              \"key\": \"size_type\",\n              \"value\": \"Regular\"\n            },\n            {\n              \"key\": \"size_system\"\n              \"value\": \"BR\"\n            },\n            {\n              \"key\": \"material\",\n              \"value\": \"Cotton\"\n            },\n            {\n              \"key\": \"colors\",\n              \"value\": \"Pique\"\n            }\n          ],\n          \"keywords\": [\n            \"tshirt\",\n            \"t-shirt\",\n            \"man\"\n          ],\n          \"brands\": [\n            {\n              \"_id\": \"a10000000000000000000001\",\n              \"name\": \"Shirts Example\",\n              \"slug\": \"shirts-example\",\n              \"logo\": {\n                \"url\": \"https://mycdn.com/shirts-example.jpg\",\n                \"size\": \"100x50\"\n              }\n            }\n          ],\n          \"categories\": [\n            {\n              \"_id\": \"f10000000000000000000001\",\n              \"name\": \"Polo Shirts\",\n              \"slug\": \"polo\"\n            }\n          ]\n        }\n      }\n    ]\n  }\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Complex Search"
+                  },
+                  "content": [
+                    {
+                      "element": "copy",
+                      "content": "ELS [Request Body Search](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-body.html)"
+                    },
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "POST",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"query\": {\n    \"bool\": {\n      \"must\": {\n        \"multi_match\": {\n          \"query\": \"tshirt\",\n          \"fields\": [\n            \"name\",\n            \"keywords\"\n          ]\n        }\n      },\n      \"filter\": [\n        {\n          \"term\": {\n            \"visible\": true\n          }\n        }\n      ]\n    }\n  },\n  \"sort\": [\n    {\n      \"available\": {\n        \"order\": \"desc\"\n      }\n    },\n    \"_score\",\n    {\n      \"ad_relevance\": {\n        \"order\": \"desc\"\n      }\n    },\n    {\n      \"views\": {\n        \"order\": \"desc\"\n      }\n    }\n  ]\n}\n"
+                            }
+                          ]
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"took\": 1,\n  \"timed_out\": false,\n  \"_shards\": {\n    \"total\": 6,\n    \"successful\": 6,\n    \"skipped\": 0,\n    \"failed\": 0\n  },\n  \"hits\": {\n    \"total\": 1,\n    \"max_score\": 1.3862944,\n    \"hits\": [\n      {\n        \"_index\": \"100\",\n        \"_type\": \"items\",\n        \"_id\": \"123a5432109876543210cdef\",\n        \"_score\": 1.3862944,\n        \"_source\": {\n          \"created_at\": \"2017-12-01T01:00:30.500Z\",\n          \"sku\": \"s-MP_2B4\",\n          \"name\": \"Mens Pique Polo Shirt\",\n          \"slug\": \"mens-pique-polo-shirt\",\n          \"available\": true,\n          \"visible\": true,\n          \"ad_relevance\": 0,\n          \"views\": 1131,\n          \"sales\": 25,\n          \"price\": 42.9,\n          \"price_effective_date\": {\n            \"end\": \"2018-12-01T10:00:00.000Z\"\n          },\n          \"base_price\": 60,\n          \"quantity\": 100,\n          \"condition\": \"new\",\n          \"specs\": [\n            {\n              \"key\": \"age_group\",\n              \"value\": \"Adult\"\n            },\n            {\n              \"key\": \"gender\",\n              \"value\": \"Male\"\n            },\n            {\n              \"key\": \"size\"\n              \"value\": \"Large\"\n            },\n            {\n              \"key\": \"size_type\",\n              \"value\": \"Regular\"\n            },\n            {\n              \"key\": \"size_system\"\n              \"value\": \"BR\"\n            },\n            {\n              \"key\": \"material\",\n              \"value\": \"Cotton\"\n            },\n            {\n              \"key\": \"colors\",\n              \"value\": \"Pique\"\n            }\n          ],\n          \"keywords\": [\n            \"tshirt\",\n            \"t-shirt\",\n            \"man\"\n          ],\n          \"brands\": [\n            {\n              \"_id\": \"a10000000000000000000001\",\n              \"name\": \"Shirts Example\",\n              \"slug\": \"shirts-example\",\n              \"logo\": {\n                \"url\": \"https://mycdn.com/shirts-example.jpg\",\n                \"size\": \"100x50\"\n              }\n            }\n          ],\n          \"categories\": [\n            {\n              \"_id\": \"f10000000000000000000001\",\n              \"name\": \"Polo Shirts\",\n              \"slug\": \"polo\"\n            }\n          ]\n        }\n      }\n    ]\n  }\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

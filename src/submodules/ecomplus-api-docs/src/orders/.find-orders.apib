@@ -1,0 +1,56 @@
++ Parameters
+    + code: `P300` (string, optional) - Object property to query
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "meta": {
+                "limit": 1000,
+                "offset": 0,
+                "sort": [],
+                "fields": [
+                  "_id",
+                  "number",
+                  "code",
+                  "status",
+                  "financial_status",
+                  "fulfillment_status",
+                  "amount"
+                ],
+                "query": {
+                  "code": "P300"
+                }
+              },
+              "result": [
+                {
+                  "_id": "fe1000000000000000000003",
+                  "number": 1103,
+                  "code": "P300",
+                  "status": "open",
+                  "financial_status": {
+                    "updated_at": "2017-11-17T09:10:00.612Z",
+                    "current": "paid"
+                  },
+                  "fulfillment_status": {
+                    "updated_at": "2017-11-20T12:00:45.612Z",
+                    "current": "shipped"
+                  },
+                  "amount": {
+                    "total": 110,
+                    "subtotal": 90,
+                    "freight": 30,
+                    "discount": 10
+                  }
+                }
+              ]
+            }

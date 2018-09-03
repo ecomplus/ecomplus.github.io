@@ -1,0 +1,176 @@
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "$schema": "http://json-schema.org/draft-06/schema#",
+                "title": "Stores",
+                "description": "Store info and resource IDs",
+                "type": "object",
+                "required": [
+                    "name",
+                    "segment_id",
+                    "doc_type",
+                    "doc_number",
+                    "corporate_name",
+                    "financial_email"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "description": "Store name"
+                    },
+                    "description": {
+                        "type": "string",
+                        "maxLength": 3000,
+                        "description": "Simple description of store"
+                    },
+                    "segment_id": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 65535,
+                        "description": "ID of store main segment, get options and IDs at /segments.json"
+                    },
+                    "doc_type": {
+                        "type": "string",
+                        "enum": [
+                            "CPF",
+                            "CNPJ"
+                        ],
+                        "description": "Responsible person or organization document type"
+                    },
+                    "doc_number": {
+                        "type": "string",
+                        "maxLength": 19,
+                        "pattern": "^[0-9]+$",
+                        "description": "Responsible person or organization document number (only numbers)"
+                    },
+                    "inscription_type": {
+                        "type": "string",
+                        "enum": [
+                            "State",
+                            "Municipal"
+                        ],
+                        "description": "Municipal or state registration if exists"
+                    },
+                    "inscription_number": {
+                        "type": "string",
+                        "maxLength": 50,
+                        "description": "Municipal or state registration number (with characters) if exists"
+                    },
+                    "corporate_name": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "description": "Registered company name or responsible fullname"
+                    },
+                    "address": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "description": "Full registered address of company"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "maxLength": 19,
+                        "pattern": "^[0-9]+$",
+                        "description": "Financial contact phone"
+                    },
+                    "representant_name": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "description": "Name of company representative for commercial contact"
+                    },
+                    "representant_email": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "format": "email",
+                        "description": "Email address of company representative"
+                    },
+                    "contact_email": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "format": "email",
+                        "description": "Public email address for news and general contact"
+                    },
+                    "financial_email": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "format": "email",
+                        "description": "Email address to receive notifications, invoices and vouchers"
+                    },
+                    "logo": {
+                        "type": "object",
+                        "required": [
+                            "url"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "url": {
+                                "type": "string",
+                                "maxLength": 255,
+                                "format": "uri",
+                                "description": "Image link"
+                            },
+                            "size": {
+                                "type": "string",
+                                "maxLength": 11,
+                                "pattern": "^[1-9]([0-9]+)?x[1-9]([0-9]+)?$",
+                                "description": "Image size (width x height) in px, such as 100x50 (100px width, 50px height)"
+                            },
+                            "alt": {
+                                "type": "string",
+                                "maxLength": 255,
+                                "description": "Alternative text, HTML alt tag (important for SEO)"
+                            }
+                        },
+                        "description": "Image link to shop's logo"
+                    },
+                    "languages": {
+                        "type": "array",
+                        "uniqueItems": true,
+                        "maxItems": 30,
+                        "items": {
+                            "type": "string",
+                            "pattern": "^[a-z]{2}(_[a-z]{2})?$",
+                            "description": "Language two letters code, sometimes with region, eg.: pt_br, fr, en_us"
+                        },
+                        "description": "List of available languages on store channels"
+                    },
+                    "oauth_providers": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "patternProperties": {
+                            "^facebook|google|windowslive$": {
+                                "type": "object",
+                                "additionalProperties": false,
+                                "required": [
+                                    "provider",
+                                    "client_id",
+                                    "client_secret"
+                                ],
+                                "properties": {
+                                    "client_id": {
+                                        "type": "string",
+                                        "maxLength": 255,
+                                        "description": "App client ID"
+                                    },
+                                    "client_secret": {
+                                        "type": "string",
+                                        "maxLength": 255,
+                                        "description": "App client secret"
+                                    }
+                                },
+                                "description": "Social network OAuth app"
+                            }
+                        },
+                        "description": "Providers for OAuth customer authentication in store"
+                    }
+                }
+            }

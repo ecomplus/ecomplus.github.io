@@ -1,0 +1,73 @@
++ Attributes (object)
+    + `title` (string, required) - Procedure title - Max length: **70**
+    + `short_description` (string) - Short procedure description in plain text - Max length: **255**
+    + `triggers` (array, required) - List of events that call this procedure - Min elements: **1** - Max elements: **20**
+        + (object) - Trigger object
+            + `method` (enum) - Method (HTTP verb) of the event, if undefined will match any method
+                + `POST` (string)
+                + `PATCH` (string)
+                + `PUT` (string)
+                + `DELETE` (string)
+            + `action` (enum) - Type of action taken, if undefined will match any action
+                + `create` (string)
+                + `change` (string)
+                + `delete` (string)
+            + `resource` (enum, required) - API resource
+                + `authentications` (string)
+                + `products` (string)
+                + `categories` (string)
+                + `brands` (string)
+                + `collections` (string)
+                + `grids` (string)
+                + `customers` (string)
+                + `carts` (string)
+                + `orders` (string)
+                + `applications` (string)
+            + `resource_id` (string) - Resource ID, if specified - RegEx pattern: **`^[a-f0-9]{24}$`**
+            + `subresource` (string) - Subresource slug (which appears in the URL), if specified - Max length: **30** - RegEx pattern: **`^[a-z_]+$`**
+            + `subresource_id` (string) - Subresource ID, if specified - RegEx pattern: **`^[a-f0-9]{24}$`**
+            + `field` (string) - Property created or updated with the event, if undefined will match any fields - Max length: **50** - RegEx pattern: **`^[a-z0-9_]+$`**
+    + `conditionals` (array) - Conditions to continue with the procedure, based on trigger body - Max elements: **20**
+        + (object) - Conditional object
+            + `field` (string, required) - Body property to compare (variable), use dot notation for nested objects - Max length: **100** - RegEx pattern: **`^[a-z0-9_]+(([.][a-z0-9_]+){1,3})?$`**
+            + `operator` (enum, required) - Conditional operator
+                + `>` (string)
+                + `<` (string)
+                + `>=` (string)
+                + `<=` (string)
+                + `<>` (string)
+                + `==` (string)
+                + `str_equal` (string)
+                + `str_not_equal` (string)
+                + `defined` (string)
+                + `undefined` (string)
+                + `null` (string)
+                + `not_null` (string)
+            + `value`: 0 (number) - Numeric value to compare with field value - Mininum: **0** - Maximum: **999999999999** - Max precision: **0.00001**
+            + `str_value` (string) - String value to compare with field, use if operator is "`str_equal`" or "`str_not_equal`" - Max length: **50**
+    + `webhooks` (array, required) - List of notifications to be sent when this procedure is called. In some properties you can use variables from trigger object with `(tr.*)` notation, eg.: `(tr.body.name)` - Min elements: **1** - Max elements: **20**
+        + (object) - Webhook object
+            + `api` (object, required) - API where notification should be sent - Min properties: **1** - Max properties: **1**
+                + `store_api` (object) - Use this property if webhook is to store API (api.e-com.plus)
+                    + `endpoint`: `/(tr.resource).json` (string) - API endpoint, such as /products.json, you can also include variables - Max length: **255** - RegEx pattern: **`^[/][\w$+()./]+[.]json$`**
+                    + `version`: current (enum) - API version
+                        + `v1` (string)
+                        + `current` (string)
+                + `external_api` (object) - Use this property if webhook is to any external API (not api.e-com.plus)
+                    + `uri` (string, required) - Full URL to external API endpoint, you can also use variables here - Max length: **255** - Format: **uri**
+                    + `headers` (array) - List of headers to be sent on the request - Max elements: **20**
+                        + (object) -
+                            + `name` (string, required) - Header field name, eg.: X-Access-Token - Max length: **50** - RegEx pattern: **`^[A-Za-z0-9-]+$`**
+                            + `value` (string, required) - Header field value, you can also use variables here - Max length: **1024**
+            + `method` (enum, required) - Method (HTTP verb) to send request
+                + `GET` (string)
+                + `POST` (string)
+                + `PATCH` (string)
+                + `PUT` (string)
+                + `DELETE` (string)
+            + `send_body`: true (boolean) - Send body on notification, if true and `map_body` undefined, trigger body will be sent
+            + `map_body` (object) - Object to send, it is possible to use variables as properties values
+    + `tag` (string) - Tag to identify object, use only lowercase letters, digits and underscore - Max length: **20** - RegEx pattern: **`^[a-z0-9_]+$`**
+    + `flags` (array) - Flags to associate additional info - Max elements: **10**
+        + (string) - Flag title
+    + `notes` (string) - Optional notes with additional info about this procedure - Max length: **255**

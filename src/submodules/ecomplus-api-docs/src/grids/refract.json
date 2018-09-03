@@ -1,0 +1,1726 @@
+{
+  "element": "parseResult",
+  "content": [
+    {
+      "element": "category",
+      "meta": {
+        "classes": [
+          "api"
+        ],
+        "title": ""
+      },
+      "content": [
+        {
+          "element": "category",
+          "meta": {
+            "classes": [
+              "resourceGroup"
+            ],
+            "title": "Grids"
+          },
+          "content": [
+            {
+              "element": "copy",
+              "content": "`.grids`\n\nUse the **grids** resource to create, read, update and delete product grids in\na merchant's store, you can edit all grid properties and also work with all\ngrid subresources directly at this resource"
+            },
+            {
+              "element": "resource",
+              "meta": {
+                "title": "Grid Object"
+              },
+              "attributes": {
+                "href": "/grids/schema.json"
+              },
+              "content": [
+                {
+                  "element": "dataStructure",
+                  "content": [
+                    {
+                      "element": "object",
+                      "meta": {
+                        "id": "Grid Object"
+                      },
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Grid title - Max length: **70**"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "title"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Grid title translations - Max properties: **10**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "i18n"
+                            },
+                            "value": {
+                              "element": "object",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "meta": {
+                                    "description": "Translated full grid title - Max length: **255**"
+                                  },
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "^[a-z]{2}(_[a-z]{2})?$"
+                                    },
+                                    "value": {
+                                      "element": "string"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Unique identifier, grid name using only lowercase, numbers and underscore - RegEx pattern: **`^[a-z0-9_]{2,30}$`**"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "grid_id"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Pre-defined options for this grid, used in specifications, customization and variations - Max elements: **3000**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "options"
+                            },
+                            "value": {
+                              "element": "array",
+                              "content": [
+                                {
+                                  "element": "object",
+                                  "content": [
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Unique ID (ObjectID) - RegEx pattern: **`^[a-f0-9]{24}$`**"
+                                      },
+                                      "attributes": {
+                                        "typeAttributes": [
+                                          "required"
+                                        ]
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "_id"
+                                        },
+                                        "value": {
+                                          "element": "string"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Unique identifier, option name using only lowercase, numbers and underscore - RegEx pattern: **`^[a-z0-9_]{2,30}$`**"
+                                      },
+                                      "attributes": {
+                                        "typeAttributes": [
+                                          "required"
+                                        ]
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "option_id"
+                                        },
+                                        "value": {
+                                          "element": "string"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Option text value displayed for the client - Max length: **255**"
+                                      },
+                                      "attributes": {
+                                        "typeAttributes": [
+                                          "required"
+                                        ]
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "text"
+                                        },
+                                        "value": {
+                                          "element": "string"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Default normalized value to use in integrations - Max length: **200**"
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "value"
+                                        },
+                                        "value": {
+                                          "element": "string"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Normalized values to use in specific integrations (ID in property) - Max properties: **5**"
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "external_values"
+                                        },
+                                        "value": {
+                                          "element": "object",
+                                          "content": [
+                                            {
+                                              "element": "member",
+                                              "meta": {
+                                                "description": "Attribute text value - Max length: **200**"
+                                              },
+                                              "content": {
+                                                "key": {
+                                                  "element": "string",
+                                                  "content": "^[a-z0-9_]{2,30}$"
+                                                },
+                                                "value": {
+                                                  "element": "string"
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Option color palette (if the grid involves colors), starting by main color - Max elements: **6**"
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "colors"
+                                        },
+                                        "value": {
+                                          "element": "array",
+                                          "content": [
+                                            {
+                                              "element": "string",
+                                              "meta": {
+                                                "description": "RGB code with #"
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Default price alteration for product with this option for customization or variations"
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "add_to_price"
+                                        },
+                                        "value": {
+                                          "element": "object",
+                                          "content": [
+                                            {
+                                              "element": "member",
+                                              "meta": {
+                                                "description": "Type of price addition"
+                                              },
+                                              "content": {
+                                                "key": {
+                                                  "element": "string",
+                                                  "content": "type"
+                                                },
+                                                "value": {
+                                                  "element": "enum",
+                                                  "attributes": {
+                                                    "samples": [
+                                                      [
+                                                        {
+                                                          "element": "string",
+                                                          "content": "percentage"
+                                                        }
+                                                      ]
+                                                    ]
+                                                  },
+                                                  "content": [
+                                                    {
+                                                      "element": "string",
+                                                      "content": "percentage"
+                                                    },
+                                                    {
+                                                      "element": "string",
+                                                      "content": "fixed"
+                                                    }
+                                                  ]
+                                                }
+                                              }
+                                            },
+                                            {
+                                              "element": "member",
+                                              "meta": {
+                                                "description": "Additional value, could be negative - Mininum: **-99999999** - Maximum: **99999999** - Max precision: **0.0001**"
+                                              },
+                                              "attributes": {
+                                                "typeAttributes": [
+                                                  "required"
+                                                ]
+                                              },
+                                              "content": {
+                                                "key": {
+                                                  "element": "string",
+                                                  "content": "addition"
+                                                },
+                                                "value": {
+                                                  "element": "number"
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "If this grid accept custom value defined by customer (product customization)"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "custom_value"
+                            },
+                            "value": {
+                              "element": "boolean",
+                              "content": false
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "If this grid accept customer file attachment"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "attachment"
+                            },
+                            "value": {
+                              "element": "boolean",
+                              "content": false
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Default price alteration for product with this grid for customization or variations"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "add_to_price"
+                            },
+                            "value": {
+                              "element": "object",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "meta": {
+                                    "description": "Type of price addition"
+                                  },
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "type"
+                                    },
+                                    "value": {
+                                      "element": "enum",
+                                      "attributes": {
+                                        "samples": [
+                                          [
+                                            {
+                                              "element": "string",
+                                              "content": "percentage"
+                                            }
+                                          ]
+                                        ]
+                                      },
+                                      "content": [
+                                        {
+                                          "element": "string",
+                                          "content": "percentage"
+                                        },
+                                        {
+                                          "element": "string",
+                                          "content": "fixed"
+                                        }
+                                      ]
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "meta": {
+                                    "description": "Additional value, could be negative - Mininum: **-99999999** - Maximum: **99999999** - Max precision: **0.0001**"
+                                  },
+                                  "attributes": {
+                                    "typeAttributes": [
+                                      "required"
+                                    ]
+                                  },
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "addition"
+                                    },
+                                    "value": {
+                                      "element": "number"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "List of custom attributes - Max elements: **100**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "metafields"
+                            },
+                            "value": {
+                              "element": "array",
+                              "content": [
+                                {
+                                  "element": "object",
+                                  "content": [
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Unique ID (ObjectID) - RegEx pattern: **`^[a-f0-9]{24}$`**"
+                                      },
+                                      "attributes": {
+                                        "typeAttributes": [
+                                          "required"
+                                        ]
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "_id"
+                                        },
+                                        "value": {
+                                          "element": "string"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "String to help distinguish who (or which app) created and can use the metafield - Max length: **30**"
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "namespace"
+                                        },
+                                        "value": {
+                                          "element": "string"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Field name - Max length: **50**"
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "field"
+                                        },
+                                        "value": {
+                                          "element": "string"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Custom property value - Max length: **255**"
+                                      },
+                                      "attributes": {
+                                        "typeAttributes": [
+                                          "required"
+                                        ]
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "value"
+                                        },
+                                        "value": {
+                                          "element": "string"
+                                        }
+                                      }
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Flags to associate additional info - Max elements: **10**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "flags"
+                            },
+                            "value": {
+                              "element": "array",
+                              "content": [
+                                {
+                                  "element": "string",
+                                  "meta": {
+                                    "description": "Flag title"
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Optional notes with additional info about this grid - Max length: **255**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "notes"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "JSON Schema"
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n    \"$schema\": \"http://json-schema.org/draft-06/schema#\",\n    \"title\": \"Grids\",\n    \"description\": \"Grid object model\",\n    \"type\": \"object\",\n    \"required\": [\n        \"title\",\n        \"grid_id\"\n    ],\n    \"additionalProperties\": false,\n    \"properties\": {\n        \"title\": {\n            \"type\": \"string\",\n            \"maxLength\": 70,\n            \"description\": \"Grid title\"\n        },\n        \"i18n\": {\n            \"type\": \"object\",\n            \"additionalProperties\": false,\n            \"maxProperties\": 10,\n            \"patternProperties\": {\n                \"^[a-z]{2}(_[a-z]{2})?$\": {\n                    \"type\": \"string\",\n                    \"maxLength\": 255,\n                    \"description\": \"Translated full grid title\"\n                }\n            },\n            \"description\": \"Grid title translations\"\n        },\n        \"grid_id\": {\n            \"type\": \"string\",\n            \"pattern\": \"^[a-z0-9_]{2,30}$\",\n            \"description\": \"Unique identifier, grid name using only lowercase, numbers and underscore\"\n        },\n        \"options\": {\n            \"type\": \"array\",\n            \"maxItems\": 3000,\n            \"items\": {\n                \"type\": \"object\",\n                \"required\": [\n                    \"_id\",\n                    \"option_id\",\n                    \"text\"\n                ],\n                \"additionalProperties\": false,\n                \"properties\": {\n                    \"_id\": {\n                        \"type\": \"string\",\n                        \"pattern\": \"^[a-f0-9]{24}$\",\n                        \"description\": \"Unique ID (ObjectID)\"\n                    },\n                    \"option_id\": {\n                        \"type\": \"string\",\n                        \"pattern\": \"^[a-z0-9_]{2,30}$\",\n                        \"description\": \"Unique identifier, option name using only lowercase, numbers and underscore\"\n                    },\n                    \"text\": {\n                        \"type\": \"string\",\n                        \"maxLength\": 255,\n                        \"description\": \"Option text value displayed for the client\"\n                    },\n                    \"value\": {\n                        \"type\": \"string\",\n                        \"maxLength\": 200,\n                        \"description\": \"Default normalized value to use in integrations\"\n                    },\n                    \"external_values\": {\n                        \"type\": \"object\",\n                        \"additionalProperties\": false,\n                        \"maxProperties\": 5,\n                        \"patternProperties\": {\n                            \"^[a-z0-9_]{2,30}$\": {\n                                \"type\": \"string\",\n                                \"maxLength\": 200,\n                                \"description\": \"Attribute text value\"\n                            }\n                        },\n                        \"description\": \"Normalized values to use in specific integrations (ID in property)\"\n                    },\n                    \"colors\": {\n                        \"type\": \"array\",\n                        \"maxItems\": 6,\n                        \"items\": {\n                            \"type\": \"string\",\n                            \"pattern\": \"^#[a-f0-9]{6}$\",\n                            \"description\": \"RGB code with #\"\n                        },\n                        \"description\": \"Option color palette (if the grid involves colors), starting by main color\"\n                    },\n                    \"add_to_price\": {\n                        \"type\": \"object\",\n                        \"required\": [\n                            \"addition\"\n                        ],\n                        \"additionalProperties\": false,\n                        \"properties\": {\n                            \"type\": {\n                                \"type\": \"string\",\n                                \"enum\": [\n                                    \"percentage\",\n                                    \"fixed\"\n                                ],\n                                \"default\": \"percentage\",\n                                \"description\": \"Type of price addition\"\n                            },\n                            \"addition\": {\n                                \"type\": \"number\",\n                                \"multipleOf\": 0.0001,\n                                \"minimum\": -99999999,\n                                \"maximum\": 99999999,\n                                \"description\": \"Additional value, could be negative\"\n                            }\n                        },\n                        \"description\": \"Default price alteration for product with this option for customization or variations\"\n                    }\n                },\n                \"description\": \"Option object\"\n            },\n            \"description\": \"Pre-defined options for this grid, used in specifications, customization and variations\"\n        },\n        \"custom_value\": {\n            \"type\": \"boolean\",\n            \"default\": false,\n            \"description\": \"If this grid accept custom value defined by customer (product customization)\"\n        },\n        \"attachment\": {\n            \"type\": \"boolean\",\n            \"default\": false,\n            \"description\": \"If this grid accept customer file attachment\"\n        },\n        \"add_to_price\": {\n            \"type\": \"object\",\n            \"required\": [\n                \"addition\"\n            ],\n            \"additionalProperties\": false,\n            \"properties\": {\n                \"type\": {\n                    \"type\": \"string\",\n                    \"enum\": [\n                        \"percentage\",\n                        \"fixed\"\n                    ],\n                    \"default\": \"percentage\",\n                    \"description\": \"Type of price addition\"\n                },\n                \"addition\": {\n                    \"type\": \"number\",\n                    \"multipleOf\": 0.0001,\n                    \"minimum\": -99999999,\n                    \"maximum\": 99999999,\n                    \"description\": \"Additional value, could be negative\"\n                }\n            },\n            \"description\": \"Default price alteration for product with this grid for customization or variations\"\n        },\n        \"metafields\": {\n            \"type\": \"array\",\n            \"maxItems\": 100,\n            \"items\": {\n                \"type\": \"object\",\n                \"additionalProperties\": false,\n                \"required\": [\n                    \"_id\",\n                    \"value\"\n                ],\n                \"properties\": {\n                    \"_id\": {\n                        \"type\": \"string\",\n                        \"pattern\": \"^[a-f0-9]{24}$\",\n                        \"description\": \"Unique ID (ObjectID)\"\n                    },\n                    \"namespace\": {\n                        \"type\": \"string\",\n                        \"maxLength\": 30,\n                        \"description\": \"String to help distinguish who (or which app) created and can use the metafield\"\n                    },\n                    \"field\": {\n                        \"type\": \"string\",\n                        \"maxLength\": 50,\n                        \"description\": \"Field name\"\n                    },\n                    \"value\": {\n                        \"type\": \"string\",\n                        \"maxLength\": 255,\n                        \"description\": \"Custom property value\"\n                    }\n                },\n                \"description\": \"Custom attribute object\"\n            },\n            \"description\": \"List of custom attributes\"\n        },\n        \"flags\": {\n            \"type\": \"array\",\n            \"uniqueItems\": true,\n            \"maxItems\": 10,\n            \"items\": {\n                \"type\": \"string\",\n                \"maxLength\": 20,\n                \"description\": \"Flag title\"\n            },\n            \"description\": \"Flags to associate additional info\"\n        },\n        \"notes\": {\n            \"type\": \"string\",\n            \"maxLength\": 255,\n            \"description\": \"Optional notes with additional info about this grid\"\n        }\n    }\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "element": "resource",
+              "meta": {
+                "title": "All Grids"
+              },
+              "attributes": {
+                "href": "/grids.json{?limit,offset,sort,fields}"
+              },
+              "content": [
+                {
+                  "element": "copy",
+                  "content": "*/grids.json?limit&offset&sort&fields\\&[field]*\n\n> Authentication<br>_GET_: **none**\n\nUse [default URL parameters](#introduction/overview/url-params) (metadata)\nfor pagination and ordering, you can use any other parameter to query\nby particular object properties"
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "List All Store Grids"
+                  },
+                  "attributes": {
+                    "href": "/grids.json"
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"meta\": {\n    \"limit\": 1000,\n    \"offset\": 0,\n    \"sort\": [],\n    \"fields\": [\n      \"_id\",\n      \"title\",\n      \"grid_id\"\n    ],\n    \"query\": {}\n  },\n  \"result\": [\n    {\n      \"_id\": \"9d1500000000000000001110\",\n      \"title\": \"Custom grid\",\n      \"grid_id\": \"custom_grid\"\n    },\n    {\n      \"_id\": \"9d1500000000000000001111\",\n      \"title\": \"Smartphone model\",\n      \"grid_id\": \"smartphone_model\"\n    },\n    {\n      \"_id\": \"9d1500000000000000001112\",\n      \"title\": \"Include glass film\",\n      \"grid_id\": \"glass_film\"\n    },\n    {\n      \"_id\": \"9d1500000000000000001113\",\n      \"title\": \"Gender\",\n      \"grid_id\": \"gender\"\n    },\n    {\n      \"_id\": \"9d1500000000000000001114\",\n      \"title\": \"Shirt size\",\n      \"grid_id\": \"size\"\n    },\n    {\n      \"_id\": \"9d1500000000000000001115\",\n      \"title\": \"Colors\",\n      \"grid_id\": \"colors\"\n    }\n  ]\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Pagination And Ordering"
+                  },
+                  "attributes": {
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Max number of objects to return",
+                            "title": "number"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "optional"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "limit"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "2"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "First entry to return",
+                            "title": "number"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "optional"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "offset"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "4"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Rules to order resultant objects",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "optional"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "sort"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "grid_id"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Object properties to return",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "optional"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "fields"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "grid_id,options"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"meta\": {\n    \"limit\": 2,\n    \"offset\": 4,\n    \"sort\": [\n      {\n        \"field\": \"grid_id\",\n        \"order\": 1\n      }\n    ],\n    \"fields\": [\n      \"grid_id\",\n      \"options\"\n    ],\n    \"query\": {}\n  },\n  \"result\": [\n    {\n      \"_id\": \"9d1500000000000000001112\",\n      \"grid_id\": \"glass_film\",\n      \"options\": [\n        {\n          \"_id\": \"9d1500000000000000000031\",\n          \"option_id\": \"add_glass_film\",\n          \"text\": \"Add glass film\",\n          \"add_to_price\": {\n            \"type\": \"fixed\",\n            \"addition\": 10.00\n          }\n        }\n      ]\n    },\n    {\n      \"_id\": \"9d1500000000000000001111\",\n      \"grid_id\": \"smartphone_model\",\n      \"options\": [\n        {\n          \"_id\": \"9d1500000000000000000032\",\n          \"option_id\": \"iphone_se\",\n          \"text\": \"iPhone SE\"\n        },\n        {\n          \"_id\": \"9d1500000000000000000033\",\n          \"option_id\": \"galaxy_s7\",\n          \"text\": \"Galaxy S7\"\n        },\n        {\n          \"_id\": \"9d1500000000000000000034\",\n          \"option_id\": \"k10_power\",\n          \"text\": \"K10 Power\"\n        }\n      ]\n    }\n  ]\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Find Grids"
+                  },
+                  "attributes": {
+                    "href": "/grids.json{?grid_id}",
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Object property to query",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "optional"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "grid_id"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "size"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"meta\": {\n    \"limit\": 1000,\n    \"offset\": 0,\n    \"sort\": [],\n    \"fields\": [\n      \"_id\",\n      \"title\",\n      \"grid_id\"\n    ],\n    \"query\": {\n      \"grid_id\": \"size\"\n    }\n  },\n  \"result\": [\n    {\n      \"_id\": \"9d1500000000000000001114\",\n      \"title\": \"Shirt size\",\n      \"grid_id\": \"size\"\n    }\n  ]\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "element": "resource",
+              "meta": {
+                "title": "New Grid"
+              },
+              "attributes": {
+                "href": "/grids.json"
+              },
+              "content": [
+                {
+                  "element": "copy",
+                  "content": "*/grids.json*\n\n> Authentication<br>_POST_: **required**\n\nRequest body must obey the specifications of\n[this model](#reference/grids/grid-object)"
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Create New Grid"
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "POST",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"title\": \"Smartphone model\",\n  \"grid_id\": \"smartphone_model\",\n  \"options\": [\n    {\n      \"_id\": \"9d1500000000000000000032\",\n      \"option_id\": \"iphone_se\",\n      \"text\": \"iPhone SE\"\n    },\n    {\n      \"_id\": \"9d1500000000000000000033\",\n      \"option_id\": \"galaxy_s7\",\n      \"text\": \"Galaxy S7\"\n    },\n    {\n      \"_id\": \"9d1500000000000000000034\",\n      \"option_id\": \"k10_power\",\n      \"text\": \"K10 Power\"\n    }\n  ],\n  \"custom_value\": false\n}\n"
+                            }
+                          ]
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "201",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"_id\": \"9d1500000000000000001111\"\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "element": "resource",
+              "meta": {
+                "title": "Specific Grid"
+              },
+              "attributes": {
+                "href": "/grids/{_id}.json"
+              },
+              "content": [
+                {
+                  "element": "copy",
+                  "content": "*/grids/[_id].json*\n\n> Authentication<br>_GET_: **none**<br>_PATCH_, _PUT_, _DELETE_: **required**\n\nIn read requests, response body will follow\n[this model](#reference/grids/grid-object)\n\nFor overwriting and editing, request body must obey the same specifications,\nbut especially for edit requests there are no required fields"
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Read Grid"
+                  },
+                  "attributes": {
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "The grid ID",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "_id"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "9d1500000000000000001111"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"_id\": \"9d1500000000000000001111\",\n  \"created_at\": \"2017-11-19T13:10:00.612Z\",\n  \"store_id\": 100,\n  \"title\": \"Smartphone model\",\n  \"grid_id\": \"smartphone_model\",\n  \"options\": [\n    {\n      \"_id\": \"9d1500000000000000000032\",\n      \"option_id\": \"iphone_se\",\n      \"text\": \"iPhone SE\"\n    },\n    {\n      \"_id\": \"9d1500000000000000000033\",\n      \"option_id\": \"galaxy_s7\",\n      \"text\": \"Galaxy S7\"\n    },\n    {\n      \"_id\": \"9d1500000000000000000034\",\n      \"option_id\": \"k10_power\",\n      \"text\": \"K10 Power\"\n    }\n  ],\n  \"custom_value\": false,\n  \"attachment\": false\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Edit Grid"
+                  },
+                  "attributes": {
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "The grid ID",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "_id"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "9d1500000000000000001111"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "PATCH",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"custom_value\": true\n}\n"
+                            }
+                          ]
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "204"
+                          },
+                          "content": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Overwrite Grid"
+                  },
+                  "attributes": {
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "The grid ID",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "_id"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "9d1500000000000000001111"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "PUT",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"title\": \"Smartphone model\",\n  \"grid_id\": \"smartphone_model\",\n  \"options\": [\n    {\n      \"_id\": \"9d1500000000000000000032\",\n      \"option_id\": \"iphone_se\",\n      \"text\": \"iPhone SE\"\n    },\n    {\n      \"_id\": \"9d1500000000000000000033\",\n      \"option_id\": \"galaxy_s7\",\n      \"text\": \"Galaxy S7\"\n    },\n    {\n      \"_id\": \"9d1500000000000000000034\",\n      \"option_id\": \"k10_power\",\n      \"text\": \"K10 Power\"\n    },\n    {\n      \"_id\": \"9d1500000000000000000035\",\n      \"option_id\": \"galaxy_s8\",\n      \"text\": \"Galaxy S8\"\n    }\n  ],\n  \"custom_value\": true\n}\n"
+                            }
+                          ]
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "204"
+                          },
+                          "content": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Remove Grid"
+                  },
+                  "attributes": {
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "The grid ID",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "_id"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "9d1500000000000000001111"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "DELETE",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "204"
+                          },
+                          "content": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

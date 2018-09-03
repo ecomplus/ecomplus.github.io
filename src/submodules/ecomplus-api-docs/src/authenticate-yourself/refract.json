@@ -1,0 +1,567 @@
+{
+  "element": "parseResult",
+  "content": [
+    {
+      "element": "category",
+      "meta": {
+        "classes": [
+          "api"
+        ],
+        "title": ""
+      },
+      "content": [
+        {
+          "element": "category",
+          "meta": {
+            "classes": [
+              "resourceGroup"
+            ],
+            "title": "Authenticate Yourself"
+          },
+          "content": [
+            {
+              "element": "copy",
+              "content": "This authentication method is provided to admin users,\nfor application authentication you must implement\n[Authenticate App](#reference/authenticate-app)"
+            },
+            {
+              "element": "resource",
+              "meta": {
+                "title": "Step 1: Login"
+              },
+              "attributes": {
+                "href": "/_login.json"
+              },
+              "content": [
+                {
+                  "element": "copy",
+                  "content": "This step is not required, if you have your own ID and API key skip to the\n[next step](#reference/authenticate-yourself/step-2-authenticate)"
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "View User ID And API Key"
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "POST",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "dataStructure",
+                              "content": [
+                                {
+                                  "element": "object",
+                                  "content": [
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "User e-mail address"
+                                      },
+                                      "attributes": {
+                                        "typeAttributes": [
+                                          "required"
+                                        ]
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "email"
+                                        },
+                                        "value": {
+                                          "element": "string",
+                                          "content": "example@mail.com"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "User password encoded with MD5"
+                                      },
+                                      "attributes": {
+                                        "typeAttributes": [
+                                          "required"
+                                        ]
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "pass_md5_hash"
+                                        },
+                                        "value": {
+                                          "element": "string",
+                                          "content": "1a79a4d60de6718e8e5b326e338ae533"
+                                        }
+                                      }
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"email\": \"example@mail.com\",\n  \"pass_md5_hash\": \"1a79a4d60de6718e8e5b326e338ae533\"\n}\n"
+                            },
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBodySchema"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/schema+json"
+                              },
+                              "content": "{\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"email\": {\n      \"type\": \"string\",\n      \"description\": \"User e-mail address\"\n    },\n    \"pass_md5_hash\": {\n      \"type\": \"string\",\n      \"description\": \"User password encoded with MD5\"\n    }\n  },\n  \"required\": [\n    \"email\",\n    \"pass_md5_hash\"\n  ]\n}"
+                            }
+                          ]
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"_id\": \"5a6757722b66f68dbed44526\",\n  \"store_id\": 100,\n  \"api_key\": \"1234567890abcdef\"\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "With Username Instead Of Email"
+                  },
+                  "attributes": {
+                    "href": "/_login.json?username"
+                  },
+                  "content": [
+                    {
+                      "element": "copy",
+                      "content": "If you don't know the store ID, you can login with username and password only,\npassing any positive integer on `X-Store-ID` header"
+                    },
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "POST",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "1"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "dataStructure",
+                              "content": [
+                                {
+                                  "element": "object",
+                                  "content": [
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Username"
+                                      },
+                                      "attributes": {
+                                        "typeAttributes": [
+                                          "required"
+                                        ]
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "username"
+                                        },
+                                        "value": {
+                                          "element": "string",
+                                          "content": "my_username"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "User password encoded with MD5"
+                                      },
+                                      "attributes": {
+                                        "typeAttributes": [
+                                          "required"
+                                        ]
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "pass_md5_hash"
+                                        },
+                                        "value": {
+                                          "element": "string",
+                                          "content": "1a79a4d60de6718e8e5b326e338ae533"
+                                        }
+                                      }
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"username\": \"my_username\",\n  \"pass_md5_hash\": \"1a79a4d60de6718e8e5b326e338ae533\"\n}\n"
+                            },
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBodySchema"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/schema+json"
+                              },
+                              "content": "{\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"username\": {\n      \"type\": \"string\",\n      \"description\": \"Username\"\n    },\n    \"pass_md5_hash\": {\n      \"type\": \"string\",\n      \"description\": \"User password encoded with MD5\"\n    }\n  },\n  \"required\": [\n    \"username\",\n    \"pass_md5_hash\"\n  ]\n}"
+                            }
+                          ]
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"_id\": \"5a6757722b66f68dbed44526\",\n  \"store_id\": 100,\n  \"api_key\": \"1234567890abcdef\"\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "element": "resource",
+              "meta": {
+                "title": "Step 2: Authenticate"
+              },
+              "attributes": {
+                "href": "/_authenticate.json"
+              },
+              "content": [
+                {
+                  "element": "copy",
+                  "content": "Use `_id` and `api_key` returned from [login](#reference/authenticate-yourself/step-1-login)\n\nWill return token and ID to be used on further\n([authenticated](#introduction/overview/authentication)) requests,\nthe returned token is valid for one day, as defined by *expires* ISO 8601 date and time,\nthen you will need to generate another token"
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Generate Access Token"
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "POST",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "dataStructure",
+                              "content": [
+                                {
+                                  "element": "object",
+                                  "content": [
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "User object ID, same returned from login"
+                                      },
+                                      "attributes": {
+                                        "typeAttributes": [
+                                          "required"
+                                        ]
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "_id"
+                                        },
+                                        "value": {
+                                          "element": "string",
+                                          "content": "5a6757722b66f68dbed44526"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "User API key, 128 bytes hexadecimal string, same returned from login"
+                                      },
+                                      "attributes": {
+                                        "typeAttributes": [
+                                          "required"
+                                        ]
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "api_key"
+                                        },
+                                        "value": {
+                                          "element": "string",
+                                          "content": "1234567890abcdef"
+                                        }
+                                      }
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"_id\": \"5a6757722b66f68dbed44526\",\n  \"api_key\": \"1234567890abcdef\"\n}\n"
+                            },
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBodySchema"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/schema+json"
+                              },
+                              "content": "{\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"_id\": {\n      \"type\": \"string\",\n      \"description\": \"User object ID, same returned from login\"\n    },\n    \"api_key\": {\n      \"type\": \"string\",\n      \"description\": \"User API key, 128 bytes hexadecimal string, same returned from login\"\n    }\n  },\n  \"required\": [\n    \"_id\",\n    \"api_key\"\n  ]\n}"
+                            }
+                          ]
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"my_id\": \"5a6757722b66f68dbed44526\",\n  \"access_token\": \"eyJhbGciOi.eyJzdWIi.AFONFh7HgQ\",\n  \"expires\": \"2017-12-01T08:02:17-05:00\"\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

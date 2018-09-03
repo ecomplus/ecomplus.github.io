@@ -1,0 +1,41 @@
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "meta": {
+              },
+              "result": [
+                {
+                  "_id": "5a6757722b66f68dbed44526",
+                  "username": "my_username",
+                  "email": "myemail@mail.sample"
+                },
+                {
+                  "_id": "100000000000000000000010",
+                  "username": "fulano",
+                  "email": "fulano@sample.com.br"
+                },
+                {
+                  "_id": "100000000000000000000011",
+                  "username": "john_doe",
+                  "email": "email@sample.com"
+                },
+                {
+                  "_id": "100000000000000000000012",
+                  "app": {
+                    "_id": "42aa00000000000000000113",
+                    "app_id": 1005,
+                    "title": "external"
+                  }
+                }
+              ]
+            }

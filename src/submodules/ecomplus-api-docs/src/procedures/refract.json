@@ -1,0 +1,1694 @@
+{
+  "element": "parseResult",
+  "content": [
+    {
+      "element": "category",
+      "meta": {
+        "classes": [
+          "api"
+        ],
+        "title": ""
+      },
+      "content": [
+        {
+          "element": "category",
+          "meta": {
+            "classes": [
+              "resourceGroup"
+            ],
+            "title": "Procedures"
+          },
+          "content": [
+            {
+              "element": "copy",
+              "content": "`.procedures`\n\nProcedures provides automation to the commerce operation,\nworking with triggers to run tasks automatically\n\nUse the **procedures** resource to create, read, update and delete\nautomatic tasks in a merchant's store"
+            },
+            {
+              "element": "resource",
+              "meta": {
+                "title": "Procedure Object"
+              },
+              "attributes": {
+                "href": "/procedures/schema.json"
+              },
+              "content": [
+                {
+                  "element": "dataStructure",
+                  "content": [
+                    {
+                      "element": "object",
+                      "meta": {
+                        "id": "Procedure Object"
+                      },
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Procedure title - Max length: **70**"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "title"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Short procedure description in plain text - Max length: **255**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "short_description"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "List of events that call this procedure - Min elements: **1** - Max elements: **20**"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "triggers"
+                            },
+                            "value": {
+                              "element": "array",
+                              "content": [
+                                {
+                                  "element": "object",
+                                  "content": [
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Method (HTTP verb) of the event, if undefined will match any method"
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "method"
+                                        },
+                                        "value": {
+                                          "element": "enum",
+                                          "content": [
+                                            {
+                                              "element": "string",
+                                              "content": "POST"
+                                            },
+                                            {
+                                              "element": "string",
+                                              "content": "PATCH"
+                                            },
+                                            {
+                                              "element": "string",
+                                              "content": "PUT"
+                                            },
+                                            {
+                                              "element": "string",
+                                              "content": "DELETE"
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Type of action taken, if undefined will match any action"
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "action"
+                                        },
+                                        "value": {
+                                          "element": "enum",
+                                          "content": [
+                                            {
+                                              "element": "string",
+                                              "content": "create"
+                                            },
+                                            {
+                                              "element": "string",
+                                              "content": "change"
+                                            },
+                                            {
+                                              "element": "string",
+                                              "content": "delete"
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "API resource"
+                                      },
+                                      "attributes": {
+                                        "typeAttributes": [
+                                          "required"
+                                        ]
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "resource"
+                                        },
+                                        "value": {
+                                          "element": "enum",
+                                          "content": [
+                                            {
+                                              "element": "string",
+                                              "content": "authentications"
+                                            },
+                                            {
+                                              "element": "string",
+                                              "content": "products"
+                                            },
+                                            {
+                                              "element": "string",
+                                              "content": "categories"
+                                            },
+                                            {
+                                              "element": "string",
+                                              "content": "brands"
+                                            },
+                                            {
+                                              "element": "string",
+                                              "content": "collections"
+                                            },
+                                            {
+                                              "element": "string",
+                                              "content": "grids"
+                                            },
+                                            {
+                                              "element": "string",
+                                              "content": "customers"
+                                            },
+                                            {
+                                              "element": "string",
+                                              "content": "carts"
+                                            },
+                                            {
+                                              "element": "string",
+                                              "content": "orders"
+                                            },
+                                            {
+                                              "element": "string",
+                                              "content": "applications"
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Resource ID, if specified - RegEx pattern: **`^[a-f0-9]{24}$`**"
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "resource_id"
+                                        },
+                                        "value": {
+                                          "element": "string"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Subresource slug (which appears in the URL), if specified - Max length: **30** - RegEx pattern: **`^[a-z_]+$`**"
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "subresource"
+                                        },
+                                        "value": {
+                                          "element": "string"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Subresource ID, if specified - RegEx pattern: **`^[a-f0-9]{24}$`**"
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "subresource_id"
+                                        },
+                                        "value": {
+                                          "element": "string"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Property created or updated with the event, if undefined will match any fields - Max length: **50** - RegEx pattern: **`^[a-z0-9_]+$`**"
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "field"
+                                        },
+                                        "value": {
+                                          "element": "string"
+                                        }
+                                      }
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Conditions to continue with the procedure, based on trigger body - Max elements: **20**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "conditionals"
+                            },
+                            "value": {
+                              "element": "array",
+                              "content": [
+                                {
+                                  "element": "object",
+                                  "content": [
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Body property to compare (variable), use dot notation for nested objects - Max length: **100** - RegEx pattern: **`^[a-z0-9_]+(([.][a-z0-9_]+){1,3})?$`**"
+                                      },
+                                      "attributes": {
+                                        "typeAttributes": [
+                                          "required"
+                                        ]
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "field"
+                                        },
+                                        "value": {
+                                          "element": "string"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Conditional operator"
+                                      },
+                                      "attributes": {
+                                        "typeAttributes": [
+                                          "required"
+                                        ]
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "operator"
+                                        },
+                                        "value": {
+                                          "element": "enum",
+                                          "content": [
+                                            {
+                                              "element": "string",
+                                              "content": ">"
+                                            },
+                                            {
+                                              "element": "string",
+                                              "content": "<"
+                                            },
+                                            {
+                                              "element": "string",
+                                              "content": ">="
+                                            },
+                                            {
+                                              "element": "string",
+                                              "content": "<="
+                                            },
+                                            {
+                                              "element": "string",
+                                              "content": "<>"
+                                            },
+                                            {
+                                              "element": "string",
+                                              "content": "=="
+                                            },
+                                            {
+                                              "element": "string",
+                                              "content": "str_equal"
+                                            },
+                                            {
+                                              "element": "string",
+                                              "content": "str_not_equal"
+                                            },
+                                            {
+                                              "element": "string",
+                                              "content": "defined"
+                                            },
+                                            {
+                                              "element": "string",
+                                              "content": "undefined"
+                                            },
+                                            {
+                                              "element": "string",
+                                              "content": "null"
+                                            },
+                                            {
+                                              "element": "string",
+                                              "content": "not_null"
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Numeric value to compare with field value - Mininum: **0** - Maximum: **999999999999** - Max precision: **0.00001**"
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "value"
+                                        },
+                                        "value": {
+                                          "element": "number",
+                                          "content": 0
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "String value to compare with field, use if operator is \"`str_equal`\" or \"`str_not_equal`\" - Max length: **50**"
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "str_value"
+                                        },
+                                        "value": {
+                                          "element": "string"
+                                        }
+                                      }
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "List of notifications to be sent when this procedure is called. In some properties you can use variables from trigger object with `(tr.*)` notation, eg.: `(tr.body.name)` - Min elements: **1** - Max elements: **20**"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "webhooks"
+                            },
+                            "value": {
+                              "element": "array",
+                              "content": [
+                                {
+                                  "element": "object",
+                                  "content": [
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "API where notification should be sent - Min properties: **1** - Max properties: **1**"
+                                      },
+                                      "attributes": {
+                                        "typeAttributes": [
+                                          "required"
+                                        ]
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "api"
+                                        },
+                                        "value": {
+                                          "element": "object",
+                                          "content": [
+                                            {
+                                              "element": "member",
+                                              "meta": {
+                                                "description": "Use this property if webhook is to store API (api.e-com.plus)"
+                                              },
+                                              "content": {
+                                                "key": {
+                                                  "element": "string",
+                                                  "content": "store_api"
+                                                },
+                                                "value": {
+                                                  "element": "object",
+                                                  "content": [
+                                                    {
+                                                      "element": "member",
+                                                      "meta": {
+                                                        "description": "API endpoint, such as /products.json, you can also include variables - Max length: **255** - RegEx pattern: **`^[/][\\w$+()./]+[.]json$`**"
+                                                      },
+                                                      "content": {
+                                                        "key": {
+                                                          "element": "string",
+                                                          "content": "endpoint"
+                                                        },
+                                                        "value": {
+                                                          "element": "string",
+                                                          "content": "/(tr.resource).json"
+                                                        }
+                                                      }
+                                                    },
+                                                    {
+                                                      "element": "member",
+                                                      "meta": {
+                                                        "description": "API version"
+                                                      },
+                                                      "content": {
+                                                        "key": {
+                                                          "element": "string",
+                                                          "content": "version"
+                                                        },
+                                                        "value": {
+                                                          "element": "enum",
+                                                          "attributes": {
+                                                            "samples": [
+                                                              [
+                                                                {
+                                                                  "element": "string",
+                                                                  "content": "current"
+                                                                }
+                                                              ]
+                                                            ]
+                                                          },
+                                                          "content": [
+                                                            {
+                                                              "element": "string",
+                                                              "content": "v1"
+                                                            },
+                                                            {
+                                                              "element": "string",
+                                                              "content": "current"
+                                                            }
+                                                          ]
+                                                        }
+                                                      }
+                                                    }
+                                                  ]
+                                                }
+                                              }
+                                            },
+                                            {
+                                              "element": "member",
+                                              "meta": {
+                                                "description": "Use this property if webhook is to any external API (not api.e-com.plus)"
+                                              },
+                                              "content": {
+                                                "key": {
+                                                  "element": "string",
+                                                  "content": "external_api"
+                                                },
+                                                "value": {
+                                                  "element": "object",
+                                                  "content": [
+                                                    {
+                                                      "element": "member",
+                                                      "meta": {
+                                                        "description": "Full URL to external API endpoint, you can also use variables here - Max length: **255** - Format: **uri**"
+                                                      },
+                                                      "attributes": {
+                                                        "typeAttributes": [
+                                                          "required"
+                                                        ]
+                                                      },
+                                                      "content": {
+                                                        "key": {
+                                                          "element": "string",
+                                                          "content": "uri"
+                                                        },
+                                                        "value": {
+                                                          "element": "string"
+                                                        }
+                                                      }
+                                                    },
+                                                    {
+                                                      "element": "member",
+                                                      "meta": {
+                                                        "description": "List of headers to be sent on the request - Max elements: **20**"
+                                                      },
+                                                      "content": {
+                                                        "key": {
+                                                          "element": "string",
+                                                          "content": "headers"
+                                                        },
+                                                        "value": {
+                                                          "element": "array",
+                                                          "content": [
+                                                            {
+                                                              "element": "object",
+                                                              "content": [
+                                                                {
+                                                                  "element": "member",
+                                                                  "meta": {
+                                                                    "description": "Header field name, eg.: X-Access-Token - Max length: **50** - RegEx pattern: **`^[A-Za-z0-9-]+$`**"
+                                                                  },
+                                                                  "attributes": {
+                                                                    "typeAttributes": [
+                                                                      "required"
+                                                                    ]
+                                                                  },
+                                                                  "content": {
+                                                                    "key": {
+                                                                      "element": "string",
+                                                                      "content": "name"
+                                                                    },
+                                                                    "value": {
+                                                                      "element": "string"
+                                                                    }
+                                                                  }
+                                                                },
+                                                                {
+                                                                  "element": "member",
+                                                                  "meta": {
+                                                                    "description": "Header field value, you can also use variables here - Max length: **1024**"
+                                                                  },
+                                                                  "attributes": {
+                                                                    "typeAttributes": [
+                                                                      "required"
+                                                                    ]
+                                                                  },
+                                                                  "content": {
+                                                                    "key": {
+                                                                      "element": "string",
+                                                                      "content": "value"
+                                                                    },
+                                                                    "value": {
+                                                                      "element": "string"
+                                                                    }
+                                                                  }
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }
+                                                      }
+                                                    }
+                                                  ]
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Method (HTTP verb) to send request"
+                                      },
+                                      "attributes": {
+                                        "typeAttributes": [
+                                          "required"
+                                        ]
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "method"
+                                        },
+                                        "value": {
+                                          "element": "enum",
+                                          "content": [
+                                            {
+                                              "element": "string",
+                                              "content": "GET"
+                                            },
+                                            {
+                                              "element": "string",
+                                              "content": "POST"
+                                            },
+                                            {
+                                              "element": "string",
+                                              "content": "PATCH"
+                                            },
+                                            {
+                                              "element": "string",
+                                              "content": "PUT"
+                                            },
+                                            {
+                                              "element": "string",
+                                              "content": "DELETE"
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Send body on notification, if true and `map_body` undefined, trigger body will be sent"
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "send_body"
+                                        },
+                                        "value": {
+                                          "element": "boolean",
+                                          "content": true
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Object to send, it is possible to use variables as properties values"
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "map_body"
+                                        },
+                                        "value": {
+                                          "element": "object"
+                                        }
+                                      }
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Tag to identify object, use only lowercase letters, digits and underscore - Max length: **20** - RegEx pattern: **`^[a-z0-9_]+$`**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "tag"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Flags to associate additional info - Max elements: **10**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "flags"
+                            },
+                            "value": {
+                              "element": "array",
+                              "content": [
+                                {
+                                  "element": "string",
+                                  "meta": {
+                                    "description": "Flag title"
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Optional notes with additional info about this procedure - Max length: **255**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "notes"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "JSON Schema"
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n    \"$schema\": \"http://json-schema.org/draft-06/schema#\",\n    \"title\": \"Procedures\",\n    \"description\": \"Procedure object model\",\n    \"type\": \"object\",\n    \"required\": [\n        \"title\",\n        \"triggers\",\n        \"webhooks\"\n    ],\n    \"additionalProperties\": false,\n    \"properties\": {\n        \"title\": {\n            \"type\": \"string\",\n            \"maxLength\": 70,\n            \"description\": \"Procedure title\"\n        },\n        \"short_description\": {\n            \"type\": \"string\",\n            \"maxLength\": 255,\n            \"description\": \"Short procedure description in plain text\"\n        },\n        \"triggers\": {\n            \"type\": \"array\",\n            \"minItems\": 1,\n            \"maxItems\": 20,\n            \"items\": {\n                \"type\": \"object\",\n                \"required\": [\n                    \"resource\"\n                ],\n                \"additionalProperties\": false,\n                \"properties\": {\n                    \"method\": {\n                        \"type\": \"string\",\n                        \"enum\": [\n                            \"POST\",\n                            \"PATCH\",\n                            \"PUT\",\n                            \"DELETE\"\n                        ],\n                        \"description\": \"Method (HTTP verb) of the event, if undefined will match any method\"\n                    },\n                    \"action\": {\n                        \"type\": \"string\",\n                        \"enum\": [\n                            \"create\",\n                            \"change\",\n                            \"delete\"\n                        ],\n                        \"description\": \"Type of action taken, if undefined will match any action\"\n                    },\n                    \"resource\": {\n                        \"type\": \"string\",\n                        \"enum\": [\n                            \"authentications\",\n                            \"products\",\n                            \"categories\",\n                            \"brands\",\n                            \"collections\",\n                            \"grids\",\n                            \"customers\",\n                            \"carts\",\n                            \"orders\",\n                            \"applications\"\n                        ],\n                        \"description\": \"API resource\"\n                    },\n                    \"resource_id\": {\n                        \"type\": \"string\",\n                        \"pattern\": \"^[a-f0-9]{24}$\",\n                        \"description\": \"Resource ID, if specified\"\n                    },\n                    \"subresource\": {\n                        \"type\": \"string\",\n                        \"maxLength\": 30,\n                        \"pattern\": \"^[a-z_]+$\",\n                        \"description\": \"Subresource slug (which appears in the URL), if specified\"\n                    },\n                    \"subresource_id\": {\n                        \"type\": \"string\",\n                        \"pattern\": \"^[a-f0-9]{24}$\",\n                        \"description\": \"Subresource ID, if specified\"\n                    },\n                    \"field\": {\n                        \"type\": \"string\",\n                        \"maxLength\": 50,\n                        \"pattern\": \"^[a-z0-9_]+$\",\n                        \"description\": \"Property created or updated with the event, if undefined will match any fields\"\n                    }\n                },\n                \"description\": \"Trigger object\"\n            },\n            \"description\": \"List of events that call this procedure\"\n        },\n        \"conditionals\": {\n            \"type\": \"array\",\n            \"maxItems\": 20,\n            \"items\": {\n                \"type\": \"object\",\n                \"required\": [\n                    \"field\",\n                    \"operator\"\n                ],\n                \"additionalProperties\": false,\n                \"properties\": {\n                    \"field\": {\n                        \"type\": \"string\",\n                        \"maxLength\": 100,\n                        \"pattern\": \"^[a-z0-9_]+(([.][a-z0-9_]+){1,3})?$\",\n                        \"description\": \"Body property to compare (variable), use dot notation for nested objects\"\n                    },\n                    \"operator\": {\n                        \"type\": \"string\",\n                        \"enum\": [\n                            \">\",\n                            \"<\",\n                            \">=\",\n                            \"<=\",\n                            \"<>\",\n                            \"==\",\n                            \"str_equal\",\n                            \"str_not_equal\",\n                            \"defined\",\n                            \"undefined\",\n                            \"null\",\n                            \"not_null\"\n                        ],\n                        \"description\": \"Conditional operator\"\n                    },\n                    \"value\": {\n                        \"type\": \"number\",\n                        \"multipleOf\": 0.00001,\n                        \"minimum\": 0,\n                        \"maximum\": 999999999999,\n                        \"default\": 0,\n                        \"description\": \"Numeric value to compare with field value\"\n                    },\n                    \"str_value\": {\n                        \"type\": \"string\",\n                        \"maxLength\": 50,\n                        \"description\": \"String value to compare with field, use if operator is \\\"str_equal\\\" or \\\"str_not_equal\\\"\"\n                    }\n                },\n                \"description\": \"Conditional object\"\n            },\n            \"description\": \"Conditions to continue with the procedure, based on trigger body\"\n        },\n        \"webhooks\": {\n            \"type\": \"array\",\n            \"minItems\": 1,\n            \"maxItems\": 20,\n            \"items\": {\n                \"type\": \"object\",\n                \"required\": [\n                    \"api\",\n                    \"method\"\n                ],\n                \"additionalProperties\": false,\n                \"properties\": {\n                    \"api\": {\n                        \"type\": \"object\",\n                        \"additionalProperties\": false,\n                        \"minProperties\": 1,\n                        \"maxProperties\": 1,\n                        \"properties\": {\n                            \"store_api\": {\n                                \"type\": \"object\",\n                                \"additionalProperties\": false,\n                                \"properties\": {\n                                    \"endpoint\": {\n                                        \"type\": \"string\",\n                                        \"maxLength\": 255,\n                                        \"pattern\": \"^[/][\\\\w$+()./]+[.]json$\",\n                                        \"default\": \"/(tr.resource).json\",\n                                        \"description\": \"API endpoint, such as /products.json, you can also include variables\"\n                                    },\n                                    \"version\": {\n                                        \"type\": \"string\",\n                                        \"enum\": [\n                                            \"v1\",\n                                            \"current\"\n                                        ],\n                                        \"default\": \"current\",\n                                        \"description\": \"API version\"\n                                    }\n                                },\n                                \"description\": \"Use this property if webhook is to store API (api.e-com.plus)\"\n                            },\n                            \"external_api\": {\n                                \"type\": \"object\",\n                                \"required\": [\n                                    \"uri\"\n                                ],\n                                \"additionalProperties\": false,\n                                \"properties\": {\n                                    \"uri\": {\n                                        \"type\": \"string\",\n                                        \"maxLength\": 255,\n                                        \"format\": \"uri\",\n                                        \"description\": \"Full URL to external API endpoint, you can also use variables here\"\n                                    },\n                                    \"headers\": {\n                                        \"type\": \"array\",\n                                        \"maxItems\": 20,\n                                        \"items\": {\n                                            \"type\": \"object\",\n                                            \"required\": [\n                                                \"name\",\n                                                \"value\"\n                                            ],\n                                            \"additionalProperties\": false,\n                                            \"properties\": {\n                                                \"name\": {\n                                                    \"type\": \"string\",\n                                                    \"maxLength\": 50,\n                                                    \"pattern\": \"^[A-Za-z0-9-]+$\",\n                                                    \"description\": \"Header field name, eg.: X-Access-Token\"\n                                                },\n                                                \"value\": {\n                                                    \"type\": \"string\",\n                                                    \"maxLength\": 1024,\n                                                    \"description\": \"Header field value, you can also use variables here\"\n                                                }\n                                            }\n                                        },\n                                        \"description\": \"List of headers to be sent on the request\"\n                                    }\n                                },\n                                \"description\": \"Use this property if webhook is to any external API (not api.e-com.plus)\"\n                            }\n                        },\n                        \"description\": \"API where notification should be sent\"\n                    },\n                    \"method\": {\n                        \"type\": \"string\",\n                        \"enum\": [\n                            \"GET\",\n                            \"POST\",\n                            \"PATCH\",\n                            \"PUT\",\n                            \"DELETE\"\n                        ],\n                        \"description\": \"Method (HTTP verb) to send request\"\n                    },\n                    \"send_body\": {\n                        \"type\": \"boolean\",\n                        \"default\": true,\n                        \"description\": \"Send body on notification, if true and map_body undefined, trigger body will be sent\"\n                    },\n                    \"map_body\": {\n                        \"type\": \"object\",\n                        \"description\": \"Object to send, it is possible to use variables as properties values\"\n                    }\n                },\n                \"description\": \"Webhook object\"\n            },\n            \"description\": \"List of notifications to be sent when this procedure is called. In some properties you can use variables from trigger object with (tr.*) notation, eg.: (tr.body.name)\"\n        },\n        \"tag\": {\n            \"type\": \"string\",\n            \"maxLength\": 20,\n            \"pattern\": \"^[a-z0-9_]+$\",\n            \"description\": \"Tag to identify object, use only lowercase letters, digits and underscore\"\n        },\n        \"flags\": {\n            \"type\": \"array\",\n            \"uniqueItems\": true,\n            \"maxItems\": 10,\n            \"items\": {\n                \"type\": \"string\",\n                \"maxLength\": 20,\n                \"description\": \"Flag title\"\n            },\n            \"description\": \"Flags to associate additional info\"\n        },\n        \"notes\": {\n            \"type\": \"string\",\n            \"maxLength\": 255,\n            \"description\": \"Optional notes with additional info about this procedure\"\n        }\n    }\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "element": "resource",
+              "meta": {
+                "title": "All Procedures"
+              },
+              "attributes": {
+                "href": "/procedures.json{?tag}"
+              },
+              "content": [
+                {
+                  "element": "copy",
+                  "content": "*/procedures.json?[field]*\n\n> Authentication<br>_GET_: **required**\n\nPagination and ordering are not available, but you can use any other parameter,\nsuch as `tag` or `triggers.resource`\n(with [dot notation](https://docs.mongodb.com/manual/core/document/#dot-notation)),\nto query by particular object properties\n\nReturns only `title` and `short_description` of each procedure"
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "List All Store Procedures"
+                  },
+                  "attributes": {
+                    "href": "/procedures.json"
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"meta\": {\n    \"query\": {}\n  },\n  \"result\": [\n    {\n      \"_id\": \"98d120000000000000000110\",\n      \"title\": \"My procedure\",\n      \"short_description\": \"Do something after some other thing\"\n    },\n    {\n      \"_id\": \"98d120000000000000000111\",\n      \"title\": \"Reduce inventory after new order\",\n      \"short_description\": \"After receive order, reduce products available quantity to control stock\"\n    },\n    {\n      \"_id\": \"98d120000000000000000112\",\n      \"title\": \"Custom procedure name\",\n      \"short_description\": \"Lorem ipsum dolor sit amet...\"\n    }\n  ]\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Find Procedures"
+                  },
+                  "attributes": {
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Object property to query",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "optional"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "tag"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "my_proc"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"meta\": {\n    \"query\": {\n      \"tag\": \"my_proc\"\n    }\n  },\n  \"result\": [\n    {\n      \"_id\": \"98d120000000000000000110\",\n      \"title\": \"My procedure\",\n      \"short_description\": \"Do something after some other thing\"\n    }\n  ]\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "element": "resource",
+              "meta": {
+                "title": "New Procedure"
+              },
+              "attributes": {
+                "href": "/procedures.json"
+              },
+              "content": [
+                {
+                  "element": "copy",
+                  "content": "*/procedures.json*\n\n> Authentication<br>_POST_: **required**\n\nRequest body must obey the specifications of\n[this model](#reference/procedures/procedure-object)\n\nIn some properties you can use variables as value:\n\n- `(tr.*)` to get values from trigger object\n  - eg.: `(tr.body.name)`"
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Create New Procedure"
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "POST",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"title\": \"Reduce inventory after new order\",\n  \"short_description\": \"After receive order, reduce products available quantity to control stock\",\n  \"triggers\": [\n    {\n      \"method\": \"POST\",\n      \"resource\": \"orders\"\n    }\n  ],\n  \"conditionals\": [\n    {\n      \"field\": \"status\",\n      \"operator\": \"str_not_equal\",\n      \"str_value\": \"cancelled\"\n    }\n  ],\n  \"webhooks\": [\n    {\n      \"api\": {\n        \"external_api\": {\n          \"uri\": \"https://appserver.sample/stock/notification\"\n        }\n      },\n      \"method\": \"POST\",\n      \"map_body\": {\n        \"order\": {\n          \"_id\": \"(tr.inserted_id)\"\n        },\n        \"financial_status\": \"(tr.body.financial_status)\"\n      }\n    }\n  ],\n  \"tag\": \"stock_control\"\n}\n"
+                            }
+                          ]
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "201",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"_id\": \"98d120000000000000000111\"\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "element": "resource",
+              "meta": {
+                "title": "Specific Procedure"
+              },
+              "attributes": {
+                "href": "/procedures/{_id}.json"
+              },
+              "content": [
+                {
+                  "element": "copy",
+                  "content": "*/procedures/[_id].json*\n\n> Authentication<br>_GET_, _PATCH_, _DELETE_: **required**\n\nIn read requests, response body will follow\n[this model](#reference/procedures/procedure-object)\n\nFor editing, request body must obey the same specifications,\nbut in this case there are no required fields"
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Read Procedure"
+                  },
+                  "attributes": {
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "The procedure ID",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "_id"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "98d120000000000000000111"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"_id\": \"98d120000000000000000111\",\n  \"created_at\": \"2017-11-19T13:10:00.612Z\",\n  \"store_id\": 100,\n  \"title\": \"Reduce inventory after new order\",\n  \"short_description\": \"After receive order, reduce products available quantity to control stock\",\n  \"triggers\": [\n    {\n      \"method\": \"POST\",\n      \"resource\": \"orders\"\n    }\n  ],\n  \"conditionals\": [\n    {\n      \"field\": \"status\",\n      \"operator\": \"str_not_equal\",\n      \"value\": 0,\n      \"str_value\": \"cancelled\"\n    }\n  ],\n  \"webhooks\": [\n    {\n      \"api\": {\n        \"external_api\": {\n          \"uri\": \"https://appserver.sample/stock/notification\"\n        }\n      },\n      \"method\": \"POST\",\n      \"send_body\": true,\n      \"map_body\": {\n        \"order\": {\n          \"_id\": \"(tr.inserted_id)\"\n        },\n        \"financial_status\": \"(tr.body.financial_status)\"\n      }\n    }\n  ],\n  \"tag\": \"stock_control\"\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Edit Procedure"
+                  },
+                  "attributes": {
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "The procedure ID",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "_id"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "98d120000000000000000111"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "PATCH",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"webhooks\": [\n    {\n      \"api\": {\n        \"external_api\": {\n          \"uri\": \"https://appserver.sample/stock/notification?order_id=(tr.inserted_id)\"\n        }\n      },\n      \"method\": \"GET\",\n      \"send_body\": false\n    }\n  ]\n}\n"
+                            }
+                          ]
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "204"
+                          },
+                          "content": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Remove Procedure"
+                  },
+                  "attributes": {
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "The procedure ID",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "_id"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "98d120000000000000000111"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "DELETE",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "204"
+                          },
+                          "content": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

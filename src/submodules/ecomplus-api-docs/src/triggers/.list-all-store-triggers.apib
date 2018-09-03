@@ -1,0 +1,92 @@
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "meta": {
+                "query": {}
+              },
+              "result": [
+                {
+                  "_id": "98d010000000000000000110",
+                  "datetime": "2017-11-14T12:00:10.612Z",
+                  "authentication_id": "5a6757722b66f68dbed44526",
+                  "method": "POST",
+                  "action": "create",
+                  "resource": "brands",
+                  "inserted_id": "a10000000000000000001110"
+                },
+                {
+                  "_id": "98d010000000000000000111",
+                  "fake": true,
+                  "datetime": "2018-01-02T13:00:00.612Z",
+                  "authentication_id": "5a6757722b66f68dbed44526",
+                  "method": "PATCH",
+                  "action": "change",
+                  "resource": "products",
+                  "resource_id": "100a54321098765432112222",
+                  "fields": [
+                    "quantity"
+                  ]
+                },
+                {
+                  "_id": "98d010000000000000000112",
+                  "datetime": "2017-11-14T12:20:10.612Z",
+                  "authentication_id": "5a6757722b66f68dbed44526",
+                  "method": "DELETE",
+                  "action": "delete",
+                  "resource": "brands",
+                  "resource_id": "a10000000000000000001110"
+                },
+                {
+                  "_id": "98d010000000000000000113",
+                  "datetime": "2017-11-14T12:30:10.612Z",
+                  "authentication_id": "5a6757722b66f68dbed44526",
+                  "method": "PATCH",
+                  "action": "change",
+                  "resource": "products",
+                  "resource_id": "1234567890abcdef01291512",
+                  "subresource": "variations",
+                  "subresource_id": "1ff00000000000000000098f",
+                  "fields": [
+                    "specifications"
+                  ]
+                },
+                {
+                  "_id": "98d010000000000000000114",
+                  "datetime": "2017-12-01T12:20:10.612Z",
+                  "authentication_id": "5a6757722b66f68dbed44526",
+                  "method": "POST",
+                  "action": "create",
+                  "resource": "products",
+                  "inserted_id": "123a5432109876543210cdef"
+                },
+                {
+                  "_id": "98d010000000000000000115",
+                  "fake": true,
+                  "datetime": "2017-12-02T00:05:10.612Z",
+                  "authentication_id": "5a6757722b66f68dbed44526",
+                  "method": "POST",
+                  "action": "create",
+                  "resource": "products",
+                  "inserted_id": "123a5432109876543210cdef"
+                },
+                {
+                  "_id": "98d010000000000000000116",
+                  "datetime": "2017-11-15T12:00:10.612Z",
+                  "authentication_id": "11000000000000000000000f",
+                  "method": "POST",
+                  "action": "create",
+                  "resource": "categories",
+                  "inserted_id": "b10000000000000000001110"
+                }
+              ]
+            }

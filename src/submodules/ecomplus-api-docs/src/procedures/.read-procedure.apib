@@ -1,0 +1,54 @@
++ Parameters
+    + _id: 98d120000000000000000111 (string, required) - The procedure ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "_id": "98d120000000000000000111",
+              "created_at": "2017-11-19T13:10:00.612Z",
+              "store_id": 100,
+              "title": "Reduce inventory after new order",
+              "short_description": "After receive order, reduce products available quantity to control stock",
+              "triggers": [
+                {
+                  "method": "POST",
+                  "resource": "orders"
+                }
+              ],
+              "conditionals": [
+                {
+                  "field": "status",
+                  "operator": "str_not_equal",
+                  "value": 0,
+                  "str_value": "cancelled"
+                }
+              ],
+              "webhooks": [
+                {
+                  "api": {
+                    "external_api": {
+                      "uri": "https://appserver.sample/stock/notification"
+                    }
+                  },
+                  "method": "POST",
+                  "send_body": true,
+                  "map_body": {
+                    "order": {
+                      "_id": "(tr.inserted_id)"
+                    },
+                    "financial_status": "(tr.body.financial_status)"
+                  }
+                }
+              ],
+              "tag": "stock_control"
+            }

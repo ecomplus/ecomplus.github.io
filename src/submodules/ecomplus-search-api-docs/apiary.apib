@@ -1,0 +1,770 @@
+FORMAT: 1A
+HOST: https://apx-search.e-com.plus/api/v1/
+
+# E-Com Plus Search API
+
+[E-Com Plus](https://www.e-com.plus)
+is a robust and flexible cloud commerce software,
+totally based on REST APIs, providing a large library of methods and specifications
+to deploy any digital commerce operation easly
+
+**Search API** is our public REST interface to
+[Elasticsearch](https://www.elastic.co/products/elasticsearch),
+implemented as store search engine,
+for faster and flexible products and terms searches
+
+## Overview
+
+All requests are proxy passed to Elasticsearch
+[Search APIs](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html)
+with _XGET_ method (read only)
+
+You must follow
+[Request Body Search](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-body.html)
+specifications
+
+Responses are the same as returned from _Eslasticsearch REST API_,
+so you can read their documentation to get more info and examples
+
+### Host
+
+Should be accessed from `https://apx-search.e-com.plus/api/{version}/`
+
+Current version: **v1**
+
+https://apx-search.e-com.plus/api/v1/
+
+Note that every request must be with `https` (SSL)
+
+All endpoints will end with `.json`:
+
+https://apx-search.e-com.plus/api/v1/example.json
+
+### Verbs
+
+| Verb    | CRUD           | Description             |
+|:--------|----------------|-------------------------|
+| GET     | Read           | View object             |
+| POST    | Read           | View object             |
+
+### Status Codes
+
+Based on HTTP/1.1 Status Code Definitions:
+
+- *2xx* - Successful
+- *4xx* - Client error, must check the request
+- *5xx* - Server error, report us and try again later
+
+### Format
+
+Both request and response body are formatted as JSON, always an object `{}`
+
+Check
+[this page](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-body.html)
+of Elasticsearch documentation to examples of successful responses
+
+## Error Handling
+
+#### ELS Errors
+
+All *4xx* (client error) and *5xx* (server error) responses from Elasticsearch
+will have body following the model below:
+
+- *(object)*
+    - `error` *(object)* - ELS error object
+        - `root_cause` *(array)*
+            - *(object)*
+                - `type` *(string)*
+                - `reason` *(string)*
+                - `resource.type` *(string)*
+                - `resource.id` *(string)*
+                - `index` *(string)*
+        - `type` *(string)*
+        - `reason` *(string)*
+        - `resource.type` *(string)*
+        - `resource.id` *(string)*
+        - `index` *(string)*
+    - `status` *(number)* - HTTP status code
+
+**Example**
+
+```json
+{
+  "error": {
+    "root_cause": [
+      {
+        "type": "index_not_found_exception",
+        "reason": "no such index",
+        "resource.type": "index_or_alias",
+        "resource.id": "items",
+        "index": "items"
+      }
+    ],
+    "type": "index_not_found_exception",
+    "reason": "no such index",
+    "resource.type": "index_or_alias",
+    "resource.id": "items",
+    "index": "items"
+  },
+  "status": 404
+}
+```
+
+#### Web Server Errors
+
+In some cases you can receive an error directly from NGINX web server,
+even in this case the response will be a JSON object
+
+##### NGINX 404
+
+```json
+{
+  "status": 404,
+  "error_code": -44,
+  "message": "Page not found"
+}
+```
+
+Incorrect URL paths, check [API Host](#introduction/overview/host)
+
+##### NGINX 503
+
+```json
+{
+  "status": 503,
+  "error_code": -53,
+  "message": "Service unavailable (DDoS?), wait few seconds"
+}
+```
+
+NGINX is blocking your requests for security reasons, please wait few seconds and try again
+
+## Server Limits
+
+Responses are limited to 30 requests per IP per second
+
+If the server is overloaded with too many pending connections,
+it will respond with *503* status code,
+so you **need to create treatments** for this case
+
+We recommend to wait 400ms after a 503 response,
+then resend the request
+
+## See Also
+
+- [Developers site](https://developers.e-com.plus)
+- [GitHub organization](https://github.com/ecomclub)
+- [Community](https://community.e-com.plus)
+
+#### Other REST APIs
+
+- [Store](https://ecomstore.docs.apiary.io):
+E-Com Plus Store API, with all store resources
+- [Main](https://ecomplus.docs.apiary.io):
+E-Com Plus Main API, with some public data about stores and channels
+- [Graphs](https://ecomgraphs.docs.apiary.io):
+Recommendations API using Neo4j to define related products by categories, brands and common orders
+
+## Getting Help
+
+Feel free to get help or suggest alterations on
+[GitHub repo](https://github.com/ecomclub/ecomplus-api-docs) or by e-mail
+[ti@e-com.club](mailto:ti@e-com.club)
+
+## Group Items
+
+### Items Object Map
+
+The `items` type has the
+[mapping](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html) above:
+
+```javascript
+'items': {
+  'properties': {
+    'created_at': {
+      'type': 'date'
+    },
+    'sku': {
+      'type': 'keyword'
+    },
+    'name': {
+      'type': 'text'
+    },
+    'slug': {
+      'type': 'keyword'
+    },
+    'permalink': {
+      'type': 'keyword',
+      'index': false
+    },
+    'mobile_link': {
+      'type': 'keyword',
+      'index': false
+    },
+    'status': {
+      'type': 'keyword'
+    },
+    'available': {
+      'type': 'boolean'
+    },
+    'visible': {
+      'type': 'boolean'
+    },
+    'ad_relevance': {
+      'type': 'byte'
+    },
+    'ad_type': {
+      'type': 'keyword'
+    },
+    'short_description': {
+      'type': 'text',
+      'index': false
+    },
+    'price': {
+      'type': 'float'
+    },
+    'price_effective_date': {
+      'properties': {
+        'start': {
+          'type': 'date'
+        },
+        'end': {
+          'type': 'date'
+        }
+      }
+    },
+    'base_price': {
+      'type': 'float'
+    },
+    'currency_id': {
+      'type': 'keyword',
+      'index': false
+    },
+    'currency_symbol': {
+      'type': 'keyword',
+      'index': false
+    },
+    'quantity': {
+      'type': 'float'
+    },
+    'measurement': {
+      'enabled': false
+    },
+    'condition': {
+      'type': 'keyword'
+    },
+    'warranty': {
+      'type': 'keyword'
+    },
+    'specs': {
+      'type': 'nested',
+      'properties': {
+        'grid': {
+          'type': 'keyword'
+        },
+        'text': {
+          'type': 'keyword'
+        }
+      }
+    },
+    'pictures': {
+      'enabled': false
+    },
+    'installments': {
+      'enabled': false
+    },
+    'discount': {
+      'enabled': false
+    },
+    'views': {
+      'type': 'integer'
+    },
+    'sales': {
+      'type': 'integer'
+    },
+    'brands': {
+      'properties': {
+        '_id': {
+          'type': 'keyword'
+        },
+        'name': {
+          'type': 'keyword'
+        },
+        'slug': {
+          'type': 'keyword'
+        }
+      }
+    },
+    'categories': {
+      'properties': {
+        '_id': {
+          'type': 'keyword'
+        },
+        'name': {
+          'type': 'keyword'
+        },
+        'slug': {
+          'type': 'keyword'
+        }
+      }
+    },
+    'keywords': {
+      'type': 'text'
+    },
+    // map variations as product nested object
+    'variations': {
+      'type': 'nested',
+      'properties': {
+        'sku': {
+          'type': 'keyword'
+        },
+        'name': {
+          'type': 'keyword'
+        },
+        'price': {
+          'type': 'float'
+        },
+        'price_effective_date': {
+          'properties': {
+            'start': {
+              'type': 'date'
+            },
+            'end': {
+              'type': 'date'
+            }
+          }
+        },
+        'base_price': {
+          'type': 'float'
+        },
+        'installments': {
+          'enabled': false
+        },
+        'discount': {
+          'enabled': false
+        },
+        'quantity': {
+          'type': 'float'
+        },
+        'picture_id': {
+          'type': 'keyword',
+          'index': false
+        }
+      }
+    }
+  }
+}
+```
+
+Note that the item object is similar to the
+[Product Object](https://ecomstore.docs.apiary.io/#reference/products/product-object),
+but with less properties and converting `specifications` object to `specs` array of nested objects
+
+### Items Search [/items.json]
+
+#### Simple Search [GET /items.json?q={field}:{value}]
+
+ELS [URI Search](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-uri-request.html)
+
++ Parameters
+    + field: keywords (string, required) - Valid item object property
+    + value: tshirt (string, required) - Value to be searched
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+        {
+          "took": 1,
+          "timed_out": false,
+          "_shards": {
+            "total": 6,
+            "successful": 6,
+            "skipped": 0,
+            "failed": 0
+          },
+          "hits": {
+            "total": 1,
+            "max_score": 1.3862944,
+            "hits": [
+              {
+                "_index": "100",
+                "_type": "items",
+                "_id": "123a5432109876543210cdef",
+                "_score": 1.3862944,
+                "_source": {
+                  "created_at": "2017-12-01T01:00:30.500Z",
+                  "sku": "s-MP_2B4",
+                  "name": "Mens Pique Polo Shirt",
+                  "slug": "mens-pique-polo-shirt",
+                  "available": true,
+                  "visible": true,
+                  "ad_relevance": 0,
+                  "views": 1131,
+                  "sales": 25,
+                  "price": 42.9,
+                  "price_effective_date": {
+                    "end": "2018-12-01T10:00:00.000Z"
+                  },
+                  "base_price": 60,
+                  "quantity": 100,
+                  "condition": "new",
+                  "specs": [
+                    {
+                      "key": "age_group",
+                      "value": "Adult"
+                    },
+                    {
+                      "key": "gender",
+                      "value": "Male"
+                    },
+                    {
+                      "key": "size"
+                      "value": "Large"
+                    },
+                    {
+                      "key": "size_type",
+                      "value": "Regular"
+                    },
+                    {
+                      "key": "size_system"
+                      "value": "BR"
+                    },
+                    {
+                      "key": "material",
+                      "value": "Cotton"
+                    },
+                    {
+                      "key": "colors",
+                      "value": "Pique"
+                    }
+                  ],
+                  "keywords": [
+                    "tshirt",
+                    "t-shirt",
+                    "man"
+                  ],
+                  "brands": [
+                    {
+                      "_id": "a10000000000000000000001",
+                      "name": "Shirts Example",
+                      "slug": "shirts-example",
+                      "logo": {
+                        "url": "https://mycdn.com/shirts-example.jpg",
+                        "size": "100x50"
+                      }
+                    }
+                  ],
+                  "categories": [
+                    {
+                      "_id": "f10000000000000000000001",
+                      "name": "Polo Shirts",
+                      "slug": "polo"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+
+#### Complex Search [POST]
+
+ELS [Request Body Search](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-body.html)
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
+    + Body
+
+            {
+              "query": {
+                "bool": {
+                  "must": {
+                    "multi_match": {
+                      "query": "tshirt",
+                      "fields": [
+                        "name",
+                        "keywords"
+                      ]
+                    }
+                  },
+                  "filter": [
+                    {
+                      "term": {
+                        "visible": true
+                      }
+                    }
+                  ]
+                }
+              },
+              "sort": [
+                {
+                  "available": {
+                    "order": "desc"
+                  }
+                },
+                "_score",
+                {
+                  "ad_relevance": {
+                    "order": "desc"
+                  }
+                },
+                {
+                  "views": {
+                    "order": "desc"
+                  }
+                }
+              ]
+            }
+
++ Response 200 (application/json)
+
+        {
+          "took": 1,
+          "timed_out": false,
+          "_shards": {
+            "total": 6,
+            "successful": 6,
+            "skipped": 0,
+            "failed": 0
+          },
+          "hits": {
+            "total": 1,
+            "max_score": 1.3862944,
+            "hits": [
+              {
+                "_index": "100",
+                "_type": "items",
+                "_id": "123a5432109876543210cdef",
+                "_score": 1.3862944,
+                "_source": {
+                  "created_at": "2017-12-01T01:00:30.500Z",
+                  "sku": "s-MP_2B4",
+                  "name": "Mens Pique Polo Shirt",
+                  "slug": "mens-pique-polo-shirt",
+                  "available": true,
+                  "visible": true,
+                  "ad_relevance": 0,
+                  "views": 1131,
+                  "sales": 25,
+                  "price": 42.9,
+                  "price_effective_date": {
+                    "end": "2018-12-01T10:00:00.000Z"
+                  },
+                  "base_price": 60,
+                  "quantity": 100,
+                  "condition": "new",
+                  "specs": [
+                    {
+                      "key": "age_group",
+                      "value": "Adult"
+                    },
+                    {
+                      "key": "gender",
+                      "value": "Male"
+                    },
+                    {
+                      "key": "size"
+                      "value": "Large"
+                    },
+                    {
+                      "key": "size_type",
+                      "value": "Regular"
+                    },
+                    {
+                      "key": "size_system"
+                      "value": "BR"
+                    },
+                    {
+                      "key": "material",
+                      "value": "Cotton"
+                    },
+                    {
+                      "key": "colors",
+                      "value": "Pique"
+                    }
+                  ],
+                  "keywords": [
+                    "tshirt",
+                    "t-shirt",
+                    "man"
+                  ],
+                  "brands": [
+                    {
+                      "_id": "a10000000000000000000001",
+                      "name": "Shirts Example",
+                      "slug": "shirts-example",
+                      "logo": {
+                        "url": "https://mycdn.com/shirts-example.jpg",
+                        "size": "100x50"
+                      }
+                    }
+                  ],
+                  "categories": [
+                    {
+                      "_id": "f10000000000000000000001",
+                      "name": "Polo Shirts",
+                      "slug": "polo"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+
+## Group Terms
+
+### Terms Object Map
+
+The `terms` type has the
+[mapping](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html) above:
+
+```javascript
+'terms': {
+  'properties': {
+    'date': {
+      'type': 'date'
+    },
+    'term': {
+      'type': 'text'
+    },
+    'results': {
+      'type': 'short'
+    },
+    'count': {
+      'type': 'integer'
+    }
+  }
+}
+```
+
+### Terms Search [/terms.json]
+
+#### Simple Search [GET /terms.json?q={field}:{value}]
+
+ELS [URI Search](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-uri-request.html)
+
++ Parameters
+    + field: term (string, required) - Valid term object property
+    + value: tshirt (string, required) - Value to be searched
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+        {
+          "took": 1,
+          "timed_out": false,
+          "_shards": {
+            "total": 6,
+            "successful": 6,
+            "skipped": 0,
+            "failed": 0
+          },
+          "hits": {
+            "total": 2,
+            "max_score": 1.45,
+            "hits": [
+              {
+                "_index": "100",
+                "_type": "terms",
+                "_id": "0",
+                "_score": 1.45,
+                "_source": {
+                  "date": "2017-12-01T10:00:40.000Z",
+                  "term": "tshirt",
+                  "results": 1,
+                  "count": 1675
+                }
+              },
+              {
+                "_index": "100",
+                "_type": "terms",
+                "_id": "1",
+                "_score": 1.31,
+                "_source": {
+                  "date": "2018-01-01T01:00:30.100Z",
+                  "term": "t-shirt",
+                  "results": 2,
+                  "count": 568
+                }
+              }
+            ]
+          }
+        }
+
+#### Complex Search [POST]
+
+ELS [Request Body Search](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-body.html)
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
+    + Body
+
+            {
+              "query": {
+                "term": {
+                  "term": "tshirt"
+                }
+              }
+            }
+
++ Response 200 (application/json)
+
+        {
+          "took": 1,
+          "timed_out": false,
+          "_shards": {
+            "total": 6,
+            "successful": 6,
+            "skipped": 0,
+            "failed": 0
+          },
+          "hits": {
+            "total": 2,
+            "max_score": 1.45,
+            "hits": [
+              {
+                "_index": "100",
+                "_type": "terms",
+                "_id": "0",
+                "_score": 1.45,
+                "_source": {
+                  "date": "2017-12-01T10:00:40.000Z",
+                  "term": "tshirt",
+                  "results": 1,
+                  "count": 1675
+                }
+              },
+              {
+                "_index": "100",
+                "_type": "terms",
+                "_id": "1",
+                "_score": 1.31,
+                "_source": {
+                  "date": "2018-01-01T01:00:30.100Z",
+                  "term": "t-shirt",
+                  "results": 2,
+                  "count": 568
+                }
+              }
+            ]
+          }
+        }

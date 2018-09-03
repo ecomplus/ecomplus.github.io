@@ -1,0 +1,1687 @@
+{
+  "element": "parseResult",
+  "content": [
+    {
+      "element": "category",
+      "meta": {
+        "classes": [
+          "api"
+        ],
+        "title": ""
+      },
+      "content": [
+        {
+          "element": "category",
+          "meta": {
+            "classes": [
+              "resourceGroup"
+            ],
+            "title": "Brands"
+          },
+          "content": [
+            {
+              "element": "copy",
+              "content": "`.brands`\n\nUse the **brands** resource to create, read, update and delete brands (manufacturers) in\na merchant's store, you can edit all brand properties and also work with all\nbrand subresources directly at this resource"
+            },
+            {
+              "element": "resource",
+              "meta": {
+                "title": "Brand Object"
+              },
+              "attributes": {
+                "href": "/brands/schema.json"
+              },
+              "content": [
+                {
+                  "element": "dataStructure",
+                  "content": [
+                    {
+                      "element": "object",
+                      "meta": {
+                        "id": "Brand Object"
+                      },
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Brand full name - Max length: **255**"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "name"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Brand name translations - Max properties: **10**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "i18n"
+                            },
+                            "value": {
+                              "element": "object",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "meta": {
+                                    "description": "Translated full brand name - Max length: **255**"
+                                  },
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "^[a-z]{2}(_[a-z]{2})?$"
+                                    },
+                                    "value": {
+                                      "element": "string"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Optional subtitle intended to be used for SEO or layout purposes - Max length: **255**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "subtitle"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Slug to complete page URL, starting with number or lowercase letter - Max length: **255** - RegEx pattern: **`^[a-z0-9]([a-z0-9-_./]+)?$`**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "slug"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Permanent URL to brand page - Max length: **255** - Format: **uri**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "permalink"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Optional URL specific to mobile devices - Max length: **255** - Format: **uri**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "mobile_link"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Short brand description in plain text - Max length: **255**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "short_description"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Full brand description, may use HTML tags - Max length: **250000**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "body_html"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Full brand description, plain text only - Max length: **250000**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "body_text"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Title tag for page SEO - Max length: **255**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "meta_title"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Meta description tag for page SEO - Max length: **1000**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "meta_description"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Brand logo"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "logo"
+                            },
+                            "value": {
+                              "element": "object",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "meta": {
+                                    "description": "Image link - Max length: **255** - Format: **uri**"
+                                  },
+                                  "attributes": {
+                                    "typeAttributes": [
+                                      "required"
+                                    ]
+                                  },
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "url"
+                                    },
+                                    "value": {
+                                      "element": "string"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "meta": {
+                                    "description": "Image size (width x height) in px, such as 100x50 (100px width, 50px height) - Max length: **11** - RegEx pattern: **`^[1-9]([0-9]+)?x[1-9]([0-9]+)?$`**"
+                                  },
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "size"
+                                    },
+                                    "value": {
+                                      "element": "string"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "meta": {
+                                    "description": "Alternative text, HTML alt tag (important for SEO) - Max length: **255**"
+                                  },
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "alt"
+                                    },
+                                    "value": {
+                                      "element": "string"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "List of brand images - Max elements: **50**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "pictures"
+                            },
+                            "value": {
+                              "element": "array",
+                              "content": [
+                                {
+                                  "element": "object",
+                                  "content": [
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Unique ID (ObjectID) - RegEx pattern: **`^[a-f0-9]{24}$`**"
+                                      },
+                                      "attributes": {
+                                        "typeAttributes": [
+                                          "required"
+                                        ]
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "_id"
+                                        },
+                                        "value": {
+                                          "element": "string"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Tag to identify object, use only lowercase letters, digits and underscore - Max length: **20** - RegEx pattern: **`^[a-z0-9_]+$`**"
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "tag"
+                                        },
+                                        "value": {
+                                          "element": "string"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Image link - Max length: **255** - Format: **uri**"
+                                      },
+                                      "attributes": {
+                                        "typeAttributes": [
+                                          "required"
+                                        ]
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "url"
+                                        },
+                                        "value": {
+                                          "element": "string"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Image size (width x height) in px, such as 100x50 (100px width, 50px height) - Max length: **11** - RegEx pattern: **`^[1-9]([0-9]+)?x[1-9]([0-9]+)?$`**"
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "size"
+                                        },
+                                        "value": {
+                                          "element": "string"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Alternative text, HTML alt tag (important for SEO) - Max length: **255**"
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "alt"
+                                        },
+                                        "value": {
+                                          "element": "string"
+                                        }
+                                      }
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "List of custom attributes - Max elements: **100**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "metafields"
+                            },
+                            "value": {
+                              "element": "array",
+                              "content": [
+                                {
+                                  "element": "object",
+                                  "content": [
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Unique ID (ObjectID) - RegEx pattern: **`^[a-f0-9]{24}$`**"
+                                      },
+                                      "attributes": {
+                                        "typeAttributes": [
+                                          "required"
+                                        ]
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "_id"
+                                        },
+                                        "value": {
+                                          "element": "string"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "String to help distinguish who (or which app) created and can use the metafield - Max length: **30**"
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "namespace"
+                                        },
+                                        "value": {
+                                          "element": "string"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Field name - Max length: **50**"
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "field"
+                                        },
+                                        "value": {
+                                          "element": "string"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Custom property value - Max length: **255**"
+                                      },
+                                      "attributes": {
+                                        "typeAttributes": [
+                                          "required"
+                                        ]
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "value"
+                                        },
+                                        "value": {
+                                          "element": "string"
+                                        }
+                                      }
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Flags to associate additional info - Max elements: **10**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "flags"
+                            },
+                            "value": {
+                              "element": "array",
+                              "content": [
+                                {
+                                  "element": "string",
+                                  "meta": {
+                                    "description": "Flag title"
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Optional notes with additional info about this brand - Max length: **255**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "notes"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "JSON Schema"
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n    \"$schema\": \"http://json-schema.org/draft-06/schema#\",\n    \"title\": \"Brands\",\n    \"description\": \"Brand object model\",\n    \"type\": \"object\",\n    \"required\": [\n        \"name\"\n    ],\n    \"additionalProperties\": false,\n    \"properties\": {\n        \"name\": {\n            \"type\": \"string\",\n            \"maxLength\": 255,\n            \"description\": \"Brand full name\"\n        },\n        \"i18n\": {\n            \"type\": \"object\",\n            \"additionalProperties\": false,\n            \"maxProperties\": 10,\n            \"patternProperties\": {\n                \"^[a-z]{2}(_[a-z]{2})?$\": {\n                    \"type\": \"string\",\n                    \"maxLength\": 255,\n                    \"description\": \"Translated full brand name\"\n                }\n            },\n            \"description\": \"Brand name translations\"\n        },\n        \"subtitle\": {\n            \"type\": \"string\",\n            \"maxLength\": 255,\n            \"description\": \"Optional subtitle intended to be used for SEO or layout purposes\"\n        },\n        \"slug\": {\n            \"type\": \"string\",\n            \"maxLength\": 255,\n            \"pattern\": \"^[a-z0-9]([a-z0-9-_./]+)?$\",\n            \"description\": \"Slug to complete page URL, starting with number or lowercase letter\"\n        },\n        \"permalink\": {\n            \"type\": \"string\",\n            \"maxLength\": 255,\n            \"format\": \"uri\",\n            \"description\": \"Permanent URL to brand page\"\n        },\n        \"mobile_link\": {\n            \"type\": \"string\",\n            \"maxLength\": 255,\n            \"format\": \"uri\",\n            \"description\": \"Optional URL specific to mobile devices\"\n        },\n        \"short_description\": {\n            \"type\": \"string\",\n            \"maxLength\": 255,\n            \"description\": \"Short brand description in plain text\"\n        },\n        \"body_html\": {\n            \"type\": \"string\",\n            \"maxLength\": 250000,\n            \"description\": \"Full brand description, may use HTML tags\"\n        },\n        \"body_text\": {\n            \"type\": \"string\",\n            \"maxLength\": 250000,\n            \"description\": \"Full brand description, plain text only\"\n        },\n        \"meta_title\": {\n            \"type\": \"string\",\n            \"maxLength\": 255,\n            \"description\": \"Title tag for page SEO\"\n        },\n        \"meta_description\": {\n            \"type\": \"string\",\n            \"maxLength\": 1000,\n            \"description\": \"Meta description tag for page SEO\"\n        },\n        \"logo\": {\n            \"type\": \"object\",\n            \"required\": [\n                \"url\"\n            ],\n            \"additionalProperties\": false,\n            \"properties\": {\n                \"url\": {\n                    \"type\": \"string\",\n                    \"maxLength\": 255,\n                    \"format\": \"uri\",\n                    \"description\": \"Image link\"\n                },\n                \"size\": {\n                    \"type\": \"string\",\n                    \"maxLength\": 11,\n                    \"pattern\": \"^[1-9]([0-9]+)?x[1-9]([0-9]+)?$\",\n                    \"description\": \"Image size (width x height) in px, such as 100x50 (100px width, 50px height)\"\n                },\n                \"alt\": {\n                    \"type\": \"string\",\n                    \"maxLength\": 255,\n                    \"description\": \"Alternative text, HTML alt tag (important for SEO)\"\n                }\n            },\n            \"description\": \"Brand logo\"\n        },\n        \"pictures\": {\n            \"type\": \"array\",\n            \"maxItems\": 50,\n            \"items\": {\n                \"type\": \"object\",\n                \"required\": [\n                    \"_id\",\n                    \"url\"\n                ],\n                \"additionalProperties\": false,\n                \"properties\": {\n                    \"_id\": {\n                        \"type\": \"string\",\n                        \"pattern\": \"^[a-f0-9]{24}$\",\n                        \"description\": \"Unique ID (ObjectID)\"\n                    },\n                    \"tag\": {\n                        \"type\": \"string\",\n                        \"maxLength\": 20,\n                        \"pattern\": \"^[a-z0-9_]+$\",\n                        \"description\": \"Tag to identify object, use only lowercase letters, digits and underscore\"\n                    },\n                    \"url\": {\n                        \"type\": \"string\",\n                        \"maxLength\": 255,\n                        \"format\": \"uri\",\n                        \"description\": \"Image link\"\n                    },\n                    \"size\": {\n                        \"type\": \"string\",\n                        \"maxLength\": 11,\n                        \"pattern\": \"^[1-9]([0-9]+)?x[1-9]([0-9]+)?$\",\n                        \"description\": \"Image size (width x height) in px, such as 100x50 (100px width, 50px height)\"\n                    },\n                    \"alt\": {\n                        \"type\": \"string\",\n                        \"maxLength\": 255,\n                        \"description\": \"Alternative text, HTML alt tag (important for SEO)\"\n                    }\n                },\n                \"description\": \"Image object\"\n            },\n            \"description\": \"List of brand images\"\n        },\n        \"metafields\": {\n            \"type\": \"array\",\n            \"maxItems\": 100,\n            \"items\": {\n                \"type\": \"object\",\n                \"additionalProperties\": false,\n                \"required\": [\n                    \"_id\",\n                    \"value\"\n                ],\n                \"properties\": {\n                    \"_id\": {\n                        \"type\": \"string\",\n                        \"pattern\": \"^[a-f0-9]{24}$\",\n                        \"description\": \"Unique ID (ObjectID)\"\n                    },\n                    \"namespace\": {\n                        \"type\": \"string\",\n                        \"maxLength\": 30,\n                        \"description\": \"String to help distinguish who (or which app) created and can use the metafield\"\n                    },\n                    \"field\": {\n                        \"type\": \"string\",\n                        \"maxLength\": 50,\n                        \"description\": \"Field name\"\n                    },\n                    \"value\": {\n                        \"type\": \"string\",\n                        \"maxLength\": 255,\n                        \"description\": \"Custom property value\"\n                    }\n                },\n                \"description\": \"Custom attribute object\"\n            },\n            \"description\": \"List of custom attributes\"\n        },\n        \"flags\": {\n            \"type\": \"array\",\n            \"uniqueItems\": true,\n            \"maxItems\": 10,\n            \"items\": {\n                \"type\": \"string\",\n                \"maxLength\": 20,\n                \"description\": \"Flag title\"\n            },\n            \"description\": \"Flags to associate additional info\"\n        },\n        \"notes\": {\n            \"type\": \"string\",\n            \"maxLength\": 255,\n            \"description\": \"Optional notes with additional info about this brand\"\n        }\n    }\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "element": "resource",
+              "meta": {
+                "title": "All Brands"
+              },
+              "attributes": {
+                "href": "/brands.json{?limit,offset,sort,fields}"
+              },
+              "content": [
+                {
+                  "element": "copy",
+                  "content": "*/brands.json?limit&offset&sort&fields\\&[field]*\n\n> Authentication<br>_GET_: **none**\n\nUse [default URL parameters](#introduction/overview/url-params) (metadata)\nfor pagination and ordering, you can use any other parameter to query\nby particular object properties"
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "List All Store Brands"
+                  },
+                  "attributes": {
+                    "href": "/brands.json"
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"meta\": {\n    \"limit\": 1000,\n    \"offset\": 0,\n    \"sort\": [],\n    \"fields\": [\n      \"_id\",\n      \"name\",\n      \"slug\",\n      \"logo\"\n    ],\n    \"query\": {}\n  },\n  \"result\": [\n    {\n      \"_id\": \"a10000000000000000001110\",\n      \"name\": \"Brand 0\",\n      \"slug\": \"brand-zero\",\n      \"logo\": {\n        \"url\": \"https://mycdn.com/brand-0-logo.jpg\",\n        \"size\": \"90x70\",\n        \"alt\": \"Brand Zero\"\n      }\n    },\n    {\n      \"_id\": \"a10000000000000000001111\",\n      \"name\": \"Brand 1\",\n      \"slug\": \"brand-one\",\n      \"logo\": {\n        \"url\": \"https://mycdn.com/brand-1-logo.jpg\",\n        \"size\": \"70x70\",\n        \"alt\": \"Brand One\"\n      }\n    },\n    {\n      \"_id\": \"a10000000000000000001112\",\n      \"name\": \"Brand 2\",\n      \"slug\": \"brand-two\"\n    },\n    {\n      \"_id\": \"a10000000000000000001113\",\n      \"name\": \"Brand 3\",\n      \"slug\": \"brand-three\"\n    },\n    {\n      \"_id\": \"a10000000000000000001114\",\n      \"name\": \"Brand 4\",\n      \"slug\": \"brand-four\",\n      \"logo\": {\n        \"url\": \"https://mycdn.com/brand-4-logo.jpg\",\n        \"size\": \"70x70\"\n      }\n    },\n    {\n      \"_id\": \"a10000000000000000001115\",\n      \"name\": \"Brand 5\",\n      \"slug\": \"brand-five\",\n      \"logo\": {\n        \"url\": \"https://mycdn.com/brand-5-logo.jpg\",\n        \"size\": \"70x70\"\n      }\n    },\n    {\n      \"_id\": \"a10000000000000000001116\",\n      \"name\": \"Brand 6\",\n      \"slug\": \"brand-six\",\n      \"logo\": {\n        \"url\": \"https://mycdn.com/brand-6-logo.jpg\",\n        \"size\": \"70x70\",\n        \"alt\": \"Brand Six\"\n      }\n    },\n    {\n      \"_id\": \"a10000000000000000000001\",\n      \"name\": \"Shirts Example\",\n      \"slug\": \"shirts-example\",\n      \"logo\": {\n        \"url\": \"https://mycdn.com/shirts-example.jpg\",\n        \"size\": \"100x50\"\n      }\n    }\n  ]\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Pagination And Ordering"
+                  },
+                  "attributes": {
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Max number of objects to return",
+                            "title": "number"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "optional"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "limit"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "2"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "First entry to return",
+                            "title": "number"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "optional"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "offset"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "4"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Rules to order resultant objects",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "optional"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "sort"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "name"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Object properties to return",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "optional"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "fields"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "name,short_description"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"meta\": {\n    \"limit\": 2,\n    \"offset\": 4,\n    \"sort\": [\n      {\n        \"field\": \"name\",\n        \"order\": 1\n      }\n    ],\n    \"fields\": [\n      \"name\",\n      \"short_description\"\n    ],\n    \"query\": {}\n  },\n  \"result\": [\n    {\n      \"_id\": \"a10000000000000000001114\",\n      \"name\": \"Brand 4\",\n      \"short_description\": \"Brand description text\"\n    },\n    {\n      \"_id\": \"a10000000000000000001115\",\n      \"name\": \"Brand 5\",\n      \"short_description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\"\n    }\n  ]\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Find Brands"
+                  },
+                  "attributes": {
+                    "href": "/brands.json{?slug}",
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Object property to query",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "optional"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "slug"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "brand-four"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"meta\": {\n    \"limit\": 1000,\n    \"offset\": 0,\n    \"sort\": [],\n    \"fields\": [\n      \"_id\",\n      \"name\",\n      \"slug\",\n      \"logo\"\n    ],\n    \"query\": {\n      \"slug\": \"brand-four\"\n    }\n  },\n  \"result\": [\n    {\n      \"_id\": \"a10000000000000000001114\",\n      \"name\": \"Brand 4\",\n      \"slug\": \"brand-four\",\n      \"logo\": {\n        \"url\": \"https://mycdn.com/brand-4-logo.jpg\",\n        \"size\": \"70x70\"\n      }\n    }\n  ]\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "element": "resource",
+              "meta": {
+                "title": "New Brand"
+              },
+              "attributes": {
+                "href": "/brands.json"
+              },
+              "content": [
+                {
+                  "element": "copy",
+                  "content": "*/brands.json*\n\n> Authentication<br>_POST_: **required**\n\nRequest body must obey the specifications of\n[this model](#reference/brands/brand-object)"
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Create New Brand"
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "POST",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"name\": \"Shirts Example\",\n  \"slug\": \"shirts-example\",\n  \"short_description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\",\n  \"body_html\": \"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>\",\n  \"body_text\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\",\n  \"logo\": {\n    \"url\": \"https://mycdn.com/shirts-example.jpg\",\n    \"size\": \"100x50\"\n  }\n}\n"
+                            }
+                          ]
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "201",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"_id\": \"a10000000000000000000001\"\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "element": "resource",
+              "meta": {
+                "title": "Specific Brand"
+              },
+              "attributes": {
+                "href": "/brands/{_id}.json"
+              },
+              "content": [
+                {
+                  "element": "copy",
+                  "content": "*/brands/[_id].json*\n\n> Authentication<br>_GET_: **none**<br>_PATCH_, _PUT_, _DELETE_: **required**\n\nIn read requests, response body will follow\n[this model](#reference/brands/brand-object)\n\nFor overwriting and editing, request body must obey the same specifications,\nbut especially for edit requests there are no required fields"
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Read Brand"
+                  },
+                  "attributes": {
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "The brand ID",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "_id"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "a10000000000000000000001"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"_id\": \"a10000000000000000000001\",\n  \"created_at\": \"2017-11-19T13:10:00.612Z\",\n  \"store_id\": 100,\n  \"name\": \"Shirts Example\",\n  \"slug\": \"shirts-example\",\n  \"short_description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\",\n  \"body_html\": \"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>\",\n  \"body_text\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\",\n  \"logo\": {\n    \"url\": \"https://mycdn.com/shirts-example.jpg\",\n    \"size\": \"100x50\"\n  }\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Edit Brand"
+                  },
+                  "attributes": {
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "The brand ID",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "_id"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "a10000000000000000000001"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "PATCH",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"permalink\": \"https://myshop.sample/brands/shirt-brand\"\n}\n"
+                            }
+                          ]
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "204"
+                          },
+                          "content": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Overwrite Brand"
+                  },
+                  "attributes": {
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "The brand ID",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "_id"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "a10000000000000000000001"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "PUT",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"name\": \"Shirts Example\",\n  \"slug\": \"shirts-example\",\n  \"short_description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\",\n  \"body_html\": \"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>\",\n  \"body_text\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\",\n  \"meta_title\": \"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat\",\n  \"meta_description\": \"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\",\n  \"logo\": {\n    \"url\": \"https://mycdn.com/shirts-example.jpg\",\n    \"size\": \"100x50\"\n  }\n}\n"
+                            }
+                          ]
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "204"
+                          },
+                          "content": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Remove Brand"
+                  },
+                  "attributes": {
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "The brand ID",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "_id"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "a10000000000000000000001"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "DELETE",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "204"
+                          },
+                          "content": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

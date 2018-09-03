@@ -1,0 +1,50 @@
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "meta": {
+                "limit": 1000,
+                "offset": 0,
+                "sort": [],
+                "fields": [
+                  "_id",
+                  "name",
+                  "slug"
+                ],
+                "query": {}
+              },
+              "result": [
+                {
+                  "_id": "c92000000000000000001110",
+                  "name": "Initial showcase",
+                  "slug": "index-showcase"
+                },
+                {
+                  "_id": "c92000000000000000001111",
+                  "name": "Special collection",
+                  "slug": "special-collection"
+                },
+                {
+                  "_id": "c92000000000000000001112",
+                  "name": "Collection 2",
+                  "slug": "collection-two"
+                },
+                {
+                  "_id": "c92000000000000000001113",
+                  "name": "Collection 3",
+                  "slug": "collection-three"
+                },
+                {
+                  "_id": "c92000000000000000001114",
+                  "name": "Collection 4",
+                  "slug": "collection-four"
+                }
+              ]
+            }

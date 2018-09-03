@@ -1,0 +1,1451 @@
+{
+  "element": "parseResult",
+  "content": [
+    {
+      "element": "category",
+      "meta": {
+        "classes": [
+          "api"
+        ],
+        "title": ""
+      },
+      "content": [
+        {
+          "element": "category",
+          "meta": {
+            "classes": [
+              "resourceGroup"
+            ],
+            "title": "Product Customizations"
+          },
+          "content": [
+            {
+              "element": "copy",
+              "content": "`.products.customizations`\n\nThe **customizations** is a subresource of *products* resource,\nuse it to create, read, update and delete customization fields of a specific product by ID"
+            },
+            {
+              "element": "resource",
+              "meta": {
+                "title": "Product Field Object"
+              },
+              "attributes": {
+                "href": "/products/schema/customizations.json"
+              },
+              "content": [
+                {
+                  "element": "dataStructure",
+                  "content": [
+                    {
+                      "element": "object",
+                      "meta": {
+                        "id": "Product Field Object"
+                      },
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Tag to identify object, use only lowercase letters, digits and underscore - Max length: **20** - RegEx pattern: **`^[a-z0-9_]+$`**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "tag"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Title for this customization field, can be the grid title - Max length: **70**"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "label"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "If this field is related to a grid, put the `grid_id` - RegEx pattern: **`^[a-z0-9_]{2,30}$`**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "grid_id"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "If field is required (true), customer must always choose a value"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "require"
+                            },
+                            "value": {
+                              "element": "boolean",
+                              "content": false
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Pre-defined options for this customization field, `option_id` as property name - Min properties: **1** - Max properties: **200**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "options"
+                            },
+                            "value": {
+                              "element": "object",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "meta": {
+                                    "description": "Option object"
+                                  },
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "^[a-z0-9_]{2,30}$"
+                                    },
+                                    "value": {
+                                      "element": "object",
+                                      "content": [
+                                        {
+                                          "element": "member",
+                                          "meta": {
+                                            "description": "Option text value displayed for the client - Max length: **70**"
+                                          },
+                                          "attributes": {
+                                            "typeAttributes": [
+                                              "required"
+                                            ]
+                                          },
+                                          "content": {
+                                            "key": {
+                                              "element": "string",
+                                              "content": "text"
+                                            },
+                                            "value": {
+                                              "element": "string"
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "element": "member",
+                                          "meta": {
+                                            "description": "Option color palette (if the field involves colors), starting by main color - Max elements: **4**"
+                                          },
+                                          "content": {
+                                            "key": {
+                                              "element": "string",
+                                              "content": "colors"
+                                            },
+                                            "value": {
+                                              "element": "array",
+                                              "content": [
+                                                {
+                                                  "element": "string",
+                                                  "meta": {
+                                                    "description": "RGB code with #"
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "element": "member",
+                                          "meta": {
+                                            "description": "Specific price alteration if customer choose this option"
+                                          },
+                                          "content": {
+                                            "key": {
+                                              "element": "string",
+                                              "content": "add_to_price"
+                                            },
+                                            "value": {
+                                              "element": "object",
+                                              "content": [
+                                                {
+                                                  "element": "member",
+                                                  "meta": {
+                                                    "description": "Type of price addition"
+                                                  },
+                                                  "content": {
+                                                    "key": {
+                                                      "element": "string",
+                                                      "content": "type"
+                                                    },
+                                                    "value": {
+                                                      "element": "enum",
+                                                      "attributes": {
+                                                        "samples": [
+                                                          [
+                                                            {
+                                                              "element": "string",
+                                                              "content": "percentage"
+                                                            }
+                                                          ]
+                                                        ]
+                                                      },
+                                                      "content": [
+                                                        {
+                                                          "element": "string",
+                                                          "content": "percentage"
+                                                        },
+                                                        {
+                                                          "element": "string",
+                                                          "content": "fixed"
+                                                        }
+                                                      ]
+                                                    }
+                                                  }
+                                                },
+                                                {
+                                                  "element": "member",
+                                                  "meta": {
+                                                    "description": "Additional value, could be negative - Mininum: **-99999999** - Maximum: **99999999** - Max precision: **0.0001**"
+                                                  },
+                                                  "attributes": {
+                                                    "typeAttributes": [
+                                                      "required"
+                                                    ]
+                                                  },
+                                                  "content": {
+                                                    "key": {
+                                                      "element": "string",
+                                                      "content": "addition"
+                                                    },
+                                                    "value": {
+                                                      "element": "number"
+                                                    }
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "If this field accept custom value defined by customer"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "custom_value"
+                            },
+                            "value": {
+                              "element": "boolean",
+                              "content": true
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "If this field accept customer file attachment"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "attachment"
+                            },
+                            "value": {
+                              "element": "boolean",
+                              "content": false
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Default (to all options) price alteration if customer use this field"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "add_to_price"
+                            },
+                            "value": {
+                              "element": "object",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "meta": {
+                                    "description": "Type of price addition"
+                                  },
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "type"
+                                    },
+                                    "value": {
+                                      "element": "enum",
+                                      "attributes": {
+                                        "samples": [
+                                          [
+                                            {
+                                              "element": "string",
+                                              "content": "percentage"
+                                            }
+                                          ]
+                                        ]
+                                      },
+                                      "content": [
+                                        {
+                                          "element": "string",
+                                          "content": "percentage"
+                                        },
+                                        {
+                                          "element": "string",
+                                          "content": "fixed"
+                                        }
+                                      ]
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "meta": {
+                                    "description": "Additional value, could be negative - Mininum: **-99999999** - Maximum: **99999999** - Max precision: **0.0001**"
+                                  },
+                                  "attributes": {
+                                    "typeAttributes": [
+                                      "required"
+                                    ]
+                                  },
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "addition"
+                                    },
+                                    "value": {
+                                      "element": "number"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "JSON Schema"
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n    \"$schema\": \"http://json-schema.org/draft-06/schema#\",\n    \"title\": \"Customization field\",\n    \"type\": \"object\",\n    \"required\": [\n        \"label\"\n    ],\n    \"additionalProperties\": false,\n    \"properties\": {\n        \"tag\": {\n            \"type\": \"string\",\n            \"maxLength\": 20,\n            \"pattern\": \"^[a-z0-9_]+$\",\n            \"description\": \"Tag to identify object, use only lowercase letters, digits and underscore\"\n        },\n        \"label\": {\n            \"type\": \"string\",\n            \"maxLength\": 70,\n            \"description\": \"Title for this customization field, can be the grid title\"\n        },\n        \"grid_id\": {\n            \"type\": \"string\",\n            \"pattern\": \"^[a-z0-9_]{2,30}$\",\n            \"description\": \"If this field is related to a grid, put the grid_id\"\n        },\n        \"require\": {\n            \"type\": \"boolean\",\n            \"default\": false,\n            \"description\": \"If field is required (true), customer must always choose a value\"\n        },\n        \"options\": {\n            \"type\": \"object\",\n            \"additionalProperties\": false,\n            \"minProperties\": 1,\n            \"maxProperties\": 200,\n            \"patternProperties\": {\n                \"^[a-z0-9_]{2,30}$\": {\n                    \"type\": \"object\",\n                    \"required\": [\n                        \"text\"\n                    ],\n                    \"additionalProperties\": false,\n                    \"properties\": {\n                        \"text\": {\n                            \"type\": \"string\",\n                            \"maxLength\": 70,\n                            \"description\": \"Option text value displayed for the client\"\n                        },\n                        \"colors\": {\n                            \"type\": \"array\",\n                            \"maxItems\": 4,\n                            \"items\": {\n                                \"type\": \"string\",\n                                \"pattern\": \"^#[a-f0-9]{6}$\",\n                                \"description\": \"RGB code with #\"\n                            },\n                            \"description\": \"Option color palette (if the field involves colors), starting by main color\"\n                        },\n                        \"add_to_price\": {\n                            \"type\": \"object\",\n                            \"required\": [\n                                \"addition\"\n                            ],\n                            \"additionalProperties\": false,\n                            \"properties\": {\n                                \"type\": {\n                                    \"type\": \"string\",\n                                    \"enum\": [\n                                        \"percentage\",\n                                        \"fixed\"\n                                    ],\n                                    \"default\": \"percentage\",\n                                    \"description\": \"Type of price addition\"\n                                },\n                                \"addition\": {\n                                    \"type\": \"number\",\n                                    \"multipleOf\": 0.0001,\n                                    \"minimum\": -99999999,\n                                    \"maximum\": 99999999,\n                                    \"description\": \"Additional value, could be negative\"\n                                }\n                            },\n                            \"description\": \"Specific price alteration if customer choose this option\"\n                        }\n                    },\n                    \"description\": \"Option object\"\n                }\n            },\n            \"description\": \"Pre-defined options for this customization field, option_id as property name\"\n        },\n        \"custom_value\": {\n            \"type\": \"boolean\",\n            \"default\": true,\n            \"description\": \"If this field accept custom value defined by customer\"\n        },\n        \"attachment\": {\n            \"type\": \"boolean\",\n            \"default\": false,\n            \"description\": \"If this field accept customer file attachment\"\n        },\n        \"add_to_price\": {\n            \"type\": \"object\",\n            \"required\": [\n                \"addition\"\n            ],\n            \"additionalProperties\": false,\n            \"properties\": {\n                \"type\": {\n                    \"type\": \"string\",\n                    \"enum\": [\n                        \"percentage\",\n                        \"fixed\"\n                    ],\n                    \"default\": \"percentage\",\n                    \"description\": \"Type of price addition\"\n                },\n                \"addition\": {\n                    \"type\": \"number\",\n                    \"multipleOf\": 0.0001,\n                    \"minimum\": -99999999,\n                    \"maximum\": 99999999,\n                    \"description\": \"Additional value, could be negative\"\n                }\n            },\n            \"description\": \"Default (to all options) price alteration if customer use this field\"\n        }\n    }\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "element": "resource",
+              "meta": {
+                "title": "All Fields of a Product"
+              },
+              "attributes": {
+                "href": "/products/{product}/customizations.json{?limit,offset,sort,fields}"
+              },
+              "content": [
+                {
+                  "element": "copy",
+                  "content": "*/products/[_id]/customizations.json?limit&offset&sort&fields\\&[field]*\n\n> Authentication<br>_GET_: **required**\n\nUse [default URL parameters](#introduction/overview/url-params) (metadata)\nfor pagination and ordering, you can use any other parameter to query\nby particular object properties"
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "List All Product Customization Fields"
+                  },
+                  "attributes": {
+                    "href": "/products/{product}/customizations.json",
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Product ID",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "product"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "1234567890abcdef01291511"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"meta\": {\n    \"limit\": 1000,\n    \"offset\": 0,\n    \"sort\": [],\n    \"fields\": [\n      \"_id\",\n      \"tag\",\n      \"label\",\n      \"grid_id\",\n      \"require\",\n      \"custom_value\",\n      \"attachment\",\n      \"add_to_price\"\n    ],\n    \"query\": {}\n  },\n  \"result\": [\n    {\n      \"_id\": \"a12000000000000000001110\",\n      \"label\": \"Smartphone model\",\n      \"grid_id\": \"smartphone_model\",\n      \"required\": true,\n      \"custom_value\": false,\n      \"attachment\": false\n    },\n    {\n      \"_id\": \"a12000000000000000001111\",\n      \"label\": \"Include glass film\",\n      \"grid_id\": \"glass_film\",\n      \"required\": false,\n      \"custom_value\": false,\n      \"attachment\": false,\n      \"add_to_price\": {\n        \"type\": \"fixed\",\n        \"addition\": 10.00\n      }\n    },\n    {\n      \"_id\": \"a12000000000000000001112\",\n      \"label\": \"Write your name on the cover\",\n      \"required\": false,\n      \"custom_value\": true,\n      \"attachment\": false,\n      \"add_to_price\": {\n        \"type\": \"fixed\",\n        \"addition\": 5.99\n      }\n    },\n    {\n      \"_id\": \"a12000000000000000001113\",\n      \"label\": \"Picture on the cover\",\n      \"required\": false,\n      \"custom_value\": true,\n      \"attachment\": true,\n      \"add_to_price\": {\n        \"type\": \"fixed\",\n        \"addition\": 9.99\n      }\n    }\n  ]\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "List Fields With Options"
+                  },
+                  "attributes": {
+                    "href": "/products/{product}/customizations.json{?fields}",
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Product ID",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "product"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "1234567890abcdef01291511"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Object properties to return",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "optional"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "fields"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "label,options"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"meta\": {\n    \"limit\": 1000,\n    \"offset\": 0,\n    \"sort\": [],\n    \"fields\": [\n      \"label\",\n      \"options\"\n    ],\n    \"query\": {}\n  },\n  \"result\": [\n    {\n      \"_id\": \"a12000000000000000001110\",\n      \"label\": \"Smartphone model\",\n      \"options\": {\n        \"iphone_x\": {\n          \"text\": \"iPhone X\"\n        },\n        \"galaxy_s7\": {\n          \"text\": \"Galaxy S7\"\n        },\n        \"k10_power\": {\n          \"text\": \"K10 Power\"\n        }\n      }\n    },\n    {\n      \"_id\": \"a12000000000000000001111\",\n      \"label\": \"Include glass film\",\n      \"options\": {\n        \"add_glass_film\": {\n          \"text\": \"Add glass film\"\n        }\n      }\n    },\n    {\n      \"_id\": \"a12000000000000000001112\",\n      \"label\": \"Write your name on the cover\"\n    },\n    {\n      \"_id\": \"a12000000000000000001113\",\n      \"label\": \"Picture on the cover\"\n    }\n  ]\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "element": "resource",
+              "meta": {
+                "title": "New Field to a Product"
+              },
+              "attributes": {
+                "href": "/products/{product}/customizations.json"
+              },
+              "content": [
+                {
+                  "element": "copy",
+                  "content": "*/products/[_id]/customizations.json*\n\n> Authentication<br>_POST_: **required**\n\nRequest body must obey the specifications of\n[this model](#reference/product-customizations/product-field-object)"
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Add New Customization Field"
+                  },
+                  "attributes": {
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Product ID",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "product"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "1234567890abcdef01291511"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "POST",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"label\": \"Include glass film\",\n  \"options\": {\n    \"add_glass_film\": {\n      \"text\": \"Add glass film\"\n    }\n  },\n  \"custom_value\": false,\n  \"add_to_price\": {\n    \"type\": \"fixed\",\n    \"addition\": 10.00\n  }\n}\n"
+                            },
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBodySchema"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/schema+json"
+                              },
+                              "content": "{\n    \"$schema\": \"http://json-schema.org/draft-06/schema#\",\n    \"title\": \"Customization field\",\n    \"type\": \"object\",\n    \"required\": [\n        \"label\"\n    ],\n    \"additionalProperties\": false,\n    \"properties\": {\n        \"tag\": {\n            \"type\": \"string\",\n            \"maxLength\": 20,\n            \"pattern\": \"^[a-z0-9_]+$\",\n            \"description\": \"Tag to identify object, use only lowercase letters, digits and underscore\"\n        },\n        \"label\": {\n            \"type\": \"string\",\n            \"maxLength\": 70,\n            \"description\": \"Title for this customization field, can be the grid title\"\n        },\n        \"grid_id\": {\n            \"type\": \"string\",\n            \"pattern\": \"^[a-z0-9_]{2,30}$\",\n            \"description\": \"If this field is related to a grid, put the grid_id\"\n        },\n        \"require\": {\n            \"type\": \"boolean\",\n            \"default\": false,\n            \"description\": \"If field is required (true), customer must always choose a value\"\n        },\n        \"options\": {\n            \"type\": \"object\",\n            \"additionalProperties\": false,\n            \"minProperties\": 1,\n            \"maxProperties\": 200,\n            \"patternProperties\": {\n                \"^[a-z0-9_]{2,30}$\": {\n                    \"type\": \"object\",\n                    \"required\": [\n                        \"text\"\n                    ],\n                    \"additionalProperties\": false,\n                    \"properties\": {\n                        \"text\": {\n                            \"type\": \"string\",\n                            \"maxLength\": 70,\n                            \"description\": \"Option text value displayed for the client\"\n                        },\n                        \"colors\": {\n                            \"type\": \"array\",\n                            \"maxItems\": 4,\n                            \"items\": {\n                                \"type\": \"string\",\n                                \"pattern\": \"^#[a-f0-9]{6}$\",\n                                \"description\": \"RGB code with #\"\n                            },\n                            \"description\": \"Option color palette (if the field involves colors), starting by main color\"\n                        },\n                        \"add_to_price\": {\n                            \"type\": \"object\",\n                            \"required\": [\n                                \"addition\"\n                            ],\n                            \"additionalProperties\": false,\n                            \"properties\": {\n                                \"type\": {\n                                    \"type\": \"string\",\n                                    \"enum\": [\n                                        \"percentage\",\n                                        \"fixed\"\n                                    ],\n                                    \"default\": \"percentage\",\n                                    \"description\": \"Type of price addition\"\n                                },\n                                \"addition\": {\n                                    \"type\": \"number\",\n                                    \"multipleOf\": 0.0001,\n                                    \"minimum\": -99999999,\n                                    \"maximum\": 99999999,\n                                    \"description\": \"Additional value, could be negative\"\n                                }\n                            },\n                            \"description\": \"Specific price alteration if customer choose this option\"\n                        }\n                    },\n                    \"description\": \"Option object\"\n                }\n            },\n            \"description\": \"Pre-defined options for this customization field, option_id as property name\"\n        },\n        \"custom_value\": {\n            \"type\": \"boolean\",\n            \"default\": true,\n            \"description\": \"If this field accept custom value defined by customer\"\n        },\n        \"attachment\": {\n            \"type\": \"boolean\",\n            \"default\": false,\n            \"description\": \"If this field accept customer file attachment\"\n        },\n        \"add_to_price\": {\n            \"type\": \"object\",\n            \"required\": [\n                \"addition\"\n            ],\n            \"additionalProperties\": false,\n            \"properties\": {\n                \"type\": {\n                    \"type\": \"string\",\n                    \"enum\": [\n                        \"percentage\",\n                        \"fixed\"\n                    ],\n                    \"default\": \"percentage\",\n                    \"description\": \"Type of price addition\"\n                },\n                \"addition\": {\n                    \"type\": \"number\",\n                    \"multipleOf\": 0.0001,\n                    \"minimum\": -99999999,\n                    \"maximum\": 99999999,\n                    \"description\": \"Additional value, could be negative\"\n                }\n            },\n            \"description\": \"Default (to all options) price alteration if customer use this field\"\n        }\n    }\n}\n"
+                            }
+                          ]
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "201",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"_id\": \"a12000000000000000001111\"\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "element": "resource",
+              "meta": {
+                "title": "Specific Field of a Product"
+              },
+              "attributes": {
+                "href": "/products/{product}/customizations/{_id}.json"
+              },
+              "content": [
+                {
+                  "element": "copy",
+                  "content": "*/products/[_id]/customizations/[_id].json*\n\n> Authentication<br>_GET_, _PATCH_, _DELETE_: **required**\n\nIn read requests, response body will follow\n[this model](#reference/product-customizations/product-field-object)\n\nFor editing, request body must obey the same specifications,\nbut there are no required fields, object should have at least one valid property"
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Read Product Customization Field"
+                  },
+                  "attributes": {
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Product ID",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "product"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "1234567890abcdef01291511"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Customization Field ID",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "_id"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "a12000000000000000001110"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"_id\": \"a12000000000000000001110\",\n  \"label\": \"Smartphone model\",\n  \"grid_id\": \"smartphone_model\",\n  \"required\": true,\n  \"options\": {\n    \"iphone_x\": {\n      \"text\": \"iPhone X\"\n    },\n    \"galaxy_s7\": {\n      \"text\": \"Galaxy S7\"\n    },\n    \"k10_power\": {\n      \"text\": \"K10 Power\"\n    }\n  },\n  \"custom_value\": false,\n  \"attachment\": false\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Edit Customization Field"
+                  },
+                  "attributes": {
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Product ID",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "product"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "1234567890abcdef01291511"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Customization Field ID",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "_id"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "a12000000000000000001110"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "PATCH",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"custom_value\": true\n}\n"
+                            },
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBodySchema"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/schema+json"
+                              },
+                              "content": "{\n    \"$schema\": \"http://json-schema.org/draft-06/schema#\",\n    \"title\": \"Customization field\",\n    \"type\": \"object\",\n    \"required\": [],\n    \"minProperties\": 1,\n    \"additionalProperties\": false,\n    \"properties\": {\n        \"tag\": {\n            \"type\": \"string\",\n            \"maxLength\": 20,\n            \"pattern\": \"^[a-z0-9_]+$\",\n            \"description\": \"Tag to identify object, use only lowercase letters, digits and underscore\"\n        },\n        \"label\": {\n            \"type\": \"string\",\n            \"maxLength\": 70,\n            \"description\": \"Title for this customization field, can be the grid title\"\n        },\n        \"grid_id\": {\n            \"type\": \"string\",\n            \"pattern\": \"^[a-z0-9_]{2,30}$\",\n            \"description\": \"If this field is related to a grid, put the grid_id\"\n        },\n        \"require\": {\n            \"type\": \"boolean\",\n            \"default\": false,\n            \"description\": \"If field is required (true), customer must always choose a value\"\n        },\n        \"options\": {\n            \"type\": \"object\",\n            \"additionalProperties\": false,\n            \"minProperties\": 1,\n            \"maxProperties\": 200,\n            \"patternProperties\": {\n                \"^[a-z0-9_]{2,30}$\": {\n                    \"type\": \"object\",\n                    \"required\": [\n                        \"text\"\n                    ],\n                    \"additionalProperties\": false,\n                    \"properties\": {\n                        \"text\": {\n                            \"type\": \"string\",\n                            \"maxLength\": 70,\n                            \"description\": \"Option text value displayed for the client\"\n                        },\n                        \"colors\": {\n                            \"type\": \"array\",\n                            \"maxItems\": 4,\n                            \"items\": {\n                                \"type\": \"string\",\n                                \"pattern\": \"^#[a-f0-9]{6}$\",\n                                \"description\": \"RGB code with #\"\n                            },\n                            \"description\": \"Option color palette (if the field involves colors), starting by main color\"\n                        },\n                        \"add_to_price\": {\n                            \"type\": \"object\",\n                            \"required\": [\n                                \"addition\"\n                            ],\n                            \"additionalProperties\": false,\n                            \"properties\": {\n                                \"type\": {\n                                    \"type\": \"string\",\n                                    \"enum\": [\n                                        \"percentage\",\n                                        \"fixed\"\n                                    ],\n                                    \"default\": \"percentage\",\n                                    \"description\": \"Type of price addition\"\n                                },\n                                \"addition\": {\n                                    \"type\": \"number\",\n                                    \"multipleOf\": 0.0001,\n                                    \"minimum\": -99999999,\n                                    \"maximum\": 99999999,\n                                    \"description\": \"Additional value, could be negative\"\n                                }\n                            },\n                            \"description\": \"Specific price alteration if customer choose this option\"\n                        }\n                    },\n                    \"description\": \"Option object\"\n                }\n            },\n            \"description\": \"Pre-defined options for this customization field, option_id as property name\"\n        },\n        \"custom_value\": {\n            \"type\": \"boolean\",\n            \"default\": true,\n            \"description\": \"If this field accept custom value defined by customer\"\n        },\n        \"attachment\": {\n            \"type\": \"boolean\",\n            \"default\": false,\n            \"description\": \"If this field accept customer file attachment\"\n        },\n        \"add_to_price\": {\n            \"type\": \"object\",\n            \"required\": [\n                \"addition\"\n            ],\n            \"additionalProperties\": false,\n            \"properties\": {\n                \"type\": {\n                    \"type\": \"string\",\n                    \"enum\": [\n                        \"percentage\",\n                        \"fixed\"\n                    ],\n                    \"default\": \"percentage\",\n                    \"description\": \"Type of price addition\"\n                },\n                \"addition\": {\n                    \"type\": \"number\",\n                    \"multipleOf\": 0.0001,\n                    \"minimum\": -99999999,\n                    \"maximum\": 99999999,\n                    \"description\": \"Additional value, could be negative\"\n                }\n            },\n            \"description\": \"Default (to all options) price alteration if customer use this field\"\n        }\n    }\n}\n"
+                            }
+                          ]
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "204"
+                          },
+                          "content": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Remove Customization Field"
+                  },
+                  "attributes": {
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Product ID",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "product"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "1234567890abcdef01291511"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Customization Field ID",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "_id"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "a12000000000000000001110"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "DELETE",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "204"
+                          },
+                          "content": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

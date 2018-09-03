@@ -1,0 +1,71 @@
++ Parameters
+    + limit: 2 (number, optional) - Max number of objects to return
+    + offset: 4 (number, optional) - First entry to return
+    + sort: `grid_id` (string, optional) - Rules to order resultant objects
+    + fields: `grid_id,options` (string, optional) - Object properties to return
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "meta": {
+                "limit": 2,
+                "offset": 4,
+                "sort": [
+                  {
+                    "field": "grid_id",
+                    "order": 1
+                  }
+                ],
+                "fields": [
+                  "grid_id",
+                  "options"
+                ],
+                "query": {}
+              },
+              "result": [
+                {
+                  "_id": "9d1500000000000000001112",
+                  "grid_id": "glass_film",
+                  "options": [
+                    {
+                      "_id": "9d1500000000000000000031",
+                      "option_id": "add_glass_film",
+                      "text": "Add glass film",
+                      "add_to_price": {
+                        "type": "fixed",
+                        "addition": 10.00
+                      }
+                    }
+                  ]
+                },
+                {
+                  "_id": "9d1500000000000000001111",
+                  "grid_id": "smartphone_model",
+                  "options": [
+                    {
+                      "_id": "9d1500000000000000000032",
+                      "option_id": "iphone_se",
+                      "text": "iPhone SE"
+                    },
+                    {
+                      "_id": "9d1500000000000000000033",
+                      "option_id": "galaxy_s7",
+                      "text": "Galaxy S7"
+                    },
+                    {
+                      "_id": "9d1500000000000000000034",
+                      "option_id": "k10_power",
+                      "text": "K10 Power"
+                    }
+                  ]
+                }
+              ]
+            }

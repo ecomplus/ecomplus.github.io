@@ -1,0 +1,1141 @@
+{
+  "element": "parseResult",
+  "content": [
+    {
+      "element": "category",
+      "meta": {
+        "classes": [
+          "api"
+        ],
+        "title": ""
+      },
+      "content": [
+        {
+          "element": "category",
+          "meta": {
+            "classes": [
+              "resourceGroup"
+            ],
+            "title": "Triggers"
+          },
+          "content": [
+            {
+              "element": "copy",
+              "content": "`.triggers`\n\nTriggers are events that call the configured procedures,\nrunning automatic tasks\n\nThey are created automaticly after each\nmodification operation (_POST_, _PUT_, _PATCH_ and _DELETE_) at this API\n\nUse the **triggers** resource to read and delete triggers in\na merchant's store, you can also create fake triggers, mainly for tests purposes"
+            },
+            {
+              "element": "resource",
+              "meta": {
+                "title": "Trigger Object"
+              },
+              "attributes": {
+                "href": "/triggers/schema.json"
+              },
+              "content": [
+                {
+                  "element": "dataStructure",
+                  "content": [
+                    {
+                      "element": "object",
+                      "meta": {
+                        "id": "Trigger Object"
+                      },
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "When event occurred, date and time in ISO 8601 standard representation - Format: **date-time**"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "datetime"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "ID of used authentication, should be a valid hexadecimal - RegEx pattern: **`^[a-f0-9]{24}$`**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "authentication_id"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Method (HTTP verb) of the event"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "method"
+                            },
+                            "value": {
+                              "element": "enum",
+                              "content": [
+                                {
+                                  "element": "string",
+                                  "content": "POST"
+                                },
+                                {
+                                  "element": "string",
+                                  "content": "PATCH"
+                                },
+                                {
+                                  "element": "string",
+                                  "content": "PUT"
+                                },
+                                {
+                                  "element": "string",
+                                  "content": "DELETE"
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Type of action taken"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "action"
+                            },
+                            "value": {
+                              "element": "enum",
+                              "content": [
+                                {
+                                  "element": "string",
+                                  "content": "create"
+                                },
+                                {
+                                  "element": "string",
+                                  "content": "change"
+                                },
+                                {
+                                  "element": "string",
+                                  "content": "delete"
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "API resource"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "resource"
+                            },
+                            "value": {
+                              "element": "enum",
+                              "content": [
+                                {
+                                  "element": "string",
+                                  "content": "authentications"
+                                },
+                                {
+                                  "element": "string",
+                                  "content": "products"
+                                },
+                                {
+                                  "element": "string",
+                                  "content": "categories"
+                                },
+                                {
+                                  "element": "string",
+                                  "content": "brands"
+                                },
+                                {
+                                  "element": "string",
+                                  "content": "collections"
+                                },
+                                {
+                                  "element": "string",
+                                  "content": "grids"
+                                },
+                                {
+                                  "element": "string",
+                                  "content": "customers"
+                                },
+                                {
+                                  "element": "string",
+                                  "content": "carts"
+                                },
+                                {
+                                  "element": "string",
+                                  "content": "orders"
+                                },
+                                {
+                                  "element": "string",
+                                  "content": "applications"
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Resource ID, if specified - RegEx pattern: **`^[a-f0-9]{24}$`**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "resource_id"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Subresource slug (which appears in the URL), if specified - Max length: **30** - RegEx pattern: **`^[a-z_]+$`**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "subresource"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Subresource ID, if specified - RegEx pattern: **`^[a-f0-9]{24}$`**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "subresource_id"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Document fields involved (created or updated) with the event - Max elements: **100**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "fields"
+                            },
+                            "value": {
+                              "element": "array",
+                              "content": [
+                                {
+                                  "element": "string",
+                                  "meta": {
+                                    "description": "Object property name"
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Unique ID of created object, only for POST method - RegEx pattern: **`^[a-f0-9]{24}$`**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "inserted_id"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Request body, limitations: https://docs.mongodb.com/manual/reference/limits/#bson-documents"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "body"
+                            },
+                            "value": {
+                              "element": "object"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Response received, limits: https://docs.mongodb.com/manual/reference/limits/#bson-documents"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "response"
+                            },
+                            "value": {
+                              "element": "object"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "JSON Schema"
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n    \"$schema\": \"http://json-schema.org/draft-06/schema#\",\n    \"title\": \"Triggers\",\n    \"description\": \"Trigger object model\",\n    \"type\": \"object\",\n    \"required\": [\n        \"datetime\",\n        \"method\",\n        \"action\",\n        \"resource\"\n    ],\n    \"additionalProperties\": false,\n    \"properties\": {\n        \"datetime\": {\n            \"type\": \"string\",\n            \"format\": \"date-time\",\n            \"description\": \"When event occurred, date and time in ISO 8601 standard representation\"\n        },\n        \"authentication_id\": {\n            \"type\": [\n                \"string\",\n                \"null\"\n            ],\n            \"pattern\": \"^[a-f0-9]{24}$\",\n            \"description\": \"ID of used authentication, should be a valid hexadecimal\"\n        },\n        \"method\": {\n            \"type\": \"string\",\n            \"enum\": [\n                \"POST\",\n                \"PATCH\",\n                \"PUT\",\n                \"DELETE\"\n            ],\n            \"description\": \"Method (HTTP verb) of the event\"\n        },\n        \"action\": {\n            \"type\": \"string\",\n            \"enum\": [\n                \"create\",\n                \"change\",\n                \"delete\"\n            ],\n            \"description\": \"Type of action taken\"\n        },\n        \"resource\": {\n            \"type\": \"string\",\n            \"enum\": [\n                \"authentications\",\n                \"products\",\n                \"categories\",\n                \"brands\",\n                \"collections\",\n                \"grids\",\n                \"customers\",\n                \"carts\",\n                \"orders\",\n                \"applications\"\n            ],\n            \"description\": \"API resource\"\n        },\n        \"resource_id\": {\n            \"type\": \"string\",\n            \"pattern\": \"^[a-f0-9]{24}$\",\n            \"description\": \"Resource ID, if specified\"\n        },\n        \"subresource\": {\n            \"type\": \"string\",\n            \"maxLength\": 30,\n            \"pattern\": \"^[a-z_]+$\",\n            \"description\": \"Subresource slug (which appears in the URL), if specified\"\n        },\n        \"subresource_id\": {\n            \"type\": \"string\",\n            \"pattern\": \"^[a-f0-9]{24}$\",\n            \"description\": \"Subresource ID, if specified\"\n        },\n        \"fields\": {\n            \"type\": \"array\",\n            \"uniqueItems\": true,\n            \"maxItems\": 100,\n            \"items\": {\n                \"type\": \"string\",\n                \"maxLength\": 50,\n                \"pattern\": \"^[a-z0-9_]+$\",\n                \"description\": \"Object property name\"\n            },\n            \"description\": \"Document fields involved (created or updated) with the event\"\n        },\n        \"inserted_id\": {\n            \"type\": \"string\",\n            \"pattern\": \"^[a-f0-9]{24}$\",\n            \"description\": \"Unique ID of created object, only for POST method\"\n        },\n        \"body\": {\n            \"type\": \"object\",\n            \"description\": \"Request body, limitations: https://docs.mongodb.com/manual/reference/limits/#bson-documents\"\n        },\n        \"response\": {\n            \"type\": \"object\",\n            \"description\": \"Response received, limits: https://docs.mongodb.com/manual/reference/limits/#bson-documents\"\n        }\n    }\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "element": "resource",
+              "meta": {
+                "title": "All Triggers"
+              },
+              "attributes": {
+                "href": "/triggers.json{?method,resource}"
+              },
+              "content": [
+                {
+                  "element": "copy",
+                  "content": "*/triggers.json?[field]*\n\n> Authentication<br>_GET_: **required**\n\nPagination and ordering are not available, but you can use any other parameter,\nsuch as `method` and `resource`, to query by particular object properties\n\nReturns all properties excepting `body` and `response` of each trigger"
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "List All Store Triggers"
+                  },
+                  "attributes": {
+                    "href": "/triggers.json"
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"meta\": {\n    \"query\": {}\n  },\n  \"result\": [\n    {\n      \"_id\": \"98d010000000000000000110\",\n      \"datetime\": \"2017-11-14T12:00:10.612Z\",\n      \"authentication_id\": \"5a6757722b66f68dbed44526\",\n      \"method\": \"POST\",\n      \"action\": \"create\",\n      \"resource\": \"brands\",\n      \"inserted_id\": \"a10000000000000000001110\"\n    },\n    {\n      \"_id\": \"98d010000000000000000111\",\n      \"fake\": true,\n      \"datetime\": \"2018-01-02T13:00:00.612Z\",\n      \"authentication_id\": \"5a6757722b66f68dbed44526\",\n      \"method\": \"PATCH\",\n      \"action\": \"change\",\n      \"resource\": \"products\",\n      \"resource_id\": \"100a54321098765432112222\",\n      \"fields\": [\n        \"quantity\"\n      ]\n    },\n    {\n      \"_id\": \"98d010000000000000000112\",\n      \"datetime\": \"2017-11-14T12:20:10.612Z\",\n      \"authentication_id\": \"5a6757722b66f68dbed44526\",\n      \"method\": \"DELETE\",\n      \"action\": \"delete\",\n      \"resource\": \"brands\",\n      \"resource_id\": \"a10000000000000000001110\"\n    },\n    {\n      \"_id\": \"98d010000000000000000113\",\n      \"datetime\": \"2017-11-14T12:30:10.612Z\",\n      \"authentication_id\": \"5a6757722b66f68dbed44526\",\n      \"method\": \"PATCH\",\n      \"action\": \"change\",\n      \"resource\": \"products\",\n      \"resource_id\": \"1234567890abcdef01291512\",\n      \"subresource\": \"variations\",\n      \"subresource_id\": \"1ff00000000000000000098f\",\n      \"fields\": [\n        \"specifications\"\n      ]\n    },\n    {\n      \"_id\": \"98d010000000000000000114\",\n      \"datetime\": \"2017-12-01T12:20:10.612Z\",\n      \"authentication_id\": \"5a6757722b66f68dbed44526\",\n      \"method\": \"POST\",\n      \"action\": \"create\",\n      \"resource\": \"products\",\n      \"inserted_id\": \"123a5432109876543210cdef\"\n    },\n    {\n      \"_id\": \"98d010000000000000000115\",\n      \"fake\": true,\n      \"datetime\": \"2017-12-02T00:05:10.612Z\",\n      \"authentication_id\": \"5a6757722b66f68dbed44526\",\n      \"method\": \"POST\",\n      \"action\": \"create\",\n      \"resource\": \"products\",\n      \"inserted_id\": \"123a5432109876543210cdef\"\n    },\n    {\n      \"_id\": \"98d010000000000000000116\",\n      \"datetime\": \"2017-11-15T12:00:10.612Z\",\n      \"authentication_id\": \"11000000000000000000000f\",\n      \"method\": \"POST\",\n      \"action\": \"create\",\n      \"resource\": \"categories\",\n      \"inserted_id\": \"b10000000000000000001110\"\n    }\n  ]\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Find Triggers"
+                  },
+                  "attributes": {
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Object property to query",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "optional"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "method"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "POST"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Object property to query",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "optional"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "resource"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "products"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"meta\": {\n    \"query\": {\n      \"method\": \"POST\",\n      \"resource\": \"products\"\n    }\n  },\n  \"result\": [\n    {\n      \"_id\": \"98d010000000000000000114\",\n      \"datetime\": \"2017-12-01T12:20:10.612Z\",\n      \"authentication_id\": \"5a6757722b66f68dbed44526\",\n      \"method\": \"POST\",\n      \"action\": \"create\",\n      \"resource\": \"products\",\n      \"inserted_id\": \"123a5432109876543210cdef\"\n    },\n    {\n      \"_id\": \"98d010000000000000000115\",\n      \"fake\": true,\n      \"datetime\": \"2017-12-02T00:05:10.612Z\",\n      \"authentication_id\": \"5a6757722b66f68dbed44526\",\n      \"method\": \"POST\",\n      \"action\": \"create\",\n      \"resource\": \"products\",\n      \"inserted_id\": \"100a54321098765432112222\"\n    }\n  ]\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "element": "resource",
+              "meta": {
+                "title": "New Trigger"
+              },
+              "attributes": {
+                "href": "/triggers.json"
+              },
+              "content": [
+                {
+                  "element": "copy",
+                  "content": "*/triggers.json*\n\n> Authentication<br>_POST_: **required**\n\nRequest body must obey the specifications of\n[this model](#reference/triggers/trigger-object)\n\nAll triggers created this way (not automatically) will be marked as fake,\nhaving the property `fake` equals to _true_"
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Create New Trigger"
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "POST",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"datetime\": \"2018-01-02T13:00:00.612Z\",\n  \"authentication_id\": \"5a6757722b66f68dbed44526\",\n  \"method\": \"PATCH\",\n  \"action\": \"change\",\n  \"resource\": \"products\",\n  \"resource_id\": \"100a54321098765432112222\",\n  \"fields\": [\n    \"quantity\"\n  ],\n  \"body\": {\n    \"quantity\": 100\n  }\n}\n"
+                            }
+                          ]
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "201",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"_id\": \"98d010000000000000000111\"\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "element": "resource",
+              "meta": {
+                "title": "Specific Trigger"
+              },
+              "attributes": {
+                "href": "/triggers/{_id}.json"
+              },
+              "content": [
+                {
+                  "element": "copy",
+                  "content": "*/triggers/[_id].json*\n\n> Authentication<br>_GET_, _DELETE_: **required**\n\nIn read requests, response body will follow\n[this model](#reference/triggers/trigger-object),\ntriggers created manually (forced) will be marked as fake,\nhaving the property `fake` equals to _true_"
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Read Trigger"
+                  },
+                  "attributes": {
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "The trigger ID",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "_id"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "98d010000000000000000111"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"_id\": \"98d010000000000000000111\",\n  \"store_id\": 100,\n  \"fake\": true,\n  \"datetime\": \"2018-01-02T13:00:00.612Z\",\n  \"authentication_id\": \"5a6757722b66f68dbed44526\",\n  \"method\": \"PATCH\",\n  \"action\": \"change\",\n  \"resource\": \"products\",\n  \"resource_id\": \"100a54321098765432112222\",\n  \"fields\": [\n    \"quantity\"\n  ],\n  \"body\": {\n    \"quantity\": 100\n  }\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Remove Trigger"
+                  },
+                  "attributes": {
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "The trigger ID",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "_id"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "98d010000000000000000111"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "DELETE",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "204"
+                          },
+                          "content": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

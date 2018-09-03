@@ -1,0 +1,8 @@
++ Attributes (object)
+    + `_id` (string, required) - Brand ID - RegEx pattern: **`^[a-f0-9]{24}$`**
+    + `name` (string, required) - Brand name - Max length: **255**
+    + `slug` (string) - Brand page slug - Max length: **255** - RegEx pattern: **`^[a-z0-9]([a-z0-9-_./]+)?$`**
+    + `logo` (object) - Brand logo
+        + `url` (string, required) - Image link - Max length: **255** - Format: **uri**
+        + `size` (string) - Image size (width x height) in px, such as 100x50 (100px width, 50px height) - Max length: **11** - RegEx pattern: **`^[1-9]([0-9]+)?x[1-9]([0-9]+)?$`**
+        + `alt` (string) - Alternative text, HTML alt tag (important for SEO) - Max length: **255**

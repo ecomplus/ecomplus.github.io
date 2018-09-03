@@ -1,0 +1,29 @@
++ Attributes (object)
+    + `name` (string, required) - Store name - Max length: **255**
+    + `description` (string) - Simple description of store - Max length: **3000**
+    + `segment_id` (number, required) - ID of store main segment, get options and IDs at /segments.json - Mininum: **0** - Maximum: **65535**
+    + `doc_type` (enum, required) - Responsible person or organization document type
+        + `CPF` (string)
+        + `CNPJ` (string)
+    + `doc_number` (string, required) - Responsible person or organization document number (only numbers) - Max length: **19** - RegEx pattern: **`^[0-9]+$`**
+    + `inscription_type` (enum) - Municipal or state registration if exists
+        + `State` (string)
+        + `Municipal` (string)
+    + `inscription_number` (string) - Municipal or state registration number (with characters) if exists - Max length: **50**
+    + `corporate_name` (string, required) - Registered company name or responsible fullname - Max length: **255**
+    + `address` (string) - Full registered address of company - Max length: **255**
+    + `phone` (string) - Financial contact phone - Max length: **19** - RegEx pattern: **`^[0-9]+$`**
+    + `representant_name` (string) - Name of company representative for commercial contact - Max length: **255**
+    + `representant_email` (string) - Email address of company representative - Max length: **255** - Format: **email**
+    + `contact_email` (string) - Public email address for news and general contact - Max length: **255** - Format: **email**
+    + `financial_email` (string, required) - Email address to receive notifications, invoices and vouchers - Max length: **255** - Format: **email**
+    + `logo` (object) - Image link to shop's logo
+        + `url` (string, required) - Image link - Max length: **255** - Format: **uri**
+        + `size` (string) - Image size (width x height) in px, such as 100x50 (100px width, 50px height) - Max length: **11** - RegEx pattern: **`^[1-9]([0-9]+)?x[1-9]([0-9]+)?$`**
+        + `alt` (string) - Alternative text, HTML alt tag (important for SEO) - Max length: **255**
+    + `languages` (array) - List of available languages on store channels - Max elements: **30**
+        + (string) - Language two letters code, sometimes with region, eg.: `pt_br`, fr, `en_us`
+    + `oauth_providers` (object) - Providers for OAuth customer authentication in store
+        + `^facebook|google|windowslive$` (object) - Social network OAuth app
+            + `client_id` (string, required) - App client ID - Max length: **255**
+            + `client_secret` (string, required) - App client secret - Max length: **255**

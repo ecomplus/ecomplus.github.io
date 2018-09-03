@@ -1,0 +1,43 @@
++ Parameters
+    + product: 1234567890abcdef01291511 (string, required) - Product ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
+    + Schema
+
+            {
+                "$schema": "http://json-schema.org/draft-06/schema#",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "_id"
+                ],
+                "properties": {
+                    "_id": {
+                        "type": "string",
+                        "pattern": "^[a-f0-9]{24}$",
+                        "description": "Brand ID"
+                    }
+                },
+                "title": "Add brand by ID to product"
+            }
+
+    + Body
+
+            {
+              "_id": "a10000000000000000001112"
+            }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+              "_id": "a10000000000000000001112"
+            }

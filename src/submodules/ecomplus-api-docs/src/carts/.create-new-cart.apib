@@ -1,0 +1,52 @@
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
+    + Body
+
+            {
+              "utm": {
+                "source": "newsletter",
+                "medium": "email",
+                "campaign": "recovery_promo"
+              },
+              "customers": [
+                "3c1000000000000000000001"
+              ],
+              "items": [
+                {
+                  "_id": "3130000000000000000000a1",
+                  "product_id": "123a5432109876543210cdef",
+                  "sku": "s-MP_2B4",
+                  "name": "Mens Pique Polo Shirt",
+                  "quantity": 4,
+                  "price": 42.9
+                },
+                {
+                  "_id": "3130000000000000000000a1",
+                  "product_id": "1234567890abcdef01291510",
+                  "sku": "COD1",
+                  "name": "Sample Product Name",
+                  "quantity": 1,
+                  "price": 20
+                }
+              ],
+              "subtotal": 171.6,
+              "discount": {
+                "apply_at": "subtotal",
+                "type": "fixed",
+                "value": 20
+              }
+            }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+              "_id": "2ca000000000000000000003"
+            }

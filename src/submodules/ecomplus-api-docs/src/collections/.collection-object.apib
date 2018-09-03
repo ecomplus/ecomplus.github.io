@@ -1,0 +1,35 @@
++ Attributes (object)
+    + `name` (string, required) - Collection full name - Max length: **255**
+    + `i18n` (object) - Collection name translations - Max properties: **10**
+        + `^[a-z]{2}(_[a-z]{2})?$` (string) - Translated full collection name - Max length: **255**
+    + `subtitle` (string) - Optional subtitle intended to be used for SEO or layout purposes - Max length: **255**
+    + `slug` (string) - Slug to complete page URL, starting with number or lowercase letter - Max length: **255** - RegEx pattern: **`^[a-z0-9]([a-z0-9-_./]+)?$`**
+    + `permalink` (string) - Permanent URL to collection page - Max length: **255** - Format: **uri**
+    + `mobile_link` (string) - Optional URL specific to mobile devices - Max length: **255** - Format: **uri**
+    + `short_description` (string) - Short collection description in plain text - Max length: **255**
+    + `body_html` (string) - Full collection description, may use HTML tags - Max length: **250000**
+    + `body_text` (string) - Full collection description, plain text only - Max length: **250000**
+    + `meta_title` (string) - Title tag for page SEO - Max length: **255**
+    + `meta_description` (string) - Meta description tag for page SEO - Max length: **1000**
+    + `products` (array) - List of collection products - Max elements: **3000**
+        + (string) - Product ID
+    + `icon` (object) - Collection icon image
+        + `url` (string, required) - Image link - Max length: **255** - Format: **uri**
+        + `size` (string) - Image size (width x height) in px, such as 100x50 (100px width, 50px height) - Max length: **11** - RegEx pattern: **`^[1-9]([0-9]+)?x[1-9]([0-9]+)?$`**
+        + `alt` (string) - Alternative text, HTML alt tag (important for SEO) - Max length: **255**
+    + `pictures` (array) - List of collection images - Max elements: **50**
+        + (object) - Image object
+            + `_id` (string, required) - Unique ID (ObjectID) - RegEx pattern: **`^[a-f0-9]{24}$`**
+            + `tag` (string) - Tag to identify object, use only lowercase letters, digits and underscore - Max length: **20** - RegEx pattern: **`^[a-z0-9_]+$`**
+            + `url` (string, required) - Image link - Max length: **255** - Format: **uri**
+            + `size` (string) - Image size (width x height) in px, such as 100x50 (100px width, 50px height) - Max length: **11** - RegEx pattern: **`^[1-9]([0-9]+)?x[1-9]([0-9]+)?$`**
+            + `alt` (string) - Alternative text, HTML alt tag (important for SEO) - Max length: **255**
+    + `metafields` (array) - List of custom attributes - Max elements: **100**
+        + (object) - Custom attribute object
+            + `_id` (string, required) - Unique ID (ObjectID) - RegEx pattern: **`^[a-f0-9]{24}$`**
+            + `namespace` (string) - String to help distinguish who (or which app) created and can use the metafield - Max length: **30**
+            + `field` (string) - Field name - Max length: **50**
+            + `value` (string, required) - Custom property value - Max length: **255**
+    + `flags` (array) - Flags to associate additional info - Max elements: **10**
+        + (string) - Flag title
+    + `notes` (string) - Optional notes with additional info about this collection - Max length: **255**

@@ -1,0 +1,42 @@
++ Parameters
+    + limit: 3 (number, optional) - Max number of objects to return
+    + offset: 3 (number, optional) - First entry to return
+    + sort: `-version_date` (string, optional) - Rules to order resultant objects
+    + fields: `app_id,title` (string, optional) - Object properties to return
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "meta": {
+                "limit": 3,
+                "offset": 3,
+                "sort": [
+                  {
+                    "field": "version_date",
+                    "order": -1
+                  }
+                ],
+                "fields": [
+                  "app_id",
+                  "title"
+                ],
+                "query": {}
+              },
+              "result": [
+                {
+                  "_id": "42aa00000000000000000111",
+                  "app_id": 1002,
+                  "title": "Products panel extension"
+                }
+              ]
+            }

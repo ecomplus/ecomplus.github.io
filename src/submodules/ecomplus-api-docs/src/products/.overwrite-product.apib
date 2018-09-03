@@ -1,0 +1,114 @@
++ Parameters
+    + _id: 123a5432109876543210cdef (string, required) - The product ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
+    + Body
+
+            {
+              "sku": "NEW-s-MP_2B4",
+              "name": "Men’s Pique Polo Shirt",
+              "slug": "mens-pique-polo",
+              "short_description": "Red, 100% cotton, large men’s t-shirt",
+              "meta_title": "Mens Pique Polo - My Shirt Shop",
+              "meta_description": "Mens Pique Polo Shirt, Red, 100% cotton, large men’s t-shirt",
+              "keywords": [
+                "tshirt", "t-shirt", "man"
+              ],
+              "price": 40,
+              "price_effective_date": {
+                "end": "2018-06-01T10:00:00.612Z"
+              },
+              "base_price": 50.00,
+              "quantity": 50,
+              "dimensions": {
+                "width": {
+                  "value": 10
+                },
+                "height": {
+                  "value": 8
+                },
+                "length": {
+                  "value": 8
+                }
+              },
+              "weight": {
+                "value": 400
+              },
+              "brands": [
+                {
+                  "_id": "a10000000000000000000001",
+                  "name": "Shirts Example",
+                  "slug": "shirts-example",
+                  "logo": {
+                    "url": "https://mycdn.com/shirts-example.jpg",
+                    "size": "100x50"
+                  }
+                }
+              ],
+              "categories": [
+                {
+                  "_id": "f10000000000000000000001",
+                  "name": "Polo Shirts",
+                  "slug": "polo"
+                }
+              ],
+              "specifications": {
+                "age_group": [
+                  {
+                    "text": "Adult",
+                    "value": "adult"
+                  }
+                ],
+                "gender": [
+                  {
+                    "text": "Male",
+                    "value": "male"
+                  }
+                ],
+                "size": [
+                  {
+                    "text": "Large",
+                    "value": "large"
+                  }
+                ],
+                "size_type": [
+                  {
+                    "text": "Regular",
+                    "value": "regular"
+                  }
+                ],
+                "size_system": [
+                  {
+                    "text": "BR",
+                    "value": "BR"
+                  }
+                ],
+                "material": [
+                  {
+                    "text": "Cotton",
+                    "value": "cotton"
+                  }
+                ],
+                "colors": [
+                  {
+                    "text": "Pique",
+                    "value": "#ff5b00"
+                  }
+                ]
+              },
+              "gtin": [
+                "12345678901234"
+              ],
+              "mpn": [
+                "T1230"
+              ]
+            }
+
++ Response 204

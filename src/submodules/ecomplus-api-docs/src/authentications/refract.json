@@ -1,0 +1,1592 @@
+{
+  "element": "parseResult",
+  "content": [
+    {
+      "element": "category",
+      "meta": {
+        "classes": [
+          "api"
+        ],
+        "title": ""
+      },
+      "content": [
+        {
+          "element": "category",
+          "meta": {
+            "classes": [
+              "resourceGroup"
+            ],
+            "title": "Authentications"
+          },
+          "content": [
+            {
+              "element": "copy",
+              "content": "`.authentications`\n\nUse the **authentications** resource to create, read, update and delete\nadmin users in a merchant's store\n\nUsers created from this resource should authenticate with API by\n[this way](#reference/authenticate-yourself)"
+            },
+            {
+              "element": "resource",
+              "meta": {
+                "title": "Authentication Object"
+              },
+              "attributes": {
+                "href": "/authentications/schema.json"
+              },
+              "content": [
+                {
+                  "element": "dataStructure",
+                  "content": [
+                    {
+                      "element": "object",
+                      "meta": {
+                        "id": "Authentication Object"
+                      },
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Simple username for identification, only numbers and lowercase letters - Min length: **4** - Max length: **30** - RegEx pattern: **`^[0-9a-z]+$`**"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "username"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "User language two letter code, sometimes with region, eg.: `pt_br`, fr, `en_us` - RegEx pattern: **`^[a-z]{2}(_[a-z]{2})?$`**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "locale"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "pt_br"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "User email address - Max length: **200** - Format: **email**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "email"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "User full name - Max length: **255**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "name"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "User phone number - Max length: **19** - RegEx pattern: **`^[0-9]+$`**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "phone"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "MD5 hash generated with the user's password - RegEx pattern: **`^[a-f0-9]{32}$`**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "pass_md5_hash"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "User preferences in the admin dashboard - Max properties: **100**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "panel_preferences"
+                            },
+                            "value": {
+                              "element": "object",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "meta": {
+                                    "description": "Boolean option value"
+                                  },
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "^[a-z0-9_]+$"
+                                    },
+                                    "value": {
+                                      "element": "boolean",
+                                      "content": true
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Keyboard shortcuts, keys separated by `+` as property name - Max properties: **100**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "panel_shortcuts"
+                            },
+                            "value": {
+                              "element": "object",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "meta": {
+                                    "description": "Shortcut JS (or jQuery) action - Min length: **3** - Max length: **255**"
+                                  },
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "^[a-z0-9](([+][a-z0-9])+)?$"
+                                    },
+                                    "value": {
+                                      "element": "string"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Number of random cards to show on dashboard home"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "panel_random_cards"
+                            },
+                            "value": {
+                              "element": "number",
+                              "content": 0
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "List of dashboard cards chosen by user - Max elements: **40**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "panel_cards"
+                            },
+                            "value": {
+                              "element": "array",
+                              "content": [
+                                {
+                                  "element": "object",
+                                  "content": [
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Unique ID (ObjectID) - RegEx pattern: **`^[a-f0-9]{24}$`**"
+                                      },
+                                      "attributes": {
+                                        "typeAttributes": [
+                                          "required"
+                                        ]
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "_id"
+                                        },
+                                        "value": {
+                                          "element": "string"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Unique identifier, card name using only lowercase, numbers and underscore - RegEx pattern: **`^[a-z0-9_]{2,60}$`**"
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "card_id"
+                                        },
+                                        "value": {
+                                          "element": "string"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Card title - Max length: **70**"
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "title"
+                                        },
+                                        "value": {
+                                          "element": "string"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Card text, usually a brief description - Max length: **255**"
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "paragraph"
+                                        },
+                                        "value": {
+                                          "element": "string"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Custom card calling MongoDB aggregate"
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "custom_aggregation"
+                                        },
+                                        "value": {
+                                          "element": "object",
+                                          "content": [
+                                            {
+                                              "element": "member",
+                                              "meta": {
+                                                "description": "API resource"
+                                              },
+                                              "attributes": {
+                                                "typeAttributes": [
+                                                  "required"
+                                                ]
+                                              },
+                                              "content": {
+                                                "key": {
+                                                  "element": "string",
+                                                  "content": "resource"
+                                                },
+                                                "value": {
+                                                  "element": "enum",
+                                                  "content": [
+                                                    {
+                                                      "element": "string",
+                                                      "content": "products"
+                                                    },
+                                                    {
+                                                      "element": "string",
+                                                      "content": "categories"
+                                                    },
+                                                    {
+                                                      "element": "string",
+                                                      "content": "brands"
+                                                    },
+                                                    {
+                                                      "element": "string",
+                                                      "content": "collections"
+                                                    },
+                                                    {
+                                                      "element": "string",
+                                                      "content": "grids"
+                                                    },
+                                                    {
+                                                      "element": "string",
+                                                      "content": "customers"
+                                                    },
+                                                    {
+                                                      "element": "string",
+                                                      "content": "carts"
+                                                    },
+                                                    {
+                                                      "element": "string",
+                                                      "content": "orders"
+                                                    }
+                                                  ]
+                                                }
+                                              }
+                                            },
+                                            {
+                                              "element": "member",
+                                              "meta": {
+                                                "description": "Aggregation pipeline - Min elements: **1** - Max elements: **50**"
+                                              },
+                                              "attributes": {
+                                                "typeAttributes": [
+                                                  "required"
+                                                ]
+                                              },
+                                              "content": {
+                                                "key": {
+                                                  "element": "string",
+                                                  "content": "pipeline"
+                                                },
+                                                "value": {
+                                                  "element": "array",
+                                                  "content": [
+                                                    {
+                                                      "element": "object"
+                                                    }
+                                                  ]
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "List of dashboard dismissed cards, by `card_id` - Max elements: **300**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "panel_dismissed_cards"
+                            },
+                            "value": {
+                              "element": "array",
+                              "content": [
+                                {
+                                  "element": "string",
+                                  "meta": {
+                                    "description": "Unique identifier, card name using only lowercase, numbers and underscore"
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Custom (user-selected) fields to display on dashboard forms, resource as property name - Max properties: **20**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "panel_form_fields"
+                            },
+                            "value": {
+                              "element": "object",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "meta": {
+                                    "description": "List of chosen resource properties (fields) - Max elements: **200**"
+                                  },
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "^[a-z]{4,60}s$"
+                                    },
+                                    "value": {
+                                      "element": "array",
+                                      "content": [
+                                        {
+                                          "element": "string",
+                                          "meta": {
+                                            "description": "Resource property name with dot notation for nested object"
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Whether the user is able to use builder and file manager to edit storefront"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "edit_storefront"
+                            },
+                            "value": {
+                              "element": "boolean",
+                              "content": true
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Flags to associate additional info - Max elements: **10**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "flags"
+                            },
+                            "value": {
+                              "element": "array",
+                              "content": [
+                                {
+                                  "element": "string",
+                                  "meta": {
+                                    "description": "Flag title"
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Optional notes with additional info about this user - Max length: **255**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "notes"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "JSON Schema"
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n    \"$schema\": \"http://json-schema.org/draft-06/schema#\",\n    \"title\": \"Authentications\",\n    \"description\": \"Authenticated API user\",\n    \"type\": \"object\",\n    \"required\": [\n        \"username\"\n    ],\n    \"dependencies\": {\n        \"pass_md5_hash\": [\n            \"email\"\n        ]\n    },\n    \"additionalProperties\": false,\n    \"properties\": {\n        \"username\": {\n            \"type\": \"string\",\n            \"minLength\": 4,\n            \"maxLength\": 30,\n            \"pattern\": \"^[0-9a-z]+$\",\n            \"description\": \"Simple username for identification, only numbers and lowercase letters\"\n        },\n        \"locale\": {\n            \"type\": \"string\",\n            \"pattern\": \"^[a-z]{2}(_[a-z]{2})?$\",\n            \"default\": \"pt_br\",\n            \"description\": \"User language two letter code, sometimes with region, eg.: pt_br, fr, en_us\"\n        },\n        \"email\": {\n            \"type\": \"string\",\n            \"maxLength\": 200,\n            \"format\": \"email\",\n            \"description\": \"User email address\"\n        },\n        \"name\": {\n            \"type\": \"string\",\n            \"maxLength\": 255,\n            \"description\": \"User full name\"\n        },\n        \"phone\": {\n            \"type\": \"string\",\n            \"maxLength\": 19,\n            \"pattern\": \"^[0-9]+$\",\n            \"description\": \"User phone number\"\n        },\n        \"pass_md5_hash\": {\n            \"type\": \"string\",\n            \"pattern\": \"^[a-f0-9]{32}$\",\n            \"description\": \"MD5 hash generated with the user's password\"\n        },\n        \"panel_preferences\": {\n            \"type\": \"object\",\n            \"additionalProperties\": false,\n            \"maxProperties\": 100,\n            \"patternProperties\": {\n                \"^[a-z0-9_]+$\": {\n                    \"type\": \"boolean\",\n                    \"default\": true,\n                    \"description\": \"Boolean option value\"\n                }\n            },\n            \"description\": \"User preferences in the admin dashboard\"\n        },\n        \"panel_shortcuts\": {\n            \"type\": \"object\",\n            \"additionalProperties\": false,\n            \"maxProperties\": 100,\n            \"patternProperties\": {\n                \"^[a-z0-9](([+][a-z0-9])+)?$\": {\n                    \"type\": \"string\",\n                    \"minLength\": 3,\n                    \"maxLength\": 255,\n                    \"description\": \"Shortcut JS (or jQuery) action\"\n                }\n            },\n            \"description\": \"Keyboard shortcuts, keys separated by + as property name\"\n        },\n        \"panel_random_cards\": {\n            \"type\": \"integer\",\n            \"min\": 0,\n            \"max\": 20,\n            \"default\": 0,\n            \"description\": \"Number of random cards to show on dashboard home\"\n        },\n        \"panel_cards\": {\n            \"type\": \"array\",\n            \"maxItems\": 40,\n            \"items\": {\n                \"type\": \"object\",\n                \"required\": [\n                    \"_id\"\n                ],\n                \"additionalProperties\": false,\n                \"minProperties\": 2,\n                \"properties\": {\n                    \"_id\": {\n                        \"type\": \"string\",\n                        \"pattern\": \"^[a-f0-9]{24}$\",\n                        \"description\": \"Unique ID (ObjectID)\"\n                    },\n                    \"card_id\": {\n                        \"type\": \"string\",\n                        \"pattern\": \"^[a-z0-9_]{2,60}$\",\n                        \"description\": \"Unique identifier, card name using only lowercase, numbers and underscore\"\n                    },\n                    \"title\": {\n                        \"type\": \"string\",\n                        \"maxLength\": 70,\n                        \"description\": \"Card title\"\n                    },\n                    \"paragraph\": {\n                        \"type\": \"string\",\n                        \"maxLength\": 255,\n                        \"description\": \"Card text, usually a brief description\"\n                    },\n                    \"custom_aggregation\": {\n                        \"type\": \"object\",\n                        \"required\": [\n                            \"resource\",\n                            \"pipeline\"\n                        ],\n                        \"additionalProperties\": false,\n                        \"properties\": {\n                            \"resource\": {\n                                \"type\": \"string\",\n                                \"enum\": [\n                                    \"products\",\n                                    \"categories\",\n                                    \"brands\",\n                                    \"collections\",\n                                    \"grids\",\n                                    \"customers\",\n                                    \"carts\",\n                                    \"orders\"\n                                ],\n                                \"description\": \"API resource\"\n                            },\n                            \"pipeline\": {\n                                \"type\": \"array\",\n                                \"minItems\": 1,\n                                \"maxItems\": 50,\n                                \"items\": {\n                                    \"type\": \"object\",\n                                    \"description\": \"Custom aggregation pipeline step\"\n                                },\n                                \"description\": \"Aggregation pipeline\"\n                            }\n                        },\n                        \"description\": \"Custom card calling MongoDB aggregate\"\n                    }\n                },\n                \"description\": \"Card object\"\n            },\n            \"description\": \"List of dashboard cards chosen by user\"\n        },\n        \"panel_dismissed_cards\": {\n            \"type\": \"array\",\n            \"maxItems\": 300,\n            \"items\": {\n                \"type\": \"string\",\n                \"pattern\": \"^[a-z0-9_]{2,60}$\",\n                \"description\": \"Unique identifier, card name using only lowercase, numbers and underscore\"\n            },\n            \"description\": \"List of dashboard dismissed cards, by card_id\"\n        },\n        \"panel_form_fields\": {\n            \"type\": \"object\",\n            \"additionalProperties\": false,\n            \"maxProperties\": 20,\n            \"patternProperties\": {\n                \"^[a-z]{4,60}s$\": {\n                    \"type\": \"array\",\n                    \"maxItems\": 200,\n                    \"items\": {\n                        \"type\": \"string\",\n                        \"maxLength\": 255,\n                        \"pattern\": \"^[a-z0-9_.]+$\",\n                        \"description\": \"Resource property name with dot notation for nested object\"\n                    },\n                    \"description\": \"List of chosen resource properties (fields)\"\n                }\n            },\n            \"description\": \"Custom (user-selected) fields to display on dashboard forms, resource as property name\"\n        },\n        \"edit_storefront\": {\n            \"type\": \"boolean\",\n            \"default\": true,\n            \"description\": \"Whether the user is able to use builder and file manager to edit storefront\"\n        },\n        \"flags\": {\n            \"type\": \"array\",\n            \"uniqueItems\": true,\n            \"maxItems\": 10,\n            \"items\": {\n                \"type\": \"string\",\n                \"maxLength\": 20,\n                \"description\": \"Flag title\"\n            },\n            \"description\": \"Flags to associate additional info\"\n        },\n        \"notes\": {\n            \"type\": \"string\",\n            \"maxLength\": 255,\n            \"description\": \"Optional notes with additional info about this user\"\n        }\n    }\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "element": "resource",
+              "meta": {
+                "title": "All Authentications"
+              },
+              "attributes": {
+                "href": "/authentications.json"
+              },
+              "content": [
+                {
+                  "element": "copy",
+                  "content": "*/authentications.json*\n\n> Authentication<br>_GET_, _POST_: **required**\n\nPagination, filtering and ordering are not available,\nyou should not use any URL parameters\n\nList returns only `_id`, `username`, `email` and\n`app` (in case of application auth) of each authentication\n\nTo create new authentication, request body must obey the specifications of\n[this model](#reference/authentications/authentication-object)"
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "List All Store Authentications"
+                  },
+                  "attributes": {
+                    "href": "/authentications.json"
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"meta\": {\n  },\n  \"result\": [\n    {\n      \"_id\": \"5a6757722b66f68dbed44526\",\n      \"username\": \"my_username\",\n      \"email\": \"myemail@mail.sample\"\n    },\n    {\n      \"_id\": \"100000000000000000000010\",\n      \"username\": \"fulano\",\n      \"email\": \"fulano@sample.com.br\"\n    },\n    {\n      \"_id\": \"100000000000000000000011\",\n      \"username\": \"john_doe\",\n      \"email\": \"email@sample.com\"\n    },\n    {\n      \"_id\": \"100000000000000000000012\",\n      \"app\": {\n        \"_id\": \"42aa00000000000000000113\",\n        \"app_id\": 1005,\n        \"title\": \"external\"\n      }\n    }\n  ]\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Create New Authentication"
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "POST",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"username\": \"john_doe\",\n  \"email\": \"email@sample.com\",\n  \"name\": \"John Doe\",\n  \"phone\": \"31911112222\",\n  \"pass_md5_hash\": \"698dc19d489c4e4db73e28a713eab07b\"\n}\n"
+                            }
+                          ]
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "201",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"_id\": \"100000000000000000000011\"\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "element": "resource",
+              "meta": {
+                "title": "Specific Authentication"
+              },
+              "attributes": {
+                "href": "/authentications/{_id}.json"
+              },
+              "content": [
+                {
+                  "element": "copy",
+                  "content": "*/authentications/[_id].json*\n\n> Authentication<br>_GET_, _PATCH_, _DELETE_: **required**\n\nIn read requests, response body will follow\n[this model](#reference/authentications/authentication-object),\nwithout `pass_md5_hash` property\n\nIt's possible to use __me__ on resource ID (*/authentications/me.json*)\nto work with your own authentication\n(see [Yourself](#reference/authentications/yourself))\n\nFor editing, request body must obey the same specifications,\nbut in this case there are no required fields"
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Read Authentication"
+                  },
+                  "attributes": {
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "The authentication ID",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "_id"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "100000000000000000000011"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"_id\": \"100000000000000000000011\",\n  \"created_at\": \"2017-12-17T13:10:00.612Z\",\n  \"store_id\": 100,\n  \"username\": \"john_doe\",\n  \"email\": \"email@sample.com\",\n  \"name\": \"John Doe\",\n  \"phone\": \"31911112222\"\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Edit Authentication"
+                  },
+                  "attributes": {
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "The authentication ID",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "_id"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "100000000000000000000011"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "PATCH",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"email\": \"email@sample.com\",\n  \"pass_md5_hash\": \"38851536d87701d2191990e24a7f8d4e\"\n}\n"
+                            }
+                          ]
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "204"
+                          },
+                          "content": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Remove Authentication"
+                  },
+                  "attributes": {
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "The authentication ID",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "_id"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "100000000000000000000011"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "DELETE",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "204"
+                          },
+                          "content": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "element": "resource",
+              "meta": {
+                "title": "Yourself"
+              },
+              "attributes": {
+                "href": "/authentications/me.json"
+              },
+              "content": [
+                {
+                  "element": "copy",
+                  "content": "*/authentications/me.json*\n\n> Authentication<br>_GET_, _PATCH_, _DELETE_: **required**\n\nAt this endpoint you will work\nwith the same authentication of _X-My-ID_ header\n\nIn read requests, response body will follow\n[this model](#reference/authentications/authentication-object),\nwithout `pass_md5_hash` property\n\nFor editing, request body must obey the same specifications,\nbut in this case there are no required fields"
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Read Your Own Authentication"
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"_id\": \"5a6757722b66f68dbed44526\",\n  \"created_at\": \"2017-11-18T12:30:00.612Z\",\n  \"store_id\": 100,\n  \"username\": \"my_username\",\n  \"email\": \"myemail@mail.sample\",\n  \"name\": \"My Full Name\"\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Edit Your Authentication"
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "PATCH",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"phone\": \"11944443333\"\n}\n"
+                            }
+                          ]
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "204"
+                          },
+                          "content": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Remove Your Authentication"
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "DELETE",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "204"
+                          },
+                          "content": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

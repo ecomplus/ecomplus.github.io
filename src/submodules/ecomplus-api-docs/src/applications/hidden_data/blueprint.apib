@@ -1,0 +1,83 @@
+## Group Application Hidden Data
+
+`.applications.hidden_data`
+
+Use the **hidden_data** subresource to read and update an
+specific app private data, such as tokens and secret keys
+
+### Application Hidden Data Object [/applications/schema/hidden_data.json]
+
+This endpoint is **schema free**, it means that you can send any valid JSON object,
+the only limitations are to store up to 3000 properties in the data object and obey
+[MongoDB document limits](https://docs.mongodb.com/manual/reference/limits/#bson-documents)
+
+#### JSON Schema [GET]
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "$schema": "http://json-schema.org/draft-06/schema#",
+                "title": "Application private data, available only with authentication",
+                "type": "object",
+                "minProperties": 1,
+                "maxProperties": 3000,
+                "description": "Schema free, limits: https://docs.mongodb.com/manual/reference/limits/#bson-documents"
+            }
+
+### Hidden Data of an Application [/applications/{application}/hidden_data.json]
+
+*/applications/[_id]/hidden_data.json*
+
+> Authentication<br>_GET_, _PATCH_: **required**
+
+#### Read Application Hidden Data [GET]
+
++ Parameters
+    + application: 42aa00000000000000000111 (string, required) - The application ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "token": "sdkcblsdcbslkc"
+            }
+
+#### Edit Application Hidden Data [PATCH]
+
++ Parameters
+    + application: 42aa00000000000000000111 (string, required) - The application ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
+    + Body
+
+            {
+              "token": "ajgvcawbhcdjchsdbchasbjk",
+              "client_id": 12345678,
+              "secret": "47cn8n9uqh81c"
+            }
+
++ Response 204

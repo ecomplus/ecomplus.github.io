@@ -1,0 +1,62 @@
++ Parameters
+    + product: 1234567890abcdef01291511 (string, required) - Product ID
+    + fields: label,options (string, optional) - Object properties to return
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "meta": {
+                "limit": 1000,
+                "offset": 0,
+                "sort": [],
+                "fields": [
+                  "label",
+                  "options"
+                ],
+                "query": {}
+              },
+              "result": [
+                {
+                  "_id": "a12000000000000000001110",
+                  "label": "Smartphone model",
+                  "options": {
+                    "iphone_x": {
+                      "text": "iPhone X"
+                    },
+                    "galaxy_s7": {
+                      "text": "Galaxy S7"
+                    },
+                    "k10_power": {
+                      "text": "K10 Power"
+                    }
+                  }
+                },
+                {
+                  "_id": "a12000000000000000001111",
+                  "label": "Include glass film",
+                  "options": {
+                    "add_glass_film": {
+                      "text": "Add glass film"
+                    }
+                  }
+                },
+                {
+                  "_id": "a12000000000000000001112",
+                  "label": "Write your name on the cover"
+                },
+                {
+                  "_id": "a12000000000000000001113",
+                  "label": "Picture on the cover"
+                }
+              ]
+            }

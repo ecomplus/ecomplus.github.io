@@ -1,0 +1,45 @@
++ Parameters
+    + `method`: `POST` (string, optional) - Object property to query
+    + `resource`: `products` (string, optional) - Object property to query
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "meta": {
+                "query": {
+                  "method": "POST",
+                  "resource": "products"
+                }
+              },
+              "result": [
+                {
+                  "_id": "98d010000000000000000114",
+                  "datetime": "2017-12-01T12:20:10.612Z",
+                  "authentication_id": "5a6757722b66f68dbed44526",
+                  "method": "POST",
+                  "action": "create",
+                  "resource": "products",
+                  "inserted_id": "123a5432109876543210cdef"
+                },
+                {
+                  "_id": "98d010000000000000000115",
+                  "fake": true,
+                  "datetime": "2017-12-02T00:05:10.612Z",
+                  "authentication_id": "5a6757722b66f68dbed44526",
+                  "method": "POST",
+                  "action": "create",
+                  "resource": "products",
+                  "inserted_id": "100a54321098765432112222"
+                }
+              ]
+            }

@@ -1,0 +1,52 @@
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
+    + Body
+
+            {
+              "title": "Reduce inventory after new order",
+              "short_description": "After receive order, reduce products available quantity to control stock",
+              "triggers": [
+                {
+                  "method": "POST",
+                  "resource": "orders"
+                }
+              ],
+              "conditionals": [
+                {
+                  "field": "status",
+                  "operator": "str_not_equal",
+                  "str_value": "cancelled"
+                }
+              ],
+              "webhooks": [
+                {
+                  "api": {
+                    "external_api": {
+                      "uri": "https://appserver.sample/stock/notification"
+                    }
+                  },
+                  "method": "POST",
+                  "map_body": {
+                    "order": {
+                      "_id": "(tr.inserted_id)"
+                    },
+                    "financial_status": "(tr.body.financial_status)"
+                  }
+                }
+              ],
+              "tag": "stock_control"
+            }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+              "_id": "98d120000000000000000111"
+            }

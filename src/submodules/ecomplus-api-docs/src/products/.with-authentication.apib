@@ -1,0 +1,141 @@
++ Parameters
+    + _id: 123a5432109876543210cdef (string, required) - The product ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "_id": "123a5432109876543210cdef",
+              "created_at": "2017-12-01T01:00:30.612Z",
+              "store_id": 100,
+              "sku": "s-MP_2B4",
+              "commodity_type": "physical",
+              "name": "Mens Pique Polo Shirt",
+              "slug": "mens-pique-polo-shirt",
+              "available": true,
+              "visible": true,
+              "ad_relevance": 0,
+              "short_description": "Red, 100% cotton, large men’s t-shirt",
+              "body_html": "<p>Red, 100% cotton, large men’s t-shirt.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>",
+              "body_text": "Red, 100% cotton, large men’s t-shirt.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+              "meta_title": "Mens Pique Polo Shirt - My Shirt Shop",
+              "meta_description": "Mens Pique Polo Shirt, Red, 100% cotton, large men’s t-shirt",
+              "keywords": [
+                "tshirt", "t-shirt", "man"
+              ],
+              "price": 42.90,
+              "price_effective_date": {
+                "end": "2018-12-01T10:00:00.612Z"
+              },
+              "base_price": 60.00,
+              "currency_id": "BRL",
+              "currency_symbol": "R$",
+              "quantity": 100,
+              "manage_stock": true,
+              "dimensions": {
+                "width": {
+                  "value": 10,
+                  "unit": "cm"
+                },
+                "height": {
+                  "value": 8,
+                  "unit": "cm"
+                },
+                "length": {
+                  "value": 8,
+                  "unit": "cm"
+                }
+              },
+              "weight": {
+                "value": 400,
+                "unit": "g"
+              },
+              "condition": "new",
+              "adult": false,
+              "brands": [
+                {
+                  "_id": "a10000000000000000000001",
+                  "name": "Shirts Example",
+                  "slug": "shirts-example",
+                  "logo": {
+                    "url": "https://mycdn.com/shirts-example.jpg",
+                    "size": "100x50"
+                  }
+                }
+              ],
+              "categories": [
+                {
+                  "_id": "f10000000000000000000001",
+                  "name": "Polo Shirts",
+                  "slug": "polo"
+                }
+              ],
+              "specifications": {
+                "age_group": [
+                  {
+                    "text": "Adult",
+                    "value": "adult"
+                  }
+                ],
+                "gender": [
+                  {
+                    "text": "Male",
+                    "value": "male"
+                  }
+                ],
+                "size": [
+                  {
+                    "text": "Large",
+                    "value": "large"
+                  }
+                ],
+                "size_type": [
+                  {
+                    "text": "Regular",
+                    "value": "regular"
+                  }
+                ],
+                "size_system": [
+                  {
+                    "text": "BR",
+                    "value": "BR"
+                  }
+                ],
+                "material": [
+                  {
+                    "text": "Cotton",
+                    "value": "cotton"
+                  }
+                ],
+                "colors": [
+                  {
+                    "text": "Pique",
+                    "value": "#ff5b00"
+                  }
+                ]
+              },
+              "auto_fill_related_products": true,
+              "gtin": [
+                "12345678901234"
+              ],
+              "mpn": [
+                "T1230"
+              ],
+              "hidden_metafields": [
+                {
+                  "_id": "f8765432109876543000abcd",
+                  "namespace": "my_gateway",
+                  "field": "secret_token",
+                  "value": "jsdcbvsacbhdchkblcahdbchvalhc"
+                }
+              ]
+            }

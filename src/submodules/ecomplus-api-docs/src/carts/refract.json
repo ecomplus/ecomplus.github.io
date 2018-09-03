@@ -1,0 +1,2470 @@
+{
+  "element": "parseResult",
+  "content": [
+    {
+      "element": "category",
+      "meta": {
+        "classes": [
+          "api"
+        ],
+        "title": ""
+      },
+      "content": [
+        {
+          "element": "category",
+          "meta": {
+            "classes": [
+              "resourceGroup"
+            ],
+            "title": "Carts"
+          },
+          "content": [
+            {
+              "element": "copy",
+              "content": "`.carts`\n\nUse the **carts** resource to create, read, update and delete shopping carts in\na merchant's store, you can edit all cart properties and also work with all\ncart subresources directly at this resource"
+            },
+            {
+              "element": "resource",
+              "meta": {
+                "title": "Cart Object"
+              },
+              "attributes": {
+                "href": "/carts/schema.json"
+              },
+              "content": [
+                {
+                  "element": "dataStructure",
+                  "content": [
+                    {
+                      "element": "object",
+                      "meta": {
+                        "id": "Cart Object"
+                      },
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Whether cart still available to complete checkout"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "available"
+                            },
+                            "value": {
+                              "element": "boolean",
+                              "content": true
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "If the cart has been completed, generating an order"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "completed"
+                            },
+                            "value": {
+                              "element": "boolean",
+                              "content": false
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "URL to this cart's page - Max length: **255** - Format: **uri**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "permalink"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Optional URL specific to mobile devices - Max length: **255** - Format: **uri**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "mobile_link"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Status defined by seller - Max length: **50**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "status"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "UTM campaign HTTP parameters"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "utm"
+                            },
+                            "value": {
+                              "element": "object",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "meta": {
+                                    "description": "Parameter \"`utm_source`\", the referrer: (e.g. google, newsletter) - Max length: **100**"
+                                  },
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "source"
+                                    },
+                                    "value": {
+                                      "element": "string"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "meta": {
+                                    "description": "Parameter \"`utm_medium`\", the marketing medium: (e.g. cpc, banner, email) - Max length: **100**"
+                                  },
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "medium"
+                                    },
+                                    "value": {
+                                      "element": "string"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "meta": {
+                                    "description": "Parameter \"`utm_campaign`\", the product, promo code, or slogan (e.g. `spring_sale`) - Max length: **200**"
+                                  },
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "campaign"
+                                    },
+                                    "value": {
+                                      "element": "string"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "meta": {
+                                    "description": "Parameter \"`utm_term`\", identifies the paid keywords - Max length: **100**"
+                                  },
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "term"
+                                    },
+                                    "value": {
+                                      "element": "string"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "meta": {
+                                    "description": "Parameter \"`utm_content`\", used to differentiate ads - Max length: **255**"
+                                  },
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "content"
+                                    },
+                                    "value": {
+                                      "element": "string"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "The website that the customer clicked on to come to the shop - Max length: **255** - Format: **uri**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "referring_site"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Code to identify the affiliate that referred the customer - Max length: **200**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "affiliate_code"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "If cart is originated from a gifts list, specify customer ID who will receive the gift - RegEx pattern: **`^[a-f0-9]{24}$`**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "gifts_list_owner_id"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "List of customers associated with this cart - Max elements: **3000**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "customers"
+                            },
+                            "value": {
+                              "element": "array",
+                              "content": [
+                                {
+                                  "element": "string",
+                                  "meta": {
+                                    "description": "Customer ID"
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Whether cart is available for other customers too (anyone)"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "other_customers"
+                            },
+                            "value": {
+                              "element": "boolean",
+                              "content": true
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Products composing the cart - Max elements: **3000**"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "items"
+                            },
+                            "value": {
+                              "element": "array",
+                              "content": [
+                                {
+                                  "element": "object",
+                                  "content": [
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Unique ID (ObjectID) - RegEx pattern: **`^[a-f0-9]{24}$`**"
+                                      },
+                                      "attributes": {
+                                        "typeAttributes": [
+                                          "required"
+                                        ]
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "_id"
+                                        },
+                                        "value": {
+                                          "element": "string"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Product ID - RegEx pattern: **`^[a-f0-9]{24}$`**"
+                                      },
+                                      "attributes": {
+                                        "typeAttributes": [
+                                          "required"
+                                        ]
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "product_id"
+                                        },
+                                        "value": {
+                                          "element": "string"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "ID to specify the variation added to cart, if product has variations - RegEx pattern: **`^[a-f0-9]{24}$`**"
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "variation_id"
+                                        },
+                                        "value": {
+                                          "element": "string"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Product or variation unique reference code - Min length: **2** - Max length: **100** - RegEx pattern: **`^[A-Za-z0-9-_.]+$`**"
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "sku"
+                                        },
+                                        "value": {
+                                          "element": "string"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Product or variation full name, or other label for this cart item - Max length: **255**"
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "name"
+                                        },
+                                        "value": {
+                                          "element": "string"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Product or variation picture for this cart item"
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "picture"
+                                        },
+                                        "value": {
+                                          "element": "object",
+                                          "content": [
+                                            {
+                                              "element": "member",
+                                              "meta": {
+                                                "description": "Image size variation"
+                                              },
+                                              "content": {
+                                                "key": {
+                                                  "element": "string",
+                                                  "content": "^small|normal|big|zoom|custom$"
+                                                },
+                                                "value": {
+                                                  "element": "object",
+                                                  "content": [
+                                                    {
+                                                      "element": "member",
+                                                      "meta": {
+                                                        "description": "Image link - Max length: **255** - Format: **uri**"
+                                                      },
+                                                      "attributes": {
+                                                        "typeAttributes": [
+                                                          "required"
+                                                        ]
+                                                      },
+                                                      "content": {
+                                                        "key": {
+                                                          "element": "string",
+                                                          "content": "url"
+                                                        },
+                                                        "value": {
+                                                          "element": "string"
+                                                        }
+                                                      }
+                                                    },
+                                                    {
+                                                      "element": "member",
+                                                      "meta": {
+                                                        "description": "Image size (width x height) in px, such as 100x50 (100px width, 50px height) - Max length: **11** - RegEx pattern: **`^[1-9]([0-9]+)?x[1-9]([0-9]+)?$`**"
+                                                      },
+                                                      "content": {
+                                                        "key": {
+                                                          "element": "string",
+                                                          "content": "size"
+                                                        },
+                                                        "value": {
+                                                          "element": "string"
+                                                        }
+                                                      }
+                                                    },
+                                                    {
+                                                      "element": "member",
+                                                      "meta": {
+                                                        "description": "Alternative text, HTML alt tag (important for SEO) - Max length: **255**"
+                                                      },
+                                                      "content": {
+                                                        "key": {
+                                                          "element": "string",
+                                                          "content": "alt"
+                                                        },
+                                                        "value": {
+                                                          "element": "string"
+                                                        }
+                                                      }
+                                                    }
+                                                  ]
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Item customization fields - Max elements: **100**"
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "customizations"
+                                        },
+                                        "value": {
+                                          "element": "array",
+                                          "content": [
+                                            {
+                                              "element": "object",
+                                              "content": [
+                                                {
+                                                  "element": "member",
+                                                  "meta": {
+                                                    "description": "Customization field ID - RegEx pattern: **`^[a-f0-9]{24}$`**"
+                                                  },
+                                                  "attributes": {
+                                                    "typeAttributes": [
+                                                      "required"
+                                                    ]
+                                                  },
+                                                  "content": {
+                                                    "key": {
+                                                      "element": "string",
+                                                      "content": "_id"
+                                                    },
+                                                    "value": {
+                                                      "element": "string"
+                                                    }
+                                                  }
+                                                },
+                                                {
+                                                  "element": "member",
+                                                  "meta": {
+                                                    "description": "Title for this customization field, can be the grid title - Max length: **70**"
+                                                  },
+                                                  "content": {
+                                                    "key": {
+                                                      "element": "string",
+                                                      "content": "label"
+                                                    },
+                                                    "value": {
+                                                      "element": "string"
+                                                    }
+                                                  }
+                                                },
+                                                {
+                                                  "element": "member",
+                                                  "meta": {
+                                                    "description": "Option chosen or created by customer"
+                                                  },
+                                                  "attributes": {
+                                                    "typeAttributes": [
+                                                      "required"
+                                                    ]
+                                                  },
+                                                  "content": {
+                                                    "key": {
+                                                      "element": "string",
+                                                      "content": "option"
+                                                    },
+                                                    "value": {
+                                                      "element": "object",
+                                                      "content": [
+                                                        {
+                                                          "element": "member",
+                                                          "meta": {
+                                                            "description": "Identify option if it was predefined (not custom value created by customer) - RegEx pattern: **`^[a-z0-9_]{2,30}$`**"
+                                                          },
+                                                          "content": {
+                                                            "key": {
+                                                              "element": "string",
+                                                              "content": "option_id"
+                                                            },
+                                                            "value": {
+                                                              "element": "string"
+                                                            }
+                                                          }
+                                                        },
+                                                        {
+                                                          "element": "member",
+                                                          "meta": {
+                                                            "description": "Option text value displayed for the client - Max length: **70**"
+                                                          },
+                                                          "attributes": {
+                                                            "typeAttributes": [
+                                                              "required"
+                                                            ]
+                                                          },
+                                                          "content": {
+                                                            "key": {
+                                                              "element": "string",
+                                                              "content": "text"
+                                                            },
+                                                            "value": {
+                                                              "element": "string"
+                                                            }
+                                                          }
+                                                        },
+                                                        {
+                                                          "element": "member",
+                                                          "meta": {
+                                                            "description": "Option color palette (if the field involves colors), starting by main color - Max elements: **6**"
+                                                          },
+                                                          "content": {
+                                                            "key": {
+                                                              "element": "string",
+                                                              "content": "colors"
+                                                            },
+                                                            "value": {
+                                                              "element": "array",
+                                                              "content": [
+                                                                {
+                                                                  "element": "string",
+                                                                  "meta": {
+                                                                    "description": "RGB code with #"
+                                                                  }
+                                                                }
+                                                              ]
+                                                            }
+                                                          }
+                                                        }
+                                                      ]
+                                                    }
+                                                  }
+                                                },
+                                                {
+                                                  "element": "member",
+                                                  "meta": {
+                                                    "description": "URL of file attached by customer to this field - Max length: **255** - Format: **uri**"
+                                                  },
+                                                  "content": {
+                                                    "key": {
+                                                      "element": "string",
+                                                      "content": "attachment"
+                                                    },
+                                                    "value": {
+                                                      "element": "string"
+                                                    }
+                                                  }
+                                                },
+                                                {
+                                                  "element": "member",
+                                                  "meta": {
+                                                    "description": "Price alteration due to this customization"
+                                                  },
+                                                  "content": {
+                                                    "key": {
+                                                      "element": "string",
+                                                      "content": "add_to_price"
+                                                    },
+                                                    "value": {
+                                                      "element": "object",
+                                                      "content": [
+                                                        {
+                                                          "element": "member",
+                                                          "meta": {
+                                                            "description": "Type of price addition"
+                                                          },
+                                                          "content": {
+                                                            "key": {
+                                                              "element": "string",
+                                                              "content": "type"
+                                                            },
+                                                            "value": {
+                                                              "element": "enum",
+                                                              "attributes": {
+                                                                "samples": [
+                                                                  [
+                                                                    {
+                                                                      "element": "string",
+                                                                      "content": "percentage"
+                                                                    }
+                                                                  ]
+                                                                ]
+                                                              },
+                                                              "content": [
+                                                                {
+                                                                  "element": "string",
+                                                                  "content": "percentage"
+                                                                },
+                                                                {
+                                                                  "element": "string",
+                                                                  "content": "fixed"
+                                                                }
+                                                              ]
+                                                            }
+                                                          }
+                                                        },
+                                                        {
+                                                          "element": "member",
+                                                          "meta": {
+                                                            "description": "Additional value, could be negative - Mininum: **-99999999** - Maximum: **99999999** - Max precision: **0.0001**"
+                                                          },
+                                                          "attributes": {
+                                                            "typeAttributes": [
+                                                              "required"
+                                                            ]
+                                                          },
+                                                          "content": {
+                                                            "key": {
+                                                              "element": "string",
+                                                              "content": "addition"
+                                                            },
+                                                            "value": {
+                                                              "element": "number"
+                                                            }
+                                                          }
+                                                        }
+                                                      ]
+                                                    }
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Gift wrap chosen by customer"
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "gift_wrap"
+                                        },
+                                        "value": {
+                                          "element": "object",
+                                          "content": [
+                                            {
+                                              "element": "member",
+                                              "meta": {
+                                                "description": "Tag to identify object, use only lowercase letters, digits and underscore - Max length: **20** - RegEx pattern: **`^[a-z0-9_]+$`**"
+                                              },
+                                              "content": {
+                                                "key": {
+                                                  "element": "string",
+                                                  "content": "tag"
+                                                },
+                                                "value": {
+                                                  "element": "string"
+                                                }
+                                              }
+                                            },
+                                            {
+                                              "element": "member",
+                                              "meta": {
+                                                "description": "Title describing this gift wrap - Max length: **70**"
+                                              },
+                                              "attributes": {
+                                                "typeAttributes": [
+                                                  "required"
+                                                ]
+                                              },
+                                              "content": {
+                                                "key": {
+                                                  "element": "string",
+                                                  "content": "label"
+                                                },
+                                                "value": {
+                                                  "element": "string"
+                                                }
+                                              }
+                                            },
+                                            {
+                                              "element": "member",
+                                              "meta": {
+                                                "description": "Additional value due to this gift wrap - Mininum: **0** - Maximum: **99999999** - Max precision: **0.0001**"
+                                              },
+                                              "content": {
+                                                "key": {
+                                                  "element": "string",
+                                                  "content": "add_to_price"
+                                                },
+                                                "value": {
+                                                  "element": "number"
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Item quantity in cart - Mininum: **0** - Maximum: **9999999** - Max precision: **0.0001**"
+                                      },
+                                      "attributes": {
+                                        "typeAttributes": [
+                                          "required"
+                                        ]
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "quantity"
+                                        },
+                                        "value": {
+                                          "element": "number"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Minimum item quantity for this cart - Mininum: **0** - Maximum: **999999** - Max precision: **0.0001**"
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "min_quantity"
+                                        },
+                                        "value": {
+                                          "element": "number"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Maximum item quantity for this cart - Mininum: **0** - Maximum: **9999999** - Max precision: **0.0001**"
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "max_quantity"
+                                        },
+                                        "value": {
+                                          "element": "number"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "True if product quantity should not be checked, using quantity specified for this item"
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "keep_item_quantity"
+                                        },
+                                        "value": {
+                                          "element": "boolean",
+                                          "content": false
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Designator of currency according to ISO 4217 (3 uppercase letters) - RegEx pattern: **`^[A-Z]{3}$`**"
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "currency_id"
+                                        },
+                                        "value": {
+                                          "element": "string",
+                                          "content": "BRL"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Graphic symbol used as a shorthand for currency's name - Max length: **20**"
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "currency_symbol"
+                                        },
+                                        "value": {
+                                          "element": "string",
+                                          "content": "R$"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Product sale price specifically for this cart - Mininum: **0** - Maximum: **999999999** - Max precision: **0.00001**"
+                                      },
+                                      "attributes": {
+                                        "typeAttributes": [
+                                          "required"
+                                        ]
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "price"
+                                        },
+                                        "value": {
+                                          "element": "number"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Final item price including additions due to customizations and gift wrap - Mininum: **0** - Maximum: **999999999** - Max precision: **0.00001**"
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "final_price"
+                                        },
+                                        "value": {
+                                          "element": "number"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "True if the product price should not be checked, using price specified for this item"
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "keep_item_price"
+                                        },
+                                        "value": {
+                                          "element": "boolean",
+                                          "content": false
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Flags to associate additional info - Max elements: **10**"
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "flags"
+                                        },
+                                        "value": {
+                                          "element": "array",
+                                          "content": [
+                                            {
+                                              "element": "string",
+                                              "meta": {
+                                                "description": "Flag title"
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "The sum of all items prices - Mininum: **0** - Maximum: **9999999999** - Max precision: **0.00001**"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "subtotal"
+                            },
+                            "value": {
+                              "element": "number"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Default discount to be applied"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "discount"
+                            },
+                            "value": {
+                              "element": "object",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "meta": {
+                                    "description": "In which value the discount will be applied at checkout"
+                                  },
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "apply_at"
+                                    },
+                                    "value": {
+                                      "element": "enum",
+                                      "attributes": {
+                                        "samples": [
+                                          [
+                                            {
+                                              "element": "string",
+                                              "content": "subtotal"
+                                            }
+                                          ]
+                                        ]
+                                      },
+                                      "content": [
+                                        {
+                                          "element": "string",
+                                          "content": "total"
+                                        },
+                                        {
+                                          "element": "string",
+                                          "content": "subtotal"
+                                        },
+                                        {
+                                          "element": "string",
+                                          "content": "freight"
+                                        }
+                                      ]
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "meta": {
+                                    "description": "Discount type"
+                                  },
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "type"
+                                    },
+                                    "value": {
+                                      "element": "enum",
+                                      "attributes": {
+                                        "samples": [
+                                          [
+                                            {
+                                              "element": "string",
+                                              "content": "percentage"
+                                            }
+                                          ]
+                                        ]
+                                      },
+                                      "content": [
+                                        {
+                                          "element": "string",
+                                          "content": "percentage"
+                                        },
+                                        {
+                                          "element": "string",
+                                          "content": "fixed"
+                                        }
+                                      ]
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "meta": {
+                                    "description": "Discount value, percentage or fixed - Mininum: **-99999999** - Maximum: **99999999** - Max precision: **0.0001**"
+                                  },
+                                  "attributes": {
+                                    "typeAttributes": [
+                                      "required"
+                                    ]
+                                  },
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "value"
+                                    },
+                                    "value": {
+                                      "element": "number"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "List of orders completed with this cart - Max elements: **3000**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "orders"
+                            },
+                            "value": {
+                              "element": "array",
+                              "content": [
+                                {
+                                  "element": "string",
+                                  "meta": {
+                                    "description": "Order ID"
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "List of custom attributes - Max elements: **100**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "metafields"
+                            },
+                            "value": {
+                              "element": "array",
+                              "content": [
+                                {
+                                  "element": "object",
+                                  "content": [
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Unique ID (ObjectID) - RegEx pattern: **`^[a-f0-9]{24}$`**"
+                                      },
+                                      "attributes": {
+                                        "typeAttributes": [
+                                          "required"
+                                        ]
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "_id"
+                                        },
+                                        "value": {
+                                          "element": "string"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "String to help distinguish who (or which app) created and can use the metafield - Max length: **30**"
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "namespace"
+                                        },
+                                        "value": {
+                                          "element": "string"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Field name - Max length: **50**"
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "field"
+                                        },
+                                        "value": {
+                                          "element": "string"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "element": "member",
+                                      "meta": {
+                                        "description": "Custom property value - Max length: **255**"
+                                      },
+                                      "attributes": {
+                                        "typeAttributes": [
+                                          "required"
+                                        ]
+                                      },
+                                      "content": {
+                                        "key": {
+                                          "element": "string",
+                                          "content": "value"
+                                        },
+                                        "value": {
+                                          "element": "string"
+                                        }
+                                      }
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Flags to associate additional info - Max elements: **10**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "flags"
+                            },
+                            "value": {
+                              "element": "array",
+                              "content": [
+                                {
+                                  "element": "string",
+                                  "meta": {
+                                    "description": "Flag title"
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Optional notes with additional info about this cart - Max length: **255**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "notes"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "JSON Schema"
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n    \"$schema\": \"http://json-schema.org/draft-06/schema#\",\n    \"title\": \"Carts\",\n    \"description\": \"Shopping cart object model\",\n    \"type\": \"object\",\n    \"required\": [\n        \"items\",\n        \"subtotal\"\n    ],\n    \"additionalProperties\": false,\n    \"properties\": {\n        \"available\": {\n            \"type\": \"boolean\",\n            \"default\": true,\n            \"description\": \"Whether cart still available to complete checkout\"\n        },\n        \"completed\": {\n            \"type\": \"boolean\",\n            \"default\": false,\n            \"description\": \"If the cart has been completed, generating an order\"\n        },\n        \"permalink\": {\n            \"type\": \"string\",\n            \"maxLength\": 255,\n            \"format\": \"uri\",\n            \"description\": \"URL to this cart's page\"\n        },\n        \"mobile_link\": {\n            \"type\": \"string\",\n            \"maxLength\": 255,\n            \"format\": \"uri\",\n            \"description\": \"Optional URL specific to mobile devices\"\n        },\n        \"status\": {\n            \"type\": \"string\",\n            \"maxLength\": 50,\n            \"description\": \"Status defined by seller\"\n        },\n        \"utm\": {\n            \"type\": \"object\",\n            \"additionalProperties\": false,\n            \"properties\": {\n                \"source\": {\n                    \"type\": \"string\",\n                    \"maxLength\": 100,\n                    \"description\": \"Parameter \\\"utm_source\\\", the referrer: (e.g. google, newsletter)\"\n                },\n                \"medium\": {\n                    \"type\": \"string\",\n                    \"maxLength\": 100,\n                    \"description\": \"Parameter \\\"utm_medium\\\", the marketing medium: (e.g. cpc, banner, email)\"\n                },\n                \"campaign\": {\n                    \"type\": \"string\",\n                    \"maxLength\": 200,\n                    \"description\": \"Parameter \\\"utm_campaign\\\", the product, promo code, or slogan (e.g. spring_sale)\"\n                },\n                \"term\": {\n                    \"type\": \"string\",\n                    \"maxLength\": 100,\n                    \"description\": \"Parameter \\\"utm_term\\\", identifies the paid keywords\"\n                },\n                \"content\": {\n                    \"type\": \"string\",\n                    \"maxLength\": 255,\n                    \"description\": \"Parameter \\\"utm_content\\\", used to differentiate ads\"\n                }\n            },\n            \"description\": \"UTM campaign HTTP parameters\"\n        },\n        \"referring_site\": {\n            \"type\": \"string\",\n            \"maxLength\": 255,\n            \"format\": \"uri\",\n            \"description\": \"The website that the customer clicked on to come to the shop\"\n        },\n        \"affiliate_code\": {\n            \"type\": \"string\",\n            \"maxLength\": 200,\n            \"description\": \"Code to identify the affiliate that referred the customer\"\n        },\n        \"gifts_list_owner_id\": {\n            \"type\": \"string\",\n            \"pattern\": \"^[a-f0-9]{24}$\",\n            \"description\": \"If cart is originated from a gifts list, specify customer ID who will receive the gift\"\n        },\n        \"customers\": {\n            \"type\": \"array\",\n            \"uniqueItems\": true,\n            \"maxItems\": 3000,\n            \"items\": {\n                \"type\": \"string\",\n                \"pattern\": \"^[a-f0-9]{24}$\",\n                \"description\": \"Customer ID\"\n            },\n            \"description\": \"List of customers associated with this cart\"\n        },\n        \"other_customers\": {\n            \"type\": \"boolean\",\n            \"default\": true,\n            \"description\": \"Whether cart is available for other customers too (anyone)\"\n        },\n        \"items\": {\n            \"type\": \"array\",\n            \"maxItems\": 3000,\n            \"items\": {\n                \"type\": \"object\",\n                \"additionalProperties\": false,\n                \"required\": [\n                    \"_id\",\n                    \"product_id\",\n                    \"quantity\",\n                    \"price\"\n                ],\n                \"properties\": {\n                    \"_id\": {\n                        \"type\": \"string\",\n                        \"pattern\": \"^[a-f0-9]{24}$\",\n                        \"description\": \"Unique ID (ObjectID)\"\n                    },\n                    \"product_id\": {\n                        \"type\": \"string\",\n                        \"pattern\": \"^[a-f0-9]{24}$\",\n                        \"description\": \"Product ID\"\n                    },\n                    \"variation_id\": {\n                        \"type\": \"string\",\n                        \"pattern\": \"^[a-f0-9]{24}$\",\n                        \"description\": \"ID to specify the variation added to cart, if product has variations\"\n                    },\n                    \"sku\": {\n                        \"type\": \"string\",\n                        \"minLength\": 2,\n                        \"maxLength\": 100,\n                        \"pattern\": \"^[A-Za-z0-9-_.]+$\",\n                        \"description\": \"Product or variation unique reference code\"\n                    },\n                    \"name\": {\n                        \"type\": \"string\",\n                        \"maxLength\": 255,\n                        \"description\": \"Product or variation full name, or other label for this cart item\"\n                    },\n                    \"picture\": {\n                        \"type\": \"object\",\n                        \"additionalProperties\": false,\n                        \"patternProperties\": {\n                            \"^small|normal|big|zoom|custom$\": {\n                                \"type\": \"object\",\n                                \"required\": [\n                                    \"url\"\n                                ],\n                                \"additionalProperties\": false,\n                                \"properties\": {\n                                    \"url\": {\n                                        \"type\": \"string\",\n                                        \"maxLength\": 255,\n                                        \"format\": \"uri\",\n                                        \"description\": \"Image link\"\n                                    },\n                                    \"size\": {\n                                        \"type\": \"string\",\n                                        \"maxLength\": 11,\n                                        \"pattern\": \"^[1-9]([0-9]+)?x[1-9]([0-9]+)?$\",\n                                        \"description\": \"Image size (width x height) in px, such as 100x50 (100px width, 50px height)\"\n                                    },\n                                    \"alt\": {\n                                        \"type\": \"string\",\n                                        \"maxLength\": 255,\n                                        \"description\": \"Alternative text, HTML alt tag (important for SEO)\"\n                                    }\n                                },\n                                \"description\": \"Image size variation\"\n                            }\n                        },\n                        \"description\": \"Product or variation picture for this cart item\"\n                    },\n                    \"customizations\": {\n                        \"type\": \"array\",\n                        \"maxItems\": 100,\n                        \"items\": {\n                            \"type\": \"object\",\n                            \"required\": [\n                                \"_id\",\n                                \"option\"\n                            ],\n                            \"additionalProperties\": false,\n                            \"properties\": {\n                                \"_id\": {\n                                    \"type\": \"string\",\n                                    \"pattern\": \"^[a-f0-9]{24}$\",\n                                    \"description\": \"Customization field ID\"\n                                },\n                                \"label\": {\n                                    \"type\": \"string\",\n                                    \"maxLength\": 70,\n                                    \"description\": \"Title for this customization field, can be the grid title\"\n                                },\n                                \"option\": {\n                                    \"type\": \"object\",\n                                    \"required\": [\n                                        \"text\"\n                                    ],\n                                    \"additionalProperties\": false,\n                                    \"properties\": {\n                                        \"option_id\": {\n                                            \"type\": \"string\",\n                                            \"pattern\": \"^[a-z0-9_]{2,30}$\",\n                                            \"description\": \"Identify option if it was predefined (not custom value created by customer)\"\n                                        },\n                                        \"text\": {\n                                            \"type\": \"string\",\n                                            \"maxLength\": 70,\n                                            \"description\": \"Option text value displayed for the client\"\n                                        },\n                                        \"colors\": {\n                                            \"type\": \"array\",\n                                            \"maxItems\": 6,\n                                            \"items\": {\n                                                \"type\": \"string\",\n                                                \"pattern\": \"^#[a-f0-9]{6}$\",\n                                                \"description\": \"RGB code with #\"\n                                            },\n                                            \"description\": \"Option color palette (if the field involves colors), starting by main color\"\n                                        }\n                                    },\n                                    \"description\": \"Option chosen or created by customer\"\n                                },\n                                \"attachment\": {\n                                    \"type\": \"string\",\n                                    \"maxLength\": 255,\n                                    \"format\": \"uri\",\n                                    \"description\": \"URL of file attached by customer to this field\"\n                                },\n                                \"add_to_price\": {\n                                    \"type\": \"object\",\n                                    \"required\": [\n                                        \"addition\"\n                                    ],\n                                    \"additionalProperties\": false,\n                                    \"properties\": {\n                                        \"type\": {\n                                            \"type\": \"string\",\n                                            \"enum\": [\n                                                \"percentage\",\n                                                \"fixed\"\n                                            ],\n                                            \"default\": \"percentage\",\n                                            \"description\": \"Type of price addition\"\n                                        },\n                                        \"addition\": {\n                                            \"type\": \"number\",\n                                            \"multipleOf\": 0.0001,\n                                            \"minimum\": -99999999,\n                                            \"maximum\": 99999999,\n                                            \"description\": \"Additional value, could be negative\"\n                                        }\n                                    },\n                                    \"description\": \"Price alteration due to this customization\"\n                                }\n                            },\n                            \"description\": \"Customization field\"\n                        },\n                        \"description\": \"Item customization fields\"\n                    },\n                    \"gift_wrap\": {\n                        \"type\": \"object\",\n                        \"required\": [\n                            \"label\"\n                        ],\n                        \"additionalProperties\": false,\n                        \"properties\": {\n                            \"tag\": {\n                                \"type\": \"string\",\n                                \"maxLength\": 20,\n                                \"pattern\": \"^[a-z0-9_]+$\",\n                                \"description\": \"Tag to identify object, use only lowercase letters, digits and underscore\"\n                            },\n                            \"label\": {\n                                \"type\": \"string\",\n                                \"maxLength\": 70,\n                                \"description\": \"Title describing this gift wrap\"\n                            },\n                            \"add_to_price\": {\n                                \"type\": \"number\",\n                                \"multipleOf\": 0.0001,\n                                \"minimum\": 0,\n                                \"maximum\": 99999999,\n                                \"description\": \"Additional value due to this gift wrap\"\n                            }\n                        },\n                        \"description\": \"Gift wrap chosen by customer\"\n                    },\n                    \"quantity\": {\n                        \"type\": \"number\",\n                        \"multipleOf\": 0.0001,\n                        \"minimum\": 0,\n                        \"maximum\": 9999999,\n                        \"description\": \"Item quantity in cart\"\n                    },\n                    \"min_quantity\": {\n                        \"type\": \"number\",\n                        \"multipleOf\": 0.0001,\n                        \"minimum\": 0,\n                        \"maximum\": 999999,\n                        \"description\": \"Minimum item quantity for this cart\"\n                    },\n                    \"max_quantity\": {\n                        \"type\": \"number\",\n                        \"multipleOf\": 0.0001,\n                        \"minimum\": 0,\n                        \"maximum\": 9999999,\n                        \"description\": \"Maximum item quantity for this cart\"\n                    },\n                    \"keep_item_quantity\": {\n                        \"type\": \"boolean\",\n                        \"default\": false,\n                        \"description\": \"True if product quantity should not be checked, using quantity specified for this item\"\n                    },\n                    \"currency_id\": {\n                        \"type\": \"string\",\n                        \"pattern\": \"^[A-Z]{3}$\",\n                        \"default\": \"BRL\",\n                        \"description\": \"Designator of currency according to ISO 4217 (3 uppercase letters)\"\n                    },\n                    \"currency_symbol\": {\n                        \"type\": \"string\",\n                        \"maxLength\": 20,\n                        \"default\": \"R$\",\n                        \"description\": \"Graphic symbol used as a shorthand for currency's name\"\n                    },\n                    \"price\": {\n                        \"type\": \"number\",\n                        \"multipleOf\": 0.00001,\n                        \"minimum\": 0,\n                        \"maximum\": 999999999,\n                        \"description\": \"Product sale price specifically for this cart\"\n                    },\n                    \"final_price\": {\n                        \"type\": \"number\",\n                        \"multipleOf\": 0.00001,\n                        \"minimum\": 0,\n                        \"maximum\": 999999999,\n                        \"description\": \"Final item price including additions due to customizations and gift wrap\"\n                    },\n                    \"keep_item_price\": {\n                        \"type\": \"boolean\",\n                        \"default\": false,\n                        \"description\": \"True if the product price should not be checked, using price specified for this item\"\n                    },\n                    \"flags\": {\n                        \"type\": \"array\",\n                        \"uniqueItems\": true,\n                        \"maxItems\": 10,\n                        \"items\": {\n                            \"type\": \"string\",\n                            \"maxLength\": 20,\n                            \"description\": \"Flag title\"\n                        },\n                        \"description\": \"Flags to associate additional info\"\n                    }\n                },\n                \"description\": \"One of the cart items\"\n            },\n            \"description\": \"Products composing the cart\"\n        },\n        \"subtotal\": {\n            \"type\": \"number\",\n            \"multipleOf\": 0.00001,\n            \"minimum\": 0,\n            \"maximum\": 9999999999,\n            \"description\": \"The sum of all items prices\"\n        },\n        \"discount\": {\n            \"type\": \"object\",\n            \"required\": [\n                \"value\"\n            ],\n            \"additionalProperties\": false,\n            \"properties\": {\n                \"apply_at\": {\n                    \"type\": \"string\",\n                    \"enum\": [\n                        \"total\",\n                        \"subtotal\",\n                        \"freight\"\n                    ],\n                    \"default\": \"subtotal\",\n                    \"description\": \"In which value the discount will be applied at checkout\"\n                },\n                \"type\": {\n                    \"type\": \"string\",\n                    \"enum\": [\n                        \"percentage\",\n                        \"fixed\"\n                    ],\n                    \"default\": \"percentage\",\n                    \"description\": \"Discount type\"\n                },\n                \"value\": {\n                    \"type\": \"number\",\n                    \"multipleOf\": 0.0001,\n                    \"minimum\": -99999999,\n                    \"maximum\": 99999999,\n                    \"description\": \"Discount value, percentage or fixed\"\n                }\n            },\n            \"description\": \"Default discount to be applied\"\n        },\n        \"orders\": {\n            \"type\": \"array\",\n            \"uniqueItems\": true,\n            \"maxItems\": 3000,\n            \"items\": {\n                \"type\": \"string\",\n                \"pattern\": \"^[a-f0-9]{24}$\",\n                \"description\": \"Order ID\"\n            },\n            \"description\": \"List of orders completed with this cart\"\n        },\n        \"metafields\": {\n            \"type\": \"array\",\n            \"maxItems\": 100,\n            \"items\": {\n                \"type\": \"object\",\n                \"additionalProperties\": false,\n                \"required\": [\n                    \"_id\",\n                    \"value\"\n                ],\n                \"properties\": {\n                    \"_id\": {\n                        \"type\": \"string\",\n                        \"pattern\": \"^[a-f0-9]{24}$\",\n                        \"description\": \"Unique ID (ObjectID)\"\n                    },\n                    \"namespace\": {\n                        \"type\": \"string\",\n                        \"maxLength\": 30,\n                        \"description\": \"String to help distinguish who (or which app) created and can use the metafield\"\n                    },\n                    \"field\": {\n                        \"type\": \"string\",\n                        \"maxLength\": 50,\n                        \"description\": \"Field name\"\n                    },\n                    \"value\": {\n                        \"type\": \"string\",\n                        \"maxLength\": 255,\n                        \"description\": \"Custom property value\"\n                    }\n                },\n                \"description\": \"Custom attribute object\"\n            },\n            \"description\": \"List of custom attributes\"\n        },\n        \"flags\": {\n            \"type\": \"array\",\n            \"uniqueItems\": true,\n            \"maxItems\": 10,\n            \"items\": {\n                \"type\": \"string\",\n                \"maxLength\": 20,\n                \"description\": \"Flag title\"\n            },\n            \"description\": \"Flags to associate additional info\"\n        },\n        \"notes\": {\n            \"type\": \"string\",\n            \"maxLength\": 255,\n            \"description\": \"Optional notes with additional info about this cart\"\n        }\n    }\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "element": "resource",
+              "meta": {
+                "title": "All Carts"
+              },
+              "attributes": {
+                "href": "/carts.json{?limit,offset,sort,fields}"
+              },
+              "content": [
+                {
+                  "element": "copy",
+                  "content": "*/carts.json?limit&offset&sort&fields\\&[field]*\n\n> Authentication<br>_GET_: **required**\n\nUse [default URL parameters](#introduction/overview/url-params) (metadata)\nfor pagination and ordering, you can use any other parameter to query\nby particular object properties"
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "List All Store Carts"
+                  },
+                  "attributes": {
+                    "href": "/carts.json"
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"meta\": {\n    \"limit\": 1000,\n    \"offset\": 0,\n    \"sort\": [],\n    \"fields\": [\n      \"_id\",\n      \"available\",\n      \"completed\",\n      \"subtotal\"\n    ],\n    \"query\": {}\n  },\n  \"result\": [\n    {\n      \"_id\": \"2ca000000000000000000001\",\n      \"available\": true,\n      \"completed\": false,\n      \"subtotal\": 102.90\n    },\n    {\n      \"_id\": \"2ca000000000000000000002\",\n      \"available\": true,\n      \"completed\": true,\n      \"subtotal\": 50.75\n    },\n    {\n      \"_id\": \"2ca000000000000000000003\",\n      \"available\": true,\n      \"completed\": false,\n      \"subtotal\": 171.60\n    },\n    {\n      \"_id\": \"2ca000000000000000000004\",\n      \"available\": false,\n      \"completed\": true,\n      \"subtotal\": 85.80\n    },\n    {\n      \"_id\": \"2ca000000000000000000005\",\n      \"available\": true,\n      \"completed\": false,\n      \"subtotal\": 100\n    },\n    {\n      \"_id\": \"2ca000000000000000000006\",\n      \"available\": true,\n      \"completed\": false,\n      \"subtotal\": 102.90\n    },\n    {\n      \"_id\": \"2ca000000000000000000007\",\n      \"available\": false,\n      \"completed\": false,\n      \"subtotal\": 101.90\n    },\n    {\n      \"_id\": \"2ca000000000000000000008\",\n      \"available\": true,\n      \"completed\": true,\n      \"subtotal\": 60\n    },\n    {\n      \"_id\": \"2ca000000000000000000009\",\n      \"available\": true,\n      \"completed\": false,\n      \"subtotal\": 400\n    },\n    {\n      \"_id\": \"2ca000000000000000000000\",\n      \"available\": true,\n      \"completed\": false,\n      \"subtotal\": 220.45\n    }\n  ]\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Pagination And Ordering"
+                  },
+                  "attributes": {
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Max number of objects to return",
+                            "title": "number"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "optional"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "limit"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "4"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "First entry to return",
+                            "title": "number"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "optional"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "offset"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "4"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Rules to order resultant objects",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "optional"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "sort"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "-subtotal"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Object properties to return",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "optional"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "fields"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "subtotal,discount"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"meta\": {\n    \"limit\": 4,\n    \"offset\": 4,\n    \"sort\": [\n      {\n        \"field\": \"subtotal\",\n        \"order\": -1\n      }\n    ],\n    \"fields\": [\n      \"subtotal\",\n      \"discount\"\n    ],\n    \"query\": {}\n  },\n  \"result\": [\n    {\n      \"_id\": \"2ca000000000000000000006\",\n      \"subtotal\": 102.90,\n      \"discount\": {\n        \"apply_at\": \"subtotal\",\n        \"type\": \"percentage\",\n        \"value\": 10\n      }\n    },\n    {\n      \"_id\": \"2ca000000000000000000007\",\n      \"subtotal\": 101.90\n    },\n    {\n      \"_id\": \"2ca000000000000000000005\",\n      \"subtotal\": 100\n    },\n    {\n      \"_id\": \"2ca000000000000000000004\",\n      \"subtotal\": 85.80,\n      \"discount\": {\n        \"apply_at\": \"total\",\n        \"type\": \"fixed\",\n        \"value\": 15\n      }\n    }\n  ]\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Find Carts"
+                  },
+                  "attributes": {
+                    "href": "/carts.json{?customers}",
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Object property to query",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "optional"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "customers"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "3c1000000000000000000005"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"meta\": {\n    \"limit\": 1000,\n    \"offset\": 0,\n    \"sort\": [],\n    \"fields\": [\n      \"_id\",\n      \"available\",\n      \"completed\",\n      \"subtotal\"\n    ],\n    \"query\": {\n      \"customers\": \"3c1000000000000000000005\"\n    }\n  },\n  \"result\": [\n    {\n      \"_id\": \"2ca000000000000000000008\",\n      \"available\": true,\n      \"completed\": true,\n      \"subtotal\": 60\n    }\n  ]\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "element": "resource",
+              "meta": {
+                "title": "New Cart"
+              },
+              "attributes": {
+                "href": "/carts.json"
+              },
+              "content": [
+                {
+                  "element": "copy",
+                  "content": "*/carts.json*\n\n> Authentication<br>_POST_: **required**\n\nRequest body must obey the specifications of\n[this model](#reference/carts/cart-object)"
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Create New Cart"
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "POST",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"utm\": {\n    \"source\": \"newsletter\",\n    \"medium\": \"email\",\n    \"campaign\": \"recovery_promo\"\n  },\n  \"customers\": [\n    \"3c1000000000000000000001\"\n  ],\n  \"items\": [\n    {\n      \"_id\": \"3130000000000000000000a1\",\n      \"product_id\": \"123a5432109876543210cdef\",\n      \"sku\": \"s-MP_2B4\",\n      \"name\": \"Mens Pique Polo Shirt\",\n      \"quantity\": 4,\n      \"price\": 42.9\n    },\n    {\n      \"_id\": \"3130000000000000000000a1\",\n      \"product_id\": \"1234567890abcdef01291510\",\n      \"sku\": \"COD1\",\n      \"name\": \"Sample Product Name\",\n      \"quantity\": 1,\n      \"price\": 20\n    }\n  ],\n  \"subtotal\": 171.6,\n  \"discount\": {\n    \"apply_at\": \"subtotal\",\n    \"type\": \"fixed\",\n    \"value\": 20\n  }\n}\n"
+                            }
+                          ]
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "201",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"_id\": \"2ca000000000000000000003\"\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "element": "resource",
+              "meta": {
+                "title": "Specific Cart"
+              },
+              "attributes": {
+                "href": "/carts/{_id}.json"
+              },
+              "content": [
+                {
+                  "element": "copy",
+                  "content": "*/carts/[_id].json*\n\n> Authentication<br>_GET_: **none**<br>_PATCH_, _PUT_, _DELETE_: **required**\n\nIn read requests, response body will follow\n[this model](#reference/carts/cart-object)\n\nFor overwriting and editing, request body must obey the same specifications,\nbut especially for edit requests there are no required fields"
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Read Cart"
+                  },
+                  "attributes": {
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "The cart ID",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "_id"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "2ca000000000000000000003"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"_id\": \"2ca000000000000000000003\",\n  \"created_at\": \"2017-11-19T13:10:00.612Z\",\n  \"store_id\": 100,\n  \"available\": true,\n  \"completed\": false,\n  \"utm\": {\n    \"source\": \"newsletter\",\n    \"medium\": \"email\",\n    \"campaign\": \"recovery_promo\"\n  },\n  \"customers\": [\n    \"3c1000000000000000000001\"\n  ],\n  \"other_customers\": true,\n  \"items\": [\n    {\n      \"_id\": \"3130000000000000000000a1\",\n      \"product_id\": \"123a5432109876543210cdef\",\n      \"sku\": \"s-MP_2B4\",\n      \"name\": \"Mens Pique Polo Shirt\",\n      \"quantity\": 4,\n      \"price\": 42.9,\n      \"keep_item_price\": false\n    },\n    {\n      \"_id\": \"3130000000000000000000a1\",\n      \"product_id\": \"1234567890abcdef01291510\",\n      \"sku\": \"COD1\",\n      \"name\": \"Sample Product Name\",\n      \"quantity\": 1,\n      \"price\": 20,\n      \"keep_item_price\": false\n    }\n  ],\n  \"subtotal\": 171.6,\n  \"discount\": {\n    \"apply_at\": \"subtotal\",\n    \"type\": \"fixed\",\n    \"value\": 20\n  }\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Edit Cart"
+                  },
+                  "attributes": {
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "The cart ID",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "_id"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "2ca000000000000000000003"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "PATCH",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"permalink\": \"https://myshop.sample/cart?i=123567788997\"\n}\n"
+                            }
+                          ]
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "204"
+                          },
+                          "content": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Overwrite Cart"
+                  },
+                  "attributes": {
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "The cart ID",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "_id"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "2ca000000000000000000003"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "PUT",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"permalink\": \"https://myshop.sample/cart?i=123567788997\",\n  \"utm\": {\n    \"source\": \"newsletter\",\n    \"medium\": \"email\",\n    \"campaign\": \"recovery_promo_2\"\n  },\n  \"customers\": [\n    \"3c1000000000000000000001\"\n  ],\n  \"items\": [\n    {\n      \"_id\": \"3130000000000000000000a1\",\n      \"product_id\": \"123a5432109876543210cdef\",\n      \"sku\": \"s-MP_2B4\",\n      \"name\": \"Mens Pique Polo Shirt\",\n      \"quantity\": 4,\n      \"price\": 42.9\n    },\n    {\n      \"_id\": \"3130000000000000000000a1\",\n      \"product_id\": \"1234567890abcdef01291510\",\n      \"sku\": \"COD1\",\n      \"name\": \"Sample Product Name\",\n      \"quantity\": 1,\n      \"price\": 20\n    }\n  ],\n  \"subtotal\": 171.6,\n  \"discount\": {\n    \"apply_at\": \"subtotal\",\n    \"type\": \"fixed\",\n    \"value\": 20\n  }\n}\n"
+                            }
+                          ]
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "204"
+                          },
+                          "content": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Remove Cart"
+                  },
+                  "attributes": {
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "The cart ID",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "_id"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "2ca000000000000000000003"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "DELETE",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "204"
+                          },
+                          "content": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

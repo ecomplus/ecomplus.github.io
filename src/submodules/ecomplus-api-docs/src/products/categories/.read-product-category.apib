@@ -1,0 +1,21 @@
++ Parameters
+    + product: 1234567890abcdef01291511 (string, required) - Product ID
+    + _id: f10000000000000000000001 (string, required) - Category ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "_id": "f10000000000000000000001",
+              "name": "Polo Shirts",
+              "slug": "polo"
+            }

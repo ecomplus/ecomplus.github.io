@@ -1,0 +1,81 @@
++ Attributes (object)
+    + `available`: true (boolean) - Whether cart still available to complete checkout
+    + `completed`: false (boolean) - If the cart has been completed, generating an order
+    + `permalink` (string) - URL to this cart's page - Max length: **255** - Format: **uri**
+    + `mobile_link` (string) - Optional URL specific to mobile devices - Max length: **255** - Format: **uri**
+    + `status` (string) - Status defined by seller - Max length: **50**
+    + `utm` (object) - UTM campaign HTTP parameters
+        + `source` (string) - Parameter "`utm_source`", the referrer: (e.g. google, newsletter) - Max length: **100**
+        + `medium` (string) - Parameter "`utm_medium`", the marketing medium: (e.g. cpc, banner, email) - Max length: **100**
+        + `campaign` (string) - Parameter "`utm_campaign`", the product, promo code, or slogan (e.g. `spring_sale`) - Max length: **200**
+        + `term` (string) - Parameter "`utm_term`", identifies the paid keywords - Max length: **100**
+        + `content` (string) - Parameter "`utm_content`", used to differentiate ads - Max length: **255**
+    + `referring_site` (string) - The website that the customer clicked on to come to the shop - Max length: **255** - Format: **uri**
+    + `affiliate_code` (string) - Code to identify the affiliate that referred the customer - Max length: **200**
+    + `gifts_list_owner_id` (string) - If cart is originated from a gifts list, specify customer ID who will receive the gift - RegEx pattern: **`^[a-f0-9]{24}$`**
+    + `customers` (array) - List of customers associated with this cart - Max elements: **3000**
+        + (string) - Customer ID
+    + `other_customers`: true (boolean) - Whether cart is available for other customers too (anyone)
+    + `items` (array, required) - Products composing the cart - Max elements: **3000**
+        + (object) - One of the cart items
+            + `_id` (string, required) - Unique ID (ObjectID) - RegEx pattern: **`^[a-f0-9]{24}$`**
+            + `product_id` (string, required) - Product ID - RegEx pattern: **`^[a-f0-9]{24}$`**
+            + `variation_id` (string) - ID to specify the variation added to cart, if product has variations - RegEx pattern: **`^[a-f0-9]{24}$`**
+            + `sku` (string) - Product or variation unique reference code - Min length: **2** - Max length: **100** - RegEx pattern: **`^[A-Za-z0-9-_.]+$`**
+            + `name` (string) - Product or variation full name, or other label for this cart item - Max length: **255**
+            + `picture` (object) - Product or variation picture for this cart item
+                + `^small|normal|big|zoom|custom$` (object) - Image size variation
+                    + `url` (string, required) - Image link - Max length: **255** - Format: **uri**
+                    + `size` (string) - Image size (width x height) in px, such as 100x50 (100px width, 50px height) - Max length: **11** - RegEx pattern: **`^[1-9]([0-9]+)?x[1-9]([0-9]+)?$`**
+                    + `alt` (string) - Alternative text, HTML alt tag (important for SEO) - Max length: **255**
+            + `customizations` (array) - Item customization fields - Max elements: **100**
+                + (object) - Customization field
+                    + `_id` (string, required) - Customization field ID - RegEx pattern: **`^[a-f0-9]{24}$`**
+                    + `label` (string) - Title for this customization field, can be the grid title - Max length: **70**
+                    + `option` (object, required) - Option chosen or created by customer
+                        + `option_id` (string) - Identify option if it was predefined (not custom value created by customer) - RegEx pattern: **`^[a-z0-9_]{2,30}$`**
+                        + `text` (string, required) - Option text value displayed for the client - Max length: **70**
+                        + `colors` (array) - Option color palette (if the field involves colors), starting by main color - Max elements: **6**
+                            + (string) - RGB code with #
+                    + `attachment` (string) - URL of file attached by customer to this field - Max length: **255** - Format: **uri**
+                    + `add_to_price` (object) - Price alteration due to this customization
+                        + `type`: percentage (enum) - Type of price addition
+                            + `percentage` (string)
+                            + `fixed` (string)
+                        + `addition` (number, required) - Additional value, could be negative - Mininum: **-99999999** - Maximum: **99999999** - Max precision: **0.0001**
+            + `gift_wrap` (object) - Gift wrap chosen by customer
+                + `tag` (string) - Tag to identify object, use only lowercase letters, digits and underscore - Max length: **20** - RegEx pattern: **`^[a-z0-9_]+$`**
+                + `label` (string, required) - Title describing this gift wrap - Max length: **70**
+                + `add_to_price` (number) - Additional value due to this gift wrap - Mininum: **0** - Maximum: **99999999** - Max precision: **0.0001**
+            + `quantity` (number, required) - Item quantity in cart - Mininum: **0** - Maximum: **9999999** - Max precision: **0.0001**
+            + `min_quantity` (number) - Minimum item quantity for this cart - Mininum: **0** - Maximum: **999999** - Max precision: **0.0001**
+            + `max_quantity` (number) - Maximum item quantity for this cart - Mininum: **0** - Maximum: **9999999** - Max precision: **0.0001**
+            + `keep_item_quantity`: false (boolean) - True if product quantity should not be checked, using quantity specified for this item
+            + `currency_id`: BRL (string) - Designator of currency according to ISO 4217 (3 uppercase letters) - RegEx pattern: **`^[A-Z]{3}$`**
+            + `currency_symbol`: R$ (string) - Graphic symbol used as a shorthand for currency's name - Max length: **20**
+            + `price` (number, required) - Product sale price specifically for this cart - Mininum: **0** - Maximum: **999999999** - Max precision: **0.00001**
+            + `final_price` (number) - Final item price including additions due to customizations and gift wrap - Mininum: **0** - Maximum: **999999999** - Max precision: **0.00001**
+            + `keep_item_price`: false (boolean) - True if the product price should not be checked, using price specified for this item
+            + `flags` (array) - Flags to associate additional info - Max elements: **10**
+                + (string) - Flag title
+    + `subtotal` (number, required) - The sum of all items prices - Mininum: **0** - Maximum: **9999999999** - Max precision: **0.00001**
+    + `discount` (object) - Default discount to be applied
+        + `apply_at`: subtotal (enum) - In which value the discount will be applied at checkout
+            + `total` (string)
+            + `subtotal` (string)
+            + `freight` (string)
+        + `type`: percentage (enum) - Discount type
+            + `percentage` (string)
+            + `fixed` (string)
+        + `value` (number, required) - Discount value, percentage or fixed - Mininum: **-99999999** - Maximum: **99999999** - Max precision: **0.0001**
+    + `orders` (array) - List of orders completed with this cart - Max elements: **3000**
+        + (string) - Order ID
+    + `metafields` (array) - List of custom attributes - Max elements: **100**
+        + (object) - Custom attribute object
+            + `_id` (string, required) - Unique ID (ObjectID) - RegEx pattern: **`^[a-f0-9]{24}$`**
+            + `namespace` (string) - String to help distinguish who (or which app) created and can use the metafield - Max length: **30**
+            + `field` (string) - Field name - Max length: **50**
+            + `value` (string, required) - Custom property value - Max length: **255**
+    + `flags` (array) - Flags to associate additional info - Max elements: **10**
+        + (string) - Flag title
+    + `notes` (string) - Optional notes with additional info about this cart - Max length: **255**

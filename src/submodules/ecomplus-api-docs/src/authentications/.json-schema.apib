@@ -1,0 +1,217 @@
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "$schema": "http://json-schema.org/draft-06/schema#",
+                "title": "Authentications",
+                "description": "Authenticated API user",
+                "type": "object",
+                "required": [
+                    "username"
+                ],
+                "dependencies": {
+                    "pass_md5_hash": [
+                        "email"
+                    ]
+                },
+                "additionalProperties": false,
+                "properties": {
+                    "username": {
+                        "type": "string",
+                        "minLength": 4,
+                        "maxLength": 30,
+                        "pattern": "^[0-9a-z]+$",
+                        "description": "Simple username for identification, only numbers and lowercase letters"
+                    },
+                    "locale": {
+                        "type": "string",
+                        "pattern": "^[a-z]{2}(_[a-z]{2})?$",
+                        "default": "pt_br",
+                        "description": "User language two letter code, sometimes with region, eg.: pt_br, fr, en_us"
+                    },
+                    "email": {
+                        "type": "string",
+                        "maxLength": 200,
+                        "format": "email",
+                        "description": "User email address"
+                    },
+                    "name": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "description": "User full name"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "maxLength": 19,
+                        "pattern": "^[0-9]+$",
+                        "description": "User phone number"
+                    },
+                    "pass_md5_hash": {
+                        "type": "string",
+                        "pattern": "^[a-f0-9]{32}$",
+                        "description": "MD5 hash generated with the user's password"
+                    },
+                    "panel_preferences": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "maxProperties": 100,
+                        "patternProperties": {
+                            "^[a-z0-9_]+$": {
+                                "type": "boolean",
+                                "default": true,
+                                "description": "Boolean option value"
+                            }
+                        },
+                        "description": "User preferences in the admin dashboard"
+                    },
+                    "panel_shortcuts": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "maxProperties": 100,
+                        "patternProperties": {
+                            "^[a-z0-9](([+][a-z0-9])+)?$": {
+                                "type": "string",
+                                "minLength": 3,
+                                "maxLength": 255,
+                                "description": "Shortcut JS (or jQuery) action"
+                            }
+                        },
+                        "description": "Keyboard shortcuts, keys separated by + as property name"
+                    },
+                    "panel_random_cards": {
+                        "type": "integer",
+                        "min": 0,
+                        "max": 20,
+                        "default": 0,
+                        "description": "Number of random cards to show on dashboard home"
+                    },
+                    "panel_cards": {
+                        "type": "array",
+                        "maxItems": 40,
+                        "items": {
+                            "type": "object",
+                            "required": [
+                                "_id"
+                            ],
+                            "additionalProperties": false,
+                            "minProperties": 2,
+                            "properties": {
+                                "_id": {
+                                    "type": "string",
+                                    "pattern": "^[a-f0-9]{24}$",
+                                    "description": "Unique ID (ObjectID)"
+                                },
+                                "card_id": {
+                                    "type": "string",
+                                    "pattern": "^[a-z0-9_]{2,60}$",
+                                    "description": "Unique identifier, card name using only lowercase, numbers and underscore"
+                                },
+                                "title": {
+                                    "type": "string",
+                                    "maxLength": 70,
+                                    "description": "Card title"
+                                },
+                                "paragraph": {
+                                    "type": "string",
+                                    "maxLength": 255,
+                                    "description": "Card text, usually a brief description"
+                                },
+                                "custom_aggregation": {
+                                    "type": "object",
+                                    "required": [
+                                        "resource",
+                                        "pipeline"
+                                    ],
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "resource": {
+                                            "type": "string",
+                                            "enum": [
+                                                "products",
+                                                "categories",
+                                                "brands",
+                                                "collections",
+                                                "grids",
+                                                "customers",
+                                                "carts",
+                                                "orders"
+                                            ],
+                                            "description": "API resource"
+                                        },
+                                        "pipeline": {
+                                            "type": "array",
+                                            "minItems": 1,
+                                            "maxItems": 50,
+                                            "items": {
+                                                "type": "object",
+                                                "description": "Custom aggregation pipeline step"
+                                            },
+                                            "description": "Aggregation pipeline"
+                                        }
+                                    },
+                                    "description": "Custom card calling MongoDB aggregate"
+                                }
+                            },
+                            "description": "Card object"
+                        },
+                        "description": "List of dashboard cards chosen by user"
+                    },
+                    "panel_dismissed_cards": {
+                        "type": "array",
+                        "maxItems": 300,
+                        "items": {
+                            "type": "string",
+                            "pattern": "^[a-z0-9_]{2,60}$",
+                            "description": "Unique identifier, card name using only lowercase, numbers and underscore"
+                        },
+                        "description": "List of dashboard dismissed cards, by card_id"
+                    },
+                    "panel_form_fields": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "maxProperties": 20,
+                        "patternProperties": {
+                            "^[a-z]{4,60}s$": {
+                                "type": "array",
+                                "maxItems": 200,
+                                "items": {
+                                    "type": "string",
+                                    "maxLength": 255,
+                                    "pattern": "^[a-z0-9_.]+$",
+                                    "description": "Resource property name with dot notation for nested object"
+                                },
+                                "description": "List of chosen resource properties (fields)"
+                            }
+                        },
+                        "description": "Custom (user-selected) fields to display on dashboard forms, resource as property name"
+                    },
+                    "edit_storefront": {
+                        "type": "boolean",
+                        "default": true,
+                        "description": "Whether the user is able to use builder and file manager to edit storefront"
+                    },
+                    "flags": {
+                        "type": "array",
+                        "uniqueItems": true,
+                        "maxItems": 10,
+                        "items": {
+                            "type": "string",
+                            "maxLength": 20,
+                            "description": "Flag title"
+                        },
+                        "description": "Flags to associate additional info"
+                    },
+                    "notes": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "description": "Optional notes with additional info about this user"
+                    }
+                }
+            }

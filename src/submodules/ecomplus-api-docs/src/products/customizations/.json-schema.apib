@@ -1,0 +1,138 @@
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "$schema": "http://json-schema.org/draft-06/schema#",
+                "title": "Customization field",
+                "type": "object",
+                "required": [
+                    "label"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "tag": {
+                        "type": "string",
+                        "maxLength": 20,
+                        "pattern": "^[a-z0-9_]+$",
+                        "description": "Tag to identify object, use only lowercase letters, digits and underscore"
+                    },
+                    "label": {
+                        "type": "string",
+                        "maxLength": 70,
+                        "description": "Title for this customization field, can be the grid title"
+                    },
+                    "grid_id": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9_]{2,30}$",
+                        "description": "If this field is related to a grid, put the grid_id"
+                    },
+                    "require": {
+                        "type": "boolean",
+                        "default": false,
+                        "description": "If field is required (true), customer must always choose a value"
+                    },
+                    "options": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "minProperties": 1,
+                        "maxProperties": 200,
+                        "patternProperties": {
+                            "^[a-z0-9_]{2,30}$": {
+                                "type": "object",
+                                "required": [
+                                    "text"
+                                ],
+                                "additionalProperties": false,
+                                "properties": {
+                                    "text": {
+                                        "type": "string",
+                                        "maxLength": 70,
+                                        "description": "Option text value displayed for the client"
+                                    },
+                                    "colors": {
+                                        "type": "array",
+                                        "maxItems": 4,
+                                        "items": {
+                                            "type": "string",
+                                            "pattern": "^#[a-f0-9]{6}$",
+                                            "description": "RGB code with #"
+                                        },
+                                        "description": "Option color palette (if the field involves colors), starting by main color"
+                                    },
+                                    "add_to_price": {
+                                        "type": "object",
+                                        "required": [
+                                            "addition"
+                                        ],
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "percentage",
+                                                    "fixed"
+                                                ],
+                                                "default": "percentage",
+                                                "description": "Type of price addition"
+                                            },
+                                            "addition": {
+                                                "type": "number",
+                                                "multipleOf": 0.0001,
+                                                "minimum": -99999999,
+                                                "maximum": 99999999,
+                                                "description": "Additional value, could be negative"
+                                            }
+                                        },
+                                        "description": "Specific price alteration if customer choose this option"
+                                    }
+                                },
+                                "description": "Option object"
+                            }
+                        },
+                        "description": "Pre-defined options for this customization field, option_id as property name"
+                    },
+                    "custom_value": {
+                        "type": "boolean",
+                        "default": true,
+                        "description": "If this field accept custom value defined by customer"
+                    },
+                    "attachment": {
+                        "type": "boolean",
+                        "default": false,
+                        "description": "If this field accept customer file attachment"
+                    },
+                    "add_to_price": {
+                        "type": "object",
+                        "required": [
+                            "addition"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": [
+                                    "percentage",
+                                    "fixed"
+                                ],
+                                "default": "percentage",
+                                "description": "Type of price addition"
+                            },
+                            "addition": {
+                                "type": "number",
+                                "multipleOf": 0.0001,
+                                "minimum": -99999999,
+                                "maximum": 99999999,
+                                "description": "Additional value, could be negative"
+                            }
+                        },
+                        "description": "Default (to all options) price alteration if customer use this field"
+                    }
+                }
+            }

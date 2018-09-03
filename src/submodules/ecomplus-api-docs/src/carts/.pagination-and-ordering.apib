@@ -1,0 +1,63 @@
++ Parameters
+    + limit: 4 (number, optional) - Max number of objects to return
+    + offset: 4 (number, optional) - First entry to return
+    + sort: `-subtotal` (string, optional) - Rules to order resultant objects
+    + fields: `subtotal,discount` (string, optional) - Object properties to return
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "meta": {
+                "limit": 4,
+                "offset": 4,
+                "sort": [
+                  {
+                    "field": "subtotal",
+                    "order": -1
+                  }
+                ],
+                "fields": [
+                  "subtotal",
+                  "discount"
+                ],
+                "query": {}
+              },
+              "result": [
+                {
+                  "_id": "2ca000000000000000000006",
+                  "subtotal": 102.90,
+                  "discount": {
+                    "apply_at": "subtotal",
+                    "type": "percentage",
+                    "value": 10
+                  }
+                },
+                {
+                  "_id": "2ca000000000000000000007",
+                  "subtotal": 101.90
+                },
+                {
+                  "_id": "2ca000000000000000000005",
+                  "subtotal": 100
+                },
+                {
+                  "_id": "2ca000000000000000000004",
+                  "subtotal": 85.80,
+                  "discount": {
+                    "apply_at": "total",
+                    "type": "fixed",
+                    "value": 15
+                  }
+                }
+              ]
+            }

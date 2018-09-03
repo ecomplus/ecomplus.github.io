@@ -1,0 +1,38 @@
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
+    + Body
+
+            {
+              "name": "Special collection",
+              "slug": "special-collection",
+              "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+              "meta_title": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+              "meta_description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+              "products": [
+                "1234567890abcdef01291510",
+                "1234567890abcdef01291511"
+              ],
+              "pictures": [
+                {
+                  "_id": "b74920000000000000000103",
+                  "tag": "banner",
+                  "url": "https://mycdn.com/special-coll-banner.jpg",
+                  "size": "900x200",
+                  "alt": "Special Collection"
+                }
+              ]
+            }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+              "_id": "c92000000000000000001111"
+            }

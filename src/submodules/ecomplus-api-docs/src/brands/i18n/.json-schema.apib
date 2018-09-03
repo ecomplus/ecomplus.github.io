@@ -1,0 +1,25 @@
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (i18n/json)
+
+    + Body
+
+            {
+                "$schema": "http://json-schema.org/draft-06/schema#",
+                "title": "Name language translations",
+                "type": "object",
+                "additionalProperties": false,
+                "minProperties": 1,
+                "maxProperties": 10,
+                "patternProperties": {
+                    "^[a-z]{2}(_[a-z]{2})?$": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "description": "Translated name"
+                    }
+                }
+            }

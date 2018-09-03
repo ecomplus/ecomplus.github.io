@@ -1,0 +1,78 @@
++ Parameters
+    + limit: 3 (number, optional) - Max number of objects to return
+    + offset: 2 (number, optional) - First entry to return
+    + sort: `-financial_status.updated_at` (string, optional) - Rules to order resultant objects
+    + fields: `financial_status,amount` (string, optional) - Object properties to return
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "meta": {
+                "limit": 3,
+                "offset": 2,
+                "sort": [
+                  {
+                    "field": "financial_status.updated_at",
+                    "order": -1
+                  }
+                ],
+                "fields": [
+                  "financial_status",
+                  "amount"
+                ],
+                "query": {}
+              },
+              "result": [
+                {
+                  "_id": "fe1000000000000000000003",
+                  "financial_status": {
+                    "updated_at": "2017-11-17T09:10:00.612Z",
+                    "current": "paid"
+                  },
+                  "amount": {
+                    "total": 110,
+                    "subtotal": 90,
+                    "freight": 30,
+                    "discount": 10
+                  }
+                },
+                {
+                  "_id": "fe1000000000000000000002",
+                  "financial_status": {
+                    "updated_at": "2017-11-16T03:30:00.612Z",
+                    "current": "voided"
+                  },
+                  "amount": {
+                    "total": 90.6,
+                    "subtotal": 70,
+                    "freight": 10.60,
+                    "discount": 0,
+                    "tax": 0,
+                    "extra": 10
+                  }
+                },
+                {
+                  "_id": "fe1000000000000000000001",
+                  "financial_status": {
+                    "updated_at": "2017-11-15T14:30:00.612Z",
+                    "current": "paid"
+                  },
+                  "amount": {
+                    "total": 50,
+                    "subtotal": 60,
+                    "freight": 0,
+                    "discount": 10
+                  }
+                }
+              ]
+            }

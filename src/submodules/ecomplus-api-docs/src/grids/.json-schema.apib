@@ -1,0 +1,220 @@
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "$schema": "http://json-schema.org/draft-06/schema#",
+                "title": "Grids",
+                "description": "Grid object model",
+                "type": "object",
+                "required": [
+                    "title",
+                    "grid_id"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "maxLength": 70,
+                        "description": "Grid title"
+                    },
+                    "i18n": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "maxProperties": 10,
+                        "patternProperties": {
+                            "^[a-z]{2}(_[a-z]{2})?$": {
+                                "type": "string",
+                                "maxLength": 255,
+                                "description": "Translated full grid title"
+                            }
+                        },
+                        "description": "Grid title translations"
+                    },
+                    "grid_id": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9_]{2,30}$",
+                        "description": "Unique identifier, grid name using only lowercase, numbers and underscore"
+                    },
+                    "options": {
+                        "type": "array",
+                        "maxItems": 3000,
+                        "items": {
+                            "type": "object",
+                            "required": [
+                                "_id",
+                                "option_id",
+                                "text"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                                "_id": {
+                                    "type": "string",
+                                    "pattern": "^[a-f0-9]{24}$",
+                                    "description": "Unique ID (ObjectID)"
+                                },
+                                "option_id": {
+                                    "type": "string",
+                                    "pattern": "^[a-z0-9_]{2,30}$",
+                                    "description": "Unique identifier, option name using only lowercase, numbers and underscore"
+                                },
+                                "text": {
+                                    "type": "string",
+                                    "maxLength": 255,
+                                    "description": "Option text value displayed for the client"
+                                },
+                                "value": {
+                                    "type": "string",
+                                    "maxLength": 200,
+                                    "description": "Default normalized value to use in integrations"
+                                },
+                                "external_values": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "maxProperties": 5,
+                                    "patternProperties": {
+                                        "^[a-z0-9_]{2,30}$": {
+                                            "type": "string",
+                                            "maxLength": 200,
+                                            "description": "Attribute text value"
+                                        }
+                                    },
+                                    "description": "Normalized values to use in specific integrations (ID in property)"
+                                },
+                                "colors": {
+                                    "type": "array",
+                                    "maxItems": 6,
+                                    "items": {
+                                        "type": "string",
+                                        "pattern": "^#[a-f0-9]{6}$",
+                                        "description": "RGB code with #"
+                                    },
+                                    "description": "Option color palette (if the grid involves colors), starting by main color"
+                                },
+                                "add_to_price": {
+                                    "type": "object",
+                                    "required": [
+                                        "addition"
+                                    ],
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "enum": [
+                                                "percentage",
+                                                "fixed"
+                                            ],
+                                            "default": "percentage",
+                                            "description": "Type of price addition"
+                                        },
+                                        "addition": {
+                                            "type": "number",
+                                            "multipleOf": 0.0001,
+                                            "minimum": -99999999,
+                                            "maximum": 99999999,
+                                            "description": "Additional value, could be negative"
+                                        }
+                                    },
+                                    "description": "Default price alteration for product with this option for customization or variations"
+                                }
+                            },
+                            "description": "Option object"
+                        },
+                        "description": "Pre-defined options for this grid, used in specifications, customization and variations"
+                    },
+                    "custom_value": {
+                        "type": "boolean",
+                        "default": false,
+                        "description": "If this grid accept custom value defined by customer (product customization)"
+                    },
+                    "attachment": {
+                        "type": "boolean",
+                        "default": false,
+                        "description": "If this grid accept customer file attachment"
+                    },
+                    "add_to_price": {
+                        "type": "object",
+                        "required": [
+                            "addition"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": [
+                                    "percentage",
+                                    "fixed"
+                                ],
+                                "default": "percentage",
+                                "description": "Type of price addition"
+                            },
+                            "addition": {
+                                "type": "number",
+                                "multipleOf": 0.0001,
+                                "minimum": -99999999,
+                                "maximum": 99999999,
+                                "description": "Additional value, could be negative"
+                            }
+                        },
+                        "description": "Default price alteration for product with this grid for customization or variations"
+                    },
+                    "metafields": {
+                        "type": "array",
+                        "maxItems": 100,
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "required": [
+                                "_id",
+                                "value"
+                            ],
+                            "properties": {
+                                "_id": {
+                                    "type": "string",
+                                    "pattern": "^[a-f0-9]{24}$",
+                                    "description": "Unique ID (ObjectID)"
+                                },
+                                "namespace": {
+                                    "type": "string",
+                                    "maxLength": 30,
+                                    "description": "String to help distinguish who (or which app) created and can use the metafield"
+                                },
+                                "field": {
+                                    "type": "string",
+                                    "maxLength": 50,
+                                    "description": "Field name"
+                                },
+                                "value": {
+                                    "type": "string",
+                                    "maxLength": 255,
+                                    "description": "Custom property value"
+                                }
+                            },
+                            "description": "Custom attribute object"
+                        },
+                        "description": "List of custom attributes"
+                    },
+                    "flags": {
+                        "type": "array",
+                        "uniqueItems": true,
+                        "maxItems": 10,
+                        "items": {
+                            "type": "string",
+                            "maxLength": 20,
+                            "description": "Flag title"
+                        },
+                        "description": "Flags to associate additional info"
+                    },
+                    "notes": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "description": "Optional notes with additional info about this grid"
+                    }
+                }
+            }

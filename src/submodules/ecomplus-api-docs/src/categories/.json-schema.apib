@@ -1,0 +1,312 @@
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "$schema": "http://json-schema.org/draft-06/schema#",
+                "title": "Categories",
+                "description": "Category object model",
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "description": "Category full name"
+                    },
+                    "i18n": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "maxProperties": 10,
+                        "patternProperties": {
+                            "^[a-z]{2}(_[a-z]{2})?$": {
+                                "type": "string",
+                                "maxLength": 255,
+                                "description": "Translated full category name"
+                            }
+                        },
+                        "description": "Category name translations"
+                    },
+                    "subtitle": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "description": "Optional subtitle intended to be used for SEO or layout purposes"
+                    },
+                    "slug": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "pattern": "^[a-z0-9]([a-z0-9-_./]+)?$",
+                        "description": "Slug to complete page URL, starting with number or lowercase letter"
+                    },
+                    "permalink": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "format": "uri",
+                        "description": "Permanent URL to category page"
+                    },
+                    "mobile_link": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "format": "uri",
+                        "description": "Optional URL specific to mobile devices"
+                    },
+                    "short_description": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "description": "Short category description in plain text"
+                    },
+                    "body_html": {
+                        "type": "string",
+                        "maxLength": 250000,
+                        "description": "Full category description, may use HTML tags"
+                    },
+                    "body_text": {
+                        "type": "string",
+                        "maxLength": 250000,
+                        "description": "Full category description, plain text only"
+                    },
+                    "meta_title": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "description": "Title tag for page SEO"
+                    },
+                    "meta_description": {
+                        "type": "string",
+                        "maxLength": 1000,
+                        "description": "Meta description tag for page SEO"
+                    },
+                    "parent": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                            "name"
+                        ],
+                        "properties": {
+                            "_id": {
+                                "type": "string",
+                                "pattern": "^[a-f0-9]{24}$",
+                                "description": "Category ID"
+                            },
+                            "name": {
+                                "type": "string",
+                                "maxLength": 255,
+                                "description": "Category name"
+                            },
+                            "slug": {
+                                "type": "string",
+                                "maxLength": 255,
+                                "pattern": "^[a-z0-9]([a-z0-9-_./]+)?$",
+                                "description": "Category page slug"
+                            }
+                        },
+                        "description": "Category parent (above) of this category"
+                    },
+                    "childs": {
+                        "type": "array",
+                        "maxItems": 200,
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "required": [
+                                "name"
+                            ],
+                            "properties": {
+                                "_id": {
+                                    "type": "string",
+                                    "pattern": "^[a-f0-9]{24}$",
+                                    "description": "Category ID"
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "maxLength": 255,
+                                    "description": "Category name"
+                                },
+                                "slug": {
+                                    "type": "string",
+                                    "maxLength": 255,
+                                    "pattern": "^[a-z0-9]([a-z0-9-_./]+)?$",
+                                    "description": "Category page slug"
+                                }
+                            },
+                            "description": "Child category"
+                        },
+                        "description": "List of categories daughters of this category"
+                    },
+                    "grids": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "maxProperties": 200,
+                        "patternProperties": {
+                            "^[a-z0-9_]{2,30}$": {
+                                "type": "object",
+                                "required": [
+                                    "title"
+                                ],
+                                "additionalProperties": false,
+                                "properties": {
+                                    "_id": {
+                                        "type": "string",
+                                        "pattern": "^[a-f0-9]{24}$",
+                                        "description": "Grid object ID"
+                                    },
+                                    "title": {
+                                        "type": "string",
+                                        "maxLength": 70,
+                                        "description": "Grid title"
+                                    },
+                                    "is_filter": {
+                                        "type": "boolean",
+                                        "default": false,
+                                        "description": "Grid used to results filtering (search aggregations)"
+                                    }
+                                },
+                                "description": "Grid properties"
+                            }
+                        },
+                        "description": "Grids for results filtering and products composition, grid_id as property name"
+                    },
+                    "icon": {
+                        "type": "object",
+                        "required": [
+                            "url"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "url": {
+                                "type": "string",
+                                "maxLength": 255,
+                                "format": "uri",
+                                "description": "Image link"
+                            },
+                            "size": {
+                                "type": "string",
+                                "maxLength": 11,
+                                "pattern": "^[1-9]([0-9]+)?x[1-9]([0-9]+)?$",
+                                "description": "Image size (width x height) in px, such as 100x50 (100px width, 50px height)"
+                            },
+                            "alt": {
+                                "type": "string",
+                                "maxLength": 255,
+                                "description": "Alternative text, HTML alt tag (important for SEO)"
+                            }
+                        },
+                        "description": "Category icon image"
+                    },
+                    "pictures": {
+                        "type": "array",
+                        "maxItems": 50,
+                        "items": {
+                            "type": "object",
+                            "required": [
+                                "_id",
+                                "url"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                                "_id": {
+                                    "type": "string",
+                                    "pattern": "^[a-f0-9]{24}$",
+                                    "description": "Unique ID (ObjectID)"
+                                },
+                                "tag": {
+                                    "type": "string",
+                                    "maxLength": 20,
+                                    "pattern": "^[a-z0-9_]+$",
+                                    "description": "Tag to identify object, use only lowercase letters, digits and underscore"
+                                },
+                                "url": {
+                                    "type": "string",
+                                    "maxLength": 255,
+                                    "format": "uri",
+                                    "description": "Image link"
+                                },
+                                "size": {
+                                    "type": "string",
+                                    "maxLength": 11,
+                                    "pattern": "^[1-9]([0-9]+)?x[1-9]([0-9]+)?$",
+                                    "description": "Image size (width x height) in px, such as 100x50 (100px width, 50px height)"
+                                },
+                                "alt": {
+                                    "type": "string",
+                                    "maxLength": 255,
+                                    "description": "Alternative text, HTML alt tag (important for SEO)"
+                                }
+                            },
+                            "description": "Image object"
+                        },
+                        "description": "List of category images"
+                    },
+                    "ml_category_id": {
+                        "type": "string",
+                        "pattern": "^ML[A-Z][0-9]{2,9}$",
+                        "description": "Mercado Libre Taxonomy: https://api.mercadolibre.com/sites/MLB/categories"
+                    },
+                    "google_product_category_id": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 999999999999,
+                        "description": "Google Taxonomy: https://www.google.com/basepages/producttype/taxonomy-with-ids.pt-BR.txt"
+                    },
+                    "metafields": {
+                        "type": "array",
+                        "maxItems": 100,
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "required": [
+                                "_id",
+                                "value"
+                            ],
+                            "properties": {
+                                "_id": {
+                                    "type": "string",
+                                    "pattern": "^[a-f0-9]{24}$",
+                                    "description": "Unique ID (ObjectID)"
+                                },
+                                "namespace": {
+                                    "type": "string",
+                                    "maxLength": 30,
+                                    "description": "String to help distinguish who (or which app) created and can use the metafield"
+                                },
+                                "field": {
+                                    "type": "string",
+                                    "maxLength": 50,
+                                    "description": "Field name"
+                                },
+                                "value": {
+                                    "type": "string",
+                                    "maxLength": 255,
+                                    "description": "Custom property value"
+                                }
+                            },
+                            "description": "Custom attribute object"
+                        },
+                        "description": "List of custom attributes"
+                    },
+                    "flags": {
+                        "type": "array",
+                        "uniqueItems": true,
+                        "maxItems": 10,
+                        "items": {
+                            "type": "string",
+                            "maxLength": 20,
+                            "description": "Flag title"
+                        },
+                        "description": "Flags to associate additional info"
+                    },
+                    "notes": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "description": "Optional notes with additional info about this category"
+                    }
+                }
+            }

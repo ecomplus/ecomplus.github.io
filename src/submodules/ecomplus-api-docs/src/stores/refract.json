@@ -1,0 +1,955 @@
+{
+  "element": "parseResult",
+  "content": [
+    {
+      "element": "category",
+      "meta": {
+        "classes": [
+          "api"
+        ],
+        "title": ""
+      },
+      "content": [
+        {
+          "element": "category",
+          "meta": {
+            "classes": [
+              "resourceGroup"
+            ],
+            "title": "Stores"
+          },
+          "content": [
+            {
+              "element": "copy",
+              "content": "`.stores`\n\nUse the **stores** resource to read and update the\nshop main informations and IDs of saved documents"
+            },
+            {
+              "element": "resource",
+              "meta": {
+                "title": "Store Object"
+              },
+              "attributes": {
+                "href": "/stores/schema.json"
+              },
+              "content": [
+                {
+                  "element": "dataStructure",
+                  "content": [
+                    {
+                      "element": "object",
+                      "meta": {
+                        "id": "Store Object"
+                      },
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Store name - Max length: **255**"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "name"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Simple description of store - Max length: **3000**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "description"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "ID of store main segment, get options and IDs at /segments.json - Mininum: **0** - Maximum: **65535**"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "segment_id"
+                            },
+                            "value": {
+                              "element": "number"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Responsible person or organization document type"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "doc_type"
+                            },
+                            "value": {
+                              "element": "enum",
+                              "content": [
+                                {
+                                  "element": "string",
+                                  "content": "CPF"
+                                },
+                                {
+                                  "element": "string",
+                                  "content": "CNPJ"
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Responsible person or organization document number (only numbers) - Max length: **19** - RegEx pattern: **`^[0-9]+$`**"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "doc_number"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Municipal or state registration if exists"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "inscription_type"
+                            },
+                            "value": {
+                              "element": "enum",
+                              "content": [
+                                {
+                                  "element": "string",
+                                  "content": "State"
+                                },
+                                {
+                                  "element": "string",
+                                  "content": "Municipal"
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Municipal or state registration number (with characters) if exists - Max length: **50**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "inscription_number"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Registered company name or responsible fullname - Max length: **255**"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "corporate_name"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Full registered address of company - Max length: **255**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "address"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Financial contact phone - Max length: **19** - RegEx pattern: **`^[0-9]+$`**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "phone"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Name of company representative for commercial contact - Max length: **255**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "representant_name"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Email address of company representative - Max length: **255** - Format: **email**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "representant_email"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Public email address for news and general contact - Max length: **255** - Format: **email**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "contact_email"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Email address to receive notifications, invoices and vouchers - Max length: **255** - Format: **email**"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "financial_email"
+                            },
+                            "value": {
+                              "element": "string"
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Image link to shop's logo"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "logo"
+                            },
+                            "value": {
+                              "element": "object",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "meta": {
+                                    "description": "Image link - Max length: **255** - Format: **uri**"
+                                  },
+                                  "attributes": {
+                                    "typeAttributes": [
+                                      "required"
+                                    ]
+                                  },
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "url"
+                                    },
+                                    "value": {
+                                      "element": "string"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "meta": {
+                                    "description": "Image size (width x height) in px, such as 100x50 (100px width, 50px height) - Max length: **11** - RegEx pattern: **`^[1-9]([0-9]+)?x[1-9]([0-9]+)?$`**"
+                                  },
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "size"
+                                    },
+                                    "value": {
+                                      "element": "string"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "meta": {
+                                    "description": "Alternative text, HTML alt tag (important for SEO) - Max length: **255**"
+                                  },
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "alt"
+                                    },
+                                    "value": {
+                                      "element": "string"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "List of available languages on store channels - Max elements: **30**"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "languages"
+                            },
+                            "value": {
+                              "element": "array",
+                              "content": [
+                                {
+                                  "element": "string",
+                                  "meta": {
+                                    "description": "Language two letters code, sometimes with region, eg.: `pt_br`, fr, `en_us`"
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "Providers for OAuth customer authentication in store"
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "oauth_providers"
+                            },
+                            "value": {
+                              "element": "object",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "meta": {
+                                    "description": "Social network OAuth app"
+                                  },
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "^facebook|google|windowslive$"
+                                    },
+                                    "value": {
+                                      "element": "object",
+                                      "content": [
+                                        {
+                                          "element": "member",
+                                          "meta": {
+                                            "description": "App client ID - Max length: **255**"
+                                          },
+                                          "attributes": {
+                                            "typeAttributes": [
+                                              "required"
+                                            ]
+                                          },
+                                          "content": {
+                                            "key": {
+                                              "element": "string",
+                                              "content": "client_id"
+                                            },
+                                            "value": {
+                                              "element": "string"
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "element": "member",
+                                          "meta": {
+                                            "description": "App client secret - Max length: **255**"
+                                          },
+                                          "attributes": {
+                                            "typeAttributes": [
+                                              "required"
+                                            ]
+                                          },
+                                          "content": {
+                                            "key": {
+                                              "element": "string",
+                                              "content": "client_secret"
+                                            },
+                                            "value": {
+                                              "element": "string"
+                                            }
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "JSON Schema"
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n    \"$schema\": \"http://json-schema.org/draft-06/schema#\",\n    \"title\": \"Stores\",\n    \"description\": \"Store info and resource IDs\",\n    \"type\": \"object\",\n    \"required\": [\n        \"name\",\n        \"segment_id\",\n        \"doc_type\",\n        \"doc_number\",\n        \"corporate_name\",\n        \"financial_email\"\n    ],\n    \"additionalProperties\": false,\n    \"properties\": {\n        \"name\": {\n            \"type\": \"string\",\n            \"maxLength\": 255,\n            \"description\": \"Store name\"\n        },\n        \"description\": {\n            \"type\": \"string\",\n            \"maxLength\": 3000,\n            \"description\": \"Simple description of store\"\n        },\n        \"segment_id\": {\n            \"type\": \"integer\",\n            \"minimum\": 0,\n            \"maximum\": 65535,\n            \"description\": \"ID of store main segment, get options and IDs at /segments.json\"\n        },\n        \"doc_type\": {\n            \"type\": \"string\",\n            \"enum\": [\n                \"CPF\",\n                \"CNPJ\"\n            ],\n            \"description\": \"Responsible person or organization document type\"\n        },\n        \"doc_number\": {\n            \"type\": \"string\",\n            \"maxLength\": 19,\n            \"pattern\": \"^[0-9]+$\",\n            \"description\": \"Responsible person or organization document number (only numbers)\"\n        },\n        \"inscription_type\": {\n            \"type\": \"string\",\n            \"enum\": [\n                \"State\",\n                \"Municipal\"\n            ],\n            \"description\": \"Municipal or state registration if exists\"\n        },\n        \"inscription_number\": {\n            \"type\": \"string\",\n            \"maxLength\": 50,\n            \"description\": \"Municipal or state registration number (with characters) if exists\"\n        },\n        \"corporate_name\": {\n            \"type\": \"string\",\n            \"maxLength\": 255,\n            \"description\": \"Registered company name or responsible fullname\"\n        },\n        \"address\": {\n            \"type\": \"string\",\n            \"maxLength\": 255,\n            \"description\": \"Full registered address of company\"\n        },\n        \"phone\": {\n            \"type\": \"string\",\n            \"maxLength\": 19,\n            \"pattern\": \"^[0-9]+$\",\n            \"description\": \"Financial contact phone\"\n        },\n        \"representant_name\": {\n            \"type\": \"string\",\n            \"maxLength\": 255,\n            \"description\": \"Name of company representative for commercial contact\"\n        },\n        \"representant_email\": {\n            \"type\": \"string\",\n            \"maxLength\": 255,\n            \"format\": \"email\",\n            \"description\": \"Email address of company representative\"\n        },\n        \"contact_email\": {\n            \"type\": \"string\",\n            \"maxLength\": 255,\n            \"format\": \"email\",\n            \"description\": \"Public email address for news and general contact\"\n        },\n        \"financial_email\": {\n            \"type\": \"string\",\n            \"maxLength\": 255,\n            \"format\": \"email\",\n            \"description\": \"Email address to receive notifications, invoices and vouchers\"\n        },\n        \"logo\": {\n            \"type\": \"object\",\n            \"required\": [\n                \"url\"\n            ],\n            \"additionalProperties\": false,\n            \"properties\": {\n                \"url\": {\n                    \"type\": \"string\",\n                    \"maxLength\": 255,\n                    \"format\": \"uri\",\n                    \"description\": \"Image link\"\n                },\n                \"size\": {\n                    \"type\": \"string\",\n                    \"maxLength\": 11,\n                    \"pattern\": \"^[1-9]([0-9]+)?x[1-9]([0-9]+)?$\",\n                    \"description\": \"Image size (width x height) in px, such as 100x50 (100px width, 50px height)\"\n                },\n                \"alt\": {\n                    \"type\": \"string\",\n                    \"maxLength\": 255,\n                    \"description\": \"Alternative text, HTML alt tag (important for SEO)\"\n                }\n            },\n            \"description\": \"Image link to shop's logo\"\n        },\n        \"languages\": {\n            \"type\": \"array\",\n            \"uniqueItems\": true,\n            \"maxItems\": 30,\n            \"items\": {\n                \"type\": \"string\",\n                \"pattern\": \"^[a-z]{2}(_[a-z]{2})?$\",\n                \"description\": \"Language two letters code, sometimes with region, eg.: pt_br, fr, en_us\"\n            },\n            \"description\": \"List of available languages on store channels\"\n        },\n        \"oauth_providers\": {\n            \"type\": \"object\",\n            \"additionalProperties\": false,\n            \"patternProperties\": {\n                \"^facebook|google|windowslive$\": {\n                    \"type\": \"object\",\n                    \"additionalProperties\": false,\n                    \"required\": [\n                        \"provider\",\n                        \"client_id\",\n                        \"client_secret\"\n                    ],\n                    \"properties\": {\n                        \"client_id\": {\n                            \"type\": \"string\",\n                            \"maxLength\": 255,\n                            \"description\": \"App client ID\"\n                        },\n                        \"client_secret\": {\n                            \"type\": \"string\",\n                            \"maxLength\": 255,\n                            \"description\": \"App client secret\"\n                        }\n                    },\n                    \"description\": \"Social network OAuth app\"\n                }\n            },\n            \"description\": \"Providers for OAuth customer authentication in store\"\n        }\n    }\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "element": "resource",
+              "meta": {
+                "title": "Specific Store"
+              },
+              "attributes": {
+                "href": "/stores/{_id}.json"
+              },
+              "content": [
+                {
+                  "element": "copy",
+                  "content": "*/stores/[_id].json*\n\n> Authentication<br>_GET_: **none**\n\nResponse body will follow\n[this model](#reference/stores/store-object), but only with public data,\nreturning `_id`, `store_id`, `name`, `description`, `segment_id`,\n`contact_email`, `referral_id`, `partner_id`, `logo` and `languages` properties"
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Read Store"
+                  },
+                  "attributes": {
+                    "hrefVariables": {
+                      "element": "hrefVariables",
+                      "content": [
+                        {
+                          "element": "member",
+                          "meta": {
+                            "description": "The store object ID",
+                            "title": "string"
+                          },
+                          "attributes": {
+                            "typeAttributes": [
+                              "required"
+                            ]
+                          },
+                          "content": {
+                            "key": {
+                              "element": "string",
+                              "content": "_id"
+                            },
+                            "value": {
+                              "element": "string",
+                              "content": "5a674f224e0dcec2c3353d9d"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"_id\": \"5a674f224e0dcec2c3353d9d\",\n  \"store_id\": 100,\n  \"name\": \"Minha Loja Online\",\n  \"description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\",\n  \"segment_id\": 23,\n  \"contact_email\": \"contato@sample.shop.eg\",\n  \"logo\": {\n    \"url\": \"https://sample.shop.eg/assets/logo.png\",\n    \"size\": \"120x80\"\n  }\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "element": "resource",
+              "meta": {
+                "title": "Your Store"
+              },
+              "attributes": {
+                "href": "/stores/me.json"
+              },
+              "content": [
+                {
+                  "element": "copy",
+                  "content": "*/stores/me.json*\n\n> Authentication<br>_GET_, _PATCH_: **required**\n\nIn read requests, response body will follow\n[this model](#reference/stores/store-object)\n\nFor editing, request body must obey the same specifications,\nbut in this case there are no required fields"
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Read Your Store"
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "GET",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"_id\": \"5a674f224e0dcec2c3353d9d\",\n  \"created_at\": \"2017-11-19T13:10:00.612Z\",\n  \"store_id\": 100,\n  \"resources\": {\n    \"products\": [\n      \"1234567890abcdef01291510\",\n      \"1234567890abcdef01291511\",\n      \"1234567890abcdef01291512\"\n    ],\n    \"brands\": [\n      \"a10000000000000000001110\",\n      \"a10000000000000000001111\",\n      \"a10000000000000000001112\",\n      \"a10000000000000000001113\",\n      \"a10000000000000000001114\",\n      \"a10000000000000000001115\",\n    ],\n    \"categories\": [\n      \"b10000000000000000001110\",\n      \"b10000000000000000001111\",\n      \"b10000000000000000001112\",\n      \"b10000000000000000001113\",\n      \"b10000000000000000001114\"\n    ],\n    \"orders\": [\n      \"fe1000000000000000000000\",\n      \"fe1000000000000000000001\"\n    ]\n  },\n  \"name\": \"Minha Loja Online\",\n  \"description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\",\n  \"segment_id\": 23,\n  \"doc_type\": \"CNPJ\",\n  \"doc_number\": \"12345678901234\",\n  \"corporate_name\": \"Minha Loja Online LTDA\",\n  \"address\": \"Rua Exemplar 100, Bairro Examplar, São Paulo, SP\",\n  \"phone\": \"31988887777\",\n  \"representant_name\": \"Fulano Ciclano\",\n  \"representant_email\": \"fulano@sample.shop.eg\",\n  \"contact_email\": \"contato@sample.shop.eg\",\n  \"financial_email\": \"financeiro@sample.shop.eg\",\n  \"logo\": {\n    \"url\": \"https://sample.shop.eg/assets/logo.png\",\n    \"size\": \"120x80\"\n  }\n}\n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "element": "transition",
+                  "meta": {
+                    "title": "Edit Your Store"
+                  },
+                  "content": [
+                    {
+                      "element": "httpTransaction",
+                      "content": [
+                        {
+                          "element": "httpRequest",
+                          "attributes": {
+                            "method": "PATCH",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "application/json"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Store-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "100"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-Access-Token"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "eyJhbGciOi.eyJzdWIi.AFONFh7HgQ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "X-My-ID"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "5a6757722b66f68dbed44526"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "application/json"
+                              },
+                              "content": "{\n  \"description\": \"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\"\n}\n"
+                            }
+                          ]
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "204"
+                          },
+                          "content": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

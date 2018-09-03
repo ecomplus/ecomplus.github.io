@@ -1,0 +1,508 @@
+## Group Authentications
+
+`.authentications`
+
+Use the **authentications** resource to create, read, update and delete
+admin users in a merchant's store
+
+Users created from this resource should authenticate with API by
+[this way](#reference/authenticate-yourself)
+
+### Authentication Object [/authentications/schema.json]
+
++ Attributes (object)
+    + `username` (string, required) - Simple username for identification, only numbers and lowercase letters - Min length: **4** - Max length: **30** - RegEx pattern: **`^[0-9a-z]+$`**
+    + `locale`: pt_br (string) - User language two letter code, sometimes with region, eg.: `pt_br`, fr, `en_us` - RegEx pattern: **`^[a-z]{2}(_[a-z]{2})?$`**
+    + `email` (string) - User email address - Max length: **200** - Format: **email**
+    + `name` (string) - User full name - Max length: **255**
+    + `phone` (string) - User phone number - Max length: **19** - RegEx pattern: **`^[0-9]+$`**
+    + `pass_md5_hash` (string) - MD5 hash generated with the user's password - RegEx pattern: **`^[a-f0-9]{32}$`**
+    + `panel_preferences` (object) - User preferences in the admin dashboard - Max properties: **100**
+        + `^[a-z0-9_]+$`: true (boolean) - Boolean option value
+    + `panel_shortcuts` (object) - Keyboard shortcuts, keys separated by `+` as property name - Max properties: **100**
+        + `^[a-z0-9](([+][a-z0-9])+)?$` (string) - Shortcut JS (or jQuery) action - Min length: **3** - Max length: **255**
+    + `panel_random_cards`: 0 (number) - Number of random cards to show on dashboard home
+    + `panel_cards` (array) - List of dashboard cards chosen by user - Max elements: **40**
+        + (object) - Card object
+            + `_id` (string, required) - Unique ID (ObjectID) - RegEx pattern: **`^[a-f0-9]{24}$`**
+            + `card_id` (string) - Unique identifier, card name using only lowercase, numbers and underscore - RegEx pattern: **`^[a-z0-9_]{2,60}$`**
+            + `title` (string) - Card title - Max length: **70**
+            + `paragraph` (string) - Card text, usually a brief description - Max length: **255**
+            + `custom_aggregation` (object) - Custom card calling MongoDB aggregate
+                + `resource` (enum, required) - API resource
+                    + `products` (string)
+                    + `categories` (string)
+                    + `brands` (string)
+                    + `collections` (string)
+                    + `grids` (string)
+                    + `customers` (string)
+                    + `carts` (string)
+                    + `orders` (string)
+                + `pipeline` (array, required) - Aggregation pipeline - Min elements: **1** - Max elements: **50**
+                    + (object) - Custom aggregation pipeline step
+    + `panel_dismissed_cards` (array) - List of dashboard dismissed cards, by `card_id` - Max elements: **300**
+        + (string) - Unique identifier, card name using only lowercase, numbers and underscore
+    + `panel_form_fields` (object) - Custom (user-selected) fields to display on dashboard forms, resource as property name - Max properties: **20**
+        + `^[a-z]{4,60}s$` (array) - List of chosen resource properties (fields) - Max elements: **200**
+            + (string) - Resource property name with dot notation for nested object
+    + `edit_storefront`: true (boolean) - Whether the user is able to use builder and file manager to edit storefront
+    + `flags` (array) - Flags to associate additional info - Max elements: **10**
+        + (string) - Flag title
+    + `notes` (string) - Optional notes with additional info about this user - Max length: **255**
+
+#### JSON Schema [GET]
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "$schema": "http://json-schema.org/draft-06/schema#",
+                "title": "Authentications",
+                "description": "Authenticated API user",
+                "type": "object",
+                "required": [
+                    "username"
+                ],
+                "dependencies": {
+                    "pass_md5_hash": [
+                        "email"
+                    ]
+                },
+                "additionalProperties": false,
+                "properties": {
+                    "username": {
+                        "type": "string",
+                        "minLength": 4,
+                        "maxLength": 30,
+                        "pattern": "^[0-9a-z]+$",
+                        "description": "Simple username for identification, only numbers and lowercase letters"
+                    },
+                    "locale": {
+                        "type": "string",
+                        "pattern": "^[a-z]{2}(_[a-z]{2})?$",
+                        "default": "pt_br",
+                        "description": "User language two letter code, sometimes with region, eg.: pt_br, fr, en_us"
+                    },
+                    "email": {
+                        "type": "string",
+                        "maxLength": 200,
+                        "format": "email",
+                        "description": "User email address"
+                    },
+                    "name": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "description": "User full name"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "maxLength": 19,
+                        "pattern": "^[0-9]+$",
+                        "description": "User phone number"
+                    },
+                    "pass_md5_hash": {
+                        "type": "string",
+                        "pattern": "^[a-f0-9]{32}$",
+                        "description": "MD5 hash generated with the user's password"
+                    },
+                    "panel_preferences": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "maxProperties": 100,
+                        "patternProperties": {
+                            "^[a-z0-9_]+$": {
+                                "type": "boolean",
+                                "default": true,
+                                "description": "Boolean option value"
+                            }
+                        },
+                        "description": "User preferences in the admin dashboard"
+                    },
+                    "panel_shortcuts": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "maxProperties": 100,
+                        "patternProperties": {
+                            "^[a-z0-9](([+][a-z0-9])+)?$": {
+                                "type": "string",
+                                "minLength": 3,
+                                "maxLength": 255,
+                                "description": "Shortcut JS (or jQuery) action"
+                            }
+                        },
+                        "description": "Keyboard shortcuts, keys separated by + as property name"
+                    },
+                    "panel_random_cards": {
+                        "type": "integer",
+                        "min": 0,
+                        "max": 20,
+                        "default": 0,
+                        "description": "Number of random cards to show on dashboard home"
+                    },
+                    "panel_cards": {
+                        "type": "array",
+                        "maxItems": 40,
+                        "items": {
+                            "type": "object",
+                            "required": [
+                                "_id"
+                            ],
+                            "additionalProperties": false,
+                            "minProperties": 2,
+                            "properties": {
+                                "_id": {
+                                    "type": "string",
+                                    "pattern": "^[a-f0-9]{24}$",
+                                    "description": "Unique ID (ObjectID)"
+                                },
+                                "card_id": {
+                                    "type": "string",
+                                    "pattern": "^[a-z0-9_]{2,60}$",
+                                    "description": "Unique identifier, card name using only lowercase, numbers and underscore"
+                                },
+                                "title": {
+                                    "type": "string",
+                                    "maxLength": 70,
+                                    "description": "Card title"
+                                },
+                                "paragraph": {
+                                    "type": "string",
+                                    "maxLength": 255,
+                                    "description": "Card text, usually a brief description"
+                                },
+                                "custom_aggregation": {
+                                    "type": "object",
+                                    "required": [
+                                        "resource",
+                                        "pipeline"
+                                    ],
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "resource": {
+                                            "type": "string",
+                                            "enum": [
+                                                "products",
+                                                "categories",
+                                                "brands",
+                                                "collections",
+                                                "grids",
+                                                "customers",
+                                                "carts",
+                                                "orders"
+                                            ],
+                                            "description": "API resource"
+                                        },
+                                        "pipeline": {
+                                            "type": "array",
+                                            "minItems": 1,
+                                            "maxItems": 50,
+                                            "items": {
+                                                "type": "object",
+                                                "description": "Custom aggregation pipeline step"
+                                            },
+                                            "description": "Aggregation pipeline"
+                                        }
+                                    },
+                                    "description": "Custom card calling MongoDB aggregate"
+                                }
+                            },
+                            "description": "Card object"
+                        },
+                        "description": "List of dashboard cards chosen by user"
+                    },
+                    "panel_dismissed_cards": {
+                        "type": "array",
+                        "maxItems": 300,
+                        "items": {
+                            "type": "string",
+                            "pattern": "^[a-z0-9_]{2,60}$",
+                            "description": "Unique identifier, card name using only lowercase, numbers and underscore"
+                        },
+                        "description": "List of dashboard dismissed cards, by card_id"
+                    },
+                    "panel_form_fields": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "maxProperties": 20,
+                        "patternProperties": {
+                            "^[a-z]{4,60}s$": {
+                                "type": "array",
+                                "maxItems": 200,
+                                "items": {
+                                    "type": "string",
+                                    "maxLength": 255,
+                                    "pattern": "^[a-z0-9_.]+$",
+                                    "description": "Resource property name with dot notation for nested object"
+                                },
+                                "description": "List of chosen resource properties (fields)"
+                            }
+                        },
+                        "description": "Custom (user-selected) fields to display on dashboard forms, resource as property name"
+                    },
+                    "edit_storefront": {
+                        "type": "boolean",
+                        "default": true,
+                        "description": "Whether the user is able to use builder and file manager to edit storefront"
+                    },
+                    "flags": {
+                        "type": "array",
+                        "uniqueItems": true,
+                        "maxItems": 10,
+                        "items": {
+                            "type": "string",
+                            "maxLength": 20,
+                            "description": "Flag title"
+                        },
+                        "description": "Flags to associate additional info"
+                    },
+                    "notes": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "description": "Optional notes with additional info about this user"
+                    }
+                }
+            }
+
+### All Authentications [/authentications.json]
+
+*/authentications.json*
+
+> Authentication<br>_GET_, _POST_: **required**
+
+Pagination, filtering and ordering are not available,
+you should not use any URL parameters
+
+List returns only `_id`, `username`, `email` and
+`app` (in case of application auth) of each authentication
+
+To create new authentication, request body must obey the specifications of
+[this model](#reference/authentications/authentication-object)
+
+#### List All Store Authentications [GET /authentications.json]
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "meta": {
+              },
+              "result": [
+                {
+                  "_id": "5a6757722b66f68dbed44526",
+                  "username": "my_username",
+                  "email": "myemail@mail.sample"
+                },
+                {
+                  "_id": "100000000000000000000010",
+                  "username": "fulano",
+                  "email": "fulano@sample.com.br"
+                },
+                {
+                  "_id": "100000000000000000000011",
+                  "username": "john_doe",
+                  "email": "email@sample.com"
+                },
+                {
+                  "_id": "100000000000000000000012",
+                  "app": {
+                    "_id": "42aa00000000000000000113",
+                    "app_id": 1005,
+                    "title": "external"
+                  }
+                }
+              ]
+            }
+
+#### Create New Authentication [POST]
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
+    + Body
+
+            {
+              "username": "john_doe",
+              "email": "email@sample.com",
+              "name": "John Doe",
+              "phone": "31911112222",
+              "pass_md5_hash": "698dc19d489c4e4db73e28a713eab07b"
+            }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+              "_id": "100000000000000000000011"
+            }
+
+### Specific Authentication [/authentications/{_id}.json]
+
+*/authentications/[_id].json*
+
+> Authentication<br>_GET_, _PATCH_, _DELETE_: **required**
+
+In read requests, response body will follow
+[this model](#reference/authentications/authentication-object),
+without `pass_md5_hash` property
+
+It's possible to use __me__ on resource ID (*/authentications/me.json*)
+to work with your own authentication
+(see [Yourself](#reference/authentications/yourself))
+
+For editing, request body must obey the same specifications,
+but in this case there are no required fields
+
+#### Read Authentication [GET]
+
++ Parameters
+    + _id: 100000000000000000000011 (string, required) - The authentication ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "_id": "100000000000000000000011",
+              "created_at": "2017-12-17T13:10:00.612Z",
+              "store_id": 100,
+              "username": "john_doe",
+              "email": "email@sample.com",
+              "name": "John Doe",
+              "phone": "31911112222"
+            }
+
+#### Edit Authentication [PATCH]
+
++ Parameters
+    + _id: 100000000000000000000011 (string, required) - The authentication ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
+    + Body
+
+            {
+              "email": "email@sample.com",
+              "pass_md5_hash": "38851536d87701d2191990e24a7f8d4e"
+            }
+
++ Response 204
+
+#### Remove Authentication [DELETE]
+
++ Parameters
+    + _id: 100000000000000000000011 (string, required) - The authentication ID
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
++ Response 204
+
+### Yourself [/authentications/me.json]
+
+*/authentications/me.json*
+
+> Authentication<br>_GET_, _PATCH_, _DELETE_: **required**
+
+At this endpoint you will work
+with the same authentication of _X-My-ID_ header
+
+In read requests, response body will follow
+[this model](#reference/authentications/authentication-object),
+without `pass_md5_hash` property
+
+For editing, request body must obey the same specifications,
+but in this case there are no required fields
+
+#### Read Your Own Authentication [GET]
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "_id": "5a6757722b66f68dbed44526",
+              "created_at": "2017-11-18T12:30:00.612Z",
+              "store_id": 100,
+              "username": "my_username",
+              "email": "myemail@mail.sample",
+              "name": "My Full Name"
+            }
+
+#### Edit Your Authentication [PATCH]
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
+    + Body
+
+            {
+              "phone": "11944443333"
+            }
+
++ Response 204
+
+#### Remove Your Authentication [DELETE]
+
++ Request (application/json)
+
+    + Headers
+
+            X-Store-ID: 100
+            X-Access-Token: eyJhbGciOi.eyJzdWIi.AFONFh7HgQ
+            X-My-ID: 5a6757722b66f68dbed44526
+
++ Response 204
