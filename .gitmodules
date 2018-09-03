@@ -1,3 +1,12 @@
 [submodule "src/assets/json/els-developers"]
 	path = src/assets/json/els-developers
 	url = https://github.com/ecomclub/els-developers
+[submodule "src/assets/json/reference/ecomplus-api-docs"]
+	path = src/assets/json/reference/ecomplus-api-docs
+	url = https://github.com/ecomclub/ecomplus-api-docs
+[submodule "src/assets/json/reference/ecomplus-search-api-docs"]
+	path = src/assets/json/reference/ecomplus-search-api-docs
+	url = https://github.com/ecomclub/ecomplus-search-api-docs
+[submodule "src/assets/json/reference/ecomplus-graphs-api-docs"]
+	path = src/assets/json/reference/ecomplus-graphs-api-docs
+	url = https://github.com/ecomclub/ecomplus-graphs-api-docs
