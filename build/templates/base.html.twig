@@ -100,6 +100,8 @@
 <!-- /.main -->
 
 <!-- Footer -->
+{## footer not wheel compatible with sticky sidebar #}
+{% if not page.summary %}
 <footer class="footer">
   <div class="container pt-3">
     <div class="mb-3 pb-3">
@@ -144,25 +146,26 @@
       <div class="col-6 col-sm-4 col-md">
         <h6 class="text-uppercase">Reference</h6>
         <ul class="list-unstyled">
-{% for key, api in apis %}
+{##}{% for key, api in apis %}
           <li><a href="{{ urls.reference }}{{ key }}/">{{ api.label }}</a></li>
-{% endfor %}
+{##}{% endfor %}
         </ul>
       </div>
       <div class="col-6 col-sm-4 col-md">
         <h6 class="text-uppercase">Resources</h6>
         <ul class="list-unstyled">
-{% for resource in apis.store.resources %}
-{## skip subresources #}
-{##}{% if resource matches '{^[a-z][^/]+$}' %}
+{##}{% for resource in apis.store.resources %}
+{##}{## skip subresources #}
+{##}{##}{% if resource matches '{^[a-z][^/]+$}' %}
           <li><a href="{{ urls.reference }}store/{{ resource }}">{{ resource|capitalize }}</a></li>
-{##}{% endif %}
-{% endfor %}
+{##}{##}{% endif %}
+{##}{% endfor %}
         </ul>
       </div>
     </div>
   </div>
 </footer>
+{% endif %}
 <!-- /.footer -->
 
 <!-- Scripts -->

@@ -88,4 +88,18 @@ $(function () {
       }
     })
   }
+
+  // handle sidebar scroll
+  var sidebar = $('#sidebar')
+  if (sidebar.length) {
+    var ps
+    try {
+      ps = new window.PerfectScrollbar(sidebar[0], {
+        wheelPropagation: true,
+        wheelSpeed: 0.5
+      })
+    } catch (e) {
+      console.error(e, ps)
+    }
+  }
 })

@@ -29,6 +29,9 @@ $pages = array(
     'title' => 'E-Com Plus for Developers',
     // h1
     'subtitle' => null,
+    // rendered content
+    'summary' => null,
+    'content' => null,
     // meta description
     'description' => 'E-Com Plus is a robust and flexible cloud commerce software, ' .
                      'totally based on REST APIs. ' .
