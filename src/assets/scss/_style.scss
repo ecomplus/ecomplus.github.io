@@ -138,11 +138,31 @@ body > header {
   padding-top: 5rem;
   padding-bottom: 5rem;
 }
+.rendered-summary li {
+  font-weight: 400;
+  font-size: 97%;
+}
+.rendered-summary li a:hover {
+  color: $purple;
+}
+.rendered-summary > ul,
+.rendered-summary > ol {
+  padding-left: 2rem;
+}
+.rendered-summary li ul,
+.rendered-summary li ol {
+  padding-left: 1rem;
+}
+.rendered-summary li * li * li {
+  font-weight: 200;
+}
 .rendered-summary.stick {
   z-index: 1;
   padding-top: 2rem;
-  padding-bottom: 2rem;
   overflow-y: scroll;
+}
+.rendered-summary.stick > *:last-child {
+  padding-bottom: 2rem;
 }
 
 // prims code toolbar
