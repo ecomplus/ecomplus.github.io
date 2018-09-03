@@ -83,8 +83,8 @@
 }
 
 // layout fixes
-main.main-content {
-  z-index: -1;
+body > header {
+  z-index: 901;
 }
 
 // headers backgrounds
@@ -139,9 +139,10 @@ main.main-content {
   padding-bottom: 5rem;
 }
 .rendered-summary.stick {
+  z-index: 1;
   padding-top: 2rem;
   padding-bottom: 2rem;
-  overflow-y: auto;
+  overflow-y: scroll;
 }
 
 // prims code toolbar
