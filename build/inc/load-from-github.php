@@ -113,6 +113,7 @@ foreach ($repos as $repo => $page) {
     $markdown = str_replace('{% endraw %}', '', trim(end($markdown)));
     // parse to HTML
     $content = $parsedown->text($markdown);
+
     // add page
     $pages[] = array(
       'url' => $page['base_url'] . $url,
@@ -121,7 +122,10 @@ foreach ($repos as $repo => $page) {
       'title' => $page['title'],
       // h1 from markdown
       'subtitle' => $subtitle,
-      'description' => $page['description']
+      'description' => $page['description'],
+      // repository info
+      'github_repo' => $repo,
+      'repo_path' => $files[$i]['path']
     );
   }
 }

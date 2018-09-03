@@ -133,10 +133,9 @@ body > header {
 }
 
 // markdown content
-.rendered-content,
 .rendered-summary {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 .rendered-summary li {
   font-weight: 400;
@@ -156,12 +155,13 @@ body > header {
 .rendered-summary li * li * li {
   font-weight: 200;
 }
-.rendered-summary.stick {
+.sidebar-sticky.stick:not(.is-mobile-wide) {
   z-index: 1;
   padding-top: 2rem;
   overflow-y: scroll;
 }
-.rendered-summary.stick > :not(div):last-of-type {
+.sidebar-sticky.stick:not(.is-mobile-wide) > ol:last-of-type,
+.sidebar-sticky.stick:not(.is-mobile-wide) > ul:last-of-type {
   padding-bottom: 2rem;
 }
 
