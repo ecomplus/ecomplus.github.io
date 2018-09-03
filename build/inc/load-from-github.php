@@ -59,8 +59,6 @@ function get_repo_docs ($repo, $repo_path = '') {
 $repos = array(
   'ecomplus-store-template' => array(
     'base_url' => $urls['themes'],
-    'title' => 'Store template · E-Com Plus Developers',
-    'subtitle' => 'Store template',
     'description' => 'Template specifications for E-Com Plus ecommerce themes'
   )
 );
@@ -119,7 +117,8 @@ foreach ($repos as $repo => $page) {
       'url' => $page['base_url'] . $url,
       'summary' => $summary,
       'content' => $content,
-      'title' => $page['title'],
+      // page title
+      'title' => $subtitle . ' · E-Com Plus Developers',
       // h1 from markdown
       'subtitle' => $subtitle,
       'description' => $page['description'],
