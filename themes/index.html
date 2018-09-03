@@ -57,11 +57,16 @@
 <!-- /.navbar -->
 
 <!-- Header -->
+<header class="header py-6">
+  <div class="container">
+    <h1 class="m-0">Storefront theme</h1>
+  </div>
+</header>
 <!-- /.header -->
 
 <!-- Main Content -->
 <main class="main-content">
-<nav class="purple-gradient text-white fw-500" aria-label="breadcrumb">
+<nav class="bb-1" aria-label="breadcrumb">
   <div class="container">
     <ol class="breadcrumb px-0">
       <li class="breadcrumb-item"><a href="/">home</a></li>
@@ -69,8 +74,12 @@
     </ol>
   </div>
 </nav>
-<div class="container rendered-content">
-<h1>Storefront theme</h1>
+
+<div class="container">
+  <div class="row">
+    <!-- Sidebar -->
+    <div class="col-md-4 col-xl-3">
+      <aside class="sidebar sidebar-sticky rendered-summary">
 <h2>Pages</h2>
 <ol>
 <li><a href="./">Storefront theme</a></li>
@@ -112,6 +121,11 @@
 <li><a href="#recommended-css">Recommended CSS</a></li>
 </ul></li>
 </ol>
+      </aside>
+    </div>
+
+    <!-- Content -->
+    <div class="col-md-7 col-xl-8 ml-md-auto rendered-content">
 <h1>Introduction</h1>
 <p>This document is intended to list predefined mustache tags,
 HTML classes and attributes, and
@@ -629,6 +643,8 @@ we recommend to use the following styles:</p>
   }
 }</code></pre>
 <p>Of course you can change the animation time from 1s to what you want.</p>
+    </div>
+  </div>
 </div>
 </main>
 <!-- /.main -->

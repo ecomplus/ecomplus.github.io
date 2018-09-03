@@ -4,7 +4,7 @@
 {## render bradcrumbs nav #}
 {##}{% set breadcrumbs = page.url|split('/') %}
 {##}{% set breadlink = '' %}
-<nav class="purple-gradient text-white fw-500" aria-label="breadcrumb">
+<nav class="bb-1" aria-label="breadcrumb">
   <div class="container">
     <ol class="breadcrumb px-0">
       <li class="breadcrumb-item"><a href="/">home</a></li>
@@ -17,10 +17,29 @@
     </ol>
   </div>
 </nav>
+
 {## predefined page content? #}
 {##}{% if page.content %}
+{##}{##}{% if page.summary %}
+<div class="container">
+  <div class="row">
+    <!-- Sidebar -->
+    <div class="col-md-4 col-xl-3">
+      <aside class="sidebar sidebar-sticky rendered-summary">
+{{ page.summary|raw }}
+      </aside>
+    </div>
+
+    <!-- Content -->
+    <div class="col-md-7 col-xl-8 ml-md-auto rendered-content">
+{{ page.content|raw }}
+    </div>
+  </div>
+</div>
+{##}{##}{% else %}
 <div class="container rendered-content">
 {{ page.content|raw }}
 </div>
+{##}{##}{% endif %}
 {##}{% endif %}
 {% endblock %}

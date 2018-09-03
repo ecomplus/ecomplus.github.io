@@ -57,11 +57,16 @@
 <!-- /.navbar -->
 
 <!-- Header -->
+<header class="header py-6">
+  <div class="container">
+    <h1 class="m-0">Template structure</h1>
+  </div>
+</header>
 <!-- /.header -->
 
 <!-- Main Content -->
 <main class="main-content">
-<nav class="purple-gradient text-white fw-500" aria-label="breadcrumb">
+<nav class="bb-1" aria-label="breadcrumb">
   <div class="container">
     <ol class="breadcrumb px-0">
       <li class="breadcrumb-item"><a href="/">home</a></li>
@@ -70,8 +75,12 @@
     </ol>
   </div>
 </nav>
-<div class="container rendered-content">
-<h1>Template structure</h1>
+
+<div class="container">
+  <div class="row">
+    <!-- Sidebar -->
+    <div class="col-md-4 col-xl-3">
+      <aside class="sidebar sidebar-sticky rendered-summary">
 <h2>Pages</h2>
 <ol>
 <li><a href="./../">Storefront theme</a></li>
@@ -86,6 +95,11 @@
 <li><a href="#pwa">PWA</a></li>
 <li><a href="#complete-example">Complete example</a></li>
 </ol>
+      </aside>
+    </div>
+
+    <!-- Content -->
+    <div class="col-md-7 col-xl-8 ml-md-auto rendered-content">
 <h1>Introduction</h1>
 <p>Such as any other static web application, you are free to
 set up your own directory structure to your E-Com Plus store template,
@@ -168,6 +182,8 @@ and <code>manifest.json</code> inside <code>static</code> folder:</p>
 │   │   └── app.js
 │   └── manifest.json
 └── user.html</code></pre>
+    </div>
+  </div>
 </div>
 </main>
 <!-- /.main -->

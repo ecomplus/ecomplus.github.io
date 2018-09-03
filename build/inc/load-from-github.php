@@ -68,7 +68,6 @@ $docs_dir = __DIR__ . '/../../src/assets/json/els-developers/docs/';
 // parse markdown to HTML
 // https://github.com/erusev/parsedown
 $parsedown = new Parsedown();
-$md_clears = array('{% raw %}', '{% endraw %}');
 
 foreach ($repos as $repo => $page) {
   // array of Markdown files from current repository
@@ -99,15 +98,29 @@ foreach ($repos as $repo => $page) {
       // remove 'README'
       $url = substr($url, 0, -6);
     }
+
+    // partition content
+    list($subtitle, $markdown) = explode(PHP_EOL, $files[$i]['markdown'], 2);
+    // remove # from subtitle
+    $subtitle = ltrim($subtitle, '# ');
     // remove some strings from original Markdown content
-    $markdown = str_replace($md_clears, '', $files[$i]['markdown']);
+    $markdown = explode('{% raw %}', trim($markdown), 2);
+    if (count($markdown) > 1) {
+      $summary = $parsedown->text($markdown[0]);
+    } else {
+      $summary = null;
+    }
+    $markdown = str_replace('{% endraw %}', '', trim(end($markdown)));
+    // parse to HTML
+    $content = $parsedown->text($markdown);
     // add page
     $pages[] = array(
       'url' => $page['base_url'] . $url,
-      'content' => $parsedown->text($markdown),
+      'summary' => $summary,
+      'content' => $content,
       'title' => $page['title'],
       // h1 from markdown
-      'subtitle' => null,
+      'subtitle' => $subtitle,
       'description' => $page['description']
     );
   }
