@@ -82,6 +82,11 @@
   }
 }
 
+// layout fixes
+main.main-content {
+  z-index: -1;
+}
+
 // headers backgrounds
 .header,
 .purple-gradient {
@@ -132,6 +137,11 @@
 .rendered-summary {
   padding-top: 5rem;
   padding-bottom: 5rem;
+}
+.rendered-summary.stick {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  overflow-y: auto;
 }
 
 // prims code toolbar
