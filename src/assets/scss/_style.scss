@@ -147,7 +147,7 @@ body > header {
 .rendered-content table td {
   border: 1px solid #f1f2f3;
 }
-.rendered-content table tbody tr:nth-of-type(2n+1) {
+.rendered-content table tbody tr:nth-of-type(2n) {
   background-color: #fcfdfe;
 }
 .rendered-content table thead th {
