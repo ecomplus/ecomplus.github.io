@@ -127,6 +127,18 @@
   padding-left: 2.1rem;
 }
 
+// markdown content
+.rendered-content {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+// prims code toolbar
+div.code-toolbar > .toolbar a {
+  font-weight: 600;
+  padding: 5px 10px;
+}
+
 // utilities
 .text-purple {
   color: $purple !important;
