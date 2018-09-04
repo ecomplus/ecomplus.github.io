@@ -215,6 +215,23 @@ body > header {
   opacity: .1;
 }
 
+// anchor links
+.anchor-link {
+  color: inherit !important;
+}
+.anchor-link::after {
+  transition: .2s linear;
+  opacity: 0;
+  margin-left: 0.5rem;
+  font-weight: 100;
+  color: $color-primary;
+  content: "#";
+  position: absolute;
+}
+.anchor-link:hover::after {
+  opacity: 1;
+}
+
 // prims code toolbar
 div.code-toolbar > .toolbar a {
   font-weight: 600;

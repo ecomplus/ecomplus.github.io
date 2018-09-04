@@ -15,7 +15,10 @@
       "Apis",
       "callApi",
       "loadContent",
-      "storeId"
+      "storeId",
+      "location",
+      "history",
+      "document"
     ]
   },
   "devDependencies": {

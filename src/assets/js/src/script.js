@@ -89,6 +89,35 @@ $(function () {
     })
   }
 
+  var handleAnchor = function () {
+    // treat anchor links
+    var link = $(this).attr('href')
+    if (link.charAt(0) === '#') {
+      // changing hash only
+      // update browser history
+      if (typeof (history.pushState) !== 'undefined') {
+        // current page title
+        var title = document.title.replace(/(.*~\s)?(.*)/, '$2')
+        // try to find element with ID equals to link hash
+        var $head = $(link)
+        if ($head.length) {
+          title = $head.text() + ' ~ ' + title
+        }
+        // current URL with hash
+        var url = location.origin + location.pathname + $(this).attr('href')
+
+        // update page title
+        document.title = title
+        // push to history
+        var obj = {
+          Title: title,
+          Url: url
+        }
+        history.pushState(obj, title, url)
+      }
+    }
+  }
+
   // handle sidebar scroll
   var sidebar = $('#sidebar')
   if (sidebar.length) {
@@ -101,13 +130,25 @@ $(function () {
     } catch (e) {
       console.error(e, ps)
     }
+
+    // handle summary links
+    sidebar.find('a').click(handleAnchor)
   }
 
   // create anchor links within article content
   var article = $('#article')
   if (article.length) {
     article.find('h1,h2,h3,h4,h5').each(function () {
-      $(this).attr('id', $(this).text().toLowerCase().replace(/\s/g, '-'))
+      var text = $(this).text()
+      // render ID from header text
+      var anchor = text.toLowerCase().replace(/\s/g, '-')
+      // fix anchor ID and add link
+      $(this).attr('id', anchor).html($('<a />', {
+        'class': 'anchor-link',
+        href: '#' + anchor,
+        click: handleAnchor,
+        text: text
+      }))
     })
   }
 })
