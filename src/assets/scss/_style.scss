@@ -211,7 +211,8 @@ body > header {
 }
 .ps__thumb-y,
 .ps__thumb-x {
-  background-color: $color-text-lightest !important;
+  background-color: #000 !important;
+  opacity: .1;
 }
 
 // prims code toolbar
