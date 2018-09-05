@@ -12,13 +12,14 @@
       "XDomainRequest",
       "$",
       "alert",
+      "location",
+      "history",
+      "document",
       "Apis",
       "callApi",
       "loadContent",
       "storeId",
-      "location",
-      "history",
-      "document"
+      "githubRepo"
     ]
   },
   "devDependencies": {

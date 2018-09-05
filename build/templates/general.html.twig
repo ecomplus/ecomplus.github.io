@@ -14,14 +14,18 @@
     </div>
 
     <!-- Content -->
-    <div class="col-lg-7 col-xl-8 rendered-content" id="article">
+    <div class="col-lg-7 col-xl-8">
+      <article class="rendered-content" id="article">
 {{ page.content|raw }}
+      </article>
     </div>
   </div>
 </div>
 {##}{##}{% else %}
-<div class="container rendered-content">
+<div class="container">
+  <article class="rendered-content">
 {{ page.content|raw }}
+  </article>
 </div>
 {##}{##}{% endif %}
 {##}{% endif %}
