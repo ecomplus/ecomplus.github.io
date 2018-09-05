@@ -183,6 +183,15 @@
 <!-- /.footer -->
 
 <!-- Scripts -->
+{% if page.github_repo %}
+<script>
+  // GitHub repository sync
+  var github = {
+    'repo': '{{ page.github_repo }}',
+    'path': '{{ page.repo_path }}'
+  };
+</script>
+{% endif %}
 <script src="/src/assets/js/page.min.js"></script>
 </body>
 </html>

@@ -32,6 +32,8 @@ $pages = array(
     // rendered content
     'summary' => null,
     'content' => null,
+    // GitHub repository sync
+    'github_repo' => null,
     // meta description
     'description' => 'E-Com Plus is a robust and flexible cloud commerce software, ' .
                      'totally based on REST APIs. ' .
