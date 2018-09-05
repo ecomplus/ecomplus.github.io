@@ -17,5 +17,5 @@ php -f main.php
 
 Force update APIs object:
 ```bash
-php -f build/main.php update-apis
+php -f main.php update-apis
 ```
