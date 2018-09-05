@@ -238,6 +238,54 @@ div.code-toolbar > .toolbar a {
   padding: 5px 10px;
 }
 
+// article nav
+.move-page {
+  position: relative;
+  font-weight: 500;
+  color: $purple !important;
+}
+.move-page small {
+  color: $color-text-light;
+  font-weight: 200;
+}
+.move-page i {
+  font-size: 2rem;
+  position: absolute;
+  top: 50%;
+  margin-top: -1rem;
+  opacity: .7;
+  color: $color-text-lightest;
+  font-family: 'themify';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.move-page-prev i {
+  left: 0;
+  margin-left: 7%;
+}
+.move-page-next i {
+  right: 0;
+  margin-right: 7%;
+}
+.move-page-prev i::before {
+  content: "\e629";
+}
+.move-page-next i::before {
+  content: "\e628";
+}
+.move-page-prev {
+  text-align: right;
+}
+.move-page-col-prev {
+  margin-left: 0 !important;
+}
+
 // utilities
 .text-purple {
   color: $purple !important;
