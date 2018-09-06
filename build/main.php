@@ -48,7 +48,7 @@ $pages = array(
 
 // parse markdown to HTML
 // https://github.com/erusev/parsedown
-$submodules_dir = __DIR__ . '/../../src/submodules/';
+$submodules_dir = __DIR__ . '/../src/submodules/';
 $parsedown = new Parsedown();
 // handle more pages from GitHub repos
 include __DIR__ . '/inc/guides.php';
