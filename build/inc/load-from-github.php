@@ -42,8 +42,16 @@ $repos = array(
     'base_url' => $urls['themes'],
     'description' => 'Template specifications for E-Com Plus ecommerce themes'
   ),
+  'ecomplus-api-docs' => array(
+    'api_reference' => 'store',
+    'description' => 'E-Com Plus real-time engine for products recommendations systems'
+  ),
   'ecomplus-graphs-api-docs' => array(
     'api_reference' => 'graphs',
+    'description' => 'E-Com Plus real-time engine for products recommendations systems'
+  ),
+  'ecomplus-search-api-docs' => array(
+    'api_reference' => 'search',
     'description' => 'E-Com Plus real-time engine for products recommendations systems'
   )
 );
@@ -54,17 +62,22 @@ $parsedown = new Parsedown();
 
 foreach ($repos as $repo => $page) {
   // array of Markdown files from current repository
-  $files = null;
+  $files = array();
   $repo_dir = $docs_dir . $repo;
-  if ($page['api_reference']) {
-    // rendering API reference page
-    $page['base_url'] = $urls['reference'] . $page['api_reference'] . '/';
-    // start from src directory
-    $repo_dir .= '/src';
-  }
   if (is_dir($repo_dir)) {
-    // try to set $files object from submodules .md files content
-    $files = find_md_files($repo_dir);
+    if ($page['api_reference']) {
+      // rendering API reference introduction page
+      $files = array(
+        array(
+          'path' => 'README.md',
+          'markdown' => file_get_contents($repo_dir . '/src/README.md')
+        )
+      );
+      $page['base_url'] = $urls['reference'] . $page['api_reference'] . '/';
+    } else {
+      // try to set $files object from submodules .md files content
+      $files = find_md_files($repo_dir);
+    }
   }
 
   for ($i = 0; $i < count($files); $i++) {
@@ -81,14 +94,20 @@ foreach ($repos as $repo => $page) {
     list($subtitle, $markdown) = explode(PHP_EOL, $files[$i]['markdown'], 2);
     // remove # from subtitle
     $subtitle = ltrim($subtitle, '# ');
-    // remove some strings from original Markdown content
-    $markdown = explode('{% raw %}', trim($markdown), 2);
-    if (count($markdown) > 1) {
-      $summary = $parsedown->text($markdown[0]);
-    } else {
+    if ($page['api_reference']) {
       $summary = null;
+      // remove Hercule includes
+      $markdown = preg_replace('/([\t\n\s]+)?\:\[\]\(.*\)/', '', trim($markdown));
+    } else {
+      // remove some strings from original Markdown content
+      $markdown = explode('{% raw %}', trim($markdown), 2);
+      if (count($markdown) > 1) {
+        $summary = $parsedown->text($markdown[0]);
+      } else {
+        $summary = null;
+      }
+      $markdown = str_replace('{% endraw %}', '', trim(end($markdown)));
     }
-    $markdown = str_replace('{% endraw %}', '', trim(end($markdown)));
     // parse to HTML
     $content = $parsedown->text($markdown);
 

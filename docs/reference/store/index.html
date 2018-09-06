@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!--
+  ## Compiled with Twig ##
+  See template files in the `build/templates` directory
+-->
+
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="description" content="E-Com Plus real-time engine for products recommendations systems"><title>E-Com Plus Store API · E-Com Plus Developers</title><link href="/src/assets/css/page.min.css" rel="stylesheet"><link rel="apple-touch-icon" href="/src/assets/img/apple-touch-icon.png"><link rel="icon" href="/src/assets/img/favicon.png"><meta property="og:type" content="website"><meta property="og:title" content="E-Com Plus Store API · E-Com Plus Developers"><meta property="og:site_name" content="E-Com Plus Developers"><meta property="og:description" content="E-Com Plus real-time engine for products recommendations systems"><meta property="og:image" content="/src/assets/img/og-img.png"><meta property="og:url" content="https://developers.e-com.plus/docs/reference/store/"><meta name="twitter:card" content="summary_large_image"></head><body><nav class="navbar navbar-expand-lg navbar-dark" data-navbar="static"><div class="container"><div class="navbar-left"><button class="navbar-toggler" type="button">☰</button><a class="navbar-brand" href="/"><img class="logo-dark" src="/src/assets/img/logo-dark.png" alt="logo"><span>devs</span></a><form id="search" action="javascript:;"><div class="lookup"><input class="form-control" placeholder="Search documentation" type="search"></div></form></div><section class="navbar-mobile" id="navbar"><nav class="nav nav-navbar ml-auto"><a class="nav-link" href="/">Home</a><a class="nav-link" href="/docs/themes/">Themes</a><a class="nav-link" href="/docs/apps/">Apps</a><a class="nav-link" href="/docs/releases">Releases</a></nav><a class="btn btn-sm btn-round btn-success ml-3" href="/docs/reference/">
+            API Reference
+          </a></section></div></nav><header class="header py-0"><div class="container h-auto py-6"><div class="row align-items-center"><div class="col-auto"><h1 class="m-0">E-Com Plus Store API</h1></div><div class="col-auto"><a class="btn btn-sm btn-light btn-round" href="https://github.com/ecomclub/ecomplus-api-docs/blob/master/README.md" target="_blank"><i class="fa fa-github mr-1"></i>
+                  Edit on GitHub
+                </a></div></div></div><nav class="bg-white bb-1" aria-label="breadcrumb"><div class="container"><ol class="breadcrumb px-0"><li class="breadcrumb-item"><a href="/"><i class="fa fa-home"></i></a></li><li class="breadcrumb-item"><a href="/docs/reference">reference</a></li><li class="breadcrumb-item"><a href="/docs/reference/store">store</a></li></ol></div></nav></header><main class="main-content"><section class="section"><div class="container"><div class="row gap-y"><div class="col-lg-5 col-xl-4"><aside class="sidebar sidebar-sticky rendered-summary" id="sidebar"><h2>Resources</h2><ol><li><a href="/docs/console#/store/applications">
+                        Applications
+                      </a></li><li><a href="/docs/console#/store/authentications">
+                        Authentications
+                      </a></li><li><a href="/docs/console#/store/brands">
+                        Brands
+                      </a></li><li><a href="/docs/console#/store/carts">
+                        Carts
+                      </a></li><li><a href="/docs/console#/store/categories">
+                        Categories
+                      </a></li><li><a href="/docs/console#/store/collections">
+                        Collections
+                      </a></li><li><a href="/docs/console#/store/customers">
+                        Customers
+                      </a></li><li><a href="/docs/console#/store/grids">
+                        Grids
+                      </a></li><li><a href="/docs/console#/store/orders">
+                        Orders
+                      </a></li><li><a href="/docs/console#/store/procedures">
+                        Procedures
+                      </a></li><li><a href="/docs/console#/store/products">
+                        Products
+                      </a></li><li><a href="/docs/console#/store/stores">
+                        Stores
+                      </a></li><li><a href="/docs/console#/store/triggers">
+                        Triggers
+                      </a></li></ol></aside></div><div class="col-lg-7 col-xl-8"><article class="rendered-content" id="article"><p><a href="https://www.e-com.plus">E-Com Plus</a>
+is a robust and flexible cloud commerce software,
+totally based on REST APIs, providing a large library of methods and specifications
+to deploy any digital commerce operation easly</p><p><strong>Store API</strong> is the hearth of our software, a REST interface to the
+<a href="https://www.mongodb.com/">MongoDB</a> stores database,
+given full access to all store data, so be creative, but be careful too</p><p><em>With great power comes great responsibility</em>, <em>may the force be with you</em>!</p><h2>Overview</h2><p>This API tries to be truly <em>RESTful</em>, following Web API Standards, taking as specifications references:</p><ul><li><a href="https://github.com/WhiteHouse/api-standards">https://github.com/WhiteHouse/api-standards</a></li><li><a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html</a></li></ul><h3>Host</h3><p>Should be accessed from <code>https://api.e-com.plus/{version}/</code></p><p>Current version: <strong>v1</strong></p><p><a href="https://api.e-com.plus/v1/">https://api.e-com.plus/v1/</a></p><p>Note that every request must be with <code>https</code> (SSL)</p><p>All endpoints will end with <code>.json</code>:</p><p><a href="https://api.e-com.plus/v1/example.json">https://api.e-com.plus/v1/example.json</a></p><h3>Sandbox</h3><p>Sandbox environment is available at <code>https://sandbox.e-com.plus/{version}/</code>,
+must be used for tests only, after homologation you should migrate to
+<a href="#introduction/overview/host">production</a></p><p>Current version and formats will always be the same of
+<a href="#introduction/overview/host">production environment</a></p><p><strong>All data in the sandbox environment is deleted after 7 days</strong></p><p>This documentation uses sandbox by reference on the examples</p><h3>Format</h3><p>Both request and response body are formatted as JSON, always an object <code>{}</code></p><h4>Object Modeling</h4><p>Based on <a href="http://json-schema.org/">JSON Schema</a> Draft-06 specifications</p><p>API uses JSON Schema
+<a href="https://spacetelescope.github.io/understanding-json-schema/reference/string.html#built-in-formats">built-in string formats</a>
+and <a href="https://regexr.com/">Regular Expressions</a> (RegEx) to validate string fields on body</p><p>For example purposes, you can generate random objects with the schemas using
+<a href="http://json-schema-faker.js.org/">JSON Schema Faker</a></p><h4>List Of Documents</h4><p>At root of a resource or an embedded documents subresource, response body will follow this pattern:</p><ul><li>Always an object with <em>meta</em> and <em>result</em> properties</li><li><code>meta</code> is an object</li><li><code>result</code> is an array of objects</li></ul><pre><code class="language-json">{
+  "meta": {
+  },
+  "result": [
+    {}, {}
+  ]
+}</code></pre><h3>URL Params</h3><p>URL parameters (query string) are used only at endpoints that returns
+<a href="#introduction/overview/format">lists of documents</a>,
+setting metadata (<code>meta</code>) for filtering and pagination purposes, accepted params will vary by each endpoint</p><h4>Common Parameters</h4><ul><li><em>limit</em><ul><li>Set the maximum number of documents to return</li><li>Must be an integer &gt; 0</li><li>eg.: <code>?limit=1000</code></li></ul></li><li><em>offset</em><ul><li>Specifies the first entry to return</li><li>An integer &gt;= 0</li><li>eg.: <code>?offset=1000</code>, <code>?offset=0</code></li></ul></li><li><em>sort</em><ul><li>Specifies rules to order the resultant objects</li><li>Default is ascending order, use - for descending</li><li>eg.: <code>?sort=-popularity</code>, <code>?sort=price,-popularity</code></li></ul></li><li><em>fields</em><ul><li>Specifies the object properties to return</li><li>eg.: <code>?fields=code</code>, <code>?fields=name,code,date</code></li></ul></li></ul><p>Other parameters must be valid properties of the objects, will be used to filter results</p><p>It's possible to use
+<a href="https://docs.mongodb.com/manual/core/document/#dot-notation">MongoDB dot notation</a>
+to filter by embedded arrays and objects</p><h3>Headers</h3><p>All requests must have the header <code>X-Store-ID</code> with the unique ID (integer) of respective store</p><p>Optionally <em>X-Cache-Tag</em> with any value to refuse or update browser cache, <em>Content-Type</em>
+(<em>application/json, charset=utf-8</em>) and <em>Accept-Encoding</em></p><h3>Verbs</h3><table><thead><tr><th style="text-align: left;">Verb</th><th>CRUD</th><th>Description</th></tr></thead><tbody><tr><td style="text-align: left;">GET</td><td>Read</td><td>View object</td></tr><tr><td style="text-align: left;">POST</td><td>Create</td><td>Create new object</td></tr><tr><td style="text-align: left;">PATCH</td><td>Update/Modify</td><td>Update some properties</td></tr><tr><td style="text-align: left;">PUT</td><td>Update/Replace</td><td>Overwrite entire object</td></tr><tr><td style="text-align: left;">DELETE</td><td>Delete</td><td>Remove object</td></tr><tr><td style="text-align: left;">OPTIONS</td><td>-</td><td>Return allowed methods</td></tr></tbody></table><h3>Authentication</h3><p>Authentication is not required always, the majority of the resources accept GET requests
+without authentication, in some cases, authenticated requests return different body, more complete response</p><p>OPTIONS requests are always public</p><p>POST, PATCH, PUT and DELETE always require authentication</p><h4>Authentication Headers</h4><p>You must complete the <a href="#reference/authenticate-yourself">steps to authenticate</a>,
+then use the received <em>access_token</em> and <em>my_id</em> on headers <code>X-Access-Token</code> and <code>X-My-ID</code> respectively</p><h3>Status Codes</h3><p>Based on HTTP/1.1 Status Code Definitions:</p><ul><li><em>2xx</em> - Successful</li><li><em>4xx</em> - Client error, must check the request</li><li><em>5xx</em> - Server error, report us and try again later</li></ul><h4>Response HTTP Status Code</h4><table><thead><tr><th style="text-align: left;">Code</th><th>Description</th></tr></thead><tbody><tr><td style="text-align: left;"><code>200</code></td><td>OK, successful GET request</td></tr><tr><td style="text-align: left;"><code>201</code></td><td>Created, successful POST request</td></tr><tr><td style="text-align: left;"><code>202</code></td><td>Accepted, at root (/) only</td></tr><tr><td style="text-align: left;"><code>204</code></td><td>No content, successful PATCH, PUT or DELETE request</td></tr><tr><td style="text-align: left;"><code>400</code></td><td>Bad request, problem in request body or URL params</td></tr><tr><td style="text-align: left;"><code>401</code></td><td>Unauthorized, need authentication and permission</td></tr><tr><td style="text-align: left;"><code>403</code></td><td>Forbidden, plan limits reached or client blocked</td></tr><tr><td style="text-align: left;"><code>404</code></td><td>Not found, resource or ID doesn't exists</td></tr><tr><td style="text-align: left;"><code>405</code></td><td>Method not allowed, resource doesn't accept used verb</td></tr><tr><td style="text-align: left;"><code>406</code></td><td>Not acceptable, problem with resource ID or subresource</td></tr><tr><td style="text-align: left;"><code>412</code></td><td>Precondition failed, no store found with provided ID</td></tr><tr><td style="text-align: left;"><code>417</code></td><td>Expectation failed, missing some header</td></tr><tr><td style="text-align: left;"><code>500</code></td><td>Internal server error, please report and try again later</td></tr><tr><td style="text-align: left;"><code>502</code></td><td>Bad gateway, try again later</td></tr><tr><td style="text-align: left;"><code>503</code></td><td>Service unavailable, probably blocked by proxy, wait</td></tr><tr><td style="text-align: left;"><code>504</code></td><td>Gateway timeout, try again later</td></tr></tbody></table><h2>Error Handling</h2><h4>App Errors</h4><p>All <em>4xx</em> (client error) and <em>5xx</em> (server error) responses from application
+will have body following the model below:</p><ul><li><em>(object)</em><ul><li><code>status</code><em>(number)</em> - HTTP status code</li><li><code>error_code</code><em>(string, number)</em> - API error code</li><li><code>message</code><em>(string)</em> - Message to developer</li><li><code>user_message</code><em>(object)</em> - Messages to end user
+<ul><li><code>en_us</code><em>(string)</em></li><li><code>pt_br</code><em>(string)</em></li></ul></li><li><code>more_info</code><em>(string, null)</em> - External link</li></ul></li></ul><p><strong>Example</strong></p><pre><code class="language-json">{
+  "status": 406,
+  "error_code": 123,
+  "message": "Invalid value on resource ID",
+  "user_message": {
+    "en_us": "The informed ID is invalid",
+    "pt_br": "O ID informado é inválido"
+  },
+  "more_info": null
+}</code></pre><p>To know how to treat this errors, see
+<a href="#introduction/overview/status-codes">status codes reference</a></p><h4>Web Server Errors</h4><p>In some cases you can receive an error directly from NGINX web server,
+even in this case the response will be a JSON object, almost in the same model
+of <a href="#introduction/error-handling/app-errors">App Errors</a>,
+but without properties <code>user_message</code> and <code>more_info</code>,
+the <code>error_code</code> will be an negative integer</p><h5>NGINX 404</h5><pre><code class="language-json">{
+  "status": 404,
+  "error_code": -44,
+  "message": "Page not found"
+}</code></pre><p>Incorrect URL paths, check <a href="#introduction/overview/host">API Host</a></p><h5>NGINX 503</h5><pre><code class="language-json">{
+  "status": 503,
+  "error_code": -53,
+  "message": "Service unavailable (DDoS?), wait few seconds"
+}</code></pre><p>NGINX is blocking your requests for security reasons, please wait few seconds and try again</p><h2>Server Limits</h2><p>Whenever possible, <strong>avoid using requests with query string</strong>,
+then you will be able to consume cache and send up to 30 <em>GET</em> requests per second
+with the same IP, to different endpoints</p><p>Not cached responses are limited by default to 6 requests per IP per second, but it can vary (to low)
+depending of the resource</p><p>The same API user (authentication) can make up to 6 authenticated requests per second</p><p>In almost all cases you will not receive an error if you go beyond the limits,
+the response will only be delayed, but even so,
+we recommend that you create treatments in case you receive a <em>503</em> status code</p><h2>See Also</h2><ul><li><a href="https://developers.e-com.plus">Developers site</a></li><li><a href="https://github.com/ecomclub">GitHub organization</a></li><li><a href="https://community.e-com.plus">Community</a></li></ul><h4>Other REST APIs</h4><ul><li><a href="https://ecomplus.docs.apiary.io">Main</a>:
+E-Com Plus Main API, with some public data about stores and channels</li><li><a href="https://ecomgraphs.docs.apiary.io">Graphs</a>:
+Recommendations API using Neo4j to define related products by categories, brands and common orders</li><li><a href="https://ecomsearch.docs.apiary.io">Search</a>:
+Powerful text search API using Elasticsearch to find and suggest items (products) and terms</li></ul><h2>Getting Help</h2><p>Feel free to get help or suggest alterations on
+<a href="https://github.com/ecomclub/ecomplus-api-docs">GitHub repo</a> or by e-mail
+<a href="mailto:ti@e-com.club">ti@e-com.club</a></p></article></div></div></div></section></main><script>
+      // GitHub repository sync
+      var githubRepo = {
+        'name': 'ecomplus-api-docs',
+        'path': 'README.md'
+      };
+      </script><script src="/src/assets/js/page.min.js"></script></body></html>

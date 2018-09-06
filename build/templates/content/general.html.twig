@@ -5,26 +5,38 @@
     <div class="container">
     {# predefined page content? #}
     {% if page.content %}
-      {% if page.summary %}
-        <div class="row gap-y">
-          {# Sidebar #}
-          <div class="col-lg-5 col-xl-4">
-            <aside class="sidebar sidebar-sticky rendered-summary" id="sidebar">
+      <div class="row gap-y">
+        {# Sidebar #}
+        <div class="col-lg-5 col-xl-4">
+          <aside class="sidebar sidebar-sticky rendered-summary" id="sidebar">
+            {% if page.summary %}
               {{ page.summary|raw }}
-            </aside>
-          </div>
-          {# Content #}
-          <div class="col-lg-7 col-xl-8">
-            <article class="rendered-content" id="article">
-              {{ page.content|raw }}
-            </article>
-          </div>
+            {% elseif page.api_reference %}
+              {% set api = apis[page.api_reference] %}
+              <h2>Resources</h2>
+              <ol>
+                {% for resource in api.resources %}
+                  {# skip subresources #}
+                  {% if resource matches '{^[a-z][^/]+$}' %}
+                    <li>
+                      <a href="{{ urls.console }}#/{{ page.api_reference }}/{{ resource }}">
+                        {{ resource|capitalize }}
+                      </a>
+                    </li>
+                  {% endif %}
+                {% endfor %}
+              </ol>
+            {% endif %}
+          </aside>
         </div>
-      {% else %}
-        <article class="rendered-content">
-          {{ page.content|raw }}
-        </article>
-      {% endif %}
+
+        {# Content #}
+        <div class="col-lg-7 col-xl-8">
+          <article class="rendered-content" id="article">
+            {{ page.content|raw }}
+          </article>
+        </div>
+      </div>
     {% endif %}
     </div>
   </section>

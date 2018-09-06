@@ -81,7 +81,7 @@
               <h1 class="m-0">{{ page.subtitle }}</h1>
             </div>
             {% if page.github_repo %}
-              {% set md_link = "https://github.com/ecomclub/" ~ page.github_repo ~ "/blob/master/" ~ page.repo_path %}
+              {% set md_link = github_org ~ page.github_repo ~ "/blob/master/" ~ page.repo_path %}
               <div class="col-auto">
                 <a class="btn btn-sm btn-light btn-round" href="{{ md_link }}" target="_blank">
                   <i class="fa fa-github mr-1"></i>
@@ -120,7 +120,7 @@
 
     {# Footer #}
     {# footer not wheel compatible with sticky sidebar #}
-    {% if not page.summary %}
+    {% if not page.content %}
       <footer class="footer">
         <div class="container pt-3">
           <div class="mb-3 pb-3">

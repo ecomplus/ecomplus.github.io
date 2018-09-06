@@ -18,9 +18,12 @@ $urls = array(
   'themes' => $base_path . 'themes/',
   'apps' => $base_path . 'apps/',
   'reference' => $base_path . 'reference/',
+  'console' => $base_path . 'console',
   'releases' => $base_path . 'releases',
   'open' => $base_path . 'open'
 );
+// E-Com GitHub URL
+$github_org = 'https://github.com/ecomclub/';
 
 // list of site pages
 $pages = array(
@@ -62,18 +65,16 @@ for ($i = 0; $i < count($pages); $i++) {
 
   // define array with variables for template
   $template_vars = array(
+    // pass GitHub org host
+    'github_org' => $github_org,
     'page' => $page,
     'apis' => $apis,
     'urls' => $urls
   );
   $template_file = 'views' . $file_path . '.twig';
   if (!file_exists($templates_dir . '/' . $template_file)) {
-    if ($page['api_reference']) {
-      $template_file = 'content/reference.html.twig';
-    } else {
-      // generic template
-      $template_file = 'content/general.html.twig';
-    }
+    // generic template
+    $template_file = 'content/general.html.twig';
   }
   $template = $twig->load($template_file);
   $html = $template->render($template_vars);
