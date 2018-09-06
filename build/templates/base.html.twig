@@ -94,13 +94,13 @@
 
         {# render bradcrumbs nav #}
         {% set breadcrumbs = page.url|split('/') %}
-        {% set breadlink = '' %}
+        {% set breadlink = '/docs' %}
         <nav class="bg-white bb-1" aria-label="breadcrumb">
           <div class="container">
             <ol class="breadcrumb px-0">
-              <li class="breadcrumb-item"><a href="/">home</a></li>
+              <li class="breadcrumb-item"><a href="/"><i class="fa fa-home"></i></a></li>
               {% for bread in breadcrumbs %}
-                {% if bread != '' %}
+                {% if bread not in ['', 'docs'] %}
                   {% set breadlink = breadlink ~ '/' ~ bread %}
                   <li class="breadcrumb-item"><a href="{{ breadlink }}">{{ bread }}</a></li>
                 {% endif %}

@@ -13,7 +13,7 @@ $loader = new Twig_Loader_Filesystem($templates_dir);
 $twig = new Twig_Environment($loader, array('strict_variables' => true));
 
 // internal links (abstractions)
-$base_path = '/dist/';
+$base_path = '/docs/';
 $urls = array(
   'themes' => $base_path . 'themes/',
   'apps' => $base_path . 'apps/',
