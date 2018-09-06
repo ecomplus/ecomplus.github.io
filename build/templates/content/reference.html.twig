@@ -1,9 +1,11 @@
 {% extends "base.html.twig" %}
 
 {% block content %}
-  <div class="container">
-    <article class="rendered-content">
-      {{ page.content|raw }}
-    </article>
-  </div>
+  <section class="section">
+    <div class="container">
+      <article class="rendered-content">
+        {{ page.content|raw }}
+      </article>
+    </div>
+  </section>
 {% endblock %}

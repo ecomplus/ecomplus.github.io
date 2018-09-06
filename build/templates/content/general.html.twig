@@ -1,29 +1,31 @@
 {% extends "base.html.twig" %}
 
 {% block content %}
-  <div class="container py-8">
-  {# predefined page content? #}
-  {% if page.content %}
-    {% if page.summary %}
-      <div class="row gap-y">
-        {# Sidebar #}
-        <div class="col-lg-5 col-xl-4">
-          <aside class="sidebar sidebar-sticky rendered-summary" id="sidebar">
-            {{ page.summary|raw }}
-          </aside>
+  <section class="section">
+    <div class="container">
+    {# predefined page content? #}
+    {% if page.content %}
+      {% if page.summary %}
+        <div class="row gap-y">
+          {# Sidebar #}
+          <div class="col-lg-5 col-xl-4">
+            <aside class="sidebar sidebar-sticky rendered-summary" id="sidebar">
+              {{ page.summary|raw }}
+            </aside>
+          </div>
+          {# Content #}
+          <div class="col-lg-7 col-xl-8">
+            <article class="rendered-content" id="article">
+              {{ page.content|raw }}
+            </article>
+          </div>
         </div>
-        {# Content #}
-        <div class="col-lg-7 col-xl-8">
-          <article class="rendered-content" id="article">
-            {{ page.content|raw }}
-          </article>
-        </div>
-      </div>
-    {% else %}
-      <article class="rendered-content">
-        {{ page.content|raw }}
-      </article>
+      {% else %}
+        <article class="rendered-content">
+          {{ page.content|raw }}
+        </article>
+      {% endif %}
     {% endif %}
-  {% endif %}
-  </div>
+    </div>
+  </section>
 {% endblock %}
