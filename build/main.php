@@ -13,12 +13,13 @@ $loader = new Twig_Loader_Filesystem($templates_dir);
 $twig = new Twig_Environment($loader, array('strict_variables' => true));
 
 // internal links (abstractions)
+$base_path = '/dist/';
 $urls = array(
-  'themes' => '/themes/',
-  'apps' => '/apps/',
-  'reference' => '/reference/',
-  'releases' => '/releases',
-  'open' => '/open'
+  'themes' => $base_path . 'themes/',
+  'apps' => $base_path . 'apps/',
+  'reference' => $base_path . 'reference/',
+  'releases' => $base_path . 'releases',
+  'open' => $base_path . 'open'
 );
 
 // list of site pages
