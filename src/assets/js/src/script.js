@@ -19,7 +19,7 @@ $(function () {
   }
 
   // E-Com Plus APIs
-  $.getJSON('../../src/assets/json/apis.json', function (json) {
+  $.getJSON('/src/assets/json/apis.json', function (json) {
     // success
     window.Apis = json
   }).fail(function (jqxhr, textStatus, err) {
