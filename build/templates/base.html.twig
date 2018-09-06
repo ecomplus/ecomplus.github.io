@@ -1,197 +1,203 @@
 <!DOCTYPE html>
+<!--
+  ## Compiled with Twig ##
+  See template files in the `build/templates` directory
+-->
+
+{% spaceless %}
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="{{ page.description }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="{{ page.description }}">
+    <title>{{ page.title }}</title>
 
-  <title>{{ page.title }}</title>
+    {# Styles #}
+    <link href="/src/assets/css/page.min.css" rel="stylesheet">
 
-  <!-- Styles -->
-  <link href="/src/assets/css/page.min.css" rel="stylesheet">
+    {# Favicons #}
+    <link rel="apple-touch-icon" href="/src/assets/img/apple-touch-icon.png">
+    <link rel="icon" href="/src/assets/img/favicon.png">
 
-  <!-- Favicons -->
-  <link rel="apple-touch-icon" href="/src/assets/img/apple-touch-icon.png">
-  <link rel="icon" href="/src/assets/img/favicon.png">
+    {#  Open Graph Tags #}
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ page.title }}">
+    <meta property="og:site_name" content="E-Com Plus Developers">
+    <meta property="og:description" content="{{ page.description }}">
+    <meta property="og:image" content="/src/assets/img/og-img.png">
+    <meta property="og:url" content="https://developers.e-com.plus{{ page.url }}">
+    <meta name="twitter:card" content="summary_large_image">
+  </head>
 
-  <!--  Open Graph Tags -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="{{ page.title }}">
-  <meta property="og:site_name" content="E-Com Plus Developers">
-  <meta property="og:description" content="{{ page.description }}">
-  <meta property="og:image" content="/src/assets/img/og-img.png">
-  <meta property="og:url" content="https://developers.e-com.plus{{ page.url }}">
-  <meta name="twitter:card" content="summary_large_image">
-</head>
-
-<body>
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark" data-navbar="static">
-  <div class="container">
-    <div class="navbar-left">
-      <button class="navbar-toggler" type="button">☰</button>
-      <a class="navbar-brand" href="/">
-        <img class="logo-dark" src="/src/assets/img/logo-dark.png" alt="logo">
-        <span>devs</span>
-      </a>
-      <form id="search" action="javascript:;">
-        <div class="lookup">
-          <input class="form-control" placeholder="Search documentation" type="search">
+  <body>
+    {# Navbar #}
+    <nav class="navbar navbar-expand-lg navbar-dark" data-navbar="static">
+      <div class="container">
+        <div class="navbar-left">
+          <button class="navbar-toggler" type="button">☰</button>
+          <a class="navbar-brand" href="/">
+            <img class="logo-dark" src="/src/assets/img/logo-dark.png" alt="logo">
+            <span>devs</span>
+          </a>
+          <form id="search" action="javascript:;">
+            <div class="lookup">
+              <input class="form-control" placeholder="Search documentation" type="search">
+            </div>
+          </form>
         </div>
-      </form>
-    </div>
 
-    <section class="navbar-mobile" id="navbar">
-      <nav class="nav nav-navbar ml-auto">
-{% set nav = [
-  { 'url': '/', 'title': 'Home' },
-  { 'url': urls.themes, 'title': 'Themes' },
-  { 'url': urls.apps, 'title': 'Apps' },
-  { 'url': urls.releases, 'title': 'Releases' }
-] %}
-{% for navitem in nav %}
-{## check and mark current page #}
-{##}{% if (navitem.url == page.url) or ((page.url != '/') and (navitem.url starts with page.url)) %}
-{##}{##}{% set active = ' active' %}
-{##}{% else %}
-{##}{##}{% set active = '' %}
-{##}{% endif %}
-        <a class="nav-link{{ active }}" href="{{ navitem.url }}">{{ navitem.title }}</a>
-{% endfor %}
-      </nav>
-      <a class="btn btn-sm btn-round btn-success ml-3" href="{{ urls.reference }}">
-        API Reference
-      </a>
-    </section>
-  </div>
-</nav>
-<!-- /.navbar -->
+        <section class="navbar-mobile" id="navbar">
+          <nav class="nav nav-navbar ml-auto">
+            {% set nav = [
+              { 'url': '/', 'title': 'Home' },
+              { 'url': urls.themes, 'title': 'Themes' },
+              { 'url': urls.apps, 'title': 'Apps' },
+              { 'url': urls.releases, 'title': 'Releases' }
+            ] %}
+            {% for navitem in nav %}
+              {# check and mark current page #}
+              {% if (navitem.url == page.url) or ((page.url != '/') and (navitem.url starts with page.url)) %}
+                {% set active = ' active' %}
+              {% else %}
+                {% set active = '' %}
+              {% endif %}
+              <a class="nav-link{{ active }}" href="{{ navitem.url }}">{{ navitem.title }}</a>
+            {% endfor %}
+          </nav>
+          <a class="btn btn-sm btn-round btn-success ml-3" href="{{ urls.reference }}">
+            API Reference
+          </a>
+        </section>
+      </div>
+    </nav>
+    {# /.navbar #}
 
-<!-- Header -->
-{% if page.subtitle %}
-<header class="header py-0">
-  <div class="container h-auto py-6">
-    <div class="row align-items-center">
-      <div class="col-auto">
-        <h1 class="m-0">{{ page.subtitle }}</h1>
-      </div>
-{##}{% if page.github_repo %}
-{##}{##}{% set md_link = "https://github.com/ecomclub/" ~ page.github_repo ~ "/blob/master/" ~ page.repo_path %}
-      <div class="col-auto">
-        <a class="btn btn-sm btn-light btn-round" href="{{ md_link }}" target="_blank">
-          <i class="fa fa-github mr-1"></i>
-          Edit on GitHub
-        </a>
-      </div>
-{##}{% endif %}
-    </div>
-  </div>
+    {# Header #}
+    {% if page.subtitle %}
+      <header class="header py-0">
+        <div class="container h-auto py-6">
+          <div class="row align-items-center">
+            <div class="col-auto">
+              <h1 class="m-0">{{ page.subtitle }}</h1>
+            </div>
+            {% if page.github_repo %}
+              {% set md_link = "https://github.com/ecomclub/" ~ page.github_repo ~ "/blob/master/" ~ page.repo_path %}
+              <div class="col-auto">
+                <a class="btn btn-sm btn-light btn-round" href="{{ md_link }}" target="_blank">
+                  <i class="fa fa-github mr-1"></i>
+                  Edit on GitHub
+                </a>
+              </div>
+            {% endif %}
+          </div>
+        </div>
 
-{## render bradcrumbs nav #}
-{##}{% set breadcrumbs = page.url|split('/') %}
-{##}{% set breadlink = '' %}
-  <nav class="bg-white bb-1" aria-label="breadcrumb">
-    <div class="container">
-      <ol class="breadcrumb px-0">
-        <li class="breadcrumb-item"><a href="/">home</a></li>
-{##}{% for bread in breadcrumbs %}
-{##}{##}{% if bread != '' %}
-{##}{##}{##}{% set breadlink = breadlink ~ '/' ~ bread %}
-        <li class="breadcrumb-item"><a href="{{ breadlink }}">{{ bread }}</a></li>
-{##}{##}{% endif %}
-{##}{% endfor %}
-      </ol>
-    </div>
-  </nav>
-</header>
-{% endif %}
-<!-- /.header -->
+        {# render bradcrumbs nav #}
+        {% set breadcrumbs = page.url|split('/') %}
+        {% set breadlink = '' %}
+        <nav class="bg-white bb-1" aria-label="breadcrumb">
+          <div class="container">
+            <ol class="breadcrumb px-0">
+              <li class="breadcrumb-item"><a href="/">home</a></li>
+              {% for bread in breadcrumbs %}
+                {% if bread != '' %}
+                  {% set breadlink = breadlink ~ '/' ~ bread %}
+                  <li class="breadcrumb-item"><a href="{{ breadlink }}">{{ bread }}</a></li>
+                {% endif %}
+              {% endfor %}
+            </ol>
+          </div>
+        </nav>
+      </header>
+    {% endif %}
+    {# /.header #}
 
-<!-- Main Content -->
-<main class="main-content">
-{% block content %}{% endblock %}
-</main>
-<!-- /.main -->
+    {# Main Content #}
+    <main class="main-content">
+      {% block content %}{% endblock %}
+    </main>
+    {# /.main #}
 
-<!-- Footer -->
-{## footer not wheel compatible with sticky sidebar #}
-{% if not page.summary %}
-<footer class="footer">
-  <div class="container pt-3">
-    <div class="mb-3 pb-3">
-      <a href="https://github.com/ecomclub" target="_blank">
-        <i class="fa fa-github"></i> @ecomclub
-      </a>
-      <div class="small">
-        Developing amazing ecommerce softwares with
-        <i class="fa fa-heart"></i>, <i class="fa fa-coffee"></i> and a little bit of code.
-        Hosted with
-        <a class="text-purple" href="https://pages.github.com/" target="_blank">Github Pages</a>.
-      </div>
-    </div>
+    {# Footer #}
+    {# footer not wheel compatible with sticky sidebar #}
+    {% if not page.summary %}
+      <footer class="footer">
+        <div class="container pt-3">
+          <div class="mb-3 pb-3">
+            <a href="https://github.com/ecomclub" target="_blank">
+              <i class="fa fa-github"></i> @ecomclub
+            </a>
+            <div class="small">
+              Developing amazing ecommerce softwares with
+              <i class="fa fa-heart"></i>, <i class="fa fa-coffee"></i> and a little bit of code.
+              Hosted with
+              <a class="text-purple" href="https://pages.github.com/" target="_blank">Github Pages</a>.
+            </div>
+          </div>
 
-    <div class="row gap-y">
-      <div class="col-6 col-sm-4 col-md">
-        <h6 class="text-uppercase">E-Com Plus</h6>
-        <ul class="list-unstyled">
-          <li><a href="https://community.e-com.plus" target="_blank">Community</a></li>
-          <li><a href="https://e-com.plus/partners" target="_blank">Partners program</a></li>
-          <li><a href="https://market.e-com.plus" target="_blank">App store</a></li>
-          <li><a href="https://status.e-com.plus" target="_blank">Status</a></li>
-          <li><a href="https://app.e-com.plus" target="_blank">Dashboard</a></li>
-          <li><a href="https://e-com.plus" target="_blank">About</a></li>
-        </ul>
-      </div>
-      <div class="col-6 col-sm-4 col-md">
-        <h6 class="text-uppercase">Content</h6>
-        <ul class="list-unstyled">
-          <li><a href="/">Overview</a></li>
-          <li><a href="{{ urls.releases }}">Repo releases</a></li>
-          <li><a href="{{ urls.open }}">Open source</a></li>
-        </ul>
-      </div>
-      <div class="col-6 col-sm-4 col-md">
-        <h6 class="text-uppercase">Docs</h6>
-        <ul class="list-unstyled">
-          <li><a href="{{ urls.themes }}">Store templates</a></li>
-          <li><a href="{{ urls.apps }}">Applications</a></li>
-        </ul>
-      </div>
-      <div class="col-6 col-sm-4 col-md">
-        <h6 class="text-uppercase">Reference</h6>
-        <ul class="list-unstyled">
-{##}{% for key, api in apis %}
-          <li><a href="{{ urls.reference }}{{ key }}/">{{ api.label }}</a></li>
-{##}{% endfor %}
-        </ul>
-      </div>
-      <div class="col-6 col-sm-4 col-md">
-        <h6 class="text-uppercase">Resources</h6>
-        <ul class="list-unstyled">
-{##}{% for resource in apis.store.resources %}
-{##}{## skip subresources #}
-{##}{##}{% if resource matches '{^[a-z][^/]+$}' %}
-          <li><a href="{{ urls.reference }}store/{{ resource }}">{{ resource|capitalize }}</a></li>
-{##}{##}{% endif %}
-{##}{% endfor %}
-        </ul>
-      </div>
-    </div>
-  </div>
-</footer>
-{% endif %}
-<!-- /.footer -->
+          <div class="row gap-y">
+            <div class="col-6 col-sm-4 col-md">
+              <h6 class="text-uppercase">E-Com Plus</h6>
+              <ul class="list-unstyled">
+                <li><a href="https://community.e-com.plus" target="_blank">Community</a></li>
+                <li><a href="https://e-com.plus/partners" target="_blank">Partners program</a></li>
+                <li><a href="https://market.e-com.plus" target="_blank">App store</a></li>
+                <li><a href="https://status.e-com.plus" target="_blank">Status</a></li>
+                <li><a href="https://app.e-com.plus" target="_blank">Dashboard</a></li>
+                <li><a href="https://e-com.plus" target="_blank">About</a></li>
+              </ul>
+            </div>
+            <div class="col-6 col-sm-4 col-md">
+              <h6 class="text-uppercase">Content</h6>
+              <ul class="list-unstyled">
+                <li><a href="/">Overview</a></li>
+                <li><a href="{{ urls.releases }}">Repo releases</a></li>
+                <li><a href="{{ urls.open }}">Open source</a></li>
+              </ul>
+            </div>
+            <div class="col-6 col-sm-4 col-md">
+              <h6 class="text-uppercase">Docs</h6>
+              <ul class="list-unstyled">
+                <li><a href="{{ urls.themes }}">Store templates</a></li>
+                <li><a href="{{ urls.apps }}">Applications</a></li>
+              </ul>
+            </div>
+            <div class="col-6 col-sm-4 col-md">
+              <h6 class="text-uppercase">Reference</h6>
+              <ul class="list-unstyled">
+                {% for key, api in apis %}
+                  <li><a href="{{ urls.reference }}{{ key }}/">{{ api.label }}</a></li>
+                {% endfor %}
+              </ul>
+            </div>
+            <div class="col-6 col-sm-4 col-md">
+              <h6 class="text-uppercase">Resources</h6>
+              <ul class="list-unstyled">
+                {% for resource in apis.store.resources %}
+                  {# skip subresources #}
+                  {% if resource matches '{^[a-z][^/]+$}' %}
+                    <li><a href="{{ urls.reference }}store/{{ resource }}">{{ resource|capitalize }}</a></li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+    {% endif %}
+    {# /.footer #}
 
-<!-- Scripts -->
-{% if page.github_repo %}
-<script>
-  // GitHub repository sync
-  var githubRepo = {
-    'name': '{{ page.github_repo }}',
-    'path': '{{ page.repo_path }}'
-  };
-</script>
-{% endif %}
-<script src="/src/assets/js/page.min.js"></script>
-</body>
+    {# Scripts #}
+    {% if page.github_repo %}
+      <script>
+      // GitHub repository sync
+      var githubRepo = {
+        'name': '{{ page.github_repo }}',
+        'path': '{{ page.repo_path }}'
+      };
+      </script>
+    {% endif %}
+    <script src="/src/assets/js/page.min.js"></script>
+  </body>
 </html>
+{% endspaceless %}

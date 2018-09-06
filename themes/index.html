@@ -1,320 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Template specifications for E-Com Plus ecommerce themes">
+<!--
+  ## Compiled with Twig ##
+  See template files in the `build/templates` directory
+-->
 
-  <title>Storefront theme · E-Com Plus Developers</title>
-
-  <!-- Styles -->
-  <link href="/src/assets/css/page.min.css" rel="stylesheet">
-
-  <!-- Favicons -->
-  <link rel="apple-touch-icon" href="/src/assets/img/apple-touch-icon.png">
-  <link rel="icon" href="/src/assets/img/favicon.png">
-
-  <!--  Open Graph Tags -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Storefront theme · E-Com Plus Developers">
-  <meta property="og:site_name" content="E-Com Plus Developers">
-  <meta property="og:description" content="Template specifications for E-Com Plus ecommerce themes">
-  <meta property="og:image" content="/src/assets/img/og-img.png">
-  <meta property="og:url" content="https://developers.e-com.plus/themes/">
-  <meta name="twitter:card" content="summary_large_image">
-</head>
-
-<body>
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark" data-navbar="static">
-  <div class="container">
-    <div class="navbar-left">
-      <button class="navbar-toggler" type="button">☰</button>
-      <a class="navbar-brand" href="/">
-        <img class="logo-dark" src="/src/assets/img/logo-dark.png" alt="logo">
-        <span>devs</span>
-      </a>
-      <form id="search" action="javascript:;">
-        <div class="lookup">
-          <input class="form-control" placeholder="Search documentation" type="search">
-        </div>
-      </form>
-    </div>
-
-    <section class="navbar-mobile" id="navbar">
-      <nav class="nav nav-navbar ml-auto">
-        <a class="nav-link" href="/">Home</a>
-        <a class="nav-link active" href="/themes/">Themes</a>
-        <a class="nav-link" href="/apps/">Apps</a>
-        <a class="nav-link" href="/releases">Releases</a>
-      </nav>
-      <a class="btn btn-sm btn-round btn-success ml-3" href="/reference/">
-        API Reference
-      </a>
-    </section>
-  </div>
-</nav>
-<!-- /.navbar -->
-
-<!-- Header -->
-<header class="header py-0">
-  <div class="container h-auto py-6">
-    <div class="row align-items-center">
-      <div class="col-auto">
-        <h1 class="m-0">Storefront theme</h1>
-      </div>
-      <div class="col-auto">
-        <a class="btn btn-sm btn-light btn-round" href="https://github.com/ecomclub/ecomplus-store-template/blob/master/README.md" target="_blank">
-          <i class="fa fa-github mr-1"></i>
-          Edit on GitHub
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <nav class="bg-white bb-1" aria-label="breadcrumb">
-    <div class="container">
-      <ol class="breadcrumb px-0">
-        <li class="breadcrumb-item"><a href="/">home</a></li>
-        <li class="breadcrumb-item"><a href="/themes">themes</a></li>
-      </ol>
-    </div>
-  </nav>
-</header>
-<!-- /.header -->
-
-<!-- Main Content -->
-<main class="main-content">
-<div class="container py-8">
-  <div class="row gap-y">
-    <!-- Sidebar -->
-    <div class="col-lg-5 col-xl-4">
-      <aside class="sidebar sidebar-sticky rendered-summary" id="sidebar">
-<h2>Pages</h2>
-<ol>
-<li><a href="./">Storefront theme</a></li>
-<li><a href="./structure/">Template structure</a></li>
-<li><a href="./methods/">JavaScript methods API</a></li>
-<li><a href="./search/">Implement a search engine</a></li>
-</ol>
-<h2>Summary</h2>
-<ol>
-<li><a href="#introduction">Introduction</a></li>
-<li><a href="#getting-started">Getting started</a></li>
-<li><a href="#guide">Guide</a>
-<ul>
-<li><a href="#app-main-element">App main element</a>
-<ul>
-<li><a href="#specifying-language">Specifying language</a></li>
-<li><a href="#specifying-store">Specifying store</a></li>
-</ul></li>
-<li><a href="#vue-instances">Vue instances</a>
-<ul>
-<li><a href="#store-api-objects">Store API objects</a>
-<ul>
-<li><a href="#object-types">Object types</a></li>
-<li><a href="#store-info-sample">Store info sample</a></li>
-<li><a href="#basic-product-sample">Basic product sample</a></li>
-<li><a href="#list-of-objects">List of objects</a></li>
-<li><a href="#list-of-categories-sample">List of categories sample</a></li>
-</ul></li>
-<li><a href="#search-api-objects">Search API objects</a>
-<ul>
-<li><a href="#list-items">List items</a></li>
-<li><a href="#products-list-sample">Products list sample</a></li>
-<li><a href="#search-products-by-keyword">Search products by keyword</a></li>
-<li><a href="#list-items-from-category-or-brand">List items from category or brand</a></li>
-<li><a href="#list-of-specific-products">List of specific products</a></li>
-</ul></li>
-<li><a href="#list-products-from-collection">List products from collection</a></li>
-</ul></li>
-<li><a href="#recommended-css">Recommended CSS</a></li>
-</ul></li>
-</ol>
-      </aside>
-    </div>
-
-    <!-- Content -->
-    <div class="col-lg-7 col-xl-8">
-      <article class="rendered-content" id="article">
-<h1>Introduction</h1>
-<p>This document is intended to list predefined mustache tags,
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="description" content="Template specifications for E-Com Plus ecommerce themes"><title>Storefront theme · E-Com Plus Developers</title><link href="/src/assets/css/page.min.css" rel="stylesheet"><link rel="apple-touch-icon" href="/src/assets/img/apple-touch-icon.png"><link rel="icon" href="/src/assets/img/favicon.png"><meta property="og:type" content="website"><meta property="og:title" content="Storefront theme · E-Com Plus Developers"><meta property="og:site_name" content="E-Com Plus Developers"><meta property="og:description" content="Template specifications for E-Com Plus ecommerce themes"><meta property="og:image" content="/src/assets/img/og-img.png"><meta property="og:url" content="https://developers.e-com.plus/themes/"><meta name="twitter:card" content="summary_large_image"></head><body><nav class="navbar navbar-expand-lg navbar-dark" data-navbar="static"><div class="container"><div class="navbar-left"><button class="navbar-toggler" type="button">☰</button><a class="navbar-brand" href="/"><img class="logo-dark" src="/src/assets/img/logo-dark.png" alt="logo"><span>devs</span></a><form id="search" action="javascript:;"><div class="lookup"><input class="form-control" placeholder="Search documentation" type="search"></div></form></div><section class="navbar-mobile" id="navbar"><nav class="nav nav-navbar ml-auto"><a class="nav-link" href="/">Home</a><a class="nav-link active" href="/themes/">Themes</a><a class="nav-link" href="/apps/">Apps</a><a class="nav-link" href="/releases">Releases</a></nav><a class="btn btn-sm btn-round btn-success ml-3" href="/reference/">
+            API Reference
+          </a></section></div></nav><header class="header py-0"><div class="container h-auto py-6"><div class="row align-items-center"><div class="col-auto"><h1 class="m-0">Storefront theme</h1></div><div class="col-auto"><a class="btn btn-sm btn-light btn-round" href="https://github.com/ecomclub/ecomplus-store-template/blob/master/README.md" target="_blank"><i class="fa fa-github mr-1"></i>
+                  Edit on GitHub
+                </a></div></div></div><nav class="bg-white bb-1" aria-label="breadcrumb"><div class="container"><ol class="breadcrumb px-0"><li class="breadcrumb-item"><a href="/">home</a></li><li class="breadcrumb-item"><a href="/themes">themes</a></li></ol></div></nav></header><main class="main-content"><div class="container py-8"><div class="row gap-y"><div class="col-lg-5 col-xl-4"><aside class="sidebar sidebar-sticky rendered-summary" id="sidebar"><h2>Pages</h2><ol><li><a href="./">Storefront theme</a></li><li><a href="./structure/">Template structure</a></li><li><a href="./methods/">JavaScript methods API</a></li><li><a href="./search/">Implement a search engine</a></li></ol><h2>Summary</h2><ol><li><a href="#introduction">Introduction</a></li><li><a href="#getting-started">Getting started</a></li><li><a href="#guide">Guide</a><ul><li><a href="#app-main-element">App main element</a><ul><li><a href="#specifying-language">Specifying language</a></li><li><a href="#specifying-store">Specifying store</a></li></ul></li><li><a href="#vue-instances">Vue instances</a><ul><li><a href="#store-api-objects">Store API objects</a><ul><li><a href="#object-types">Object types</a></li><li><a href="#store-info-sample">Store info sample</a></li><li><a href="#basic-product-sample">Basic product sample</a></li><li><a href="#list-of-objects">List of objects</a></li><li><a href="#list-of-categories-sample">List of categories sample</a></li></ul></li><li><a href="#search-api-objects">Search API objects</a><ul><li><a href="#list-items">List items</a></li><li><a href="#products-list-sample">Products list sample</a></li><li><a href="#search-products-by-keyword">Search products by keyword</a></li><li><a href="#list-items-from-category-or-brand">List items from category or brand</a></li><li><a href="#list-of-specific-products">List of specific products</a></li></ul></li><li><a href="#list-products-from-collection">List products from collection</a></li></ul></li><li><a href="#recommended-css">Recommended CSS</a></li></ul></li></ol></aside></div><div class="col-lg-7 col-xl-8"><article class="rendered-content" id="article"><h1>Introduction</h1><p>This document is intended to list predefined mustache tags,
 HTML classes and attributes, and
 <a href="./methods/">JavaScript methods</a>
 (functions) for layout rendering with
-<a href="https://github.com/ecomclub/ecomplus-store-render" target="_blank">ecomplus-store-render</a>.</p>
-<p><strong>It's possible to use any HTML template for E-Com Plus storefront.</strong>
+<a href="https://github.com/ecomclub/ecomplus-store-render" target="_blank">ecomplus-store-render</a>.</p><p><strong>It's possible to use any HTML template for E-Com Plus storefront.</strong>
 After reading this documentation, you will be able to customize a theme
-(editing some elements only) or start a new theme from scratch.</p>
-<p>If you want to create a new theme from scratch, be sure to follow
-<a href="./structure/">this template structure</a>.</p>
-<p>E-Com Plus storefront uses
+(editing some elements only) or start a new theme from scratch.</p><p>If you want to create a new theme from scratch, be sure to follow
+<a href="./structure/">this template structure</a>.</p><p>E-Com Plus storefront uses
 <a href="https://vuejs.org/v2/guide/" target="_blank">Vue.js 2</a> framework, so
 store template specifications follow the
-<a href="https://vuejs.org/v2/guide/syntax.html" target="_blank">Vue template syntax</a>.</p>
-<blockquote>
-<p>After reading the docs,
+<a href="https://vuejs.org/v2/guide/syntax.html" target="_blank">Vue template syntax</a>.</p><blockquote><p>After reading the docs,
 <a href="https://github.com/ecomclub/ecomplus-store-template/wiki" target="_blank">visit the Wiki</a>
 to make suggestions or contribute with documentation content and examples.
 If you need help, feel free to
-<a href="https://github.com/ecomclub/ecomplus-store-template/issues" target="_blank">open a new issue</a>.</p>
-</blockquote>
-<h1>Getting started</h1>
-<p>Your HTML file must include
+<a href="https://github.com/ecomclub/ecomplus-store-template/issues" target="_blank">open a new issue</a>.</p></blockquote><h1>Getting started</h1><p>Your HTML file must include
 <a href="https://vuejs.org/v2/" target="_blank">Vue</a>,
 <a href="https://github.com/ecomclub/ecomplus-sdk-js" target="_blank">storefront JS SDK</a>
 and the
 <a href="https://github.com/ecomclub/ecomplus-store-render" target="_blank">layout renderer app</a>.
-You can include storefront &quot;all in one&quot; JS file <strong>(recommended)</strong>:</p>
-<pre><code class="language-html">&lt;script src="https://ecvol.com/js/storefront@1/storefront.min.js"&gt;&lt;/script&gt;</code></pre>
-<p>Or import the scripts one by one (not recommended):</p>
-<pre><code class="language-html">&lt;script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.min.js"&gt;&lt;/script&gt;
+You can include storefront &quot;all in one&quot; JS file <strong>(recommended)</strong>:</p><pre><code class="language-html">&lt;script src="https://ecvol.com/js/storefront@1/storefront.min.js"&gt;&lt;/script&gt;</code></pre><p>Or import the scripts one by one (not recommended):</p><pre><code class="language-html">&lt;script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.min.js"&gt;&lt;/script&gt;
 &lt;script src="https://cdn.jsdelivr.net/npm/ecomplus-sdk@1/dist/sdk.min.js"&gt;&lt;/script&gt;
-&lt;script src="https://cdn.jsdelivr.net/npm/ecomplus-render@1/dist/render.min.js"&gt;&lt;/script&gt;</code></pre>
-<p>Then, start the layout rendering with JS below:</p>
-<pre><code class="language-javascript">Ecom.init()</code></pre>
-<p>The scripts should be loaded after the HTML content of the page,
+&lt;script src="https://cdn.jsdelivr.net/npm/ecomplus-render@1/dist/render.min.js"&gt;&lt;/script&gt;</code></pre><p>Then, start the layout rendering with JS below:</p><pre><code class="language-javascript">Ecom.init()</code></pre><p>The scripts should be loaded after the HTML content of the page,
 so you have to put them before <code>&lt;/body&gt;</code> tag,
 we also recommend to load them before other scripts,
-such as jQuery lib. Final example:</p>
-<pre><code class="language-html">&lt;body&gt;
+such as jQuery lib. Final example:</p><pre><code class="language-html">&lt;body&gt;
   &lt;!-- HTML content --&gt;
   &lt;script src="https://ecvol.com/js/storefront@1/storefront.min.js"&gt;&lt;/script&gt;
   &lt;script&gt;
     Ecom.init()
   &lt;/script&gt;
   &lt;!-- Optionally, other JS --&gt;
-&lt;/body&gt;</code></pre>
-<h1>Guide</h1>
-<p>HTML classes used by this library will be named with the prefix <code>_ecom-</code>,
-data attributes may be used together with the classes in the elements.</p>
-<h2>App main element</h2>
-<p>Your HTML must have an element
-with class <code>_ecom-store</code>, it's <strong>required</strong>.</p>
-<p>All Vue template must be inside this element,
+&lt;/body&gt;</code></pre><h1>Guide</h1><p>HTML classes used by this library will be named with the prefix <code>_ecom-</code>,
+data attributes may be used together with the classes in the elements.</p><h2>App main element</h2><p>Your HTML must have an element
+with class <code>_ecom-store</code>, it's <strong>required</strong>.</p><p>All Vue template must be inside this element,
 including all mustache tags and Vue HTML attributes,
 so probably it will be the <code>&lt;body&gt;</code>, but it's not a rule, you can use
-a <code>&lt;div&gt;</code>, <code>&lt;span&gt;</code> or any other:</p>
-<pre><code class="language-html">&lt;body class="_ecom-store"&gt;
+a <code>&lt;div&gt;</code>, <code>&lt;span&gt;</code> or any other:</p><pre><code class="language-html">&lt;body class="_ecom-store"&gt;
   &lt;!-- HTML CODE --&gt;
-&lt;/body&gt;</code></pre>
-<h3>Specifying store</h3>
-<p>By default, store will be defined in function of the site domain,
+&lt;/body&gt;</code></pre><h3>Specifying store</h3><p>By default, store will be defined in function of the site domain,
 but you can also use the attributes <code>data-store</code> and <code>data-id</code>
-with your <em>Store ID</em> and <em>Store Object ID</em> respectively:</p>
-<pre><code class="language-html">&lt;div class="_ecom-store" data-store="100" data-id="5a674f224e0dcec2c3353d9d"&gt;</code></pre>
-<p>It's useful if the template is designed for one specific store only,
-or if you want to work with multiple stores in the same storefront.</p>
-<h3>Specifying language</h3>
-<p>If you don't want to use the store default language,
-you can use the attribute <code>data-lang</code>:</p>
-<pre><code class="language-html">&lt;div class="_ecom-store" data-lang="en_us"&gt;</code></pre>
-<p>Use lowercase letters and separate lang of country (if any) by underline,
-eg.: <code>pt_br</code>, <code>en_us</code>, <code>it</code>, <code>es</code>.</p>
-<h2>Vue instances</h2>
-<p>Each HTML element with class <code>_ecom-el</code> will be an
+with your <em>Store ID</em> and <em>Store Object ID</em> respectively:</p><pre><code class="language-html">&lt;div class="_ecom-store" data-store="100" data-id="5a674f224e0dcec2c3353d9d"&gt;</code></pre><p>It's useful if the template is designed for one specific store only,
+or if you want to work with multiple stores in the same storefront.</p><h3>Specifying language</h3><p>If you don't want to use the store default language,
+you can use the attribute <code>data-lang</code>:</p><pre><code class="language-html">&lt;div class="_ecom-store" data-lang="en_us"&gt;</code></pre><p>Use lowercase letters and separate lang of country (if any) by underline,
+eg.: <code>pt_br</code>, <code>en_us</code>, <code>it</code>, <code>es</code>.</p><h2>Vue instances</h2><p>Each HTML element with class <code>_ecom-el</code> will be an
 <a href="https://vuejs.org/v2/guide/instance.html" target="_blank">Vue instance</a>.
-It represents an object declaration, preceded of a REST API GET request.</p>
-<p>Inside <code>._ecom-el</code> elements you can use mustache tags and any
+It represents an object declaration, preceded of a REST API GET request.</p><p>Inside <code>._ecom-el</code> elements you can use mustache tags and any
 <a href="https://vuejs.org/v2/guide/syntax.html" target="_blank">Vue template</a>
-attributes.</p>
-<h3>Store API objects</h3>
-<p><a href="https://ecomstore.docs.apiary.io/" target="_blank">Store API</a> requests
+attributes.</p><h3>Store API objects</h3><p><a href="https://ecomstore.docs.apiary.io/" target="_blank">Store API</a> requests
 are rendered from <code>._ecom-el</code> elements
-with the attributes below:</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">Attribute</th>
-<th style="text-align: center;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;"><code>data-type</code></td>
-<td style="text-align: center;">Type of object, with one of <a href="#object-types">these values</a></td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>data-id</code></td>
-<td style="text-align: center;">API Object ID, the <code>_id</code> of the object you are getting from the API <em>(optional)</em></td>
-</tr>
-</tbody>
-</table>
-<p>In almost all cases, you will not create an HTML for each object,
+with the attributes below:</p><table><thead><tr><th style="text-align: center;">Attribute</th><th style="text-align: center;">Description</th></tr></thead><tbody><tr><td style="text-align: center;"><code>data-type</code></td><td style="text-align: center;">Type of object, with one of <a href="#object-types">these values</a></td></tr><tr><td style="text-align: center;"><code>data-id</code></td><td style="text-align: center;">API Object ID, the <code>_id</code> of the object you are getting from the API <em>(optional)</em></td></tr></tbody></table><p>In almost all cases, you will not create an HTML for each object,
 for example, you will create only one HTML file for all products,
 not one per product.
 In these cases it's not possible to specify <code>data-id</code> (it's dynamic),
 let the element without this attribute,
-ID will be defined in function of page URL (slug).</p>
-<p>The
+ID will be defined in function of page URL (slug).</p><p>The
 <a href="https://vuejs.org/v2/guide/instance.html#Data-and-Methods" target="_blank">instance data</a>
 will be an object with <code>body</code> property, <code>body</code> is the object returned from
 <a href="https://ecomstore.docs.apiary.io/" target="_blank">Store API</a>,
-with the same properties.</p>
-<h4>Object types</h4>
-<p>Possible values for <code>data-type</code>:</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">Type</th>
-<th style="text-align: center;">Object model</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;"><code>product</code></td>
-<td style="text-align: center;"><a href="https://ecomstore.docs.apiary.io/#reference/products/product-object">Reference</a></td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>brand</code></td>
-<td style="text-align: center;"><a href="https://ecomstore.docs.apiary.io/#reference/brands/brand-object">Reference</a></td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>category</code></td>
-<td style="text-align: center;"><a href="https://ecomstore.docs.apiary.io/#reference/categories/category-object">Reference</a></td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>collection</code></td>
-<td style="text-align: center;"><a href="https://ecomstore.docs.apiary.io/#reference/collections/collection-object">Reference</a></td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>customer</code></td>
-<td style="text-align: center;"><a href="https://ecomstore.docs.apiary.io/#reference/customers/customer-object">Reference</a></td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>cart</code></td>
-<td style="text-align: center;"><a href="https://ecomstore.docs.apiary.io/#reference/carts/cart-object">Reference</a></td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>order</code></td>
-<td style="text-align: center;"><a href="https://ecomstore.docs.apiary.io/#reference/orders/order-object">Reference</a></td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>application</code></td>
-<td style="text-align: center;"><a href="https://ecomstore.docs.apiary.io/#reference/applications/application-object">Reference</a></td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>store</code></td>
-<td style="text-align: center;"><a href="https://ecomstore.docs.apiary.io/#reference/stores/store-object">Reference</a></td>
-</tr>
-</tbody>
-</table>
-<h4>Store info sample</h4>
-<p>The example below shows some of the current store information:</p>
-<pre><code class="language-html">&lt;div class="footer _ecom-el" data-type="store"&gt;
+with the same properties.</p><h4>Object types</h4><p>Possible values for <code>data-type</code>:</p><table><thead><tr><th style="text-align: center;">Type</th><th style="text-align: center;">Object model</th></tr></thead><tbody><tr><td style="text-align: center;"><code>product</code></td><td style="text-align: center;"><a href="https://ecomstore.docs.apiary.io/#reference/products/product-object">Reference</a></td></tr><tr><td style="text-align: center;"><code>brand</code></td><td style="text-align: center;"><a href="https://ecomstore.docs.apiary.io/#reference/brands/brand-object">Reference</a></td></tr><tr><td style="text-align: center;"><code>category</code></td><td style="text-align: center;"><a href="https://ecomstore.docs.apiary.io/#reference/categories/category-object">Reference</a></td></tr><tr><td style="text-align: center;"><code>collection</code></td><td style="text-align: center;"><a href="https://ecomstore.docs.apiary.io/#reference/collections/collection-object">Reference</a></td></tr><tr><td style="text-align: center;"><code>customer</code></td><td style="text-align: center;"><a href="https://ecomstore.docs.apiary.io/#reference/customers/customer-object">Reference</a></td></tr><tr><td style="text-align: center;"><code>cart</code></td><td style="text-align: center;"><a href="https://ecomstore.docs.apiary.io/#reference/carts/cart-object">Reference</a></td></tr><tr><td style="text-align: center;"><code>order</code></td><td style="text-align: center;"><a href="https://ecomstore.docs.apiary.io/#reference/orders/order-object">Reference</a></td></tr><tr><td style="text-align: center;"><code>application</code></td><td style="text-align: center;"><a href="https://ecomstore.docs.apiary.io/#reference/applications/application-object">Reference</a></td></tr><tr><td style="text-align: center;"><code>store</code></td><td style="text-align: center;"><a href="https://ecomstore.docs.apiary.io/#reference/stores/store-object">Reference</a></td></tr></tbody></table><h4>Store info sample</h4><p>The example below shows some of the current store information:</p><pre><code class="language-html">&lt;div class="footer _ecom-el" data-type="store"&gt;
   &lt;div class="logo" v-if="body.logo"&gt;
     &lt;img v-bind:src="body.logo.url" v-bind:alt="body.logo.alt" v-bind:width="width(body.logo)"&gt;
   &lt;/div&gt;
   &lt;h2 class="store-title"&gt; {{ body.name }} &lt;/h2&gt;
   &lt;p&gt; {{ body.description }} &lt;/p&gt;
-&lt;/div&gt;</code></pre>
-<p>In the example above, Vue data (inside mustache tags and <code>v-*</code> attributes) have the
+&lt;/div&gt;</code></pre><p>In the example above, Vue data (inside mustache tags and <code>v-*</code> attributes) have the
 <a href="https://ecomstore.docs.apiary.io/#reference/stores/specific-store" target="_blank">
 properties listed here</a>,
-following the store object model, but only with public data.</p>
-<h4>Basic product sample</h4>
-<p>The example below is a simple implementation of a product page:</p>
-<pre><code class="language-html">&lt;div class="_ecom-el" data-type="product"&gt;
+following the store object model, but only with public data.</p><h4>Basic product sample</h4><p>The example below is a simple implementation of a product page:</p><pre><code class="language-html">&lt;div class="_ecom-el" data-type="product"&gt;
   &lt;div v-bind:class="'prod-' + body.sku" v-if="body.visible"&gt;
     &lt;ul&gt;
       &lt;li v-for="picture in body.pictures"&gt;
@@ -346,131 +107,33 @@ following the store object model, but only with public data.</p>
       {{ body.body_html }}
     &lt;/div&gt;
   &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-<p>If you are creating the HTML file for a specific product only,
+&lt;/div&gt;</code></pre><p>If you are creating the HTML file for a specific product only,
 or embedding one product inside a custom page, you must set <code>data-id</code>
-with the product ID:</p>
-<pre><code class="language-html">&lt;div class="_ecom-el" data-type="product" data-id="123a5432109876543210cdef"&gt;</code></pre>
-<p>Vue data (inside mustache tags and <code>v-*</code> attributes) follows this
-<a href="https://ecomstore.docs.apiary.io/#reference/products/product-object" target="_blank">object reference</a>.</p>
-<p>Note that you can use similar code for other types of objects (API resources).</p>
-<h4>List of objects</h4>
-<p>It's possible to render a list of Store API
+with the product ID:</p><pre><code class="language-html">&lt;div class="_ecom-el" data-type="product" data-id="123a5432109876543210cdef"&gt;</code></pre><p>Vue data (inside mustache tags and <code>v-*</code> attributes) follows this
+<a href="https://ecomstore.docs.apiary.io/#reference/products/product-object" target="_blank">object reference</a>.</p><p>Note that you can use similar code for other types of objects (API resources).</p><h4>List of objects</h4><p>It's possible to render a list of Store API
 <a href="https://ecomstore.docs.apiary.io/#reference/categories/all-categories" target="_blank">categories</a>,
 <a href="https://ecomstore.docs.apiary.io/#reference/brands/all-brands" target="_blank">brands</a> or
 <a href="https://ecomstore.docs.apiary.io/#reference/collections/all-collections" target="_blank">collections</a>,
-to do that, you must add the attribute <code>data-list-all</code> to the <code>._ecom-el</code> element.</p>
-<p>This is available only for elements with one of following <code>data-type</code>:</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">Type</th>
-<th style="text-align: center;">Object model</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;"><code>brand</code></td>
-<td style="text-align: center;"><a href="https://ecomstore.docs.apiary.io/#reference/brands/all-brands">Reference</a></td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>category</code></td>
-<td style="text-align: center;"><a href="https://ecomstore.docs.apiary.io/#reference/categories/all-categories">Reference</a></td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>collection</code></td>
-<td style="text-align: center;"><a href="https://ecomstore.docs.apiary.io/#reference/collections/all-collections">Reference</a></td>
-</tr>
-</tbody>
-</table>
-<h4>List of categories sample</h4>
-<p>The example below is a simple implementation of a list of categories,
+to do that, you must add the attribute <code>data-list-all</code> to the <code>._ecom-el</code> element.</p><p>This is available only for elements with one of following <code>data-type</code>:</p><table><thead><tr><th style="text-align: center;">Type</th><th style="text-align: center;">Object model</th></tr></thead><tbody><tr><td style="text-align: center;"><code>brand</code></td><td style="text-align: center;"><a href="https://ecomstore.docs.apiary.io/#reference/brands/all-brands">Reference</a></td></tr><tr><td style="text-align: center;"><code>category</code></td><td style="text-align: center;"><a href="https://ecomstore.docs.apiary.io/#reference/categories/all-categories">Reference</a></td></tr><tr><td style="text-align: center;"><code>collection</code></td><td style="text-align: center;"><a href="https://ecomstore.docs.apiary.io/#reference/collections/all-collections">Reference</a></td></tr></tbody></table><h4>List of categories sample</h4><p>The example below is a simple implementation of a list of categories,
 up to 1000 objects, with random order,
-using <a href="https://vuejs.org/v2/guide/list.html" target="_blank">Vue list</a>:</p>
-<pre><code class="language-html">&lt;ul class="_ecom-el" data-type="category" data-list-all="true"&gt;
+using <a href="https://vuejs.org/v2/guide/list.html" target="_blank">Vue list</a>:</p><pre><code class="language-html">&lt;ul class="_ecom-el" data-type="category" data-list-all="true"&gt;
   &lt;li v-for="category in body.result"&gt;
     &lt;a v-bind:href="category.slug"&gt;
       {{ category.name }}
     &lt;/a&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</code></pre>
-<h5>Sort list alphabetically</h5>
-<p>By default, the objects are randomly ordered on the list,
-if you want alphabetical order, you can use the <code>alphabeticalSort</code> pre-built method:</p>
-<pre><code class="language-html">&lt;li v-for="category in alphabeticalSort(body.result)"&gt;</code></pre>
-<h3>Search API objects</h3>
-<p><a href="https://ecomsearch.docs.apiary.io/" target="_blank">Search API</a> requests
+&lt;/ul&gt;</code></pre><h5>Sort list alphabetically</h5><p>By default, the objects are randomly ordered on the list,
+if you want alphabetical order, you can use the <code>alphabeticalSort</code> pre-built method:</p><pre><code class="language-html">&lt;li v-for="category in alphabeticalSort(body.result)"&gt;</code></pre><h3>Search API objects</h3><p><a href="https://ecomsearch.docs.apiary.io/" target="_blank">Search API</a> requests
 are rendered from <code>._ecom-el</code> elements
 with the <code>data-type</code> equal to <code>items</code> or <code>terms</code>,
-and other attributes depending of search case.</p>
-<p>The
+and other attributes depending of search case.</p><p>The
 <a href="https://vuejs.org/v2/guide/instance.html#Data-and-Methods" target="_blank">Vue instance data</a>
 will be an object with <code>body</code> property, <code>body</code> is the object returned from
 <a href="https://ecomsearch.docs.apiary.io/" target="_blank">Search API</a>,
-with the same properties.</p>
-<h4>List items</h4>
-<p>To list products, <code>data-type</code> must be equal to <code>items</code>.
+with the same properties.</p><h4>List items</h4><p>To list products, <code>data-type</code> must be equal to <code>items</code>.
 You can get more info and example of returned object from
-<a href="https://ecomsearch.docs.apiary.io/#reference/items" target="_blank">API reference</a>.</p>
-<p>The <code>._ecom-el</code> element must also have the following attributes:</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">Attribute</th>
-<th style="text-align: center;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;"><code>data-type</code></td>
-<td style="text-align: center;">Equal to <code>items</code></td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>data-term</code></td>
-<td style="text-align: center;">Searched keyword <em>(optional)</em></td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>data-from</code></td>
-<td style="text-align: center;">Results offset number <em>(optional)</em></td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>data-size</code></td>
-<td style="text-align: center;">Maximum number of results <em>(optional)</em></td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>data-sort</code></td>
-<td style="text-align: center;">Results ordering, one of <a href="#sort-items-search-result">these enumered values</a> <em>(optional)</em></td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>data-ids</code></td>
-<td style="text-align: center;">Filter by specific products IDs separated by <code>,</code> <em>(optional)</em></td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>data-brands</code></td>
-<td style="text-align: center;">Filter by list of brands IDs separated by <code>,</code> <em>(optional)</em></td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>data-categories</code></td>
-<td style="text-align: center;">Filter by list of categories IDs separated by <code>,</code> <em>(optional)</em></td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>data-price-min</code></td>
-<td style="text-align: center;">Filter by minimum price <em>(optional)</em></td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>data-price-max</code></td>
-<td style="text-align: center;">Filter by maximum price <em>(optional)</em></td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>data-spec-*</code></td>
-<td style="text-align: center;">Filter by product specification <em>(optional)</em></td>
-</tr>
-</tbody>
-</table>
-<h4>Products list sample</h4>
-<p>The example below is a simple implementation of a list of trending products,
-using <a href="https://vuejs.org/v2/guide/list.html" target="_blank">Vue list</a>:</p>
-<pre><code class="language-html">&lt;div class="row _ecom-el" data-type="items"&gt;
+<a href="https://ecomsearch.docs.apiary.io/#reference/items" target="_blank">API reference</a>.</p><p>The <code>._ecom-el</code> element must also have the following attributes:</p><table><thead><tr><th style="text-align: center;">Attribute</th><th style="text-align: center;">Description</th></tr></thead><tbody><tr><td style="text-align: center;"><code>data-type</code></td><td style="text-align: center;">Equal to <code>items</code></td></tr><tr><td style="text-align: center;"><code>data-term</code></td><td style="text-align: center;">Searched keyword <em>(optional)</em></td></tr><tr><td style="text-align: center;"><code>data-from</code></td><td style="text-align: center;">Results offset number <em>(optional)</em></td></tr><tr><td style="text-align: center;"><code>data-size</code></td><td style="text-align: center;">Maximum number of results <em>(optional)</em></td></tr><tr><td style="text-align: center;"><code>data-sort</code></td><td style="text-align: center;">Results ordering, one of <a href="#sort-items-search-result">these enumered values</a><em>(optional)</em></td></tr><tr><td style="text-align: center;"><code>data-ids</code></td><td style="text-align: center;">Filter by specific products IDs separated by <code>,</code><em>(optional)</em></td></tr><tr><td style="text-align: center;"><code>data-brands</code></td><td style="text-align: center;">Filter by list of brands IDs separated by <code>,</code><em>(optional)</em></td></tr><tr><td style="text-align: center;"><code>data-categories</code></td><td style="text-align: center;">Filter by list of categories IDs separated by <code>,</code><em>(optional)</em></td></tr><tr><td style="text-align: center;"><code>data-price-min</code></td><td style="text-align: center;">Filter by minimum price <em>(optional)</em></td></tr><tr><td style="text-align: center;"><code>data-price-max</code></td><td style="text-align: center;">Filter by maximum price <em>(optional)</em></td></tr><tr><td style="text-align: center;"><code>data-spec-*</code></td><td style="text-align: center;">Filter by product specification <em>(optional)</em></td></tr></tbody></table><h4>Products list sample</h4><p>The example below is a simple implementation of a list of trending products,
+using <a href="https://vuejs.org/v2/guide/list.html" target="_blank">Vue list</a>:</p><pre><code class="language-html">&lt;div class="row _ecom-el" data-type="items"&gt;
   &lt;div class="col-md-2" v-for="item in body.hits.hits"&gt;
     &lt;div v-if="body = item._source" class="item"&gt;
       &lt;div v-if="body.pictures &amp;&amp; body.pictures[0] &amp;&amp; body.pictures[0].normal" class="item-img"&gt;
@@ -496,75 +159,20 @@ using <a href="https://vuejs.org/v2/guide/list.html" target="_blank">Vue list</a
       &lt;/span&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-<p>It's possible to specify the maximum number of listed items with <code>data-size</code>,
-the example below will list up to 12 most popular items:</p>
-<pre><code class="language-html">&lt;div class="_ecom-el" data-type="items" data-size="12"&gt;</code></pre>
-<p>For pagination, you should use data-from (offset) together with data-size (limit).
+&lt;/div&gt;</code></pre><p>It's possible to specify the maximum number of listed items with <code>data-size</code>,
+the example below will list up to 12 most popular items:</p><pre><code class="language-html">&lt;div class="_ecom-el" data-type="items" data-size="12"&gt;</code></pre><p>For pagination, you should use data-from (offset) together with data-size (limit).
 The example below will list up to 12 items, starting from the 24º,
-so, from 24º to 36º:</p>
-<pre><code class="language-html">&lt;div class="_ecom-el" data-type="items" data-from="24" data-size="12"&gt;</code></pre>
-<h5>Sort items search result</h5>
-<p>By default, items will be ordered by popularity (number of page views),
-but you can use custom sort with <code>data-sort</code> attribute:</p>
-<pre><code class="language-html">&lt;div class="_ecom-el" data-type="items" data-sort="1"&gt;</code></pre>
-<p>It must have one of the number values below:</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">Enum</th>
-<th style="text-align: center;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;"><code>1</code></td>
-<td style="text-align: center;">Sort by sales, products that sells more appear first</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>2</code></td>
-<td style="text-align: center;">Sort by price ascending, products with lowest price appear first</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>3</code></td>
-<td style="text-align: center;">Sort by price descending, products with highest price appear first</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>4</code></td>
-<td style="text-align: center;">Sort by creation date, new products appear first</td>
-</tr>
-</tbody>
-</table>
-<h4>Search products by keyword</h4>
-<p>To find products searching by name and/or keywords, you can use <code>data-term</code>:</p>
-<pre><code class="language-html">&lt;div class="_ecom-el" data-type="items" data-term="tshirt"&gt;</code></pre>
-<p><a href="./search/">Here</a>
-you can check an complete example of store search engine implementation.</p>
-<h4>Filter items by specifications</h4>
-<p>It's possible to filter the resultant items list by product specs,
+so, from 24º to 36º:</p><pre><code class="language-html">&lt;div class="_ecom-el" data-type="items" data-from="24" data-size="12"&gt;</code></pre><h5>Sort items search result</h5><p>By default, items will be ordered by popularity (number of page views),
+but you can use custom sort with <code>data-sort</code> attribute:</p><pre><code class="language-html">&lt;div class="_ecom-el" data-type="items" data-sort="1"&gt;</code></pre><p>It must have one of the number values below:</p><table><thead><tr><th style="text-align: center;">Enum</th><th style="text-align: center;">Description</th></tr></thead><tbody><tr><td style="text-align: center;"><code>1</code></td><td style="text-align: center;">Sort by sales, products that sells more appear first</td></tr><tr><td style="text-align: center;"><code>2</code></td><td style="text-align: center;">Sort by price ascending, products with lowest price appear first</td></tr><tr><td style="text-align: center;"><code>3</code></td><td style="text-align: center;">Sort by price descending, products with highest price appear first</td></tr><tr><td style="text-align: center;"><code>4</code></td><td style="text-align: center;">Sort by creation date, new products appear first</td></tr></tbody></table><h4>Search products by keyword</h4><p>To find products searching by name and/or keywords, you can use <code>data-term</code>:</p><pre><code class="language-html">&lt;div class="_ecom-el" data-type="items" data-term="tshirt"&gt;</code></pre><p><a href="./search/">Here</a>
+you can check an complete example of store search engine implementation.</p><h4>Filter items by specifications</h4><p>It's possible to filter the resultant items list by product specs,
 adding attributes of type <code>data-spec-*</code>, where the wildcard must be replaced
-by the specification (property name):</p>
-<pre><code class="language-html">&lt;div class="_ecom-el" data-type="items" data-spec-colors="Blue" data-spec-size="M"&gt;</code></pre>
-<h4>List items from category or brand</h4>
-<p>To list products from specific categories you should use
-<code>data-categories</code> attribute.</p>
-<p>Following example will list items from one category only, but you can
-specify more than one by separating categories IDs with <code>,</code> (comma):</p>
-<pre><code class="language-html">&lt;div class="_ecom-el" data-type="items" data-categories="f10000000000000000000001"&gt;</code></pre>
-<p>Similar to categories, you can list products from specific brands using
-<code>data-brands</code> attribute:</p>
-<pre><code class="language-html">&lt;div class="_ecom-el" data-type="items" data-brands="a10000000000000000000001"&gt;</code></pre>
-<h4>List of specific products</h4>
-<p>You can also list specific items using the <code>data-ids</code> attribute, where
-you should put the IDs of respective products separated by comma:</p>
-<pre><code class="language-html">&lt;div class="_ecom-el" data-type="items" data-ids="1234567890abcdef01291510,1234567890abcdef01291511"&gt;</code></pre>
-<p>Note that you can combine the attributes from all above
-search and list examples to fit your needs.</p>
-<h3>List products from collection</h3>
-<p>To list products of a collection you have to use both
-<a href="#store-api-objects">Store API</a> and <a href="#search-api-objects">Search API</a>.</p>
-<p>The notation is such as the example below:</p>
-<pre><code class="language-html">&lt;div class="_ecom-el" data-type="collection" data-id="c92000000000000000001111"
+by the specification (property name):</p><pre><code class="language-html">&lt;div class="_ecom-el" data-type="items" data-spec-colors="Blue" data-spec-size="M"&gt;</code></pre><h4>List items from category or brand</h4><p>To list products from specific categories you should use
+<code>data-categories</code> attribute.</p><p>Following example will list items from one category only, but you can
+specify more than one by separating categories IDs with <code>,</code> (comma):</p><pre><code class="language-html">&lt;div class="_ecom-el" data-type="items" data-categories="f10000000000000000000001"&gt;</code></pre><p>Similar to categories, you can list products from specific brands using
+<code>data-brands</code> attribute:</p><pre><code class="language-html">&lt;div class="_ecom-el" data-type="items" data-brands="a10000000000000000000001"&gt;</code></pre><h4>List of specific products</h4><p>You can also list specific items using the <code>data-ids</code> attribute, where
+you should put the IDs of respective products separated by comma:</p><pre><code class="language-html">&lt;div class="_ecom-el" data-type="items" data-ids="1234567890abcdef01291510,1234567890abcdef01291511"&gt;</code></pre><p>Note that you can combine the attributes from all above
+search and list examples to fit your needs.</p><h3>List products from collection</h3><p>To list products of a collection you have to use both
+<a href="#store-api-objects">Store API</a> and <a href="#search-api-objects">Search API</a>.</p><p>The notation is such as the example below:</p><pre><code class="language-html">&lt;div class="_ecom-el" data-type="collection" data-id="c92000000000000000001111"
   data-list="products" data-size="12"&gt;
   &lt;a v-bind:href="body.slug"&gt;
     &lt;h3 class="coll-name"&gt; {{ body.name }} &lt;/h3&gt;
@@ -595,27 +203,20 @@ search and list examples to fit your needs.</p>
       &lt;/div&gt;
     &lt;/li&gt;
   &lt;/ul&gt;
-&lt;/div&gt;</code></pre>
-<p>In these cases you must use <code>data-type</code> and <code>data-id</code> as expected
+&lt;/div&gt;</code></pre><p>In these cases you must use <code>data-type</code> and <code>data-id</code> as expected
 for a <a href="#store-api-objects">Store API object</a>.
 You also have to use the attribute <code>data-list</code> with
 value <code>products</code>, by doing this, you will be listing the
-collection products by IDs such as a <a href="#search-api-objects">Search API object</a>.</p>
-<p>In addition, you can use the other
+collection products by IDs such as a <a href="#search-api-objects">Search API object</a>.</p><p>In addition, you can use the other
 <a href="#list-items">attributes for a Search API items list</a>,
-such as the <code>data-size</code> used in the above example.</p>
-<h2>Recommended CSS</h2>
-<p>After the renderization of each <code>._ecom-el</code> element,
+such as the <code>data-size</code> used in the above example.</p><h2>Recommended CSS</h2><p>After the renderization of each <code>._ecom-el</code> element,
 the class <code>rendered</code> is automatically added, to hide the non-rendered elements
-we recommend to use the following styles:</p>
-<pre><code class="language-css">._ecom-el {
+we recommend to use the following styles:</p><pre><code class="language-css">._ecom-el {
   opacity: 0;
 }
 ._ecom-el.rendered {
   opacity: 1;
-}</code></pre>
-<p>If you want to use fade effect:</p>
-<pre><code class="language-css">._ecom-el {
+}</code></pre><p>If you want to use fade effect:</p><pre><code class="language-css">._ecom-el {
   opacity: 0;
 }
 ._ecom-el.rendered {
@@ -659,26 +260,10 @@ we recommend to use the following styles:</p>
   to {
     opacity: 1;
   }
-}</code></pre>
-<p>Of course you can change the animation time from 1s to what you want.</p>
-      </article>
-    </div>
-  </div>
-</div>
-</main>
-<!-- /.main -->
-
-<!-- Footer -->
-<!-- /.footer -->
-
-<!-- Scripts -->
-<script>
-  // GitHub repository sync
-  var githubRepo = {
-    'name': 'ecomplus-store-template',
-    'path': 'README.md'
-  };
-</script>
-<script src="/src/assets/js/page.min.js"></script>
-</body>
-</html>
+}</code></pre><p>Of course you can change the animation time from 1s to what you want.</p></article></div></div></div></main><script>
+      // GitHub repository sync
+      var githubRepo = {
+        'name': 'ecomplus-store-template',
+        'path': 'README.md'
+      };
+      </script><script src="/src/assets/js/page.min.js"></script></body></html>
