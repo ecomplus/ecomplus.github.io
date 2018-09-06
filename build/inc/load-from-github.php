@@ -38,8 +38,13 @@ function find_md_files ($repo_dir, $path = '') {
 // handle Developers pages from GitHub repos
 $repos = array(
   'ecomplus-store-template' => array(
+    'api_reference' => null,
     'base_url' => $urls['themes'],
     'description' => 'Template specifications for E-Com Plus ecommerce themes'
+  ),
+  'ecomplus-graphs-api-docs' => array(
+    'api_reference' => 'graphs',
+    'description' => 'E-Com Plus real-time engine for products recommendations systems'
   )
 );
 $docs_dir = __DIR__ . '/../../src/submodules/';
@@ -51,6 +56,12 @@ foreach ($repos as $repo => $page) {
   // array of Markdown files from current repository
   $files = null;
   $repo_dir = $docs_dir . $repo;
+  if ($page['api_reference']) {
+    // rendering API reference page
+    $page['base_url'] = $urls['reference'] . $page['api_reference'] . '/';
+    // start from src directory
+    $repo_dir .= '/src';
+  }
   if (is_dir($repo_dir)) {
     // try to set $files object from submodules .md files content
     $files = find_md_files($repo_dir);
@@ -93,7 +104,8 @@ foreach ($repos as $repo => $page) {
       'description' => $page['description'],
       // repository info
       'github_repo' => $repo,
-      'repo_path' => $files[$i]['path']
+      'repo_path' => $files[$i]['path'],
+      'api_reference' => $page['api_reference']
     );
   }
 }

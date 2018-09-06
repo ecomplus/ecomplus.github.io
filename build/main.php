@@ -34,6 +34,8 @@ $pages = array(
     'content' => null,
     // GitHub repository sync
     'github_repo' => null,
+    // is API reference
+    'api_reference' => null,
     // meta description
     'description' => 'E-Com Plus is a robust and flexible cloud commerce software, ' .
                      'totally based on REST APIs. ' .
@@ -65,11 +67,14 @@ for ($i = 0; $i < count($pages); $i++) {
   );
   $template_file = 'views' . $file_path . '.twig';
   if (!file_exists($templates_dir . '/' . $template_file)) {
-    // generic template
-    $template = $twig->load('general.html.twig');
-  } else {
-    $template = $twig->load($template_file);
+    if ($page['api_reference']) {
+      $template_file = 'content/reference.html.twig';
+    } else {
+      // generic template
+      $template_file = 'content/general.html.twig';
+    }
   }
+  $template = $twig->load($template_file);
   $html = $template->render($template_vars);
 
   // create or overwrite HTML file
