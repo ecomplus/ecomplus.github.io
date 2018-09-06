@@ -42,15 +42,11 @@ $repos = array(
     'description' => 'Template specifications for E-Com Plus ecommerce themes'
   )
 );
-$docs_dir = __DIR__ . '/../../src/submodules/';
-// parse markdown to HTML
-// https://github.com/erusev/parsedown
-$parsedown = new Parsedown();
 
 foreach ($repos as $repo => $page) {
   // array of Markdown files from current repository
-  $files = null;
-  $repo_dir = $docs_dir . $repo;
+  $files = array();
+  $repo_dir = $submodules_dir . $repo;
   if (is_dir($repo_dir)) {
     // try to set $files object from submodules .md files content
     $files = find_md_files($repo_dir);

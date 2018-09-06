@@ -2,7 +2,7 @@
 // composer
 require __DIR__ . '/vendor/autoload.php';
 // include scripts
-require __DIR__ . '/inc/get-json.php';
+require __DIR__ . '/inc/requests.php';
 require __DIR__ . '/inc/apis.php';
 
 // Twig 2 for template rendering
@@ -21,7 +21,7 @@ $urls = array(
   'releases' => $base_path . 'releases',
   'open' => $base_path . 'open'
 );
-// E-Com GitHub URL
+// E-Com GitHub organization URL
 $github_org = 'https://github.com/ecomclub/';
 
 // list of site pages
@@ -46,8 +46,13 @@ $pages = array(
   )
 );
 
+// parse markdown to HTML
+// https://github.com/erusev/parsedown
+$submodules_dir = __DIR__ . '/../../src/submodules/';
+$parsedown = new Parsedown();
 // handle more pages from GitHub repos
-include __DIR__ . '/inc/load-from-github.php';
+include __DIR__ . '/inc/guides.php';
+include __DIR__ . '/inc/references.php';
 
 // render each page
 for ($i = 0; $i < count($pages); $i++) {
