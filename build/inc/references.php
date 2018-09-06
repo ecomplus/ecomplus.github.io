@@ -12,4 +12,9 @@ foreach ($repos as $repo => $page) {
   // treat refract json file
   // API Blueprint > Refract JSON > PHP Twig
   $refract = @file_get_contents($submodules_dir . $repo . '/src/refract.json');
+  if ($refract) {
+    $json = json_decode($refract);
+    if (json_last_error() === JSON_ERROR_NONE) {
+    }
+  }
 }
