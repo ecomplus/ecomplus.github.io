@@ -131,30 +131,47 @@ $(function () {
     }
   })
 
-  var $sidebar = $('#sidebar')
-  if ($sidebar.length) {
-    // handle summary links
-    var $summary = $sidebar.find('a')
-    $summary.click(handleAnchor)
-  }
-
   // create anchor links within article content
   var $article = $('#article')
   if ($article.length) {
+    var $sidebar = $('#sidebar')
+    // check if summary is rendered
+    var emptySidebar, $sidebarNav, $summary
+    if ($sidebar.length) {
+      emptySidebar = $sidebar.is(':empty')
+      if (emptySidebar) {
+        $sidebarNav = $('<ul />', { 'class': 'hidden' })
+      }
+    }
+
     $article.find('h1,h2,h3,h4,h5').each(function () {
       var text = $(this).text()
       // render ID from header text
       var anchor = text.toLowerCase().replace(/\s/g, '-')
       // fix anchor ID and add link
-      $(this).attr('id', anchor).html($('<a />', {
-        'class': 'anchor-link',
+      var link = {
         href: '#' + anchor,
         click: handleAnchor,
         text: text
-      }))
+      }
+      $(this).attr('id', anchor).html($('<a />', Object.assign({ 'class': 'anchor-link' }, link)))
+
+      if (emptySidebar) {
+        // add link to sidebar menu
+        $sidebarNav.append($('<li />', { html: $('<a />', link) }))
+      }
     })
 
     if ($sidebar.length) {
+      if (emptySidebar) {
+        // sidebar menu rendered
+        $sidebar.append($sidebarNav)
+        $sidebarNav.slideDown()
+      }
+      // handle summary links
+      $summary = $sidebar.find('a')
+      $summary.click(handleAnchor)
+
       // find current page link on summary
       var $self = $summary.filter(function () {
         var href = $(this).attr('href')
@@ -195,7 +212,6 @@ $(function () {
 
         // add nav to article element
         $article.append($articleNav)
-        $articleNav.slideDown()
       }
     }
 
