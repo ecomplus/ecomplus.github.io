@@ -38,18 +38,38 @@ function find_md_files ($repo_dir, $path = '') {
 // handle Developers pages from GitHub repos
 $repos = array(
   'ecomplus-store-template' => array(
+    'api_reference' => null,
     'base_url' => $urls['themes'],
     'description' => 'Template specifications for E-Com Plus ecommerce themes'
+  ),
+  'ecomplus-graphs-api-docs' => array(
+    'api_reference' => 'graphs',
+    'description' => 'E-Com Plus real-time engine for products recommendations systems'
   )
 );
+$docs_dir = __DIR__ . '/../../src/submodules/';
+// parse markdown to HTML
+// https://github.com/erusev/parsedown
+$parsedown = new Parsedown();
 
 foreach ($repos as $repo => $page) {
   // array of Markdown files from current repository
   $files = array();
-  $repo_dir = $submodules_dir . $repo;
+  $repo_dir = $docs_dir . $repo;
   if (is_dir($repo_dir)) {
-    // try to set $files object from submodules .md files content
-    $files = find_md_files($repo_dir);
+    if ($page['api_reference']) {
+      // rendering API reference introduction page
+      $files = array(
+        array(
+          'path' => 'README.md',
+          'markdown' => file_get_contents($repo_dir . '/src/README.md')
+        )
+      );
+      $page['base_url'] = $urls['reference'] . $page['api_reference'] . '/';
+    } else {
+      // try to set $files object from submodules .md files content
+      $files = find_md_files($repo_dir);
+    }
   }
 
   for ($i = 0; $i < count($files); $i++) {
@@ -66,14 +86,22 @@ foreach ($repos as $repo => $page) {
     list($subtitle, $markdown) = explode(PHP_EOL, $files[$i]['markdown'], 2);
     // remove # from subtitle
     $subtitle = ltrim($subtitle, '# ');
-    // remove some strings from original Markdown content
-    $markdown = explode('{% raw %}', trim($markdown), 2);
-    if (count($markdown) > 1) {
-      $summary = $parsedown->text($markdown[0]);
-    } else {
+    if ($page['api_reference']) {
       $summary = null;
+      // remove Hercule includes
+      $markdown = preg_replace('/([\t\n\s]+)?\:\[\]\(.*\)/', '', trim($markdown));
+      $page_title = $subtitle;
+    } else {
+      // remove some strings from original Markdown content
+      $markdown = explode('{% raw %}', trim($markdown), 2);
+      if (count($markdown) > 1) {
+        $summary = $parsedown->text($markdown[0]);
+      } else {
+        $summary = null;
+      }
+      $markdown = str_replace('{% endraw %}', '', trim(end($markdown)));
+      $page_title = $subtitle . ' · ' . $site_title;
     }
-    $markdown = str_replace('{% endraw %}', '', trim(end($markdown)));
     // parse to HTML
     $content = $parsedown->text($markdown);
 
@@ -83,14 +111,14 @@ foreach ($repos as $repo => $page) {
       'summary' => $summary,
       'content' => $content,
       // page title
-      'title' => $subtitle . ' · E-Com Plus Developers',
+      'title' => $page_title,
       // h1 from markdown
       'subtitle' => $subtitle,
       'description' => $page['description'],
       // repository info
       'github_repo' => $repo,
       'repo_path' => $files[$i]['path'],
-      'api_reference' => false
+      'api_reference' => $page['api_reference']
     );
   }
 }

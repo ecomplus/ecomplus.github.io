@@ -2,7 +2,7 @@
 // composer
 require __DIR__ . '/vendor/autoload.php';
 // include scripts
-require __DIR__ . '/inc/requests.php';
+require __DIR__ . '/inc/get-json.php';
 require __DIR__ . '/inc/apis.php';
 
 // Twig 2 for template rendering
@@ -12,6 +12,7 @@ $loader = new Twig_Loader_Filesystem($templates_dir);
 // setup twig object with no compilation cache
 $twig = new Twig_Environment($loader, array('strict_variables' => true));
 
+$site_title = 'E-Com Plus Developers';
 // internal links (abstractions)
 $base_path = '/docs/';
 $urls = array(
@@ -46,13 +47,8 @@ $pages = array(
   )
 );
 
-// parse markdown to HTML
-// https://github.com/erusev/parsedown
-$submodules_dir = __DIR__ . '/../src/submodules/';
-$parsedown = new Parsedown();
 // handle more pages from GitHub repos
-include __DIR__ . '/inc/guides.php';
-include __DIR__ . '/inc/references.php';
+include __DIR__ . '/inc/load-from-github.php';
 
 // render each page
 for ($i = 0; $i < count($pages); $i++) {
@@ -69,6 +65,7 @@ for ($i = 0; $i < count($pages); $i++) {
 
   // define array with variables for template
   $template_vars = array(
+    'site_title' => $site_title,
     // pass GitHub org host
     'github_org' => $github_org,
     'page' => $page,
@@ -77,12 +74,8 @@ for ($i = 0; $i < count($pages); $i++) {
   );
   $template_file = 'views' . $file_path . '.twig';
   if (!file_exists($templates_dir . '/' . $template_file)) {
-    if ($page['api_reference']) {
-      $template_file = 'content/reference.html.twig';
-    } else {
-      // generic template
-      $template_file = 'content/general.html.twig';
-    }
+    // generic template
+    $template_file = 'content/general.html.twig';
   }
   $template = $twig->load($template_file);
   $html = $template->render($template_vars);
