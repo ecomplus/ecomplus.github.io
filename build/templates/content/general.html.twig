@@ -8,13 +8,9 @@
       <div class="row gap-y">
         {# Sidebar #}
         <div class="col-lg-5 col-xl-4">
-          {% if page.summary %}
-            <aside class="sidebar sidebar-sticky rendered-summary" id="sidebar">
-              {{ page.summary|raw }}
-            </aside>
-          {% else %}
-            <aside class="sidebar rendered-summary" id="sidebar"></aside>
-          {% endif %}
+          <aside class="sidebar sidebar-sticky rendered-summary" id="sidebar">
+            {{ page.summary|raw }}
+          </aside>
         </div>
         {# Content #}
         <div class="col-lg-7 col-xl-8">

@@ -138,7 +138,7 @@ $(function () {
     // check if summary is rendered
     var emptySidebar, $sidebarNav, $deepSidebarNav, $summary, currentHeader
     if ($sidebar.length) {
-      emptySidebar = $sidebar.is(':empty')
+      emptySidebar = !$sidebar.children('ol,ul').length
       if (emptySidebar) {
         $sidebarNav = $('<ol />', { 'class': 'hidden' })
       }
