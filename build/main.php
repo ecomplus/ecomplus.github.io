@@ -18,9 +18,11 @@ $base_path = '/docs/';
 $urls = array(
   'themes' => $base_path . 'themes/',
   'apps' => $base_path . 'apps/',
-  'reference' => $base_path . 'reference/',
   'releases' => $base_path . 'releases',
-  'open' => $base_path . 'open'
+  'open' => $base_path . 'open',
+  'reference' => $base_path . 'reference/',
+  // $reference/$api/$console
+  'console' => '/api'
 );
 // E-Com GitHub organization URL
 $github_org = 'https://github.com/ecomclub/';
