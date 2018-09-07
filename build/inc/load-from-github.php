@@ -42,6 +42,14 @@ $repos = array(
     'api' => null,
     'description' => 'Template specifications for E-Com Plus ecommerce themes'
   ),
+  'ecomplus-api-docs' => array(
+    'api' => 'store',
+    'description' => 'E-Com Plus Store RESTful API, full access to all store JSON data'
+  ),
+  'ecomplus-search-api-docs' => array(
+    'api' => 'search',
+    'description' => 'E-Com Plus fast and flexible search engine for products and terms'
+  ),
   'ecomplus-graphs-api-docs' => array(
     'api' => 'graphs',
     'description' => 'E-Com Plus real-time engine for products recommendations systems'
