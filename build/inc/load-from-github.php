@@ -38,12 +38,12 @@ function find_md_files ($repo_dir, $path = '') {
 // handle Developers pages from GitHub repos
 $repos = array(
   'ecomplus-store-template' => array(
-    'api_reference' => null,
     'base_url' => $urls['themes'],
+    'api' => null,
     'description' => 'Template specifications for E-Com Plus ecommerce themes'
   ),
   'ecomplus-graphs-api-docs' => array(
-    'api_reference' => 'graphs',
+    'api' => 'graphs',
     'description' => 'E-Com Plus real-time engine for products recommendations systems'
   )
 );
@@ -52,12 +52,12 @@ $docs_dir = __DIR__ . '/../../src/submodules/';
 // https://github.com/erusev/parsedown
 $parsedown = new Parsedown();
 
-foreach ($repos as $repo => $page) {
+foreach ($repos as $repo => $repo_obj) {
   // array of Markdown files from current repository
   $files = array();
   $repo_dir = $docs_dir . $repo;
   if (is_dir($repo_dir)) {
-    if ($page['api_reference']) {
+    if ($repo_obj['api']) {
       // rendering API reference introduction page
       $files = array(
         array(
@@ -65,7 +65,6 @@ foreach ($repos as $repo => $page) {
           'markdown' => file_get_contents($repo_dir . '/src/README.md')
         )
       );
-      $page['base_url'] = $urls['reference'] . $page['api_reference'] . '/';
     } else {
       // try to set $files object from submodules .md files content
       $files = find_md_files($repo_dir);
@@ -74,51 +73,59 @@ foreach ($repos as $repo => $page) {
 
   for ($i = 0; $i < count($files); $i++) {
     // echo $files[$i]['path'] . PHP_EOL;
-    // remove '.md' extension
-    $url = substr($files[$i]['path'], 0, -3);
-    // README file is the dir index
-    if (substr($url, -6) === 'README') {
-      // remove 'README'
-      $url = substr($url, 0, -6);
-    }
-
     // partition content
     list($subtitle, $markdown) = explode(PHP_EOL, $files[$i]['markdown'], 2);
     // remove # from subtitle
     $subtitle = ltrim($subtitle, '# ');
-    if ($page['api_reference']) {
+
+    if ($repo_obj['api']) {
+      // API reference intro documentation
+      // one page only
+      $url = $urls['reference'] . $repo_obj['api'] . '/';
+      // full page title from Markdown
+      $page_title = $subtitle;
+
+      // no prerendered summary
       $summary = null;
       // remove Hercule includes
       $markdown = preg_replace('/([\t\n\s]+)?\:\[\]\(.*\)/', '', trim($markdown));
-      $page_title = $subtitle;
     } else {
+      // remove '.md' extension
+      $url = substr($files[$i]['path'], 0, -3);
+      // README file is the dir index
+      if (substr($url, -6) === 'README') {
+        // remove 'README'
+        $url = substr($url, 0, -6);
+      }
+      $url = $repo_obj['base_url'] . $url;
+      // merge guide title with site name
+      $page_title = $subtitle . ' · ' . $site_title;
+
       // remove some strings from original Markdown content
       $markdown = explode('{% raw %}', trim($markdown), 2);
       if (count($markdown) > 1) {
-        $summary = $parsedown->text($markdown[0]);
+        $summary = $markdown[0];
       } else {
         $summary = null;
       }
       $markdown = str_replace('{% endraw %}', '', trim(end($markdown)));
-      $page_title = $subtitle . ' · ' . $site_title;
     }
-    // parse to HTML
-    $content = $parsedown->text($markdown);
 
     // add page
     $pages[] = array(
-      'url' => $page['base_url'] . $url,
-      'summary' => $summary,
-      'content' => $content,
+      'url' => $url,
+      // parse to HTML
+      'summary' => $parsedown->text($summary),
+      'content' => $parsedown->text($markdown),
       // page title
       'title' => $page_title,
       // h1 from markdown
       'subtitle' => $subtitle,
-      'description' => $page['description'],
+      'description' => $repo_obj['description'],
       // repository info
       'github_repo' => $repo,
       'repo_path' => $files[$i]['path'],
-      'api_reference' => $page['api_reference']
+      'api_reference' => $repo_obj['api']
     );
   }
 }
