@@ -94,7 +94,8 @@ foreach ($repos as $repo => $repo_obj) {
       $page_title = $subtitle;
 
       // no prerendered summary
-      $summary = null;
+      // label only
+      $summary = '## Introduction';
       // remove Hercule includes
       $markdown = preg_replace('/([\t\n\s]+)?\:\[\]\(.*\)/', '', trim($markdown));
     } else {
