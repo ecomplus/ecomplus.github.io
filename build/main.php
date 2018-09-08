@@ -21,8 +21,7 @@ $urls = array(
   'releases' => $base_path . 'releases',
   'open' => $base_path . 'open',
   'reference' => $base_path . 'reference/',
-  // $reference/$api/$console
-  'console' => '/api'
+  'console' => $base_path . 'api'
 );
 // E-Com GitHub organization URL
 $github_org = 'https://github.com/ecomclub/';
