@@ -19,7 +19,9 @@
       "callApi",
       "loadContent",
       "storeId",
-      "githubRepo"
+      "githubRepo",
+      "apiReference",
+      "consoleLink"
     ]
   },
   "devDependencies": {

@@ -18,15 +18,6 @@ $(function () {
     }
   }
 
-  // E-Com Plus APIs
-  $.getJSON('/src/assets/json/apis.json', function (json) {
-    // success
-    window.Apis = json
-  }).fail(function (jqxhr, textStatus, err) {
-    alert('Cannot GET Apis object :/')
-    console.error(err)
-  })
-
   // general function to load HTML content
   window.loadContent = function () {
   }
@@ -88,6 +79,9 @@ $(function () {
       }
     })
   }
+
+  // declare auxiliars
+  var i
 
   var handleAnchor = function () {
     // treat anchor links
@@ -218,7 +212,7 @@ $(function () {
 
         // next and previous page link element
         var movePages = [ 'prev', 'next' ]
-        for (var i = 0; i < 2; i++) {
+        for (i = 0; i < 2; i++) {
           var moveTo = movePages[i]
           var $pageLink = $liSelf[moveTo]().children()
           if ($pageLink.length) {
@@ -256,4 +250,82 @@ $(function () {
       }))
     }
   }
+
+  // E-Com Plus APIs
+  $.getJSON('/src/assets/json/apis.json', function (json) {
+    // success
+    window.Apis = json
+
+    if (window.apiReference && $sidebar.length) {
+      // render resource menu
+      var $resources = $('<ol />')
+      var $resourcesTree = []
+      var resources = Apis[apiReference].resources
+      // list resources for menu
+      var resourcesMenu = []
+      var resource
+
+      for (i = 0; i < resources.length; i++) {
+        resource = resources[i]
+        // escape auth and third party resources
+        if (/^[a-z]/.test(resource)) {
+          resourcesMenu.push(resource)
+        }
+      }
+      // order resources list
+      resourcesMenu.sort(function (a, b) {
+        if (a < b) return -1
+        if (a > b) return 1
+        return 0
+      })
+      // console.log(resourcesMenu)
+
+      for (i = 0; i < resourcesMenu.length; i++) {
+        resource = resourcesMenu[i]
+        var paths = resource.split('/')
+        var resourceName = paths[paths.length - 1].replace(/_/g, ' ')
+        // new li element
+        var $li = $('<li />', {
+          html: $('<a />', {
+            href: consoleLink + resource,
+            // capitalize resource name
+            text: resourceName.charAt(0).toUpperCase() + resourceName.slice(1)
+          })
+        })
+
+        // add to tree to control resource levels
+        $resourcesTree[paths.length] = $li
+        if (paths.length === 1) {
+          // main resource
+          $resources.append($li)
+        } else {
+          // subresource or third level
+          var $resourceLevel = $resourcesTree[paths.length - 1]
+          var $ul = $resourceLevel.children('ul')
+          if (!$ul.length) {
+            // new list
+            $ul = $('<ul />')
+            $resourceLevel.append($ul)
+          }
+          $ul.append($li)
+        }
+      }
+
+      // add resources to sidebar
+      var $div = $('<div />', {
+        'class': 'hidden',
+        html: [
+          '<h2>Resources</h2>',
+          $resources
+        ]
+      })
+      $sidebar.append($div)
+      setTimeout(function () {
+        $div.slideDown()
+      }, 300)
+    }
+  }).fail(function (jqxhr, textStatus, err) {
+    alert('Cannot GET Apis object :/')
+    console.error(err)
+  })
 })

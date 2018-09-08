@@ -200,6 +200,12 @@
       };
       </script>
     {% endif %}
+    {% if page.api_reference %}
+      <script>
+      var consoleLink = '{{ urls.console ~ '#/' ~ page.api_reference ~ '/' }}';
+      var apiReference = '{{ page.api_reference }}';
+      </script>
+    {% endif %}
     <script src="/src/assets/js/page.min.js"></script>
   </body>
 </html>

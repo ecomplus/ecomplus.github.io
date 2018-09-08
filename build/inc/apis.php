@@ -79,11 +79,15 @@ if (!$apis) {
           // remove '.json' extension
           $resource = substr($resource, 0, strlen($resource) - 5);
         }
+        // remove ID between resource levels
         // push to original apis object
-        array_push($apis[$key]['resources'], $resource);
+        array_push($apis[$key]['resources'], str_replace('/_id', '', $resource));
       }
     }
   }
+  // fix for Graphs API
+  // no endpoint for products without subresource
+  array_push($apis['graphs']['resources'], 'products');
 
   // var_dump($apis);
   // render JSON with Apis object
