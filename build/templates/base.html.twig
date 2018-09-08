@@ -174,7 +174,7 @@
               <h6 class="text-uppercase">Resources</h6>
               <ul class="list-unstyled">
                 {% set footer_api = 'store' %}
-                {% set console_link = urls.console ~ '#/' ~ footer_api ~ '/' %}
+                {% set console_link = urls.console ~ footer_api ~ '/' %}
                 {% for resource in apis[footer_api].resources %}
                   {# skip subresources #}
                   {% if resource matches '{^[a-z][^/]+$}' %}
@@ -202,7 +202,7 @@
     {% endif %}
     {% if page.api_reference %}
       <script>
-      var consoleLink = '{{ urls.console ~ '#/' ~ page.api_reference ~ '/' }}';
+      var consoleLink = '{{ urls.console ~ page.api_reference ~ '/' }}';
       var apiReference = '{{ page.api_reference }}';
       </script>
     {% endif %}
