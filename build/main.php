@@ -46,7 +46,7 @@ $pages = array(
                      'Get started with guides, API reference and playground on our Developers Hub.'
   ),
 
-  // api console page
+  // API console page
   array(
     'url' => $urls['console'],
     'title' => 'APIs Environment · ' . $site_title,
