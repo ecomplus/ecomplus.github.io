@@ -18,10 +18,10 @@ $base_path = '/docs/';
 $urls = array(
   'themes' => $base_path . 'themes/',
   'apps' => $base_path . 'apps/',
-  'releases' => $base_path . 'releases',
-  'open' => $base_path . 'open',
+  'releases' => $base_path . 'releases/',
+  'open' => $base_path . 'open/',
   'reference' => $base_path . 'reference/',
-  'console' => $base_path . 'api#/'
+  'console' => $base_path . 'api/'
 );
 // E-Com GitHub organization URL
 $github_org = 'https://github.com/ecomclub/';
@@ -35,7 +35,6 @@ $pages = array(
     // h1
     'subtitle' => null,
     // rendered content
-    'summary' => null,
     'content' => null,
     // GitHub repository sync
     'github_repo' => null,
@@ -45,6 +44,17 @@ $pages = array(
     'description' => 'E-Com Plus is a robust and flexible cloud commerce software, ' .
                      'totally based on REST APIs. ' .
                      'Get started with guides, API reference and playground on our Developers Hub.'
+  ),
+
+  // api console page
+  array(
+    'url' => $urls['console'],
+    'title' => 'APIs Environment · ' . $site_title,
+    'subtitle' => 'APIs Environment',
+    'content' => null,
+    'github_repo' => null,
+    'api_reference' => null,
+    'description' => 'E-Com Plus APIs endpoints, examples and console app'
   )
 );
 
