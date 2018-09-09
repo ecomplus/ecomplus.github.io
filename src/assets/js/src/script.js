@@ -230,7 +230,7 @@ $(function () {
         // link to console
         moves.push({
           to: 'next',
-          text: 'Endpoints reference',
+          text: 'Endpoints and examples',
           href: consoleLink
         })
       }
