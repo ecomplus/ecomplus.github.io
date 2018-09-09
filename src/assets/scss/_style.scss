@@ -185,16 +185,19 @@ body > header {
 .rendered-summary li * li * li {
   font-weight: 200;
 }
+.sidebar-sticky.stick,
+.sidebar-sticky.is-mobile-wide {
+  padding-top: 2rem;
+}
 .sidebar-sticky.stick:not(.is-mobile-wide) {
   z-index: 1;
-  padding-top: 2rem;
   overflow-y: scroll;
 }
 .sidebar-sticky.stick:not(.is-mobile-wide) > ol:last-of-type,
 .sidebar-sticky.stick:not(.is-mobile-wide) > ul:last-of-type {
   padding-bottom: 2rem;
 }
-@media (max-width: 991px) {
+@media (max-width: 767px) {
   .sidebar-sticky.stick {
     position: relative !important;
   }
