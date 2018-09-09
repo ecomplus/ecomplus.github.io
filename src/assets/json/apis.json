@@ -139,7 +139,7 @@
         ],
         "label": "Recommendations"
     },
-    "gbigdata": {
+    "bigdata": {
         "host": "https:\/\/apx-bigdata.e-com.plus",
         "base_path": "\/api\/",
         "version": "v1",

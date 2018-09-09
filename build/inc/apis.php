@@ -44,7 +44,7 @@ if (!$apis) {
       'resources' => array(),
       'label' => 'Recommendations'
     ),
-    'gbigdata' => array(
+    'bigdata' => array(
       'host' => 'https://apx-bigdata.e-com.plus',
       'base_path' => '/api/',
       'version' => 'v1',
