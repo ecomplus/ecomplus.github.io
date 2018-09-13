@@ -81,7 +81,10 @@ $(function () {
   }
 
   // declare auxiliars
-  var i
+  var i, apiConsole
+  if (typeof $.fn.refapp === 'function') {
+    apiConsole = true
+  }
 
   var handleAnchor = function () {
     // treat anchor links
@@ -282,69 +285,87 @@ $(function () {
     // success
     window.Apis = json
 
-    if (window.apiReference && $sidebar.length) {
-      // render resource menu
-      var $resources = $('<ol />', { 'class': 'hidden' })
-      var $resourcesTree = []
-      var resources = Apis[apiReference].resources
-      // list resources for menu
-      var resourcesMenu = []
-      var resource
+    if (window.apiReference) {
+      if ($sidebar.length) {
+        // render resource menu
+        var $resources = $('<ol />', { 'class': 'hidden' })
+        var $resourcesTree = []
+        var resources = Apis[apiReference].resources
+        // list resources for menu
+        var resourcesMenu = []
+        var resource
 
-      for (i = 0; i < resources.length; i++) {
-        resource = resources[i]
-        // escape auth and third party resources
-        if (/^[a-z]/.test(resource)) {
-          resourcesMenu.push(resource)
-        }
-      }
-      // order resources list
-      resourcesMenu.sort(function (a, b) {
-        if (a < b) return -1
-        if (a > b) return 1
-        return 0
-      })
-      // console.log(resourcesMenu)
-
-      for (i = 0; i < resourcesMenu.length; i++) {
-        resource = resourcesMenu[i]
-        var paths = resource.split('/')
-        var resourceName = paths[paths.length - 1].replace(/_/g, ' ')
-        // new li element
-        var $li = $('<li />', {
-          html: $('<a />', {
-            href: consoleLink + resource,
-            // capitalize resource name
-            text: resourceName.charAt(0).toUpperCase() + resourceName.slice(1)
-          })
-        })
-
-        // add to tree to control resource levels
-        $resourcesTree[paths.length] = $li
-        if (paths.length === 1) {
-          // main resource
-          $resources.append($li)
-        } else {
-          // subresource or third level
-          var $resourceLevel = $resourcesTree[paths.length - 1]
-          var $ul = $resourceLevel.children('ul')
-          if (!$ul.length) {
-            // new list
-            $ul = $('<ul />')
-            $resourceLevel.append($ul)
+        for (i = 0; i < resources.length; i++) {
+          resource = resources[i]
+          // escape auth and third party resources
+          if (/^[a-z]/.test(resource)) {
+            resourcesMenu.push(resource)
           }
-          $ul.append($li)
         }
-      }
+        // order resources list
+        resourcesMenu.sort(function (a, b) {
+          if (a < b) return -1
+          if (a > b) return 1
+          return 0
+        })
+        // console.log(resourcesMenu)
 
-      // add resources to sidebar
-      setTimeout(function () {
-        $sidebar.append([
-          '<h2>Resources</h2>',
-          $resources
-        ])
-        $resources.slideDown()
-      }, 300)
+        for (i = 0; i < resourcesMenu.length; i++) {
+          resource = resourcesMenu[i]
+          var paths = resource.split('/')
+          var resourceName = paths[paths.length - 1].replace(/_/g, ' ')
+          // new li element
+          var $li = $('<li />', {
+            html: $('<a />', {
+              href: consoleLink + resource,
+              // capitalize resource name
+              text: resourceName.charAt(0).toUpperCase() + resourceName.slice(1)
+            })
+          })
+
+          // add to tree to control resource levels
+          $resourcesTree[paths.length] = $li
+          if (paths.length === 1) {
+            // main resource
+            $resources.append($li)
+          } else {
+            // subresource or third level
+            var $resourceLevel = $resourcesTree[paths.length - 1]
+            var $ul = $resourceLevel.children('ul')
+            if (!$ul.length) {
+              // new list
+              $ul = $('<ul />')
+              $resourceLevel.append($ul)
+            }
+            $ul.append($li)
+          }
+        }
+
+        // add resources to sidebar
+        setTimeout(function () {
+          $sidebar.append([
+            '<h2>Resources</h2>',
+            $resources
+          ])
+          $resources.slideDown()
+        }, 300)
+      }
+    } else if (apiConsole) {
+      // start Refapp
+      $('#refapp').refapp([
+        {
+          src: 'https://raw.githubusercontent.com/ecomclub/ecomplus-search-api-docs/master/src/items/refract.json',
+          title: 'Items'
+        },
+        {
+          src: 'https://raw.githubusercontent.com/ecomclub/ecomplus-search-api-docs/master/src/terms/refract.json',
+          title: 'Terms'
+        }
+      ], {
+        // mdParser: function (md) { return converter.makeHtml(md) },
+        apiTitle: 'E-Com Plus Search API',
+        asideClasses: 'sidebar sidebar-sticky'
+      })
     }
   }).fail(function (jqxhr, textStatus, err) {
     alert('Cannot GET Apis object :/')
