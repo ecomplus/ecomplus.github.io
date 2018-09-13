@@ -120,7 +120,7 @@
 
     {# Footer #}
     {# footer not wheel compatible with sticky sidebar #}
-    {% if not page.content %}
+    {% if not page.content and page.url != urls.console %}
       <footer class="footer">
         <div class="container pt-3">
           <div class="mb-3 pb-3">
