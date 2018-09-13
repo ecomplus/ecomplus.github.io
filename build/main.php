@@ -83,7 +83,8 @@ for ($i = 0; $i < count($pages); $i++) {
     'apis' => $apis,
     'urls' => $urls
   );
-  $template_file = 'views' . $file_path . '.twig';
+  $template_file = 'views/' . ltrim($file_path, $base_path) . '.twig';
+  echo $template_file . PHP_EOL;
   if (!file_exists($templates_dir . '/' . $template_file)) {
     // generic template
     $template_file = 'content/general.html.twig';

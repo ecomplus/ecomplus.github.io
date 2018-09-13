@@ -206,11 +206,13 @@
       var apiReference = '{{ page.api_reference }}';
       var consoleLink = '{{ urls.console ~ '#/' ~ page.api_reference ~ '/' }}';
       </script>
-    {% elseif page.url == urls.console %}
-      {# load API console plugins #}
-      <script src="/src/assets/plugin/ace/src-min-noconflict/ace.js"></script>
     {% endif %}
     <script src="/src/assets/js/page.min.js"></script>
+    {% if page.url == urls.console %}
+      {# load API console plugins #}
+      <script src="/src/assets/plugin/ace/src-min-noconflict/ace.js"></script>
+      <script src="/src/assets/plugin/refapp/dist/refapp.js"></script>
+    {% endif %}
   </body>
 </html>
 {% endspaceless %}
