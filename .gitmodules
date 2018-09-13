@@ -10,3 +10,6 @@
 [submodule "src/submodules/ecomplus-graphs-api-docs"]
 	path = src/submodules/ecomplus-graphs-api-docs
 	url = https://github.com/ecomclub/ecomplus-graphs-api-docs
+[submodule "src/assets/plugin/refapp"]
+	path = src/assets/plugin/refapp
+	url = https://github.com/ecomclub/refapp
