@@ -351,6 +351,29 @@ $(function () {
         }, 300)
       }
     } else if (apiConsole) {
+      // treat current URL hash
+      var invalidHash = function () {
+        // redirect to Store API by default
+        window.location = './#/store/'
+      }
+      var hash = location.hash
+      if (!hash) {
+        invalidHash()
+      }
+      var api = hash.replace(/[#/]/g, '')
+      if (Apis.hasOwnProperty(api)) {
+        // valid API name
+        // unset hash
+        location.hash = '#'
+
+        // list API docs JSON Refracts
+        var refracts = []
+        console.log(Apis[api])
+      } else {
+        // invalid API on URL hash
+        invalidHash()
+      }
+
       // start Refapp
       $('#refapp').refapp([
         {
@@ -363,8 +386,7 @@ $(function () {
         }
       ], {
         // mdParser: function (md) { return converter.makeHtml(md) },
-        apiTitle: 'E-Com Plus Search API',
-        asideClasses: 'sidebar sidebar-sticky'
+        apiTitle: 'E-Com Plus Search API'
       })
     }
   }).fail(function (jqxhr, textStatus, err) {
