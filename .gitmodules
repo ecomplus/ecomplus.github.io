@@ -16,3 +16,6 @@
 [submodule "src/assets/plugin/restform"]
 	path = src/assets/plugin/restform
 	url = https://github.com/ecomclub/restform
+[submodule "src/assets/plugin/twbschema"]
+	path = src/assets/plugin/twbschema
+	url = https://github.com/ecomclub/twbschema
