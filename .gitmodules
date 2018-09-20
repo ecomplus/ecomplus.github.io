@@ -13,3 +13,6 @@
 [submodule "src/assets/plugin/refapp"]
 	path = src/assets/plugin/refapp
 	url = https://github.com/ecomclub/refapp
+[submodule "src/assets/plugin/restform"]
+	path = src/assets/plugin/restform
+	url = https://github.com/ecomclub/restform
