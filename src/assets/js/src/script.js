@@ -6,6 +6,12 @@
 */
 
 $(function () {
+  /* auxiliars */
+
+  var capitalize = function (str) {
+    return str.charAt(0).toUpperCase() + str.slice(1)
+  }
+
   /* set globals */
 
   // sample store ID
@@ -284,13 +290,14 @@ $(function () {
   $.getJSON('/src/assets/json/apis.json', function (json) {
     // success
     window.Apis = json
+    var i, resources
 
     if (window.apiReference) {
       if ($sidebar.length) {
         // render resource menu
         var $resources = $('<ol />', { 'class': 'hidden' })
         var $resourcesTree = []
-        var resources = Apis[apiReference].resources
+        resources = Apis[apiReference].resources
         // list resources for menu
         var resourcesMenu = []
         var resource
@@ -319,7 +326,7 @@ $(function () {
             html: $('<a />', {
               href: consoleLink + resource,
               // capitalize resource name
-              text: resourceName.charAt(0).toUpperCase() + resourceName.slice(1)
+              text: capitalize(resourceName)
             })
           })
 
@@ -355,39 +362,56 @@ $(function () {
       var invalidHash = function () {
         // redirect to Store API by default
         window.location = './#/store/'
+        window.location.reload()
       }
       var hash = location.hash
       if (!hash) {
         invalidHash()
       }
+
+      // API name from hash
       var api = hash.replace(/[#/]/g, '')
-      if (Apis.hasOwnProperty(api)) {
+      var Api = Apis[api]
+      if (Api && Api.github_repo) {
         // valid API name
         // unset hash
         location.hash = '#'
 
         // list API docs JSON Refracts
+        var basePath = '/src/submodules/' + Api.github_repo + '/src'
         var refracts = []
-        console.log(Apis[api])
+        if (api === 'store') {
+          // add authentication reference
+          refracts.push({
+            src: basePath + '/authenticate-yourself/refract.json',
+            title: 'Authenticate Yourself'
+          }, {
+            src: basePath + '/authenticate-app/refract.json',
+            title: 'Authenticate App'
+          })
+        }
+        resources = Api.resources
+        for (i = 0; i < resources.length; i++) {
+          resource = resources[i]
+          // main resources only
+          if (/^[a-z]+$/.test(resource)) {
+            refracts.push({
+              src: basePath + '/' + resource + '/refract.json',
+              // capitalize resource name
+              title: capitalize(resource)
+            })
+          }
+        }
+
+        // start Refapp
+        $('#refapp').refapp(refracts, {
+          // mdParser: function (md) { return converter.makeHtml(md) },
+          apiTitle: 'E-Com Plus Search API'
+        })
       } else {
         // invalid API on URL hash
         invalidHash()
       }
-
-      // start Refapp
-      $('#refapp').refapp([
-        {
-          src: 'https://raw.githubusercontent.com/ecomclub/ecomplus-search-api-docs/master/src/items/refract.json',
-          title: 'Items'
-        },
-        {
-          src: 'https://raw.githubusercontent.com/ecomclub/ecomplus-search-api-docs/master/src/terms/refract.json',
-          title: 'Terms'
-        }
-      ], {
-        // mdParser: function (md) { return converter.makeHtml(md) },
-        apiTitle: 'E-Com Plus Search API'
-      })
     }
   }).fail(function (jqxhr, textStatus, err) {
     alert('Cannot GET Apis object :/')
