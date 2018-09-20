@@ -27,14 +27,16 @@ if (!$apis) {
       // no production authorization by default
       'auth_session' => null,
       'resources' => array(),
-      'label' => 'Store REST API'
+      'label' => 'Store REST API',
+      'github_repo' => 'ecomplus-api-docs'
     ),
     'search' => array(
       'host' => 'https://apx-search.e-com.plus',
       'base_path' => '/api/',
       'version' => 'v1',
       'resources' => array(),
-      'label' => 'Search'
+      'label' => 'Search',
+      'github_repo' => 'ecomplus-search-api-docs'
     ),
     'graphs' => array(
       'host' => 'https://apx-graphs.e-com.plus',
@@ -42,7 +44,8 @@ if (!$apis) {
       'version' => 'v1',
       'no_headers' => true,
       'resources' => array(),
-      'label' => 'Recommendations'
+      'label' => 'Recommendations',
+      'github_repo' => 'ecomplus-graphs-api-docs'
     ),
     'bigdata' => array(
       'host' => 'https://apx-bigdata.e-com.plus',

@@ -115,7 +115,8 @@
             "stores",
             "triggers"
         ],
-        "label": "Store REST API"
+        "label": "Store REST API",
+        "github_repo": "ecomplus-api-docs"
     },
     "search": {
         "host": "https:\/\/apx-search.e-com.plus",
@@ -125,7 +126,8 @@
             "items",
             "terms"
         ],
-        "label": "Search"
+        "label": "Search",
+        "github_repo": "ecomplus-search-api-docs"
     },
     "graphs": {
         "host": "https:\/\/apx-graphs.e-com.plus",
@@ -137,7 +139,8 @@
             "products\/related",
             "products"
         ],
-        "label": "Recommendations"
+        "label": "Recommendations",
+        "github_repo": "ecomplus-graphs-api-docs"
     },
     "bigdata": {
         "host": "https:\/\/apx-bigdata.e-com.plus",
