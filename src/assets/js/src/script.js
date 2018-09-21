@@ -122,22 +122,26 @@ $(function () {
   }
 
   // handle sidebar scroll
-  $('.sidebar-sticky').each(function () {
-    var ps
-    try {
-      ps = new window.PerfectScrollbar($(this)[0], {
-        wheelPropagation: true,
-        wheelSpeed: 0.5
-      })
-    } catch (e) {
-      console.error(e, ps)
-    }
-  })
+  var handleScroll = function () {
+    $('.sidebar-sticky').each(function () {
+      var ps
+      try {
+        ps = new window.PerfectScrollbar($(this)[0], {
+          wheelPropagation: true,
+          wheelSpeed: 0.5
+        })
+      } catch (e) {
+        console.error(e, ps)
+      }
+    })
+  }
 
   // create anchor links within article content
   var $article = $('#article')
   if ($article.length) {
     var $sidebar = $('#sidebar')
+    handleScroll()
+
     // check if summary is rendered
     var emptySidebar, $sidebarNav, $deepSidebarNav, $summary, currentHeader
     if ($sidebar.length) {
@@ -404,17 +408,29 @@ $(function () {
         }
 
         // start Refapp
+        var $refapp = $('#api')
         var refappOpt = {
+          asideClasses: 'sidebar sidebar-sticky rendered-summary',
           apiTitle: Api.label,
           actionCallback: function (req, res) {
             $('#restform').restform({})
           }
         }
         if (window.showdown) {
+          // parse Markdown to HTML
           var converter = new window.showdown.Converter()
           refappOpt.mdParser = function (md) { return converter.makeHtml(md) }
         }
-        $('#refapp').refapp(refracts, refappOpt)
+        $refapp.refapp(refracts, refappOpt)
+
+        // fixes for sidebar
+        $refapp.find('.sidebar-sticky')
+          .width($refapp.find('.ref-sidebar').width())
+          .children('h5').each(function () {
+            $(this).replaceWith($('<h2>' + $(this).html() + '</h2>'))
+          })
+        // fix sidebar scroll
+        handleScroll()
       } else {
         // invalid API on URL hash
         invalidHash()

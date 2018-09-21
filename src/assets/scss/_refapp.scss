@@ -1,0 +1,12 @@
+.ref-body a.card {
+  text-decoration: none;
+}
+.ref-body .card-body *:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0 !important;
+}
+.ref-body .card-body a {
+  text-decoration: underline !important;
+  text-decoration-style: dotted !important;
+  color: $white;
+}
