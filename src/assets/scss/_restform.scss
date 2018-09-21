@@ -1,0 +1,177 @@
+// main
+.restform {
+  background: $white;
+  padding-top: 70px;
+  width: 100vw;
+  max-width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3000;
+}
+.restform > section {
+  position: relative;
+}
+.restform-nav,
+.restform > section > header {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.restform > section > div {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+// sticky header
+.restform-nav {
+  background: $gray-100;
+  z-index: 2001;
+}
+.restform-nav span {
+  font-weight: 500;
+}
+
+// header bar
+.restform-header {
+  background: $gray-100;
+  border-style: solid;
+  border-width: 1px 0 3px;
+  border-color: $gray-200;
+  color: $gray-600;
+}
+
+// API endpoint
+.restform-endpoint {
+  background: $secondary;
+  color: $gray-200;
+  font-family: $font-family-monospace;
+  font-size: 90%;
+  padding: .4rem;
+  border-radius: .3rem;
+}
+// highlight API endpoint params
+.restform-endpoint > strong {
+  color: $white;
+}
+.restform-endpoint > strong > span {
+  color: $yellow;
+}
+
+// nav tabs
+.restform-tabs {
+  font-size: 96%;
+}
+.restform-tabs.nav-pills,
+.restform-content .tab-pane table {
+  font-size: 92%;
+}
+.restform-tabs.nav-pills .nav-item {
+  padding: .4rem .8rem;
+  font-weight: 500;
+}
+
+// pane contents
+.restform-content .tab-pane {
+  padding: 1.5rem;
+  border-style: solid;
+  border-width: 0 1px 1px;
+  border-color: $gray-300;
+}
+.restform-content .tab-pane > table:last-child,
+.restform-content .tab-pane > p:last-child,
+.restform-content .tab-pane > ul:last-child,
+.restform-content .tab-pane > pre:last-child {
+  margin-bottom: 0;
+}
+.restform-content .tab-pane table td {
+  border-top: none;
+  width: 50%;
+}
+.restform-content .tab-pane table input {
+  width: 100%;
+}
+.restform-content .tab-pane .restform-input-code {
+  color: $pink;
+  font-size: 87.5%;
+  max-width: 200px;
+  width: calc(100% - 40px);
+  font-family: $font-family-monospace;
+}
+@media (min-width: 992px) {
+  .restform-content .tab-pane table td:first-child {
+    padding-left: 1.5rem;
+  }
+  .restform-content .tab-pane table td:last-child {
+    padding-right: 1.5rem;
+  }
+}
+.restform-content .tab-pane .tab-pane {
+  padding: 1.5rem 0 0;
+  border: none;
+}
+
+// JSON code editor
+.restform-content .ace-editor,
+.restform-content .ace_editor {
+  height: 500px;
+}
+
+// loading spinner
+.restform-loading {
+  width: 100%;
+  height: 100%;
+  background: rgba($black, .6);
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+}
+.restform-loading > div {
+  padding-top: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+// Ref.: https://loading.io/css/
+.restform-spinner {
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 64px;
+}
+.restform-spinner div {
+  position: absolute;
+  border: 4px solid $white;
+  opacity: 1;
+  border-radius: 50%;
+  animation: restform-spinner 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+.restform-spinner div:nth-child(2) {
+  animation-delay: -0.5s;
+}
+@keyframes restform-spinner {
+  0% {
+    top: 28px;
+    left: 28px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: -1px;
+    left: -1px;
+    width: 58px;
+    height: 58px;
+    opacity: 0;
+  }
+}

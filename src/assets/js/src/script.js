@@ -404,10 +404,17 @@ $(function () {
         }
 
         // start Refapp
-        $('#refapp').refapp(refracts, {
-          // mdParser: function (md) { return converter.makeHtml(md) },
-          apiTitle: 'E-Com Plus Search API'
-        })
+        var refappOpt = {
+          apiTitle: Api.label,
+          actionCallback: function (req, res) {
+            $('#restform').restform({})
+          }
+        }
+        if (window.showdown) {
+          var converter = new window.showdown.Converter()
+          refappOpt.mdParser = function (md) { return converter.makeHtml(md) }
+        }
+        $('#refapp').refapp(refracts, refappOpt)
       } else {
         // invalid API on URL hash
         invalidHash()
