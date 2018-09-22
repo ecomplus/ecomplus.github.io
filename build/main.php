@@ -50,7 +50,7 @@ $pages = array(
   array(
     'url' => $urls['console'],
     'title' => 'APIs Environment · ' . $site_title,
-    'subtitle' => 'APIs Environment',
+    'subtitle' => null,
     'content' => null,
     'github_repo' => null,
     'api_reference' => null,
