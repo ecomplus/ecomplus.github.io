@@ -194,7 +194,8 @@ body > header {
   overflow-y: scroll;
 }
 .sidebar-sticky.stick:not(.is-mobile-wide) > ol:last-of-type,
-.sidebar-sticky.stick:not(.is-mobile-wide) > ul:last-of-type {
+.sidebar-sticky.stick:not(.is-mobile-wide) > ul:last-of-type,
+.sidebar-sticky.stick:not(.is-mobile-wide) > .list-group {
   padding-bottom: 2rem;
 }
 @media (max-width: 767px) {

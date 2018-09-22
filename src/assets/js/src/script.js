@@ -411,6 +411,7 @@ $(function () {
         var $refapp = $('#api')
         var refappOpt = {
           asideClasses: 'sidebar sidebar-sticky rendered-summary',
+          articleClasses: 'rendered-content',
           apiTitle: Api.label,
           actionCallback: function (req, res) {
             $('#restform').restform({})

@@ -1,3 +1,12 @@
+// sidebar
+.ref-anchors {
+  padding-bottom: 0 !important;
+}
+.ref-resources .active {
+  font-weight: 500;
+}
+
+// action cards
 .ref-body a.card {
   text-decoration: none;
 }
@@ -8,5 +17,33 @@
 .ref-body .card-body a {
   text-decoration: underline !important;
   text-decoration-style: dotted !important;
-  color: $white;
+}
+.ref-body .card-body a,
+.ref-body .card-body h5,
+.ref-body .card-body small {
+  color: $color-text !important;
+}
+.ref-body .card {
+  padding-left: 0 0 0 1rem;
+  border-width: 0 .25rem;
+  border-style: solid;
+  background: $color-bg-lightest !important;
+}
+.ref-body .card:hover {
+  background: $color-bg-light !important;
+}
+.ref-body .card.bg-info {
+  border-color: $color-info;
+}
+.ref-body .card.bg-warning {
+  border-color: $color-warning;
+}
+.ref-body .card.bg-success {
+  border-color: $color-success;
+}
+.ref-body .card.bg-danger {
+  border-color: $color-danger;
+}
+.ref-body .card.bg-secondary {
+  border-color: $color-dark;
 }
