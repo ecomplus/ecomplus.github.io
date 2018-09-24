@@ -390,12 +390,35 @@ $(function () {
           }
         }
 
+        // save resource schema locally
+        var sourceSchema
+
         var refractCallback = function (refract) {
-          console.log(refract)
+          if (api === 'store') {
+            // reset resource schema
+            sourceSchema = null
+
+            // get JSON schema from refract object
+            try {
+              var schema = refract
+                // use arbitrary known path
+                .content[0].content[0].content[1].content[1]
+                .content[0].content[1].content[0].content
+              if (typeof schema === 'string') {
+                schema = JSON.parse(schema)
+                if (schema.hasOwnProperty('$schema')) {
+                  // found
+                  sourceSchema = schema
+                }
+              }
+            } catch (e) {
+              // ignore error
+            }
+          }
         }
 
         var handleConsole = function (req, res) {
-          console.log(req, res)
+          console.log(req, res, sourceSchema)
           $('#console').restform({})
         }
 
@@ -421,7 +444,7 @@ $(function () {
         $article = $refapp.find('.ref-body')
 
         // fixes for sidebar
-        $refapp.find('.sidebar-sticky')
+        $refapp.find('.sidebar')
           .width($sidebar.width())
           .children('h5').each(function () {
             $(this).replaceWith($('<h2>' + $(this).html() + '</h2>'))
