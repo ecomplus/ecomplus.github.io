@@ -364,9 +364,6 @@ $(function () {
       var Api = Apis[api]
       if (Api && Api.github_repo) {
         // valid API name
-        // unset hash
-        window.location.hash = '#'
-
         // list API docs JSON Refracts
         var basePath = '/src/submodules/' + Api.github_repo + '/src'
         var refracts = []
@@ -393,6 +390,15 @@ $(function () {
           }
         }
 
+        var refractCallback = function (refract) {
+          console.log(refract)
+        }
+
+        var handleConsole = function (req, res) {
+          console.log(req, res)
+          $('#console').restform({})
+        }
+
         // start Refapp
         var $refapp = $('#reference')
         var refappOpt = {
@@ -400,23 +406,8 @@ $(function () {
           articleClasses: 'rendered-content',
           baseHash: '/store/',
           apiTitle: Api.label,
-          refractCallback: function (refract) {
-            if (hash) {
-              // start routing
-              var $link = $sidebar.find('[href="' + hash + '"]')
-              if ($link.length) {
-                setTimeout(function () {
-                  $link[0].click()
-                }, 100)
-              } else if (hash !== '#/' + api + '/') {
-                window.location.hash = hash
-              }
-              hash = null
-            }
-          },
-          actionCallback: function (req, res) {
-            $('#console').restform({})
-          }
+          refractCallback: refractCallback,
+          actionCallback: handleConsole
         }
         if (window.showdown) {
           // parse Markdown to HTML
