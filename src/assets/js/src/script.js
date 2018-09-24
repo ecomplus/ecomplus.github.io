@@ -408,13 +408,13 @@ $(function () {
         }
 
         // start Refapp
-        var $refapp = $('#api')
+        var $refapp = $('#reference')
         var refappOpt = {
           asideClasses: 'sidebar sidebar-sticky rendered-summary',
           articleClasses: 'rendered-content',
           apiTitle: Api.label,
           actionCallback: function (req, res) {
-            $('#restform').restform({})
+            $('#console').restform({})
           }
         }
         if (window.showdown) {
