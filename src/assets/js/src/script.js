@@ -402,12 +402,14 @@ $(function () {
           apiTitle: Api.label,
           refractCallback: function (refract) {
             if (hash) {
+              // start routing
               var $link = $sidebar.find('[href="' + hash + '"]')
               if ($link.length) {
-                // start routing
                 setTimeout(function () {
                   $link[0].click()
                 }, 100)
+              } else if (hash !== '#/' + api + '/') {
+                window.location.hash = hash
               }
               hash = null
             }
