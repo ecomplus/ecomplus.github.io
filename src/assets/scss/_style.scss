@@ -171,7 +171,8 @@ body > header {
   font-weight: 400;
   font-size: 97%;
 }
-.rendered-summary li a:hover {
+.rendered-summary li a:hover,
+.rendered-summary li a.active {
   color: $purple;
 }
 .rendered-summary > ul,

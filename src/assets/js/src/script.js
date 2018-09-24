@@ -92,38 +92,10 @@ $(function () {
     apiConsole = true
   }
 
-  var handleAnchor = function () {
-    // treat anchor links
-    var link = $(this).attr('href')
-    if (link.charAt(0) === '#') {
-      // changing hash only
-      // update browser history
-      if (typeof (history.pushState) !== 'undefined') {
-        // current page title
-        var title = document.title.replace(/(.*~\s)?(.*)/, '$2')
-        // try to find element with ID equals to link hash
-        var $head = $(link)
-        if ($head.length) {
-          title = $head.text() + ' ~ ' + title
-        }
-        // current URL with hash
-        var url = location.origin + location.pathname + $(this).attr('href')
-
-        // update page title
-        document.title = title
-        // push to history
-        var obj = {
-          Title: title,
-          Url: url
-        }
-        history.pushState(obj, title, url)
-      }
-    }
-  }
-
-  // handle sidebar scroll
-  var handleScroll = function () {
-    $('.sidebar-sticky').each(function () {
+  // handle sidebar scroll and anchors spy
+  var handleSidebar = function () {
+    var $sidebar = $('.sidebar-sticky')
+    $sidebar.each(function () {
       var ps
       try {
         ps = new window.PerfectScrollbar($(this)[0], {
@@ -134,13 +106,28 @@ $(function () {
         console.error(e, ps)
       }
     })
+
+    var spyAnchors = function () {
+      if (location.hash !== '') {
+        var $links = $sidebar.find('a')
+        // reset
+        $links.removeClass('active')
+        // mark new active anchor
+        $links.filter(function () {
+          return $(this).attr('href') === location.hash
+        }).addClass('active')
+      }
+    }
+    $(window).on('hashchange', spyAnchors)
+    // for initial hash
+    spyAnchors()
   }
 
   // create anchor links within article content
   var $article = $('#article')
   if ($article.length) {
     var $sidebar = $('#sidebar')
-    handleScroll()
+    handleSidebar()
 
     // check if summary is rendered
     var emptySidebar, $sidebarNav, $deepSidebarNav, $summary, currentHeader
@@ -160,7 +147,6 @@ $(function () {
       // fix anchor ID and add link
       var link = {
         href: '#' + anchor,
-        click: handleAnchor,
         text: text
       }
       $(this).attr('id', anchor).html($('<a />', Object.assign({ 'class': 'anchor-link' }, link)))
@@ -202,7 +188,6 @@ $(function () {
       }
       // handle summary links
       $summary = $sidebar.find('a')
-      $summary.click(handleAnchor)
 
       // buttons to next and prev articles
       var moveTo, $pageLink
@@ -374,7 +359,7 @@ $(function () {
       }
 
       // API name from hash
-      var api = hash.replace(/[#/]/g, '')
+      var api = hash.replace(/^#\/([\w]+)\/.*$/, '$1')
       var Api = Apis[api]
       if (Api && Api.github_repo) {
         // valid API name
@@ -412,6 +397,7 @@ $(function () {
         var refappOpt = {
           asideClasses: 'sidebar sidebar-sticky rendered-summary',
           articleClasses: 'rendered-content',
+          baseHash: '/store/',
           apiTitle: Api.label,
           actionCallback: function (req, res) {
             $('#console').restform({})
@@ -431,7 +417,7 @@ $(function () {
             $(this).replaceWith($('<h2>' + $(this).html() + '</h2>'))
           })
         // fix sidebar scroll
-        handleScroll()
+        handleSidebar()
       } else {
         // invalid API on URL hash
         invalidHash()
