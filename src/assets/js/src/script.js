@@ -109,7 +109,7 @@ $(function () {
 
     var spyAnchors = function () {
       if (location.hash !== '') {
-        var $links = $sidebar.find('a')
+        var $links = $sidebar.find('a:not(.list-group-item)')
         // reset
         $links.removeClass('active')
         // mark new active anchor
@@ -125,8 +125,9 @@ $(function () {
 
   // create anchor links within article content
   var $article = $('#article')
+  var $sidebar
   if ($article.length) {
-    var $sidebar = $('#sidebar')
+    $sidebar = $('#sidebar')
     handleSidebar()
 
     // check if summary is rendered
@@ -364,7 +365,7 @@ $(function () {
       if (Api && Api.github_repo) {
         // valid API name
         // unset hash
-        location.hash = '#'
+        window.location.hash = '#'
 
         // list API docs JSON Refracts
         var basePath = '/src/submodules/' + Api.github_repo + '/src'
@@ -399,6 +400,18 @@ $(function () {
           articleClasses: 'rendered-content',
           baseHash: '/store/',
           apiTitle: Api.label,
+          refractCallback: function (refract) {
+            if (hash) {
+              var $link = $sidebar.find('[href="' + hash + '"]')
+              if ($link.length) {
+                // start routing
+                setTimeout(function () {
+                  $link[0].click()
+                }, 100)
+              }
+              hash = null
+            }
+          },
           actionCallback: function (req, res) {
             $('#console').restform({})
           }
@@ -408,11 +421,15 @@ $(function () {
           var converter = new window.showdown.Converter()
           refappOpt.mdParser = function (md) { return converter.makeHtml(md) }
         }
+
+        // update DOM
         $refapp.refapp(refracts, refappOpt)
+        $sidebar = $refapp.find('.ref-sidebar')
+        $article = $refapp.find('.ref-body')
 
         // fixes for sidebar
         $refapp.find('.sidebar-sticky')
-          .width($refapp.find('.ref-sidebar').width())
+          .width($sidebar.width())
           .children('h5').each(function () {
             $(this).replaceWith($('<h2>' + $(this).html() + '</h2>'))
           })
