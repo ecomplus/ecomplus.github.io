@@ -364,6 +364,8 @@ $(function () {
       var Api = Apis[api]
       if (Api && Api.github_repo) {
         // valid API name
+        var host = Api.host + Api.base_path + Api.version
+
         // list API docs JSON Refracts
         var basePath = '/src/submodules/' + Api.github_repo + '/src'
         var refracts = []
@@ -418,15 +420,16 @@ $(function () {
         }
 
         var handleConsole = function (req, res) {
-          console.log(req, res, Api)
-          // setup Restform
-          // mount options object
+          console.log(req, res)
+          // mount Restform options object
           var opt = {
             title: req.title,
-            host: Api.host + Api.base_path + Api.version,
+            host: host,
             endpoint: req.href,
             method: req.method
           }
+
+          // request info
           if (req.hasOwnProperty('params')) {
             opt.params = req.params
           } else {
@@ -445,6 +448,18 @@ $(function () {
             // local resource schema
             opt.schema = sourceSchema
           }
+          // sample response
+          if (res.hasOwnProperty('status')) {
+            opt.statusCode = res.status
+          }
+          if (res.hasOwnProperty('headers')) {
+            opt.resHeaders = res.headers
+          }
+          if (res.hasOwnProperty('body')) {
+            opt.resBody = JSON.parse(res.body)
+          }
+
+          // setup Restform
           $('#console').restform(opt)
         }
 
