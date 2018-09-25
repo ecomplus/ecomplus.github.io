@@ -1,14 +1,37 @@
+#console > article {
+  padding-right: 0 !important;
+}
+
+// modal size
+.restform-modal {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+@media (min-width: 576px) {
+  .restform-modal {
+    max-width: 440px !important;
+  }
+}
+@media (min-width: 768px) {
+  .restform-modal {
+    max-width: 620px !important;
+  }
+}
+@media (min-width: 992px) {
+  .restform-modal {
+    max-width: 860px !important;
+  }
+}
+@media (min-width: 1200px) {
+  .restform-modal {
+    max-width: 1040px !important;
+  }
+}
+
 // main
 .restform {
   background: $white;
-  width: 100vw;
-  max-width: 100%;
-  min-height: 100vh;
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 3000;
+  border-radius: 0;
 }
 .restform > section {
   position: relative;
@@ -17,10 +40,16 @@
 .restform > section > header {
   padding-top: 1rem;
   padding-bottom: 1rem;
+  margin-right: 0 !important;
+  padding-right: 0 !important;
 }
 .restform > section > div {
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+// fix text color
+.restform .text-secondary {
+  color: $gray-700 !important;
 }
 
 // sticky header
@@ -134,6 +163,9 @@
 .restform-content .ace-editor,
 .restform-content .ace_editor {
   height: 500px;
+}
+.restform-content pre {
+  max-height: 500px;
 }
 
 // loading spinner
