@@ -76,16 +76,17 @@ form.brutusin-form textarea {
 }
 form.brutusin-form table table {
   border-left: solid 1px;
-  border-color: $gray-200;
-  margin: 4px;
+  border: none;
 }
 form.brutusin-form td {
   vertical-align: top;
-  padding: 4px;
+  padding-bottom: 1rem;
   white-space: nowrap;
+  width: auto !important;
 }
 form.brutusin-form td.prop-name {
   text-align: right;
+  padding-right: 1.5rem !important;
 }
 form.brutusin-form td.add-prop-name table {
   text-align: right;
@@ -100,12 +101,13 @@ form.brutusin-form td.prop-value {
 }
 form.brutusin-form td.item-index {
   font-size: 0.8em;
-  color: $gray-200;
+  color: $gray-600;
   width: 25px;
   text-align: right;
+  display: inline-block;
 }
 form.brutusin-form td.item-action {
-  width: 30px;
+  width: 30px !important;
 }
 form.brutusin-form .error {
   border-color: $red;
@@ -130,6 +132,7 @@ form.brutusin-form .error-message {
   line-height: 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  cursor: pointer;
 }
 .glyphicon-remove::before {
   content: "\e605";
@@ -142,3 +145,30 @@ form.brutusin-form .error-message {
 }
 
 /* Custom */
+
+form.brutusin-form tbody > tr > td.prop-name {
+  padding-left: 0 !important;
+  width: 50px !important;
+}
+form.brutusin-form td.prop-name label {
+  display: inline-block;
+  margin-right: .25rem;
+}
+form.brutusin-form td.prop-name sup {
+  color: $red;
+}
+form.brutusin-form table table td {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+form.brutusin-form .btn {
+  margin-right: .5rem;
+}
+form.brutusin-form .btn.btn-xs.glyphicon {
+  background: none;
+  border: none;
+  box-shadow: none;
+  color: $purple;
+  font-size: 16px;
+  padding: .3rem;
+}
