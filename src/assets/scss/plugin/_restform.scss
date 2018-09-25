@@ -170,8 +170,17 @@
 .restform-content .ace_editor {
   height: 500px;
 }
-.restform-content pre {
+// https://github.com/ajaxorg/ace/issues/2963
+.ace_text-input {
+  position: absolute !important;
+}
+.restform-schema,
+.restform-attrs {
   max-height: 500px;
+  overflow: auto;
+}
+.restform-attrs {
+  overflow-x: hidden;
 }
 
 // loading spinner
