@@ -4,27 +4,29 @@
 
 // modal size
 .restform-modal {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 @media (min-width: 576px) {
   .restform-modal {
-    max-width: 440px !important;
+    max-width: 390px !important;
   }
 }
 @media (min-width: 768px) {
   .restform-modal {
-    max-width: 620px !important;
+    max-width: 570px !important;
   }
 }
 @media (min-width: 992px) {
   .restform-modal {
-    max-width: 860px !important;
+    max-width: 810px !important;
   }
 }
 @media (min-width: 1200px) {
   .restform-modal {
-    max-width: 1040px !important;
+    max-width: 990px !important;
   }
 }
 
@@ -56,6 +58,10 @@
 .restform-nav {
   background: $gray-100;
   z-index: 2001;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  opacity: 0;
 }
 .restform-nav span {
   font-weight: 600;
