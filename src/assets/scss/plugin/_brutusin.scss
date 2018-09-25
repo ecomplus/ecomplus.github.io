@@ -46,10 +46,6 @@
   left: 3px;
   z-index: 11;
 }
-.glyphicon-refresh-animate {
-  animation: spin .7s infinite linear;
-  -webkit-animation: spin2 .7s infinite linear;
-}
 
 @-webkit-keyframes spin2 {
   from { -webkit-transform: rotate(0deg); }
@@ -146,8 +142,12 @@ form.brutusin-form .error-message {
 
 /* Custom */
 
+form.brutusin-form {
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  background: $gray-100;
+}
 form.brutusin-form tbody > tr > td.prop-name {
-  padding-left: 0 !important;
   width: 50px !important;
 }
 form.brutusin-form td.prop-name label {
