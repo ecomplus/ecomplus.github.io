@@ -394,10 +394,10 @@ $(function () {
         var sourceSchema
 
         var refractCallback = function (refract) {
-          if (api === 'store') {
-            // reset resource schema
-            sourceSchema = null
+          // reset resource schema
+          sourceSchema = null
 
+          if (api === 'store') {
             // get JSON schema from refract object
             try {
               var schema = refract
@@ -418,8 +418,34 @@ $(function () {
         }
 
         var handleConsole = function (req, res) {
-          console.log(req, res, sourceSchema)
-          $('#console').restform({})
+          console.log(req, res, Api)
+          // setup Restform
+          // mount options object
+          var opt = {
+            title: req.title,
+            host: Api.host + Api.base_path + Api.version,
+            endpoint: req.href,
+            method: req.method
+          }
+          if (req.hasOwnProperty('params')) {
+            opt.params = req.params
+          } else {
+            // no params
+            opt.params = []
+          }
+          if (req.hasOwnProperty('headers')) {
+            opt.reqHeaders = req.headers
+          }
+          if (req.hasOwnProperty('body')) {
+            opt.reqBody = JSON.parse(req.body)
+          }
+          if (req.schema) {
+            opt.schema = JSON.parse(req.schema)
+          } else {
+            // local resource schema
+            opt.schema = sourceSchema
+          }
+          $('#console').restform(opt)
         }
 
         // start Refapp

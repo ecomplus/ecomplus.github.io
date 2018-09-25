@@ -311,5 +311,6 @@ div.code-toolbar > .toolbar a {
 }
 
 // plugins
-@import "refapp";
-@import "restform";
+@import "plugin/refapp";
+@import "plugin/restform";
+@import "plugin/brutusin";
