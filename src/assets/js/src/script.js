@@ -53,7 +53,7 @@ $(function () {
   var scrollOffsets
   var scrollSpy = function () {
     if ($sidebar) {
-      var $links = $sidebar.find('a').filter(function () {
+      var $links = $sidebar.find('a:visible').filter(function () {
         return $(this).attr('href').charAt(0) === '#'
       })
 
@@ -379,6 +379,12 @@ $(function () {
           sourceSchema = null
 
           if (api === 'store') {
+            setTimeout(function () {
+              // GET JSON Schema
+              var resource = location.hash.split('/')[2]
+              console.log(resource)
+            }, 200)
+
             // get JSON schema from refract object
             try {
               var schema = refract
