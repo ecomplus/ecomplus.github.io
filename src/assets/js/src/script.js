@@ -589,4 +589,31 @@ $(function () {
     alert('Cannot GET Apis object :/')
     console.error(err)
   })
+
+  // fix Apiary links
+  $('a').each(function () {
+    var href = $(this).attr('href')
+    if (href) {
+      var paths = href.split('/')
+      if (paths.length >= 3) {
+        var toApiConsole
+        var host = paths[2]
+
+        // check Apiary docs hosts
+        toApiConsole = host.replace(/^ecom([^.]+)\.docs\.apiary\.io$/, '$1')
+        if (toApiConsole !== host) {
+          // update link href
+          href = Urls.console + '#/' + toApiConsole
+          // keep original URL
+          for (var i = 3; i < paths.length; i++) {
+            var path = paths[i].replace('#reference', '')
+            if (path !== '') {
+              href += '/' + path
+            }
+          }
+          $(this).attr('href', href)
+        }
+      }
+    }
+  })
 })
