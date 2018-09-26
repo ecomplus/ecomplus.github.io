@@ -49,6 +49,58 @@ $(function () {
     spyAnchors()
   }
 
+  // mark sidebar anchors and update hash based on scroll
+  var scrollOffsets
+  var scrollSpy = function () {
+    if ($sidebar) {
+      var $links = $sidebar.find('a').filter(function () {
+        return $(this).attr('href').charAt(0) === '#'
+      })
+
+      if (scrollOffsets === undefined) {
+        // first function call
+        $(window).scroll(function () {
+          // check marked positions
+          var top = $(this).scrollTop()
+          for (var i = 0; i < scrollOffsets.length; i++) {
+            var offset = scrollOffsets[i]
+            if (Math.abs(top - offset.top) < 15) {
+              // matched
+              var hash = offset.hash
+              if (location.hash !== hash) {
+                if (history.pushState) {
+                  // update hash without scrolling
+                  history.pushState(null, null, hash)
+                }
+
+                // update active anchor link
+                $links.removeClass('active').filter(function () {
+                  return $(this).attr('href') === hash
+                }).addClass('active')
+              }
+            }
+          }
+        })
+      }
+      // reset offsets array
+      scrollOffsets = []
+
+      // treat each anchor link
+      $links.each(function () {
+        var href = $(this).attr('href')
+        // search head by ID
+        var $head = $(href.replace(/([^#\w-])/g, '\\$1'))
+        if ($head.length) {
+          // add to offsets array
+          scrollOffsets.push({
+            top: $head.offset().top,
+            hash: href
+          })
+        }
+      })
+    }
+  }
+
   // create anchor links within article content
   var $article = $('#article')
   var $sidebar
@@ -183,6 +235,9 @@ $(function () {
         // add nav to article element
         $article.append($articleNav)
       }
+
+      // handle scroll spy
+      scrollSpy()
     }
 
     if (window.githubRepo) {
@@ -341,6 +396,9 @@ $(function () {
               // ignore error
             }
           }
+
+          // restart scroll spy
+          scrollSpy()
         }
 
         // API console element
