@@ -12,80 +12,6 @@ $(function () {
     return str.charAt(0).toUpperCase() + str.slice(1)
   }
 
-  /* set globals */
-
-  // sample store ID
-  window.storeId = 100
-  var Headers = function () {
-    return {
-      // by default, authenticate store only
-      // no authorization tokens
-      'X-Store-ID': storeId
-    }
-  }
-
-  // general function to load HTML content
-  window.loadContent = function () {
-  }
-
-  // general function to run an API request
-  window.callApi = function (api, endpoint, method, callback, bodyObject) {
-    var headers
-    if (!api.no_headers) {
-      // setup request headers
-      headers = Headers()
-      if (api.auth_session) {
-        // set authorization headers
-        headers['X-My-ID'] = api.auth_session.my_id
-        headers['X-Access-Token'] = api.auth_session.access_token
-      }
-    } else {
-      headers = {}
-    }
-
-    // AJAX options
-    var options = {
-      // API endpoint full URL
-      url: api.host + api.base_path + api.version + endpoint,
-      headers: headers,
-      method: method
-    }
-    if (bodyObject) {
-      options.data = JSON.stringify(bodyObject)
-    }
-
-    // console.log(options)
-    // run API request
-    // always JSON
-    options.dataType = 'json'
-    if (options.data) {
-      options.contentType = 'application/json; charset=UTF-8'
-    }
-    // call AJAX request
-    var ajax = $.ajax(options)
-
-    ajax.done(function (json) {
-      // successful response
-      if (typeof callback === 'function') {
-        callback(null, json)
-      } else {
-        console.log(json)
-      }
-    })
-
-    ajax.fail(function (jqXHR, textStatus, err) {
-      var json = jqXHR.responseJSON
-      // error response
-      if (typeof callback === 'function') {
-        callback(err, json)
-      }
-      if (jqXHR.status >= 500) {
-        console.log('API request with internal error response:')
-        console.log(jqXHR)
-      }
-    })
-  }
-
   // declare auxiliars
   var i, apiConsole
   if (typeof $.fn.refapp === 'function') {
@@ -437,30 +363,86 @@ $(function () {
           }
         }
 
+        // work with authentication session
+        var Auth = function (setSession, storeId, session, setSandbox) {
+          if (window.localStorage) {
+            /* global localStorage */
+            // base storage field label
+            var label = 'auth.'
+            if (setSandbox || (!setSession && isSandbox)) {
+              label += 'sandbox.'
+            }
+            var sessionFields = [ 'my_id', 'access_token' ]
+            var i, field
+
+            if (!setSession) {
+              // get only
+              session = {
+                // global Store ID
+                store_id: localStorage.getItem(label + 'store_id')
+              }
+              // authentication fields
+              for (i = 0; i < sessionFields.length; i++) {
+                field = sessionFields[i]
+                session[field] = localStorage.getItem(label + api + '.' + field)
+              }
+
+              // returns session object
+              return session
+            } else {
+              // update auth session
+              if (storeId) {
+                // set Store ID for all APIs
+                localStorage.setItem(label + 'store_id', storeId)
+              }
+              if (session) {
+                // overwrite authentication API specific fields
+                for (i = 0; i < sessionFields.length; i++) {
+                  field = sessionFields[i]
+                  localStorage.setItem(label + api + '.' + field, (session[field] || ''))
+                }
+              }
+
+              return
+            }
+          }
+
+          // no local storage browser support
+          // return empty object
+          return {}
+        }
+
+        if (!Auth().store_id) {
+          // new session
+          // default Store ID for tests
+          Auth(true, 100)
+          // same for sandbox
+          Auth(true, 100, null, true)
+
+          if (Api.auth) {
+            // current api has authentication
+            // empty authentication as default for production
+            Auth(true, null, {})
+            if (Api.sandbox) {
+              // save sandbox defaults
+              Auth(true, null, (Api.sandbox.auth_session || {}), true)
+            }
+          }
+        }
+
         // get or set request headers for production and sandbox
-        var apiHeaders = function (headers, setSession) {
+        var apiHeaders = function (headers) {
           if (headers) {
+            var session = Auth()
             if (headers.hasOwnProperty('X-Access-Token')) {
               // private resource
-              var apiObj
-              if (isSandbox) {
-                apiObj = Api.sandbox
-              } else {
-                apiObj = Api
-              }
-              if (!setSession) {
-                // overwrite authentication headers
-                if (apiObj.auth_session) {
-                  headers['X-My-ID'] = apiObj.auth_session.my_id
-                  headers['X-Access-Token'] = apiObj.auth_session.access_token
-                }
-              } else {
-                // inverse
-                // save new auth session
-                apiObj.auth_session.my_id = headers['X-My-ID']
-                apiObj.auth_session.access_token = headers['X-Access-Token']
-                return
-              }
+              // overwrite authentication headers
+              headers['X-My-ID'] = session.my_id
+              headers['X-Access-Token'] = session.access_token
+            }
+            if (headers.hasOwnProperty('X-Store-ID')) {
+              // overwrite default Store ID
+              headers['X-Store-ID'] = session.store_id
             }
 
             return headers
@@ -479,11 +461,21 @@ $(function () {
             endpoint: req.href,
             method: req.method,
             reqHeaders: apiHeaders(req.headers),
+
             // callback function for headeers changed events
             chageHeadersCallback: function (headers) {
-              // save new headers
-              // true for setSession
-              apiHeaders(headers, true)
+              if (typeof headers === 'object' && headers !== null) {
+                var storeId = headers['X-Store-ID']
+                if (storeId) {
+                  // save new headers
+                  // save new auth session
+                  var session = {
+                    my_id: headers['X-My-ID'],
+                    access_token: headers['X-Access-Token']
+                  }
+                  Auth(true, storeId, session, isSandbox)
+                }
+              }
             }
           }
 

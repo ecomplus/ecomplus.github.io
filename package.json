@@ -16,9 +16,6 @@
       "history",
       "document",
       "Apis",
-      "callApi",
-      "loadContent",
-      "storeId",
       "githubRepo",
       "apiReference",
       "consoleLink"
