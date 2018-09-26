@@ -190,23 +190,23 @@
     {# /.footer #}
 
     {# Scripts #}
-    {% if page.github_repo %}
-      <script>
-      // GitHub repository sync
-      var githubRepo = {
-        'host': '{{ github_org }}',
-        'name': '{{ page.github_repo }}',
-        'path': '{{ page.repo_path }}'
-      };
-      </script>
-    {% endif %}
-    {% if page.api_reference %}
-      <script>
-      // current API
-      var apiReference = '{{ page.api_reference }}';
-      var consoleLink = '{{ urls.console ~ '#/' ~ page.api_reference ~ '/' }}';
-      </script>
-    {% endif %}
+    <script>
+      // page links
+      var Urls = {{ urls|json_encode()|raw }};
+      {% if page.github_repo %}
+        // GitHub repository sync
+        var githubRepo = {
+          'host': '{{ github_org }}',
+          'name': '{{ page.github_repo }}',
+          'path': '{{ page.repo_path }}'
+        };
+      {% endif %}
+      {% if page.api_reference %}
+        // current API
+        var apiReference = '{{ page.api_reference }}';
+        var consoleLink = '{{ urls.console ~ '#/' ~ page.api_reference ~ '/' }}';
+      {% endif %}
+    </script>
     <script src="/src/assets/js/page.min.js"></script>
     {% if page.url == urls.console %}
       {# load API console plugins #}
