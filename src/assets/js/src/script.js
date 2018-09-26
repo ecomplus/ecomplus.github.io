@@ -512,6 +512,15 @@ $(function () {
           $console.restform(opt)
           if (!$switchHost && Api.sandbox) {
             var switchHost = function () {
+              // link clicked to change API host
+              if ($(this).hasClass('active')) {
+                // nothing to do
+                return false
+              }
+
+              // mark active
+              $switchHost.find('.active').removeClass('active')
+              $(this).addClass('active')
               // change current host on console
               isSandbox = !isSandbox
               // reset console
@@ -519,9 +528,6 @@ $(function () {
                 host: apiHost(),
                 reqHeaders: apiHeaders(req.headers)
               })
-              // mark active
-              $switchHost.find('.active').removeClass('active')
-              $(this).addClass('active')
             }
 
             // render links to sandbox and production
