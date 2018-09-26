@@ -364,8 +364,6 @@ $(function () {
       var Api = Apis[api]
       if (Api && Api.github_repo) {
         // valid API name
-        var host = Api.host + Api.base_path + Api.version
-
         // list API docs JSON Refracts
         var basePath = '/src/submodules/' + Api.github_repo + '/src'
         var refracts = []
@@ -419,14 +417,74 @@ $(function () {
           }
         }
 
+        // API console element
+        var $console = $('#console')
+        // mount API host string
+        var endpointPath = Api.base_path + Api.version
+        // button to switch sandbox and production hosts
+        var isSandbox
+        if (Api.sandbox) {
+          isSandbox = true
+        }
+        var $switchHost
+
+        // get host for production or sandbox
+        var apiHost = function () {
+          if (isSandbox) {
+            return Api.sandbox.host + endpointPath
+          } else {
+            return Api.host + endpointPath
+          }
+        }
+
+        // get or set request headers for production and sandbox
+        var apiHeaders = function (headers, setSession) {
+          if (headers) {
+            if (headers.hasOwnProperty('X-Access-Token')) {
+              // private resource
+              var apiObj
+              if (isSandbox) {
+                apiObj = Api.sandbox
+              } else {
+                apiObj = Api
+              }
+              if (!setSession) {
+                // overwrite authentication headers
+                if (apiObj.auth_session) {
+                  headers['X-My-ID'] = apiObj.auth_session.my_id
+                  headers['X-Access-Token'] = apiObj.auth_session.access_token
+                }
+              } else {
+                // inverse
+                // save new auth session
+                apiObj.auth_session.my_id = headers['X-My-ID']
+                apiObj.auth_session.access_token = headers['X-Access-Token']
+                return
+              }
+            }
+
+            return headers
+          } else {
+            // return empty object
+            return {}
+          }
+        }
+
         var handleConsole = function (req, res) {
-          console.log(req, res)
+          // console.log(req, res)
           // mount Restform options object
           var opt = {
             title: req.title,
-            host: host,
+            host: apiHost(),
             endpoint: req.href,
-            method: req.method
+            method: req.method,
+            reqHeaders: apiHeaders(req.headers),
+            // callback function for headeers changed events
+            chageHeadersCallback: function (headers) {
+              // save new headers
+              // true for setSession
+              apiHeaders(headers, true)
+            }
           }
 
           // request info
@@ -435,9 +493,6 @@ $(function () {
           } else {
             // no params
             opt.params = []
-          }
-          if (req.hasOwnProperty('headers')) {
-            opt.reqHeaders = req.headers
           }
           if (req.hasOwnProperty('body')) {
             opt.reqBody = JSON.parse(req.body)
@@ -460,7 +515,40 @@ $(function () {
           }
 
           // setup Restform
-          $('#console').restform(opt)
+          $console.restform(opt)
+          if (!$switchHost && Api.sandbox) {
+            var switchHost = function () {
+              // change current host on console
+              isSandbox = !isSandbox
+              // reset console
+              $console.restform({
+                host: apiHost(),
+                headers: apiHeaders(req.headers)
+              })
+              // mark active
+              $switchHost.find('.active').removeClass('active')
+              $(this).addClass('active')
+            }
+
+            // render links to sandbox and production
+            var $Link = function (text, isActive) {
+              var options = {
+                href: 'javascript:;',
+                text: text,
+                click: switchHost
+              }
+              if (isActive) {
+                // mark active
+                options.class = 'active'
+              }
+              return $('<a>', options)
+            }
+            var $linkSandbox = $Link('Sandbox', isSandbox)
+            var $linkProduction = $Link('Production', !isSandbox)
+            $switchHost = $('<span>', { html: [ $linkSandbox, $linkProduction ] })
+            // insert before endpoint
+            $console.find('.restform-endpoint').before($switchHost)
+          }
         }
 
         // start Refapp

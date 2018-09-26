@@ -101,8 +101,9 @@
   background: $purple;
   color: $gray-200;
   font-family: $font-family-monospace;
+  display: inline-block;
   font-size: 90%;
-  padding: .4rem;
+  padding: .2rem .8rem;
   border-radius: .3rem;
 }
 // highlight API endpoint params
@@ -111,6 +112,24 @@
 }
 .restform-endpoint > strong > span {
   color: $yellow;
+}
+
+// switch hosts
+.restform-header a {
+  background: lighten($color-primary, 20%);
+  display: inline-block;
+  color: $white;
+  margin-right: .3rem;
+  font-size: 90%;
+  padding: .2rem .8rem;
+  border-radius: .3rem;
+  font-weight: 600;
+}
+.restform-header a:hover {
+  background: lighten($color-primary, 10%);
+}
+.restform-header a.active {
+  background: $color-primary;
 }
 
 // nav tabs
