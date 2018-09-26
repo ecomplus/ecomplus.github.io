@@ -452,8 +452,13 @@ $(function () {
           }
         }
 
-        var handleConsole = function (req, res) {
+        // keep current request and response objects locally
+        var res, req
+        var handleConsole = function (Req, Res) {
           // console.log(req, res)
+          req = Req
+          res = Res
+
           // mount Restform options object
           var opt = {
             title: req.title,
@@ -499,9 +504,6 @@ $(function () {
           if (res.hasOwnProperty('status')) {
             opt.statusCode = res.status
           }
-          if (res.hasOwnProperty('headers')) {
-            opt.resHeaders = res.headers
-          }
           if (res.hasOwnProperty('body')) {
             opt.resBody = JSON.parse(res.body)
           }
@@ -515,7 +517,7 @@ $(function () {
               // reset console
               $console.restform({
                 host: apiHost(),
-                headers: apiHeaders(req.headers)
+                reqHeaders: apiHeaders(req.headers)
               })
               // mark active
               $switchHost.find('.active').removeClass('active')
