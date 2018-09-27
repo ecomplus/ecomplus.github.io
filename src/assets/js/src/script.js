@@ -614,10 +614,15 @@ $(function () {
             opt.schema = JSON.parse(req.schema)
           } else if (api === 'store') {
             // resource schema
-            var schemaEndpoint = req.href.replace(/{\?[^}]+}/g, '').replace(/{[^}]+}/g, 'schema')
+            var schemaEndpoint = req.href
+              // replace URL params with 'schema' except last if multiple
+              .replace(/{[^}]+}\//g, 'schema/')
+              // last ID param or query string
+              .replace(/\/?{[^}]+}/g, '')
             if (schemaEndpoint.indexOf('schema') === -1) {
               schemaEndpoint = schemaEndpoint.replace('.json', '/schema.json')
             }
+            // console.log(schemaEndpoint, Schemas)
 
             // try from stored schemas
             if (Schemas[schemaEndpoint]) {
