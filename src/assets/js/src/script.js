@@ -62,9 +62,9 @@ $(function () {
         $(window).scroll(function () {
           // check marked positions
           var top = $(this).scrollTop()
-          for (var i = 0; i < scrollOffsets.length; i++) {
+          for (var i = scrollOffsets.length - 1; i >= 0; i--) {
             var offset = scrollOffsets[i]
-            if (Math.abs(top - offset.top) < 15) {
+            if (top >= offset.top) {
               // matched
               var hash = offset.hash
               if (location.hash !== hash) {
@@ -78,6 +78,7 @@ $(function () {
                   return $(this).attr('href') === hash
                 }).addClass('active')
               }
+              break
             }
           }
         })
@@ -372,19 +373,15 @@ $(function () {
         }
 
         // save resource schema locally
-        var sourceSchema
+        var Schemas
 
         var refractCallback = function (refract) {
-          // reset resource schema
-          sourceSchema = null
+          // reset resource schema to clear memory
+          Schemas = {}
+          // restart scroll spy
+          scrollSpy()
 
           if (api === 'store') {
-            setTimeout(function () {
-              // GET JSON Schema
-              var resource = location.hash.split('/')[2]
-              console.log(resource)
-            }, 200)
-
             // get JSON schema from refract object
             try {
               var schema = refract
@@ -395,16 +392,17 @@ $(function () {
                 schema = JSON.parse(schema)
                 if (schema.hasOwnProperty('$schema')) {
                   // found
-                  sourceSchema = schema
+                  // get resource name from hash
+                  var paths = window.location.hash.split('/')
+                  if (paths.length >= 3) {
+                    Schemas['/' + paths[2] + '/schema.json'] = schema
+                  }
                 }
               }
             } catch (e) {
               // ignore error
             }
           }
-
-          // restart scroll spy
-          scrollSpy()
         }
 
         // API console element
@@ -558,12 +556,7 @@ $(function () {
           if (req.hasOwnProperty('body')) {
             opt.reqBody = JSON.parse(req.body)
           }
-          if (req.schema) {
-            opt.schema = JSON.parse(req.schema)
-          } else {
-            // local resource schema
-            opt.schema = sourceSchema
-          }
+
           // sample response
           if (res.hasOwnProperty('status')) {
             opt.statusCode = res.status
@@ -572,47 +565,85 @@ $(function () {
             opt.resBody = JSON.parse(res.body)
           }
 
-          // setup Restform
-          $console.restform(opt)
-          if (!$switchHost && Api.sandbox) {
-            var switchHost = function () {
-              // link clicked to change API host
-              if ($(this).hasClass('active')) {
-                // nothing to do
-                return false
-              }
+          var setup = function () {
+            // setup Restform
+            $console.restform(opt)
+            if (!$switchHost && Api.sandbox) {
+              var switchHost = function () {
+                // link clicked to change API host
+                if ($(this).hasClass('active')) {
+                  // nothing to do
+                  return false
+                }
 
-              // mark active
-              $switchHost.find('.active').removeClass('active')
-              $(this).addClass('active')
-              // change current host on console
-              isSandbox = !isSandbox
-              // reset console
-              $console.restform({
-                host: apiHost(),
-                reqHeaders: apiHeaders(req.headers)
-              })
-            }
-
-            // render links to sandbox and production
-            var $Link = function (text, isActive) {
-              var options = {
-                href: 'javascript:;',
-                text: text,
-                click: switchHost
-              }
-              if (isActive) {
                 // mark active
-                options.class = 'active'
+                $switchHost.find('.active').removeClass('active')
+                $(this).addClass('active')
+                // change current host on console
+                isSandbox = !isSandbox
+                // reset console
+                $console.restform({
+                  host: apiHost(),
+                  reqHeaders: apiHeaders(req.headers)
+                })
               }
-              return $('<a>', options)
+
+              // render links to sandbox and production
+              var $Link = function (text, isActive) {
+                var options = {
+                  href: 'javascript:;',
+                  text: text,
+                  click: switchHost
+                }
+                if (isActive) {
+                  // mark active
+                  options.class = 'active'
+                }
+                return $('<a>', options)
+              }
+              var $linkSandbox = $Link('Sandbox', isSandbox)
+              var $linkProduction = $Link('Production', !isSandbox)
+              $switchHost = $('<span>', { html: [ $linkSandbox, $linkProduction ] })
+              // insert before endpoint
+              $console.find('.restform-endpoint').before($switchHost)
             }
-            var $linkSandbox = $Link('Sandbox', isSandbox)
-            var $linkProduction = $Link('Production', !isSandbox)
-            $switchHost = $('<span>', { html: [ $linkSandbox, $linkProduction ] })
-            // insert before endpoint
-            $console.find('.restform-endpoint').before($switchHost)
           }
+
+          // set schema asynchronously
+          if (req.schema) {
+            opt.schema = JSON.parse(req.schema)
+          } else if (api === 'store') {
+            // resource schema
+            var schemaEndpoint = req.href.replace(/{\?[^}]+}/g, '').replace(/{[^}]+}/g, 'schema')
+            if (schemaEndpoint.indexOf('schema') === -1) {
+              schemaEndpoint = schemaEndpoint.replace('.json', '/schema.json')
+            }
+
+            // try from stored schemas
+            if (Schemas[schemaEndpoint]) {
+              opt.schema = Schemas[schemaEndpoint]
+            } else {
+              // GET JSON Schema from API
+              var $ajax = $.ajax({
+                dataType: 'json',
+                headers: {
+                  'X-Store-ID': 100
+                },
+                url: Api.host + endpointPath + schemaEndpoint
+              })
+              $ajax.done(function (json) {
+                opt.schema = json
+              })
+              $ajax.fail(function (jqxhr, textStatus, err) {
+                console.error(err, jqxhr)
+              })
+              $ajax.always(function () {
+                setup()
+              })
+              return
+            }
+          }
+          setup()
         }
 
         // start Refapp
@@ -675,7 +706,10 @@ $(function () {
               href += '/' + path
             }
           }
-          $(this).attr('href', href)
+          $(this).attr({
+            href: href,
+            target: '_blank'
+          })
         }
       }
     }
