@@ -59,28 +59,53 @@ $(function () {
 
       if (scrollOffsets === undefined) {
         // first function call
+        var updateHash, waitLink
+
+        // setup scroll event listener
         $(window).scroll(function () {
+          if (waitLink) {
+            // link clicked
+            // ignore scrolling
+            return
+          }
+
           // check marked positions
           var top = $(this).scrollTop()
           for (var i = scrollOffsets.length - 1; i >= 0; i--) {
             var offset = scrollOffsets[i]
-            if (top >= offset.top) {
+            if (top >= offset.top - 30) {
               // matched
               var hash = offset.hash
               if (location.hash !== hash) {
-                if (history.pushState) {
-                  // update hash without scrolling
-                  history.pushState(null, null, hash)
+                if (updateHash) {
+                  clearTimeout(updateHash)
                 }
 
-                // update active anchor link
-                $links.removeClass('active').filter(function () {
-                  return $(this).attr('href') === hash
-                }).addClass('active')
+                // timeout to prevent multiple hash changes at "same time"
+                updateHash = setTimeout(function () {
+                  if (history.pushState) {
+                    // update hash without scrolling
+                    history.pushState(null, null, hash)
+                  }
+
+                  // update active anchor link
+                  $links.removeClass('active').filter(function () {
+                    return $(this).attr('href') === hash
+                  }).addClass('active')
+                }, 150)
               }
               break
             }
           }
+        })
+
+        // disable scroll spy when link is clicked
+        // prevent errors with anchor links
+        $('a').click(function () {
+          waitLink = true
+          setTimeout(function () {
+            waitLink = false
+          }, 700)
         })
       }
       // reset offsets array
