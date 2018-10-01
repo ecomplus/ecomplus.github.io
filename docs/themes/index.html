@@ -29,19 +29,25 @@ If you need help, feel free to
 <a href="https://github.com/ecomclub/ecomplus-sdk-js" target="_blank">storefront JS SDK</a>
 and the
 <a href="https://github.com/ecomclub/ecomplus-store-render" target="_blank">layout renderer app</a>.
-You can include storefront &quot;all in one&quot; JS file <strong>(recommended)</strong>:</p><pre><code class="language-html">&lt;script src="https://ecvol.com/js/storefront@1/storefront.min.js"&gt;&lt;/script&gt;</code></pre><p>Or import the scripts one by one (not recommended):</p><pre><code class="language-html">&lt;script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.min.js"&gt;&lt;/script&gt;
+You can include storefront &quot;all in one&quot; JS file <strong>(recommended)</strong>:</p><pre><code class="language-html">&lt;script src="https://ecvol.com/js/storefront@2/storefront.min.js"&gt;&lt;/script&gt;</code></pre><p>Or import the scripts one by one (not recommended):</p><pre><code class="language-html">&lt;script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.min.js"&gt;&lt;/script&gt;
 &lt;script src="https://cdn.jsdelivr.net/npm/ecomplus-sdk@1/dist/sdk.min.js"&gt;&lt;/script&gt;
-&lt;script src="https://cdn.jsdelivr.net/npm/ecomplus-render@1/dist/render.min.js"&gt;&lt;/script&gt;</code></pre><p>Then, start the layout rendering with JS below:</p><pre><code class="language-javascript">Ecom.init()</code></pre><p>The scripts should be loaded after the HTML content of the page,
+&lt;script src="https://cdn.jsdelivr.net/npm/ecomplus-render@2/dist/render.min.js"&gt;&lt;/script&gt;</code></pre><p>Then, start the layout rendering with JS below:</p><pre><code class="language-javascript">Ecom.init()</code></pre><p>The scripts should be loaded after the HTML content of the page,
 so you have to put them before <code>&lt;/body&gt;</code> tag,
 we also recommend to load them before other scripts,
 such as jQuery lib. Final example:</p><pre><code class="language-html">&lt;body&gt;
   &lt;!-- HTML content --&gt;
-  &lt;script src="https://ecvol.com/js/storefront@1/storefront.min.js"&gt;&lt;/script&gt;
+  &lt;script src="https://ecvol.com/js/storefront@2/storefront.min.js"&gt;&lt;/script&gt;
   &lt;script&gt;
     Ecom.init()
   &lt;/script&gt;
   &lt;!-- Optionally, other JS --&gt;
-&lt;/body&gt;</code></pre><h1>Guide</h1><p>HTML classes used by this library will be named with the prefix <code>_ecom-</code>,
+&lt;/body&gt;</code></pre><h2>Renderization callback</h2><p>You probably want to manipulate the rendered elements
+with JavaScript (maybe with jQuery),
+to work properly, you must do this <strong>after the renderization</strong>.</p><p>Send a
+<a href="https://developer.mozilla.org/en-US/docs/Glossary/Callback_function" target="_blank">callback function</a>
+as first param of <em>init</em> method:</p><pre><code class="language-javascript">Ecom.init(function () {
+  // handle events and effects with rendered elements
+})</code></pre><h1>Guide</h1><p>HTML classes used by this library will be named with the prefix <code>_ecom-</code>,
 data attributes may be used together with the classes in the elements.</p><h2>App main element</h2><p>Your HTML must have an element
 with class <code>_ecom-store</code>, it's <strong>required</strong>.</p><p>All Vue template must be inside this element,
 including all mustache tags and Vue HTML attributes,
