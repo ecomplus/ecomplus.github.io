@@ -399,6 +399,8 @@ $(function () {
 
         // save resource schema locally
         var Schemas
+        // show resource attributes after console rendering
+        var showAttributes = false
 
         var refractCallback = function (refract) {
           // reset resource schema to clear memory
@@ -426,6 +428,34 @@ $(function () {
               }
             } catch (e) {
               // ignore error
+            }
+
+            // search object model DOM element
+            var $model = $refapp.find('h2,h3,h4,h5').filter(function () {
+              var id = $(this).attr('id')
+              if (id) {
+                return id.substr(id.length - 7, 7) === '-object'
+              } else {
+                return false
+              }
+            })
+
+            if ($model.length) {
+              // add button linking resource data structure
+              var $btn = $('<button>', {
+                'class': 'btn btn-primary btn-round mb-3',
+                html: '<i class="fa fa-database mr-1"></i> Data structure',
+                // slide effect
+                style: 'display: none',
+                // handle click to show object model
+                click: function () {
+                  showAttributes = true
+                  $(this).next().find('a').click()
+                }
+              })
+              // append to documentation body
+              $model.after($btn)
+              $btn.slideDown()
             }
           }
         }
@@ -632,6 +662,20 @@ $(function () {
               // insert before endpoint
               $console.find('.restform-endpoint').before($switchHost)
             }
+
+            if (showAttributes) {
+              setTimeout(function () {
+                // show resouerce attributes
+                // click on tab link
+                var $link = $console.find('.restform-tabs:first').children('a:last')
+                if ($link.length && !$link.attr('disabled') && !$link.hasClass('active')) {
+                  $link.click()
+                }
+              }, 420)
+              // unset
+              showAttributes = false
+            }
+            console.log(showAttributes)
           }
 
           // set schema asynchronously
