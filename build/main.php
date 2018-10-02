@@ -46,6 +46,18 @@ $pages = array(
                      'Get started with guides, API reference and playground on our Developers Hub.'
   ),
 
+  // reference page
+  // @TODO
+  array(
+    'url' => $urls['reference'],
+    'title' => 'APIs Reference · ' . $site_title,
+    'subtitle' => 'APIs Reference',
+    'content' => null,
+    'github_repo' => null,
+    'api_reference' => null,
+    'description' => 'E-Com Plus APIs reference'
+  ),
+
   // API console page
   array(
     'url' => $urls['console'],

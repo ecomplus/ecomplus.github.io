@@ -1,0 +1,37 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+  <section class="section bg-gray">
+    <div class="container">
+      <header class="section-header">
+        <small>References</small>
+        <h2>Be happy with our powerful suite of APIs</h2>
+        <hr>
+        <p class="lead">RESTful, flexible, well documented and sandbox ready</p>
+      </header>
+      <div class="row gap-y text-center">
+        <div class="col-md-4 order-md-2">
+          <a class="card px-6 py-7 shadow-4 hover-shadow-9 text-default" href="{{ urls.reference }}store/">
+            <h5 class="fw-500 mb-4 text-primary">Store API</h5>
+            <p class="mb-0">
+              The "hearth" of our software, full access to
+              <span class="text-purple">all store JSON data</span>
+            </p>
+          </a>
+        </div>
+        <div class="col-md-4 order-md-1">
+          <a class="card px-6 py-7 hover-shadow-9 text-default" href="{{ urls.reference }}search/">
+            <h5 class="fw-500 mb-4 text-primary">Search API</h5>
+            <p class="mb-0">Fast and flexible products and terms search engine</p>
+          </a>
+        </div>
+        <div class="col-md-4 order-md-3">
+          <a class="card px-6 py-7 hover-shadow-9 text-default" href="{{ urls.reference }}graphs/">
+            <h5 class="fw-500 mb-4 text-primary">Graphs API</h5>
+            <p class="mb-0">Real-time engine for products recommendations systems</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
