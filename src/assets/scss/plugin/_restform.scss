@@ -195,8 +195,8 @@
   position: absolute !important;
 }
 .restform-form,
-.restform-schema,
-.restform-attrs {
+// .restform-attrs,
+.restform-schema {
   max-height: 500px;
   overflow: auto;
 }
