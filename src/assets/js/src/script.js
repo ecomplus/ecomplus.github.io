@@ -665,17 +665,35 @@ $(function () {
 
             if (showAttributes) {
               setTimeout(function () {
-                // show resouerce attributes
-                // click on tab link
-                var $link = $console.find('.restform-tabs:first').children('a:last')
-                if ($link.length && !$link.attr('disabled') && !$link.hasClass('active')) {
-                  $link.click()
+                // show resource attributes
+                var $attrs = $console.find('.restform-attrs')
+                if ($attrs.length) {
+                  var scroll = function () {
+                    // fix page scroll
+                    // move to attributes list
+                    $console.children().animate({
+                      scrollTop: $console.find('.restform-attrs').position().top - 20
+                    }, 400)
+                    // reset attributes list scroll
+                    $attrs.animate({ scrollTop: 0 }, 200)
+                  }
+
+                  // click on tab link
+                  var $link = $console.find('.restform-tabs:first').children('a:last')
+                  if ($link.length && !$link.attr('disabled') && !$link.hasClass('active')) {
+                    $link.click()
+                    // wait for tab changing
+                    setTimeout(function () {
+                      scroll()
+                    }, 420)
+                  } else {
+                    scroll()
+                  }
                 }
               }, 420)
               // unset
               showAttributes = false
             }
-            console.log(showAttributes)
           }
 
           // set schema asynchronously
