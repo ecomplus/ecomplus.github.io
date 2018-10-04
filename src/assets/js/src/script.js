@@ -482,6 +482,14 @@ $(function () {
 
         // work with authentication session
         var Auth = function (setSession, storeId, session, setSandbox) {
+          if (!setSession && isSandbox) {
+            if (Api.sandbox.auth_session) {
+              // return sandbox credentials from Api object
+              // default Store ID for tests
+              return Object.assign({ store_id: 100 }, Api.sandbox.auth_session)
+            }
+          }
+
           if (window.localStorage) {
             /* global localStorage */
             // base storage field label
@@ -540,10 +548,8 @@ $(function () {
             // current api has authentication
             // empty authentication as default for production
             Auth(true, null, {})
-            if (Api.sandbox) {
-              // save sandbox defaults
-              Auth(true, null, (Api.sandbox.auth_session || {}), true)
-            }
+            // same for sandbox
+            Auth(true, null, {}, true)
           }
         }
 
