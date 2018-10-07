@@ -114,6 +114,11 @@
 .restform-endpoint > strong > span {
   color: $yellow;
 }
+@media (max-width: 991px) {
+  .restform-endpoint {
+    margin-top: 5px;
+  }
+}
 
 // switch hosts
 .restform-header a {
