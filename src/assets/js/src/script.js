@@ -627,14 +627,21 @@ $(function () {
           }
           if (req.hasOwnProperty('body')) {
             opt.reqBody = parseJson(req.body)
+          } else {
+            opt.reqBody = null
           }
 
           // sample response
           if (res.hasOwnProperty('status')) {
             opt.statusCode = res.status
+          } else {
+            // all methods should have response status
+            opt.statusCode = 100
           }
           if (res.hasOwnProperty('body')) {
             opt.resBody = parseJson(res.body)
+          } else {
+            opt.resBody = null
           }
 
           var setup = function () {
