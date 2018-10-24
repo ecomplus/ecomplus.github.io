@@ -12,6 +12,17 @@ $(function () {
     return str.charAt(0).toUpperCase() + str.slice(1)
   }
 
+  var parseJson = function (json) {
+    var obj
+    try {
+      obj = JSON.parse(json)
+    } catch (e) {
+      obj = {}
+      console.error(e, json)
+    }
+    return obj
+  }
+
   // declare auxiliars
   var i, apiConsole
   if (typeof $.fn.refapp === 'function') {
@@ -416,7 +427,7 @@ $(function () {
                 .content[0].content[0].content[1].content[1]
                 .content[0].content[1].content[0].content
               if (typeof schema === 'string') {
-                schema = JSON.parse(schema)
+                schema = parseJson(schema)
                 if (schema.hasOwnProperty('$schema')) {
                   // found
                   // get resource name from hash
@@ -615,12 +626,7 @@ $(function () {
             opt.params = []
           }
           if (req.hasOwnProperty('body')) {
-            try {
-              opt.reqBody = JSON.parse(req.body)
-            } catch (e) {
-              opt.reqBody = {}
-              console.error(e, res.body)
-            }
+            opt.reqBody = parseJson(req.body)
           }
 
           // sample response
@@ -628,12 +634,7 @@ $(function () {
             opt.statusCode = res.status
           }
           if (res.hasOwnProperty('body')) {
-            try {
-              opt.resBody = JSON.parse(res.body)
-            } catch (e) {
-              opt.resBody = {}
-              console.error(e, res.body)
-            }
+            opt.resBody = parseJson(res.body)
           }
 
           var setup = function () {
@@ -714,7 +715,7 @@ $(function () {
 
           // set schema asynchronously
           if (req.schema) {
-            opt.schema = JSON.parse(req.schema)
+            opt.schema = parseJson(req.schema)
           } else if (api === 'store') {
             // resource schema
             var schemaEndpoint = req.href
