@@ -615,7 +615,12 @@ $(function () {
             opt.params = []
           }
           if (req.hasOwnProperty('body')) {
-            opt.reqBody = JSON.parse(req.body)
+            try {
+              opt.reqBody = JSON.parse(req.body)
+            } catch (e) {
+              opt.reqBody = {}
+              console.error(e, res.body)
+            }
           }
 
           // sample response
@@ -623,7 +628,12 @@ $(function () {
             opt.statusCode = res.status
           }
           if (res.hasOwnProperty('body')) {
-            opt.resBody = JSON.parse(res.body)
+            try {
+              opt.resBody = JSON.parse(res.body)
+            } catch (e) {
+              opt.resBody = {}
+              console.error(e, res.body)
+            }
           }
 
           var setup = function () {
