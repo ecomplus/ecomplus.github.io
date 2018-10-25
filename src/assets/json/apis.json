@@ -59,6 +59,7 @@
             "collections\/products",
             "collections",
             "customers\/addresses",
+            "customers\/credit_cards",
             "customers\/favorites",
             "customers\/gifts_list",
             "customers\/gifts_list_info",
