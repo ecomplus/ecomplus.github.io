@@ -791,6 +791,18 @@ $(function () {
           })
         // fix sidebar scroll
         handleSidebar()
+
+        // add button to reference introduction
+        var $intro = $('<p>', {
+          'class': 'ml-2 mt-2 hidden',
+          html: $('<a>', {
+            'class': 'btn btn-round btn-primary',
+            href: Urls.reference + api,
+            html: '<i class="fa fa-chevron-left mr-1"></i> Back to introduction'
+          })
+        })
+        $sidebar.find('.sidebar-sticky').prepend($intro)
+        $intro.slideDown()
       } else {
         // invalid API on URL hash
         invalidHash()
