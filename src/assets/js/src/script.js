@@ -454,7 +454,7 @@ $(function () {
             if ($model.length) {
               // add button linking resource data structure
               var $btn = $('<button>', {
-                'class': 'btn btn-primary btn-round mb-3',
+                'class': 'btn btn-info btn-xl mb-3',
                 html: '<i class="fa fa-database mr-1"></i> Data structure',
                 // slide effect
                 style: 'display: none',
