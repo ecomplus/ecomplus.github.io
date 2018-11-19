@@ -143,26 +143,26 @@ You can get more info and example of returned object from
 <a href="https://ecomsearch.docs.apiary.io/#reference/items" target="_blank">API reference</a>.</p><p>The <code>._ecom-el</code> element must also have the following attributes:</p><table><thead><tr><th style="text-align: center;">Attribute</th><th style="text-align: center;">Description</th></tr></thead><tbody><tr><td style="text-align: center;"><code>data-type</code></td><td style="text-align: center;">Equal to <code>items</code></td></tr><tr><td style="text-align: center;"><code>data-term</code></td><td style="text-align: center;">Searched keyword <em>(optional)</em></td></tr><tr><td style="text-align: center;"><code>data-from</code></td><td style="text-align: center;">Results offset number <em>(optional)</em></td></tr><tr><td style="text-align: center;"><code>data-size</code></td><td style="text-align: center;">Maximum number of results <em>(optional)</em></td></tr><tr><td style="text-align: center;"><code>data-sort</code></td><td style="text-align: center;">Results ordering, one of <a href="#sort-items-search-result">these enumered values</a><em>(optional)</em></td></tr><tr><td style="text-align: center;"><code>data-ids</code></td><td style="text-align: center;">Filter by specific products IDs separated by <code>,</code><em>(optional)</em></td></tr><tr><td style="text-align: center;"><code>data-brands</code></td><td style="text-align: center;">Filter by list of brands IDs separated by <code>,</code><em>(optional)</em></td></tr><tr><td style="text-align: center;"><code>data-categories</code></td><td style="text-align: center;">Filter by list of categories IDs separated by <code>,</code><em>(optional)</em></td></tr><tr><td style="text-align: center;"><code>data-price-min</code></td><td style="text-align: center;">Filter by minimum price <em>(optional)</em></td></tr><tr><td style="text-align: center;"><code>data-price-max</code></td><td style="text-align: center;">Filter by maximum price <em>(optional)</em></td></tr><tr><td style="text-align: center;"><code>data-spec-*</code></td><td style="text-align: center;">Filter by product specification <em>(optional)</em></td></tr></tbody></table><h4>Products list sample</h4><p>The example below is a simple implementation of a list of trending products,
 using <a href="https://vuejs.org/v2/guide/list.html" target="_blank">Vue list</a>:</p><pre><code class="language-html">&lt;div class="row _ecom-el" data-type="items"&gt;
   &lt;div class="col-md-2" v-for="item in body.hits.hits"&gt;
-    &lt;div v-if="body = item._source" class="item"&gt;
-      &lt;div v-if="body.pictures &amp;&amp; body.pictures[0] &amp;&amp; body.pictures[0].normal" class="item-img"&gt;
-        &lt;img v-bind:src="body.pictures[0].normal.url" v-bind:alt="body.pictures[0].normal.alt" /&gt;
+    &lt;div v-if="item = item._source" class="item"&gt;
+      &lt;div v-if="item.pictures &amp;&amp; item.pictures[0] &amp;&amp; item.pictures[0].normal" class="item-img"&gt;
+        &lt;img v-bind:src="item.pictures[0].normal.url" v-bind:alt="item.pictures[0].normal.alt" /&gt;
       &lt;/div&gt;
-      &lt;a v-bind:href="body.slug"&gt;
-        &lt;h3&gt; {{ name(body) }} &lt;/h3&gt;
+      &lt;a v-bind:href="item.slug"&gt;
+        &lt;h3&gt; {{ name(item) }} &lt;/h3&gt;
       &lt;/a&gt;
       &lt;p class="price-block"&gt;
-        &lt;span v-if="onPromotion(body)"&gt;
-          {{ body.currency_symbol }}
-          &lt;strong class="price"&gt; {{ formatMoney(body.price) }} &lt;/strong&gt;
-          &lt;span class="base-price"&gt; {{ formatMoney(body.base_price) }} &lt;/span&gt;
+        &lt;span v-if="onPromotion(item)"&gt;
+          {{ item.currency_symbol }}
+          &lt;strong class="price"&gt; {{ formatMoney(item.price) }} &lt;/strong&gt;
+          &lt;span class="base-price"&gt; {{ formatMoney(item.base_price) }} &lt;/span&gt;
         &lt;/span&gt;
         &lt;span v-else&gt;
-          {{ body.currency_symbol }}
-          &lt;strong class="price"&gt; {{ formatMoney(price(body)) }} &lt;/strong&gt;
+          {{ item.currency_symbol }}
+          &lt;strong class="price"&gt; {{ formatMoney(price(item)) }} &lt;/strong&gt;
         &lt;/span&gt;
       &lt;/p&gt;
-      &lt;span v-if="body.available"&gt;
-        &lt;button v-if="inStock()" class="buy"&gt; Buy &lt;/button&gt;
+      &lt;span v-if="item.available"&gt;
+        &lt;button v-if="inStock(item)" class="buy"&gt; Buy &lt;/button&gt;
         &lt;span class="no-stock" v-else&gt; Out of stock &lt;/span&gt;
       &lt;/span&gt;
     &lt;/div&gt;
@@ -187,26 +187,26 @@ search and list examples to fit your needs.</p><h3>List products from collection
   &lt;/a&gt;
   &lt;ul&gt;
     &lt;li v-for="item in body.hits.hits"&gt;
-      &lt;div v-if="body = item._source" class="item"&gt;
-        &lt;div v-if="body.pictures &amp;&amp; body.pictures[0] &amp;&amp; body.pictures[0].normal" class="item-img"&gt;
-          &lt;img v-bind:src="body.pictures[0].normal.url" v-bind:alt="body.pictures[0].normal.alt" /&gt;
+      &lt;div v-if="item = item._source" class="item"&gt;
+        &lt;div v-if="item.pictures &amp;&amp; item.pictures[0] &amp;&amp; item.pictures[0].normal" class="item-img"&gt;
+          &lt;img v-bind:src="item.pictures[0].normal.url" v-bind:alt="item.pictures[0].normal.alt" /&gt;
         &lt;/div&gt;
-        &lt;a v-bind:href="body.slug"&gt;
-          &lt;h4&gt; {{ name(body) }} &lt;/h4&gt;
+        &lt;a v-bind:href="item.slug"&gt;
+          &lt;h4&gt; {{ name(item) }} &lt;/h4&gt;
         &lt;/a&gt;
-        &lt;p&gt; SKU: {{ body.sku }} &lt;/p&gt;
+        &lt;p&gt; SKU: {{ item.sku }} &lt;/p&gt;
         &lt;p class="price-block"&gt;
-          &lt;span v-if="onPromotion(body)"&gt;
-            {{ body.currency_symbol }}
-            &lt;strong class="price"&gt; {{ formatMoney(body.price) }} &lt;/strong&gt;
-            &lt;span class="base-price"&gt; {{ formatMoney(body.base_price) }} &lt;/span&gt;
+          &lt;span v-if="onPromotion(item)"&gt;
+            {{ item.currency_symbol }}
+            &lt;strong class="price"&gt; {{ formatMoney(item.price) }} &lt;/strong&gt;
+            &lt;span class="base-price"&gt; {{ formatMoney(item.base_price) }} &lt;/span&gt;
           &lt;/span&gt;
           &lt;span v-else&gt;
-            {{ body.currency_symbol }}
-            &lt;strong class="price"&gt; {{ formatMoney(price(body)) }} &lt;/strong&gt;
+            {{ item.currency_symbol }}
+            &lt;strong class="price"&gt; {{ formatMoney(price(item)) }} &lt;/strong&gt;
           &lt;/span&gt;
         &lt;/p&gt;
-        &lt;button v-if="inStock()" class="buy"&gt; Buy &lt;/button&gt;
+        &lt;button v-if="inStock(item)" class="buy"&gt; Buy &lt;/button&gt;
         &lt;span class="no-stock" v-else&gt; Out of stock &lt;/span&gt;
       &lt;/div&gt;
     &lt;/li&gt;
