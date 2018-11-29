@@ -767,7 +767,7 @@ $(function () {
         var refappOpt = {
           asideClasses: 'sidebar sidebar-sticky rendered-summary',
           articleClasses: 'rendered-content',
-          baseHash: '/store/',
+          baseHash: '/' + api + '/',
           apiTitle: Api.label,
           refractCallback: refractCallback,
           actionCallback: handleConsole
