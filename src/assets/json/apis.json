@@ -77,7 +77,7 @@
             "grids",
             "orders\/amount",
             "orders\/buyers",
-            "orders\/fullfilments",
+            "orders\/fulfillments",
             "orders\/gift_to",
             "orders\/hidden_metafields",
             "orders\/items",
