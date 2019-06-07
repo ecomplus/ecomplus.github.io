@@ -33,6 +33,7 @@
             "applications\/hidden_data",
             "applications",
             "authentications\/api_key",
+            "authentications\/notifications",
             "authentications\/panel_cards",
             "authentications\/panel_form_fields",
             "authentications\/permissions",
