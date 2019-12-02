@@ -22,7 +22,6 @@
             "@channels",
             "@domains",
             "@logs",
-            "@notifications",
             "@searches",
             "@visits",
             "_authenticate",
@@ -155,7 +154,6 @@
             "cards",
             "events",
             "logs",
-            "notifications",
             "pageviews",
             "searches",
             "visits"
