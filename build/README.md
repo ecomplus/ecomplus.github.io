@@ -1,12 +1,12 @@
 # Technology stack
-+ [PHP](http://php.net/) 7
++ [PHP](http://php.net/) 8
 + [Composer](https://getcomposer.org/) dependency manager
-+ [Twig 2](https://twig.symfony.com/) template engine
++ [Twig 3](https://twig.symfony.com/) template engine
 
 # Setting up
 ```bash
-git clone https://github.com/ecomclub/ecomclub.github.io.git
-cd ecomclub.github.io/build
+git clone https://github.com/ecomplus/ecomplus.github.io.git
+cd ecomplus.github.io/build
 composer install
 ```
 

@@ -5,12 +5,12 @@ require __DIR__ . '/vendor/autoload.php';
 require __DIR__ . '/inc/get-json.php';
 require __DIR__ . '/inc/apis.php';
 
-// Twig 2 for template rendering
+// Twig 3 for template rendering
 // https://twig.symfony.com/doc/2.x/api.html
 $templates_dir = __DIR__ . '/templates';
-$loader = new Twig_Loader_Filesystem($templates_dir);
+$loader = new \Twig\Loader\FilesystemLoader($templates_dir);
 // setup twig object with no compilation cache
-$twig = new Twig_Environment($loader, array('strict_variables' => true));
+$twig = new \Twig\Environment($loader, array('strict_variables' => true));
 
 $site_title = 'E-Com Plus Developers';
 // internal links (abstractions)
