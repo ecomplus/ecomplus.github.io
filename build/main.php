@@ -74,6 +74,7 @@ $pages = array(
 include __DIR__ . '/inc/load-from-github.php';
 
 // render each page
+$output_dir = __DIR__ . '/../docs';
 for ($i = 0; $i < count($pages); $i++) {
   $page = $pages[$i];
   // base file path
@@ -109,7 +110,7 @@ for ($i = 0; $i < count($pages); $i++) {
   $paths = explode('/', $file_path);
   if (count($paths) > 2) {
     // create directory if not exists
-    $dir = __DIR__ . '/..';
+    $dir = $output_dir;
     // skip the first (empty) and the last (filename) paths
     for ($ii = 1; $ii < count($paths) - 1; $ii++) {
       $dir .= '/' . $paths[$ii];
@@ -119,5 +120,5 @@ for ($i = 0; $i < count($pages); $i++) {
       }
     }
   }
-  file_put_contents(__DIR__ . '/..' . $file_path, $html);
+  file_put_contents($output_dir . $file_path, $html);
 }

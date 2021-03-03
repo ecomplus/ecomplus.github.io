@@ -1,6 +1,6 @@
 <?php
 // API list JSON file
-$json_file = __DIR__ . '/../../src/assets/json/apis.json';
+$json_file = __DIR__ . '/../../docs/assets/json/apis.json';
 $apis = null;
 if (file_exists($json_file) && @$argv[1] !== 'update-apis') {
   // try to set $apis object from JSON file content
