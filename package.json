@@ -1,61 +1,52 @@
 {
-  "name": "ecomplus-developers",
+  "name": "developers.e-com.plus",
   "description": "E-Com Plus Developers Hub",
-  "version": "0.0.1",
-  "homepage": "http://developers.e-com.plus",
-  "author": "E-Com Club",
+  "scripts": {
+    "pull": "sh pull.sh",
+    "serve": "webpack serve",
+    "dev": "watch \"npm run build:views\" build & webpack serve",
+    "build": "webpack",
+    "build:views": "php -f build/main.php",
+    "build:views.up": "php -f build/main.php update-apis",
+    "build:assets": "webpack --config webpack.preset-assets.js",
+    "build:all": "npm run pull && npm run build:views.up && npm run build:assets && npm run build"
+  },
+  "version": "0.1.0",
+  "homepage": "https://developers.e-com.plus",
+  "author": "E-Com Club <ti@e-com.club>",
   "license": "UNLICENSED",
   "private": true,
-  "standard": {
-    "globals": [
-      "XMLHttpRequest",
-      "XDomainRequest",
-      "$",
-      "alert",
-      "location",
-      "history",
-      "document",
-      "Apis",
-      "Urls",
-      "githubRepo",
-      "apiReference",
-      "consoleLink"
-    ]
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.34",
+    "@fortawesome/free-brands-svg-icons": "^5.15.2",
+    "@fortawesome/free-regular-svg-icons": "^5.15.2",
+    "@fortawesome/free-solid-svg-icons": "^5.15.2",
+    "bootstrap": "^4.6.0",
+    "jquery": "^3.6.0",
+    "perfect-scrollbar": "^1.5.0",
+    "popper.js": "^1.16.1",
+    "prismjs": "^1.23.0",
+    "smoothscroll-for-websites": "^1.4.10"
   },
   "devDependencies": {
-    "bootstrap": "^4.1.3",
-    "browser-sync": "^2.26.3",
-    "browser-sync-webpack-plugin": "^2.2.2",
-    "cross-env": "^5.2.0",
-    "del": "^3.0.0",
-    "font-awesome": "^4.7.0",
-    "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^5.0.0",
-    "gulp-cache": "^1.0.2",
-    "gulp-changed": "^3.2.0",
-    "gulp-concat": "^2.6.1",
-    "gulp-file": "^0.4.0",
-    "gulp-imagemin": "^4.1.0",
-    "gulp-load-plugins": "^1.5.0",
-    "gulp-rename": "^1.4.0",
-    "gulp-sass": "^4.0.2",
-    "gulp-sourcemaps": "^2.6.4",
-    "gulp-uglify": "^3.0.1",
-    "gulp-zip": "^4.2.0",
-    "jquery": "^3.3.1",
-    "node-sass-tilde-importer": "^1.0.2",
-    "perfect-scrollbar": "^1.4.0",
-    "popper.js": "^1.14.3",
-    "prismjs": "1.15.0",
-    "run-sequence": "^2.2.1",
-    "smoothscroll-for-websites": "^1.4.6",
-    "themify-icons": "^1.0.0",
-    "uglifyjs-webpack-plugin": "^1.3.0",
-    "webpack-stream": "^5.1.0"
+    "@commitlint/cli": "^12.0.1",
+    "@commitlint/config-conventional": "^12.0.1",
+    "autoprefixer": "^10.2.4",
+    "css-loader": "^5.1.1",
+    "husky": "^4.3.8",
+    "mini-css-extract-plugin": "^1.3.9",
+    "postcss-loader": "^5.0.0",
+    "sass": "^1.32.8",
+    "sass-loader": "^11.0.1",
+    "style-loader": "^2.0.0",
+    "watch": "^1.0.2",
+    "webpack": "^5.24.2",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2"
   },
-  "engines": {
-    "node": ">=6.5",
-    "npm": ">=3.10"
-  },
-  "dependencies": {}
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  }
 }
